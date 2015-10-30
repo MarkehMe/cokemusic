@@ -15,7 +15,7 @@ var Client = IgeClass.extend({
 		self.gameTexture.grassSheet = new IgeCellSheet(rootPath + 'assets/textures/tiles/grassSheet-2.png', 6, 3);
 		self.gameTexture.carpetTest = new IgeCellSheet(rootPath + 'assets/textures/tiles/carpet-test-2.png', 1, 1);
 		self.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
-		self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
+		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
 
 		//Furniture
 		self.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');

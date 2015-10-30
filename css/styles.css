@@ -1,0 +1,61 @@
+.some {
+  text-align: center; }
+
+html, body {
+  font-family: Verdana, sans-serif; }
+
+.contain {
+  width: 1024px;
+  margin: 0 auto; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+* html .clearfix {
+  zoom: 1; }
+
+/* IE6 */
+*:first-child + html .clearfix {
+  zoom: 1; }
+
+/* IE7 */
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background: url("../assets/ui/bar-background.jpg") repeat; }
+  .bottom-bar .contain {
+    display: table;
+    height: 100%; }
+  .bottom-bar .chat-input-wrapper,
+  .bottom-bar .actions-wrapper,
+  .bottom-bar .my-coke {
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle; }
+  .bottom-bar .chat-input-wrapper {
+    width: 347px; }
+    .bottom-bar .chat-input-wrapper .chat-input {
+      height: 26px;
+      width: 100%;
+      border: 0;
+      background-image: url("../assets/ui/chat-background.jpg");
+      background-size: 100% 100%;
+      padding: 0px 6px 2px 9px;
+      box-sizing: border-box;
+      font-weight: bold;
+      font-size: 12px; }
+      .bottom-bar .chat-input-wrapper .chat-input:focus {
+        outline: 0; }
+  .bottom-bar .actions-wrapper {
+    width: 35%; }
+  .bottom-bar .my-coke {
+    width: 5%; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,48 @@
+.bottom-bar {
+	position: absolute;
+	bottom: 0;
+	height: 60px;
+	width: 100%;
+	background: url('../assets/ui/bar-background.jpg') repeat;
+
+	.contain {
+		display: table;
+		height: 100%;
+	}
+
+	.chat-input-wrapper, 
+	.actions-wrapper,
+	.my-coke {
+		height: 100%;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.chat-input-wrapper {
+		width: 347px;
+
+		.chat-input {
+			height: 26px;
+			width: 100%;
+			border: 0;
+			background-image: url('../assets/ui/chat-background.jpg');
+			background-size: 100% 100%;
+			padding: 0px 6px 2px 9px;
+			box-sizing: border-box;
+			font-weight: bold;
+			font-size: 12px;
+
+			&:focus {
+				outline: 0;
+			}
+		}
+	}
+
+	.actions-wrapper {
+		width: 35%;
+	}
+
+	.my-coke {
+		width: 5%;
+	}
+}

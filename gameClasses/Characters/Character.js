@@ -75,22 +75,22 @@ var Character = IgeEntity.extend({
 		switch (type) {
 			case 8:
 				var fps = 5.3;
-				this.animation.define('walkNE', [1, 2, 3, 4], fps, -1)
+				this.animation.define('walkNE' , [1, 2, 3, 4], fps, -1)
 					.animation.define('standNE', [5], fps, -1)
-					.animation.define('walkNW', [6, 7, 8, 9], fps, -1)
+					.animation.define('walkNW' , [6, 7, 8, 9], fps, -1)
 					.animation.define('standNW', [10], fps, -1)
-					.animation.define('walkW', [14, 13, 12, 11], fps, -1)
-					.animation.define('standW', [15], fps, -1)
-					.animation.define('walkE', [16, 17, 18, 19], fps, -1)
-					.animation.define('standE', [20], fps, -1)
-					.animation.define('walkSW', [24, 23, 22, 21], fps, -1)
+					.animation.define('walkW'  , [14, 13, 12, 11], fps, -1)
+					.animation.define('standW' , [15], fps, -1)
+					.animation.define('walkE'  , [16, 17, 18, 19], fps, -1)
+					.animation.define('standE' , [20], fps, -1)
+					.animation.define('walkSW' , [24, 23, 22, 21], fps, -1)
 					.animation.define('standSW', [25], fps, -1)
-					.animation.define('walkSE', [26, 27, 28, 29], fps, -1)
+					.animation.define('walkSE' , [26, 27, 28, 29], fps, -1)
 					.animation.define('standSE', [30], fps, -1)
-					.animation.define('walkS', [31, 32, 33, 34], fps, -1)
-					.animation.define('standS', [35], fps, -1)
-					.animation.define('walkN', [36, 37, 38, 39], fps, -1)
-					.animation.define('standN', [40], fps, -1)
+					.animation.define('walkS'  , [31, 32, 33, 34], fps, -1)
+					.animation.define('standS' , [35], fps, -1)
+					.animation.define('walkN'  , [36, 37, 38, 39], fps, -1)
+					.animation.define('standN' , [40], fps, -1)
 					.cell(1);
 
 				this._restCell = 40;

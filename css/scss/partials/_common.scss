@@ -1,0 +1,19 @@
+html, body {
+	font-family: Verdana, sans-serif;
+}
+
+.contain {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
