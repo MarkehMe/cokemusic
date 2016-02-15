@@ -13,7 +13,8 @@ html, body {
 
 .contain {
   width: 1024px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  position: relative; }
 
 .clearfix:after {
   visibility: hidden;
@@ -86,6 +87,8 @@ html, body {
         overflow: hidden; }
       .bottom-bar .actions-wrapper .action-item:hover i {
         background-position-y: -22px; }
+    .bottom-bar .actions-wrapper .action-item.active i {
+      background-position-y: -22px; }
     .bottom-bar .actions-wrapper #message i {
       background-position-x: -21px; }
     .bottom-bar .actions-wrapper #decibals i {
@@ -107,5 +110,20 @@ html, body {
       height: 61px;
       bottom: 0;
       left: 0; }
+
+#inventory {
+  position: absolute;
+  z-index: 10;
+  background-image: url("../assets/ui/backpack.png");
+  width: 238px;
+  height: 336px;
+  right: 238px;
+  top: 999px; }
+  #inventory .i-move {
+    position: absolute;
+    height: 44px;
+    width: 100%;
+    top: 30px;
+    left: 0; }
 
 /*# sourceMappingURL=styles.css.map */

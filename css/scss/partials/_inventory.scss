@@ -1,0 +1,17 @@
+#inventory {
+	position: absolute;
+	z-index: 10;
+	background-image: url('../assets/ui/backpack.png');
+	width: 238px;
+	height: 336px;
+	right: 238px;
+	top: 999px;
+
+	.i-move {
+		position: absolute;
+		height: 44px;
+		width: 100%;
+		top: 30px;
+		left: 0;
+	}
+}

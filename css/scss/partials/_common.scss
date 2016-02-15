@@ -5,6 +5,7 @@ html, body {
 .contain {
 	width: 1024px;
 	margin: 0 auto;
+	position: relative;
 }
 
 .clearfix:after {
