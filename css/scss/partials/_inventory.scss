@@ -37,6 +37,12 @@
 							padding: $inventory-icon-padding;
 						}
 					}
+
+					a.active {
+						img {
+							opacity: .25;
+						}
+					}
 				}
 
 				li:nth-child(1) { left: 30px; }

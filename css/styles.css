@@ -142,6 +142,8 @@ html, body {
         width: 30px;
         height: auto;
         padding: 1px; }
+    #inventory .inventory-data li .items li a.active img {
+      opacity: .25; }
   #inventory .inventory-data li .items li:nth-child(1) {
     left: 30px; }
   #inventory .inventory-data li .items li:nth-child(2) {
