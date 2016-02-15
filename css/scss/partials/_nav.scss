@@ -1,19 +1,20 @@
 .bottom-bar {
 	position: absolute;
 	bottom: 0;
-	height: 60px;
+	height: $menu-bar-height;
 	width: 100%;
 	background: url('../assets/ui/bar-background.jpg') repeat;
 
 	.contain {
 		display: table;
 		height: 100%;
+		position: relative;
 	}
 
 	.chat-input-wrapper, 
 	.actions-wrapper,
 	.my-coke {
-		height: 100%;
+		height: $menu-bar-height;
 		display: table-cell;
 		vertical-align: middle;
 	}
@@ -23,7 +24,7 @@
 
 		.chat-input {
 			height: 26px;
-			width: 100%;
+			width: 347px;
 			border: 0;
 			background-image: url('../assets/ui/chat-background.jpg');
 			background-size: 100% 100%;
@@ -39,10 +40,66 @@
 	}
 
 	.actions-wrapper {
-		width: 35%;
+		width: 205px;
+
+		ul {
+			margin-left: 13px;
+
+			li {
+				display: inline-block;
+			}
+		}
+
+		.action-item {
+			display: block;
+			line-height: $menu-bar-height;
+			background-image: url('../assets/ui/bar-actions-ui.png');
+			background-repeat: no-repeat;
+			background-position-y: center;
+			width: 20px;
+			height: $menu-bar-height;
+		}
+
+		#navigation {
+
+		}
+
+		#message {
+			background-position-x: -21px;
+		}
+
+		#decibals {
+    		background-position-x: -42px;
+		}
+
+		#backpack {
+			background-position-x: -63px;
+		}
+
+		#catalogue {
+			background-position-x: -84px;
+		}
+
+		#music {
+			background-position-x: -105px;
+		}
+
+		#help {
+			background-position-x: -126px;
+		}
+
 	}
 
 	.my-coke {
-		width: 5%;
+		width: 109px;
+		position: relative;
+
+		img {
+			position: absolute;
+			width: 109px;
+			height: 61px;
+			bottom: 0;
+			left: 0;
+		}
 	}
 }

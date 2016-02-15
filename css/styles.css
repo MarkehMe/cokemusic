@@ -1,6 +1,13 @@
 .some {
   text-align: center; }
 
+ul {
+  margin: 0;
+  padding: 0; }
+  ul li {
+    margin: 0;
+    padding: 0; }
+
 html, body {
   font-family: Verdana, sans-serif; }
 
@@ -27,23 +34,24 @@ html, body {
 .bottom-bar {
   position: absolute;
   bottom: 0;
-  height: 60px;
+  height: 47px;
   width: 100%;
   background: url("../assets/ui/bar-background.jpg") repeat; }
   .bottom-bar .contain {
     display: table;
-    height: 100%; }
+    height: 100%;
+    position: relative; }
   .bottom-bar .chat-input-wrapper,
   .bottom-bar .actions-wrapper,
   .bottom-bar .my-coke {
-    height: 100%;
+    height: 47px;
     display: table-cell;
     vertical-align: middle; }
   .bottom-bar .chat-input-wrapper {
     width: 347px; }
     .bottom-bar .chat-input-wrapper .chat-input {
       height: 26px;
-      width: 100%;
+      width: 347px;
       border: 0;
       background-image: url("../assets/ui/chat-background.jpg");
       background-size: 100% 100%;
@@ -54,8 +62,39 @@ html, body {
       .bottom-bar .chat-input-wrapper .chat-input:focus {
         outline: 0; }
   .bottom-bar .actions-wrapper {
-    width: 35%; }
+    width: 205px; }
+    .bottom-bar .actions-wrapper ul {
+      margin-left: 13px; }
+      .bottom-bar .actions-wrapper ul li {
+        display: inline-block; }
+    .bottom-bar .actions-wrapper .action-item {
+      display: block;
+      line-height: 47px;
+      background-image: url("../assets/ui/bar-actions-ui.png");
+      background-repeat: no-repeat;
+      background-position-y: center;
+      width: 20px;
+      height: 47px; }
+    .bottom-bar .actions-wrapper #message {
+      background-position-x: -21px; }
+    .bottom-bar .actions-wrapper #decibals {
+      background-position-x: -42px; }
+    .bottom-bar .actions-wrapper #backpack {
+      background-position-x: -63px; }
+    .bottom-bar .actions-wrapper #catalogue {
+      background-position-x: -84px; }
+    .bottom-bar .actions-wrapper #music {
+      background-position-x: -105px; }
+    .bottom-bar .actions-wrapper #help {
+      background-position-x: -126px; }
   .bottom-bar .my-coke {
-    width: 5%; }
+    width: 109px;
+    position: relative; }
+    .bottom-bar .my-coke img {
+      position: absolute;
+      width: 109px;
+      height: 61px;
+      bottom: 0;
+      left: 0; }
 
 /*# sourceMappingURL=styles.css.map */
