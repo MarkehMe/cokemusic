@@ -133,15 +133,42 @@ html, body {
     top: 112px;
     width: 32px;
     height: 32px;
-    text-align: center; }
+    text-align: center;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none; }
     #inventory .inventory-data li .items li a {
       display: block;
       width: 30px;
-      height: 30px; }
+      height: 30px;
+      -webkit-user-select: none;
+      /* Chrome all / Safari all */
+      -moz-user-select: none;
+      /* Firefox all */
+      -ms-user-select: none;
+      /* IE 10+ */
+      user-select: none; }
       #inventory .inventory-data li .items li a img {
         width: 30px;
         height: auto;
-        padding: 1px; }
+        padding: 1px;
+        -webkit-user-select: none;
+        /* Chrome all / Safari all */
+        -moz-user-select: none;
+        /* Firefox all */
+        -ms-user-select: none;
+        /* IE 10+ */
+        user-select: none; }
+        #inventory .inventory-data li .items li a img:hover {
+          cursor: pointer; }
+      #inventory .inventory-data li .items li a:hover {
+        cursor: pointer; }
+        #inventory .inventory-data li .items li a:hover img {
+          opacity: .25; }
     #inventory .inventory-data li .items li a.active img {
       opacity: .25; }
   #inventory .inventory-data li .items li:nth-child(1) {

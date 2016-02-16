@@ -8,7 +8,7 @@ function init_inventory() {
     $('body').on("mousemove", function(e) {
     	if(dragging == true) {
     		inventory.css('top', (e.pageY - 44));
-    		inventory.css('left', (e.pageX - 119));
+    		inventory.css('left', (e.pageX - 238));
     	}
     });
 
