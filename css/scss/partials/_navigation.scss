@@ -75,4 +75,10 @@
 		border-bottom-left-radius: $nav-tab-radius;
 		height: calc(100% - 59px);
 	}
+
+	.close {
+		background-image: url('../assets/ui/close-x.png');
+		width: 20px;
+		height: 20px;
+	}
 }
