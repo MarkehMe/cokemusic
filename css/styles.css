@@ -42,7 +42,7 @@ html, body {
 .toggle {
   display: none; }
 
-.toggle.active {
+.toggle.selected {
   display: block; }
 
 .bottom-bar {
@@ -255,6 +255,7 @@ html, body {
 
 #navigation-ui {
   position: absolute;
+  z-index: 9;
   top: 10%;
   right: 20%;
   border-radius: 4px;
