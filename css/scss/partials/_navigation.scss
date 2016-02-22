@@ -1,0 +1,84 @@
+#navigation-ui {
+	position: absolute;
+	z-index: 9;
+	top: 10%;
+	right: 20%;
+	border-radius: $nav-tab-radius;
+	width: 309px;
+	height: 404px;
+	border: 1px solid #3f3426;
+	background-color: #bd9060;
+	background-image: url('../assets/ui/tileable-bg.png');
+	background-repeat: repeat;
+	padding: 6px;
+
+	.nav-ui-title {
+		position: relative;
+	    padding-top: 5px;
+	    padding-bottom: 10px;
+
+		h3 {
+			color: $nav-tab-active-bg-color;
+			font-size: 12px;
+			text-align: center;
+			@include no-select();
+		}
+
+		.close {
+			position: absolute;
+			right: 0;
+			top: 0;
+			@include no-select();
+		}
+	}
+
+	.nav-ui-tabs {
+		li {
+			@include no-select();
+			font-family: 'Arial', sans-serif;
+			font-size: 12px;
+			font-weight: bold;
+			display: inline-block;
+			color: $nav-tab-color;	
+			padding: 6px 0px;
+			border-top-right-radius: $nav-tab-radius;
+			border-top-left-radius: $nav-tab-radius;
+			background-color: $nav-tab-bg-color;
+			width: 99px;
+			text-align: center;
+			margin-bottom: 3px;
+			position: relative;
+
+			&:hover {
+				cursor: pointer;
+				background-color: $nav-tab-active-bg-color;
+			}
+		}
+
+		li.selected {
+			background-color: $nav-tab-active-bg-color;
+			&:after {
+				content: " ";
+				position: absolute;
+				background-color: $nav-tab-active-bg-color;
+				height: 3px;
+				width: 100%;
+				bottom: -3px;
+				left: 0;
+			}
+		}
+	}
+
+	.toggle {
+		background-color: $nav-tab-active-bg-color;
+		border-bottom-right-radius: $nav-tab-radius;
+		border-bottom-left-radius: $nav-tab-radius;
+		height: calc(100% - 59px);
+	}
+
+	.close {
+		background-image: url('../assets/ui/close-x.png');
+		width: 20px;
+		height: 20px;
+	}
+}
