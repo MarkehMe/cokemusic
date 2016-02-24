@@ -56,7 +56,7 @@ var Client = IgeClass.extend({
 						.isometricMounts(true)
 						.tileWidth(45)
 						.tileHeight(45)
-						.gridSize(11, 11)
+						.gridSize(10, 10)
 						.drawGrid(false)
 						.drawMouse(true)
 						.hoverStrokeColor('#FFE436')
@@ -68,9 +68,9 @@ var Client = IgeClass.extend({
 					self.textureMap1 = new IgeTextureMap()
 						.tileWidth(45)
 						.tileHeight(45)
-						.gridSize(11, 11)
+						.gridSize(10, 10)
 						.gridColor('#470930')
-						.drawGrid(true)
+						.drawGrid(false)
 						.drawMouse(false)
 						.autoSection(11)
 						.drawSectionBounds(false)
@@ -96,23 +96,61 @@ var Client = IgeClass.extend({
 					//ige.$('vp1').drawBounds(true);
 
 					//Occupy all the border tiles
-					for (var x = 0; x < 12; x++) {
-						for (var y = 0; y < 12; y++) {
+					for (var x = 0; x < 11; x++) {
+						for (var y = 0; y < 11; y++) {
 							if(x == 0) {
 								ige.$collisionMap1.tileData(x, y, true);
 							}
 						}
 					}
 
+					//self.tileMap1.map.collision.tileData(0, 0, true);
+					console.log(self.tileMap1.map.collision);
+					ige.$collisionMap1.tileData(0, 1, true);
+					ige.$collisionMap1.tileData(0, 2, true);
+					ige.$collisionMap1.tileData(0, 3, true);
+					ige.$collisionMap1.tileData(1, 0, true);
+					ige.$collisionMap1.tileData(1, 1, true);
+					ige.$collisionMap1.tileData(1, 2, true);
+					ige.$collisionMap1.tileData(1, 3, true);
+					ige.$collisionMap1.tileData(2, 0, true);
+					ige.$collisionMap1.tileData(2, 1, true);
+					ige.$collisionMap1.tileData(2, 2, true);
+					ige.$collisionMap1.tileData(2, 3, true);
+					ige.$collisionMap1.tileData(3, 0, true);
+					ige.$collisionMap1.tileData(3, 1, true);
+					ige.$collisionMap1.tileData(3, 2, true);
+					ige.$collisionMap1.tileData(3, 3, true);
+
 					//** Generate Carpet Tiles
 					var texIndex = self.textureMap1.addTexture(self.gameTexture.carpetTest);
-					// Generate some random tiles
-					for (var x = 0; x < 11; x++) {
-						for (var y = 0; y < 11; y++) {
+					//Generate some random tiles
+					for (var x = 0; x < 10; x++) {
+						for (var y = 0; y < 10; y++) {
 							//var rand = Math.ceil(Math.random() * 18);
 							self.textureMap1.paintTile(x, y, texIndex, 1);
 						}
 					}
+
+					// self.textureMap1.paintTile(0, 0, texIndex, 1);
+					// self.textureMap1.paintTile(0, 1, texIndex, 1);
+					// self.textureMap1.paintTile(0, 2, texIndex, 1);
+					// self.textureMap1.paintTile(0, 3, texIndex, 1);
+
+					// self.textureMap1.paintTile(1, 0, texIndex, 1);
+					// self.textureMap1.paintTile(1, 1, texIndex, 1);
+					// self.textureMap1.paintTile(1, 2, texIndex, 1);
+					// self.textureMap1.paintTile(1, 3, texIndex, 1);
+
+					// self.textureMap1.paintTile(2, 0, texIndex, 1);
+					// self.textureMap1.paintTile(2, 1, texIndex, 1);
+					// self.textureMap1.paintTile(2, 2, texIndex, 1);
+					// self.textureMap1.paintTile(2, 3, texIndex, 1);
+
+					// self.textureMap1.paintTile(3, 0, texIndex, 1);
+					// self.textureMap1.paintTile(3, 1, texIndex, 1);
+					// self.textureMap1.paintTile(3, 2, texIndex, 1);
+					// self.textureMap1.paintTile(3, 3, texIndex, 1);
 
 					//Fridge
 					new IgeEntity()
