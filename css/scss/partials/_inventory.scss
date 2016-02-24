@@ -113,3 +113,64 @@
 		}
 	}
 }
+
+.infostand-wrapper {
+	position: absolute;
+	bottom: 100px;
+	left: 0;
+	width: 100%;
+	height: 100px;
+}
+
+#infostand {
+	width: 1024px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    display: none;
+
+	.infostand-wrapper-inner {
+		position: absolute;
+		width: 56px;
+		height: 56px;
+		right: 0;
+		top: 0;
+	}
+
+	.stand {
+		background-image: url('../assets/ui/infostand.png');
+		background-repeat: no-repeat;
+		width: 56px;
+		height: 32px;
+		position: absolute;
+		top: 14px;
+		left: 0;
+	}
+
+	.furniture {
+		position: absolute;
+	    top: 4px;
+	    left: 12px;
+	}
+
+	.infostand-wrapper-text {
+		position: absolute;
+		top: 56px;
+		right: 0;
+		text-align: right;
+		width: 175px;
+
+		.title, .description {
+			color: $furni-title-color;
+			font-size: $furni-title-size;
+		}
+
+		.title {
+			font-weight: bold;
+		}
+
+		.description {
+
+		}
+	}
+}

@@ -4,6 +4,8 @@ var GameItem = IgeEntity.extend({
 	init: function (gameItem, direction, x, y, tileWidth, tileHeight) {
 		IgeEntity.prototype.init.call(this);
 
+		this.data('gameItem', gameItem);
+
 		//Set as isometric and set the texture
 		this.isometric(true)
 			.texture(ige.gameTexture.furniture);
@@ -41,7 +43,16 @@ var GameItem = IgeEntity.extend({
 
 		//Mouse Down
 		this._mouseDown = function(x, y) {
-			
+			var stand = $('#infostand'),
+				standImage = $('#infostand .furniture'),
+				standTitle = $('#infostand .title'),
+				standDescriptin = $('#infostand .description'),
+				furniInfo = FURNITURE[this.data('gameItem')];
+
+			standTitle.text(furniInfo['info']['title']);
+			standDescriptin.text(furniInfo['info']['description']);
+			standImage.attr('src', './assets/furniture/icons/' + furniInfo['info']['icon']);
+			stand.show();
 		};
 	},
 
@@ -64,10 +75,26 @@ var GameItem = IgeEntity.extend({
 		// 	this.data('tileHeight')
 		// );
 
+		//I have no idea why this works. Really don't feel like
+		//spending hours trying to figure it out but it should
+		//probably be fixed eventually TODO
+		var translateX = this.data('tileX'), 
+			translateY = this.data('tileY');
+		if(this.data('tileWidth') >= 90) {
+			translateX = (this.data('tileX') - 0.05);
+			translateY = (this.data('tileY') + 0.45);
+
+			console.log(translateX);
+			console.log(translateY);
+		}
+
 		this.mount(ige.$('tileMap1'))
-			.translateToTile(this.data('tileX'), this.data('tileY'))
-			.bounds3d(this.data('tileWidth'), this.data('tileHeight'), 1)
-			.occupyTile(this.data('tileX'), this.data('tileY'));
+			.tileWidth( this.data('tileX') / 45 )
+			.tileHeight( this.data('tileY') / 45 )
+			.bounds3d(this.data('tileHeight'), this.data('tileWidth'), 1)
+			.translateToTile(translateX, translateY, 0)
+			//.translateToTile(this.data('tileX'), this.data('tileY'))
+			.occupyTile(this.data('tileX'), this.data('tileY'), this.data('tileHeight') / 45, this.data('tileWidth') / 45);
 
 		this.data('placed', true);
 

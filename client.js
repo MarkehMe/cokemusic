@@ -115,46 +115,26 @@ var Client = IgeClass.extend({
 					}
 
 					//Fridge
-					new IgeEntity()
-						.isometric(true)
-						.texture(ige.gameTexture.furniture)
-						.anchor(0, -15)
-						.cell(4)
-						.dimensionsFromCell()
-						.mount(self.tileMap1)
-						.translateToTile(0, 2)
-						.bounds3d(45, 45, 1)
-						.occupyTile(0, 2);
+					var Fridge = new GameItem('fridge', 'NW', 0, 2, 45, 45);
+					var FridgeT = new GameItem('fridge', 'NW', 4, 4, 45, 45);
 
 					//TV
 					var TV = new GameItem('tv', 'NW', 0, 1, 45, 45);
 
-					//Fridge, far out
-					new IgeEntity()
-						.isometric(true)
-						.texture(ige.gameTexture.furniture)
-						.anchor(0, -15)
-						.cell(4)
-						//.depth(3)
-						.bounds3d(45, 45, 1)
-						.dimensionsFromCell()
-						.mount(self.tileMap1)
-						.translateToTile(4, 4)
-						.occupyTile(4, 4);
-
 					//Coke Sofa, far out
-					new IgeEntity()
-						.isometric(true)
-						.texture(ige.gameTexture.furniture)
-						.anchor(0, -20)
-						.cell(1)
-						.bounds3d(45, 90, 1)
-						.dimensionsFromCell()
-						.mount(self.tileMap1)
-						.tileWidth(1)
-						.tileHeight(2)
-						.translateToTile(.95, 4.45, 0)
-						.occupyTile(1, 4, 1, 2);
+					var Coke = new GameItem('sofa_coke', 'NW', 1, 4, 90, 45);
+					// new IgeEntity()
+					// 	.isometric(true)
+					// 	.texture(ige.gameTexture.furniture)
+					// 	.anchor(0, -20)
+					// 	.cell(1)
+					// 	.bounds3d(45, 90, 1)
+					// 	.dimensionsFromCell()
+					// 	.mount(self.tileMap1)
+					// 	.tileWidth(1)
+					// 	.tileHeight(2)
+					// 	.translateToTile(.95, 4.45, 0)
+					// 	.occupyTile(1, 6, 1, 2);
 
 
 					//Shrubs

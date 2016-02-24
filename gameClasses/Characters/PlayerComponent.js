@@ -38,12 +38,14 @@ var PlayerComponent = IgeClass.extend({
 			overTiles;
 
 		// Check the bounds
+		//TODO: this needs to be alot more complex
 		 if(endTile.x < 0 || endTile.x >= 11 || endTile.y < 0 || endTile.y >= 11)
 		 	return;
 
 		overTiles = this._entity.overTiles()[0];
 
-		// Tell the entity to start pathing along the new path
+		// Tell the entity to start navigating along the new path
+		//TODO: need to add the speed to some sort of global var JS
 		this._entity.path
 			.set(overTiles.x, overTiles.y, 0, endTile.x, endTile.y, 0)
 			.speed(1.75)
@@ -81,8 +83,12 @@ var PlayerComponent = IgeClass.extend({
 
 	_pathStarted: function() {
 		var direction = this._entity.path.getDirection();
-		if(direction != '')
+		if(direction != '') {
 			this._entity.changeDirection(direction);
+			//If they are about to start a path might aswell
+			//hide the selection here
+			$('#infostand').hide();
+		}
 	},
 
 });

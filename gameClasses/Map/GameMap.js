@@ -1,7 +1,15 @@
 var GameMap = IgeTileMap2d.extend({
 	classId: 'GameMap',	
 
-	// mouseOver: function(x, y) {
-	// 	console.log(x + y);
-	// },
+	init: function() {
+		IgeTileMap2d.prototype.init.call(this);
+
+		var self = this;
+
+		ige.input.on('mouseDown', function () { self.mouseDown(); });
+	},
+
+	mouseDown: function() {
+		
+	}
 });

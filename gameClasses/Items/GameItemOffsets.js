@@ -3,6 +3,6 @@ var GameItemOffsets = {
 		if(typeof direction == 'undefined')
 			direction = 'NW';
 
-		return FURNITURE_TEXTURES[gameItem][direction];
+		return FURNITURE[gameItem]['offsets'][direction];
 	}
 };

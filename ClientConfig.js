@@ -18,7 +18,7 @@ var igeClientConfig = {
 		'./gameClasses/Characters/PlayerComponent.js',
 
 		//Furniture
-		'./assets/furniture/textures.js',
+		'./assets/furniture/data.js',
 		'./gameClasses/Items/GameItem.js',
 		'./gameClasses/Items/GameItemOffsets.js',
 
