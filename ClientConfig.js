@@ -1,9 +1,12 @@
 var igeClientConfig = {
 	include: [
-		/* Your custom game JS scripts */
-		//'./gameClasses/MyCustomClassFile.js',
-		'./gameClasses/Components/AnimatorComponent.js',
+
+		//Floor, Tiles, Map, etc
 		'./gameClasses/Map/FloorTextureMap.js',
+		'./gameClasses/Map/GameMap.js',
+
+		//Character movements, clothing, etc
+		'./gameClasses/Components/AnimatorComponent.js',
 		'./gameClasses/Characters/CharacterHead.js',
 		'./gameClasses/Characters/CharacterHair.js',
 		'./gameClasses/Characters/CharacterEyes.js',
@@ -13,6 +16,11 @@ var igeClientConfig = {
 		'./gameClasses/Characters/CharacterShirt.js',
 		'./gameClasses/Characters/Character.js',
 		'./gameClasses/Characters/PlayerComponent.js',
+
+		//Furniture
+		'./assets/furniture/textures.js',
+		'./gameClasses/Items/GameItem.js',
+		'./gameClasses/Items/GameItemOffsets.js',
 
 		
 		/* Standard game scripts */
