@@ -6,48 +6,49 @@ var GameItem = IgeEntity.extend({
 
 		var self = this;
 
-		this.data('gameItem', gameItem);
+		self.data('gameItem', gameItem);
+		self.data('currentDirection', direction);
 
 		//Set as isometric and set the texture
-		this.isometric(true)
+		self.isometric(true)
 			.texture(ige.gameTexture.furniture);
 
 		//Get the data for the object
 		var object = FURNITURE[gameItem];
+		self.data('object', object);
 
 		//Load in the texture and offsets.
-		this.cell(object['offsets'][direction][0])
+		self.cell(object['offsets'][direction][0])
 			.anchor(object['offsets'][direction][1], object['offsets'][direction][2])
 			.dimensionsFromCell();
 
 		//Set the tileX and tileY cordinates
-		this.data('tileX', x)
+		self.data('tileX', x)
 			.data('tileY', y)
 			.data('tileXWidth',  object['offsets'][direction][3])
 			.data('tileYHeight', object['offsets'][direction][4])
 			.data('objectHeight', object['info']['height']);
 
-		this.place();
+		self.place();
 		
-
-		this._mouseEventsActive = true;
+		self._mouseEventsActive = true;
 
 		//Mouse Over
-		this._mouseOver = function(x, y) {
+		self._mouseOver = function(x, y) {
 			if(ige.movingItem === false) {
-				this.highlight(true);
+				self.highlight(true);
 			}
 		};
 
 		//Mouse Out
-		this._mouseOut = function(x, y) {
+		self._mouseOut = function(x, y) {
 			if(ige.movingItem === false) {
-				this.highlight(false);
+				self.highlight(false);
 			}
 		};
 
 		//Mouse Down
-		this._mouseDown = function(x, y) {
+		self._mouseDown = function(x, y) {
 			var stand = $('#infostand'),
 				standImage = $('#infostand .furniture'),
 				standTitle = $('#infostand .title'),
@@ -172,6 +173,43 @@ var GameItem = IgeEntity.extend({
 		// Call the parent class destroy method
 		IgeEntity.prototype.destroy.call(this);
 	},
+
+	/**
+	 * Handles rotating the item.
+	 */
+	rotate: function() {
+		var self = this;
+
+		// Un-occupy the current tiles
+		this.unOccupyTile(
+			this.data('tileX'),
+			this.data('tileY'),
+			this.data('tileWidth'),
+			this.data('tileHeight')
+		);
+
+		function getNewDirection() {
+			var current = self.data('currentDirection');
+
+			switch(current) {
+				case 'SE': return 'SW';
+				case 'SW': return 'NW';
+				case 'NW': return 'NE';
+				case 'NE': return 'SE';
+			}
+		}
+
+		var newDirection = getNewDirection(),
+			direction = self.data('object')['offsets'][newDirection];
+
+		this.data('currentDirection', newDirection);
+
+		self.cell(direction[0])
+			.anchor(direction[1], direction[2])
+			.dimensionsFromCell();
+
+			console.log( newDirection);
+	}
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = ClientItem; }

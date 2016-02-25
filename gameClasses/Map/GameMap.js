@@ -51,7 +51,7 @@ var GameMap = IgeTileMap2d.extend({
 	},
 
 	itemRotate: function() {
-
+		ige.selected.rotate();
 	},
 
 	itemMove: function() {
