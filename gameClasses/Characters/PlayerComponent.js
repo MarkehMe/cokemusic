@@ -33,6 +33,9 @@ var PlayerComponent = IgeClass.extend({
 	 * @private
 	 */
 	_mouseUp: function () {
+		if(ige.movingItem == true)
+			return false;
+
 		// Get the tile co-ordinates that the mouse is currently over
 		var endTile = ige.$('tileMap1').mouseToTile(),
 			overTiles;

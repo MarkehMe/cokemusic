@@ -13,6 +13,7 @@ var Client = IgeClass.extend({
 
 		this.obj = [];
 		this.gameTexture = {};
+		ige.movingItem = false;
 
 		// Enable networking
 		ige.addComponent(IgeSocketIoComponent);

@@ -4,6 +4,8 @@ var GameItem = IgeEntity.extend({
 	init: function (gameItem, direction, x, y) {
 		IgeEntity.prototype.init.call(this);
 
+		var self = this;
+
 		this.data('gameItem', gameItem);
 
 		//Set as isometric and set the texture
@@ -32,12 +34,16 @@ var GameItem = IgeEntity.extend({
 
 		//Mouse Over
 		this._mouseOver = function(x, y) {
-			this.highlight(true);
+			if(ige.movingItem === false) {
+				this.highlight(true);
+			}
 		};
 
 		//Mouse Out
 		this._mouseOut = function(x, y) {
-			this.highlight(false);
+			if(ige.movingItem === false) {
+				this.highlight(false);
+			}
 		};
 
 		//Mouse Down
@@ -53,7 +59,7 @@ var GameItem = IgeEntity.extend({
 			standImage.attr('src', './assets/furniture/icons/' + furniInfo['info']['icon']);
 			stand.show();
 
-			ige.selected = this;
+			ige.selected = self;
 		};
 	},
 

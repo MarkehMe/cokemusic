@@ -6,6 +6,8 @@ var FURNITURE = {
 			'title' : 'A badass TV',
 			'description' : 'Some cool description for the badass TV, not that it needs one.',
 			'height' : '20',
+			'stackable' : false,
+			'counter' : true
 		},
 		'offsets': {
 			'NW': [34, 0, 0, 1, 1],
@@ -22,6 +24,8 @@ var FURNITURE = {
 			'title' : 'Mini Fridge',
 			'description' : "I'm coolin' fam.",
 			'height' : '20',
+			'stackable' : false,
+			'counter' : true
 		},
 		'offsets': {
 			'NW': [2, 0, -3, 1, 1],
@@ -38,6 +42,8 @@ var FURNITURE = {
 			'title' : 'Class Coke Sofa',
 			'description' : 'Never forget homies.',
 			'height' : '20',
+			'stackable' : false,
+			'counter' : false
 		},
 		'offsets': {
 			'NW': [19, 0, -10, 1, 2],
