@@ -129,8 +129,14 @@
     position: relative;
     display: none;
 
+    .infostand-contain {
+    	position: absolute;
+    	right: 0;
+    	top: -12px;
+    }
+
 	.infostand-wrapper-inner {
-		position: absolute;
+		//position: absolute;
 		width: 56px;
 		height: 56px;
 		right: 0;
@@ -144,21 +150,23 @@
 		height: 32px;
 		position: absolute;
 		top: 14px;
-		left: 0;
+		right: 0;
 	}
 
 	.furniture {
 		position: absolute;
 	    top: 4px;
-	    left: 12px;
+	    right: 12px;
 	}
 
 	.infostand-wrapper-text {
-		position: absolute;
+		//position: absolute;
 		top: 56px;
 		right: 0;
 		text-align: right;
-		width: 175px;
+		width: 190px;
+		float: right;
+		margin-bottom: 9px;
 
 		.title, .description {
 			color: $furni-title-color;
@@ -167,10 +175,22 @@
 
 		.title {
 			font-weight: bold;
+			margin-bottom: 2px;
 		}
 
 		.description {
 
+		}
+	}
+
+	.infostand-wrapper-actions {
+		ul {
+			list-style-type: none;
+			text-align: right;
+
+			li {
+				display: inline-block;
+			}
 		}
 	}
 }

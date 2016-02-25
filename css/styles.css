@@ -1,6 +1,7 @@
 .some {
   text-align: center; }
 
+/* BUTTONS */
 /* INVENTORY */
 /* NAVIGATION */
 /* INFOSTAND AND TEXT */
@@ -51,6 +52,39 @@ html, body {
 
 .popup {
   display: none; }
+
+.button {
+  color: #fae9da;
+  font-size: 10px;
+  position: relative;
+  display: block;
+  line-height: 20px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background-image: url("../assets/ui/button-blue-center.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none; }
+  .button:before, .button:after {
+    content: ' ';
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    width: 8px;
+    height: 20px; }
+  .button:before {
+    background-image: url("../assets/ui/button-blue-left.png");
+    left: 0px; }
+  .button:after {
+    background-image: url("../assets/ui/button-blue-right.png");
+    right: 0px; }
 
 .bottom-bar {
   position: absolute;
@@ -280,8 +314,11 @@ html, body {
   margin: 0 auto;
   position: relative;
   display: none; }
-  #infostand .infostand-wrapper-inner {
+  #infostand .infostand-contain {
     position: absolute;
+    right: 0;
+    top: -12px; }
+  #infostand .infostand-wrapper-inner {
     width: 56px;
     height: 56px;
     right: 0;
@@ -293,22 +330,29 @@ html, body {
     height: 32px;
     position: absolute;
     top: 14px;
-    left: 0; }
+    right: 0; }
   #infostand .furniture {
     position: absolute;
     top: 4px;
-    left: 12px; }
+    right: 12px; }
   #infostand .infostand-wrapper-text {
-    position: absolute;
     top: 56px;
     right: 0;
     text-align: right;
-    width: 175px; }
+    width: 190px;
+    float: right;
+    margin-bottom: 9px; }
     #infostand .infostand-wrapper-text .title, #infostand .infostand-wrapper-text .description {
       color: #8b8b8b;
-      font-size: 12px; }
+      font-size: 10px; }
     #infostand .infostand-wrapper-text .title {
-      font-weight: bold; }
+      font-weight: bold;
+      margin-bottom: 2px; }
+  #infostand .infostand-wrapper-actions ul {
+    list-style-type: none;
+    text-align: right; }
+    #infostand .infostand-wrapper-actions ul li {
+      display: inline-block; }
 
 #navigation-ui {
   position: absolute;
