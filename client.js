@@ -116,13 +116,16 @@ var Client = IgeClass.extend({
 
 					//Fridge
 					var Fridge = new GameItem('fridge', 'NW', 0, 2);
-					var FridgeT = new GameItem('fridge', 'NW', 4, 4);
+					var FridgeT = new GameItem('fridge', 'NW', 3, 3);
 
 					//TV
 					var TV = new GameItem('tv', 'NW', 1, 1);
 
 					//Coke Sofa, far out
-					var Coke = new GameItem('sofa_coke', 'NW', 1, 4);
+					var Coke = new GameItem('sofa_coke', 'SE', 1, 4);
+					var Coke = new GameItem('sofa_coke', 'SE', 2, 4);
+					var Coke = new GameItem('sofa_coke', 'SE', 3, 4);
+					var Coke = new GameItem('sofa_coke', 'SE', 4, 4);
 
 					//Shrubs
 					// var xAdj = 0,
