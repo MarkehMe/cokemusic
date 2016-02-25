@@ -20,7 +20,6 @@ var GameMap = IgeTileMap2d.extend({
 		if(typeof ige.selected == 'undefined')
 			return;
 
-		console.log(ige.selected);
 		ige.selected.destroy();
 	}
 });

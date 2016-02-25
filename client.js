@@ -123,19 +123,6 @@ var Client = IgeClass.extend({
 
 					//Coke Sofa, far out
 					var Coke = new GameItem('sofa_coke', 'NW', 1, 4);
-					// new IgeEntity()
-					// 	.isometric(true)
-					// 	.texture(ige.gameTexture.furniture)
-					// 	.anchor(0, -20)
-					// 	.cell(1)
-					// 	.bounds3d(45, 90, 1)
-					// 	.dimensionsFromCell()
-					// 	.mount(self.tileMap1)
-					// 	.tileWidth(1)
-					// 	.tileHeight(2)
-					// 	.translateToTile(.95, 4.45, 0)
-					// 	.occupyTile(1, 6, 1, 2);
-
 
 					//Shrubs
 					// var xAdj = 0,
