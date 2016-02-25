@@ -4,13 +4,14 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'tv.png',
 			'title' : 'A badass TV',
-			'description' : 'Some cool description for the badass TV, not that it needs one.'
+			'description' : 'Some cool description for the badass TV, not that it needs one.',
+			'height' : '20',
 		},
 		'offsets': {
-			'NW': [7, 0, -10],
-			'NE': [7, 0, -10],
-			'SE': [7, 0, -10],
-			'SW': [7, 0, -10]
+			'NW': [7, 0, 0, 1, 1],
+			'NE': [7, 0, 0, 1, 1],
+			'SE': [7, 0, 0, 1, 1],
+			'SW': [7, 0, 0, 1, 1]
 		}
 	},
 
@@ -19,13 +20,14 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'northern_minibar.png',
 			'title' : 'Mini Fridge',
-			'description' : "A coolin' fridge.",
+			'description' : "I'm coolin' fam.",
+			'height' : '20',
 		},
 		'offsets': {
-			'NW': [4, 0, -15],
-			'NE': [4, 0, -15],
-			'SE': [4, 0, -15],
-			'SW': [4, 0, -15]
+			'NW': [4, 0, -3, 1, 1],
+			'NE': [4, 0, -3, 1, 1],
+			'SE': [4, 0, -3, 1, 1],
+			'SW': [4, 0, -3, 1, 1]
 		}
 	},
 
@@ -34,13 +36,14 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'sofa_coke.png',
 			'title' : 'Class Coke Sofa',
-			'description' : 'Never forget homies.'
+			'description' : 'Never forget homies.',
+			'height' : '20',
 		},
 		'offsets': {
-			'NW': [1, 0, -20],
-			'NE': [1, 0, -20],
-			'SE': [1, 0, -20],
-			'SW': [1, 0, -20]
+			'NW': [1, 0, -10, 1, 2],
+			'NE': [1, 0, -10, 1, 2],
+			'SE': [1, 0, -10, 1, 2],
+			'SW': [1, 0, -10, 1, 2]
 		}
 	}
 }

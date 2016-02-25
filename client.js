@@ -115,14 +115,14 @@ var Client = IgeClass.extend({
 					}
 
 					//Fridge
-					var Fridge = new GameItem('fridge', 'NW', 0, 2, 45, 45);
-					var FridgeT = new GameItem('fridge', 'NW', 4, 4, 45, 45);
+					var Fridge = new GameItem('fridge', 'NW', 0, 2);
+					var FridgeT = new GameItem('fridge', 'NW', 4, 4);
 
 					//TV
-					var TV = new GameItem('tv', 'NW', 0, 1, 45, 45);
+					var TV = new GameItem('tv', 'NW', 1, 1);
 
 					//Coke Sofa, far out
-					var Coke = new GameItem('sofa_coke', 'NW', 1, 4, 90, 45);
+					var Coke = new GameItem('sofa_coke', 'NW', 1, 4);
 					// new IgeEntity()
 					// 	.isometric(true)
 					// 	.texture(ige.gameTexture.furniture)

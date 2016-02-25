@@ -1,7 +1,7 @@
 var GameItem = IgeEntity.extend({
 	classId: 'GameItem',
 
-	init: function (gameItem, direction, x, y, tileWidth, tileHeight) {
+	init: function (gameItem, direction, x, y) {
 		IgeEntity.prototype.init.call(this);
 
 		this.data('gameItem', gameItem);
@@ -10,24 +10,23 @@ var GameItem = IgeEntity.extend({
 		this.isometric(true)
 			.texture(ige.gameTexture.furniture);
 
-		//Set the offsets for the selected item.
-		if(typeof gameItem != 'undefined') {
-			var offsets = GameItemOffsets.init(gameItem, direction);
-			this.cell(offsets[0]);
-			this.anchor(offsets[1], offsets[2]);
-			this.dimensionsFromCell();
-		}
+		//Get the data for the object
+		var object = FURNITURE[gameItem];
+
+		//Load in the texture and offsets.
+		this.cell(object['offsets'][direction][0])
+			.anchor(object['offsets'][direction][1], object['offsets'][direction][2])
+			.dimensionsFromCell();
 
 		//Set the tileX and tileY cordinates
-		if(typeof x != 'undefined') {
-			//Set the local varibles
-			this.data('tileX', x)
-				.data('tileY', y)
-				.data('tileWidth', tileWidth)
-				.data('tileHeight', tileHeight);
+		this.data('tileX', x)
+			.data('tileY', y)
+			.data('tileXWidth',  object['offsets'][direction][3])
+			.data('tileYHeight', object['offsets'][direction][4])
+			.data('objectHeight', object['info']['height']);
 
-			this.place();
-		}
+		this.place();
+		
 
 		this._mouseEventsActive = true;
 
@@ -53,6 +52,8 @@ var GameItem = IgeEntity.extend({
 			standDescriptin.text(furniInfo['info']['description']);
 			standImage.attr('src', './assets/furniture/icons/' + furniInfo['info']['icon']);
 			stand.show();
+
+			ige.selected = this;
 		};
 	},
 
@@ -68,33 +69,38 @@ var GameItem = IgeEntity.extend({
 		// tile map. The method tells the tile map that the
 		// entity is mounted to that the tiles specified are now
 		// taken up by this entity.
-		// this.occupyTile(
-		// 	this.data('tileX'),
-		// 	this.data('tileY'),
-		// 	this.data('tileWidth'),
-		// 	this.data('tileHeight')
-		// );
+		this.occupyTile(
+			this.data('tileX'),
+			this.data('tileY'),
+			this.data('tileXWidth'),
+			this.data('tileYHeight')
+		);
 
-		//I have no idea why this works. Really don't feel like
+		// TODO: I have no idea why this works. Really don't feel like
 		//spending hours trying to figure it out but it should
-		//probably be fixed eventually TODO
+		//probably be fixed eventually
 		var translateX = this.data('tileX'), 
 			translateY = this.data('tileY');
-		if(this.data('tileWidth') >= 90) {
-			translateX = (this.data('tileX') - 0.05);
-			translateY = (this.data('tileY') + 0.45);
 
-			console.log(translateX);
-			console.log(translateY);
+		if(this.data('tileYHeight') >= 2) {
+			//translateX = (this.data('tileX') - 0.05);
+			//If an item takes up multiple tiles then it looks like
+			//there would be some kind of formula to figure this out
+			//Bascially a tile is = 45 whenever there are 2 tiles the
+			//exact difference to make it align is 22.5 (45/2) and since
+			//we are using 1,2,3,4 that equals out to half (.5) and thats
+			//why I'm adding it here
+			translateY = (this.data('tileY') + 0.50);
 		}
 
+		var tilemap = ige.$('tileMap1');
+
 		this.mount(ige.$('tileMap1'))
-			.tileWidth( this.data('tileX') / 45 )
-			.tileHeight( this.data('tileY') / 45 )
-			.bounds3d(this.data('tileHeight'), this.data('tileWidth'), 1)
+			.tileWidth( this.data('tileXWidth'))
+			.tileHeight( this.data('tileYHeight'))
+			.bounds3d(this.data('tileXWidth') * tilemap._tileWidth, this.data('tileYHeight') * tilemap._tileHeight, this.data('objectHeight'))
 			.translateToTile(translateX, translateY, 0)
-			//.translateToTile(this.data('tileX'), this.data('tileY'))
-			.occupyTile(this.data('tileX'), this.data('tileY'), this.data('tileHeight') / 45, this.data('tileWidth') / 45);
+			.occupyTile(this.data('tileX'), this.data('tileY'), this.data('tileXWidth'), this.data('tileYHeight'));
 
 		this.data('placed', true);
 
@@ -148,12 +154,14 @@ var GameItem = IgeEntity.extend({
 			this.unOccupyTile(
 				this.data('tileX'),
 				this.data('tileY'),
-				this.data('tileWidth'),
-				this.data('tileHeight')
+				this.data('tileXWidth'),
+				this.data('tileYHeight')
 			);
 
 			this.data('placed', false);
 		}
+
+		$('#infostand').hide();
 
 		// Call the parent class destroy method
 		IgeEntity.prototype.destroy.call(this);
