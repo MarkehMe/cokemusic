@@ -90,7 +90,7 @@ var PlayerComponent = IgeClass.extend({
 			this._entity.changeDirection(direction);
 			//If they are about to start a path might aswell
 			//hide the selection here
-			$('#infostand').hide();
+			//$('#infostand').hide();
 		}
 	},
 

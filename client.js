@@ -61,7 +61,7 @@ var Client = IgeClass.extend({
 						.drawMouse(true)
 						.hoverStrokeColor('#FFE436')
 						.hoverColor('transparent')
-						.highlightOccupied(true)
+						.highlightOccupied($HIGHLIGHT_OCCUPIED)
 						.mount(self.objectScene);
 
 					// Create the texture maps
@@ -114,18 +114,28 @@ var Client = IgeClass.extend({
 						}
 					}
 
-					//Fridge
-					var Fridge = new GameItem('fridge', 'NW', 0, 2);
-					var FridgeT = new GameItem('fridge', 'NW', 3, 3);
-
-					//TV
 					var TV = new GameItem('tv', 'NW', 1, 1);
+					var Fridge = new GameItem('treasure_chest', 'SE', 1, 2);
+					var Fridge = new GameItem('n_stereo', 'SE', 1, 3);
+					var Fridge = new GameItem('n_stool', 'SE', 1, 4);
+					var Fridge = new GameItem('standing_lamp', 'SE', 1, 5);
+					var Fridge = new GameItem('mini_coke_fridge', 'NE', 1, 6);
+					var Fridge = new GameItem('rack', 'SE', 1, 7);
+					var FridgeT = new GameItem('fridge', 'NW', 1, 8);
+					var FridgeT = new GameItem('round_stereo', 'SE', 1, 9);
+
+					var FridgeT = new GameItem('trashcan', 'SE', 9, 0);
+					var FridgeT = new GameItem('n_table', 'SE', 3, 3);
+
 
 					//Coke Sofa, far out
-					var Coke = new GameItem('sofa_coke', 'SE', 1, 4);
-					var Coke = new GameItem('sofa_coke', 'SE', 2, 4);
-					var Coke = new GameItem('sofa_coke', 'SE', 3, 4);
-					var Coke = new GameItem('sofa_coke', 'SE', 4, 4);
+					//var Coke = new GameItem('sofa_coke', 'SE', 1, 4);
+					//var Coke = new GameItem('sofa_coke', 'SE', 2, 4);
+					var Coke = new GameItem('sofa_coke', 'SW', 6, 1);
+					var Coke = new GameItem('sofa_coke', 'SW', 6, 2);
+					var Coke = new GameItem('northern_sofa', 'SW', 6, 3);
+					var Coke = new GameItem('northern_sofa', 'SW', 6, 4);
+					//var Coke = new GameItem('sofa_coke', 'SE', 4, 4);
 
 					//Shrubs
 					// var xAdj = 0,

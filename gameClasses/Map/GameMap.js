@@ -23,20 +23,42 @@ var GameMap = IgeTileMap2d.extend({
 
 	mouseDown: function(x, y) {
 		if(ige.movingItem == true) {
-			var tile = this.mouseToTile();
-			ige.selected.moveTo(tile.x, tile.y);
+			var tile = this.mouseToTile(),
+				transformX = tile.x,
+				transformY = tile.y;
+
+			ige.selected.moveTo(transformX, transformY);
 			ige.movingItem = false;
-		}
+		} 
 	},
 
 	mouseMove: function(mouseX, mouseY) {
 		if(ige.movingItem == true) {
-			var tile = this.mouseToTile();
-			//if (!ige.$('tileMap1').map.collision(tile.x, tile.y, 45, 45)) {
-			if(!ige.client.itemAt(tile.x, tile.y)) {
-				ige.selected.translateToTile(tile.x, tile.y, 0);
+			var tile = this.mouseToTile(),
+				transformX = tile.x,
+				transformY = tile.y;
+
+			if(ige.selected.data('tileYHeight') >= 2) { 
+				var objectHeight = ige.selected.data('tileYHeight');
+				transformY += 1 / objectHeight;
+			} else if(ige.selected.data('tileXWidth') >= 2) {
+				var objectWidth = ige.selected.data('tileXWidth');
+				transformX += 1 / objectWidth;
+			}
+
+			if(!ige.client.itemAt(transformX, transformY)) {
+				ige.selected.translateToTile(transformX, transformY, 0);
 			}
 		}
+	},
+
+	strokeTile: function(x, y) {
+		var tile = [ { 'x': x, 'y' : y } ];
+		this.highlightTile(tile);
+	},
+
+	clearStrokes: function() {
+		this.highlightTile([]);
 	},
 
 	itemDelete: function() {
@@ -55,6 +77,7 @@ var GameMap = IgeTileMap2d.extend({
 	},
 
 	itemMove: function() {
+		this.clearStrokes();
 		ige.movingItem = true;
 	},
 });

@@ -36,19 +36,19 @@ var GameItem = IgeEntity.extend({
 		//Mouse Over
 		self._mouseOver = function(x, y) {
 			if(ige.movingItem === false) {
-				self.highlight(true);
+				//self.highlight(true);
 			}
 		};
 
 		//Mouse Out
 		self._mouseOut = function(x, y) {
 			if(ige.movingItem === false) {
-				self.highlight(false);
+				//self.highlight(false);
 			}
 		};
 
 		//Mouse Down
-		self._mouseDown = function(x, y) {
+		self._mouseDown = function(mouseEvent) {
 			var stand = $('#infostand'),
 				standImage = $('#infostand .furniture'),
 				standTitle = $('#infostand .title'),
@@ -60,6 +60,9 @@ var GameItem = IgeEntity.extend({
 			standImage.attr('src', './assets/furniture/icons/' + furniInfo['info']['icon']);
 			stand.show();
 
+			if($HIGHLIGHT_SELECTED)
+				ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
+
 			ige.selected = self;
 		};
 	},
@@ -69,7 +72,7 @@ var GameItem = IgeEntity.extend({
 	 * is "over" as occupied by the item on the tile map.
 	 * @return {*}
 	 */
-	place: function () {
+	place: function (rotating ) {
 		// Call the occupyTile method with the tile details.
 		// This method doesn't exist in IgeEntity but is instead
 		// added to an entity when that entity is mounted to a
@@ -83,21 +86,60 @@ var GameItem = IgeEntity.extend({
 			this.data('tileYHeight')
 		);
 
-		// TODO: I have no idea why this works. Really don't feel like
-		//spending hours trying to figure it out but it should
-		//probably be fixed eventually
 		var translateX = this.data('tileX'), 
 			translateY = this.data('tileY');
 
-		if(this.data('tileYHeight') >= 2) {
-			//translateX = (this.data('tileX') - 0.05);
-			//If an item takes up multiple tiles then it looks like
-			//there would be some kind of formula to figure this out
-			//Bascially a tile is = 45 whenever there are 2 tiles the
-			//exact difference to make it align is 22.5 (45/2) and since
-			//we are using 1,2,3,4 that equals out to half (.5) and thats
-			//why I'm adding it here
-			translateY = (this.data('tileY') + 0.50);
+		//If both sides are greater than 2. i.e the obj is larger than 2x2
+		if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) { 
+			var translateX = this.data('tileX') +
+							((ige.$('tileMap1').tileWidth() / 
+							this.data('tileXWidth')) /
+							ige.$('tileMap1').tileWidth());
+
+			var translateY = this.data('tileY') +
+							((ige.$('tileMap1').tileHeight() / 
+							this.data('tileYHeight')) /
+							ige.$('tileMap1').tileHeight());
+
+			this.translateToTile(
+				translateX,
+				translateY,
+				0
+			);
+		} 
+		//If the tile height is greater or equal 1x2
+		else if(this.data('tileYHeight') >= 2) {
+			var translateY = this.data('tileY') +
+							((ige.$('tileMap1').tileHeight() / 
+							this.data('tileYHeight')) /
+							ige.$('tileMap1').tileHeight());
+
+			this.translateToTile(
+				this.data('tileX'),
+				translateY,
+				0
+			);
+		} 
+		//If the tile width is greater or equal 2x1
+		else if(this.data('tileXWidth') >= 2) { 
+			var translateX = this.data('tileX') +
+							((ige.$('tileMap1').tileWidth() / 
+							this.data('tileXWidth')) /
+							ige.$('tileMap1').tileWidth());
+
+			this.translateToTile(
+				translateX,
+				this.data('tileY'),
+				0
+			);
+		} 
+		//All is good it's just a 1x1
+		else {
+			this.translateToTile(
+				this.data('tileX'),
+				this.data('tileY'), 
+				0
+			);
 		}
 
 		var tilemap = ige.$('tileMap1');
@@ -108,6 +150,9 @@ var GameItem = IgeEntity.extend({
 			.bounds3d(this.data('tileXWidth') * tilemap._tileWidth, this.data('tileYHeight') * tilemap._tileHeight, this.data('objectHeight'))
 			.translateToTile(translateX, translateY, 0)
 			.occupyTile(this.data('tileX'), this.data('tileY'), this.data('tileXWidth'), this.data('tileYHeight'));
+
+		if($HIGHLIGHT_SELECTED)
+			ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
 
 		this.data('placed', true);
 
@@ -128,25 +173,78 @@ var GameItem = IgeEntity.extend({
 			this.unOccupyTile(
 				this.data('tileX'),
 				this.data('tileY'),
-				this.data('tileWidth'),
-				this.data('tileHeight')
+				this.data('tileXWidth'),
+				this.data('tileYHeight')
 			);
 
 			// Set the new tile position
-			this.data('tileX', tileX)
-				.data('tileY', tileY);
+			if(tileX !== undefined && tileY !== undefined) {
+				this.data('tileX', tileX)
+					.data('tileY', tileY);
+			}
 
 			this.occupyTile(
 				this.data('tileX'),
 				this.data('tileY'),
-				this.data('tileWidth'),
-				this.data('tileHeight')
+				this.data('tileXWidth'),
+				this.data('tileYHeight')
 			);
 
-			this.translateToTile(
-				this.data('tileX'),
-				this.data('tileY')
-			);
+			//If both sides are greater than 2. i.e the obj is larger than 2x2
+			if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) { 
+				var translateX = this.data('tileX') +
+								((ige.$('tileMap1').tileWidth() / 
+								this.data('tileXWidth')) /
+								ige.$('tileMap1').tileWidth());
+
+				var translateY = this.data('tileY') +
+								((ige.$('tileMap1').tileHeight() / 
+								this.data('tileYHeight')) /
+								ige.$('tileMap1').tileHeight());
+
+				this.translateToTile(
+					translateX,
+					translateY,
+					0
+				);
+			} 
+			//If the tile height is greater or equal 1x2
+			else if(this.data('tileYHeight') >= 2) {
+				var translateY = this.data('tileY') +
+								((ige.$('tileMap1').tileHeight() / 
+								this.data('tileYHeight')) /
+								ige.$('tileMap1').tileHeight());
+
+				this.translateToTile(
+					this.data('tileX'),
+					translateY,
+					0
+				);
+			} 
+			//If the tile width is greater or equal 2x1
+			else if(this.data('tileXWidth') >= 2) { 
+				var translateX = this.data('tileX') +
+								((ige.$('tileMap1').tileWidth() / 
+								this.data('tileXWidth')) /
+								ige.$('tileMap1').tileWidth());
+
+				this.translateToTile(
+					translateX,
+					this.data('tileY'),
+					0
+				);
+			} 
+			//All is good it's just a 1x1
+			else {
+				this.translateToTile(
+					this.data('tileX'),
+					this.data('tileY'), 
+					0
+				);
+			}
+
+			if($HIGHLIGHT_SELECTED)
+				ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
 		}
 
 		return this;
@@ -180,35 +278,51 @@ var GameItem = IgeEntity.extend({
 	rotate: function() {
 		var self = this;
 
-		// Un-occupy the current tiles
+		//console.log(this.data('tileX'), this.data('tileY'));
+		//Un-occupy the current tiles
 		this.unOccupyTile(
 			this.data('tileX'),
 			this.data('tileY'),
-			this.data('tileWidth'),
-			this.data('tileHeight')
+			this.data('tileXWidth'),
+			this.data('tileYHeight')
 		);
 
 		function getNewDirection() {
-			var current = self.data('currentDirection');
+			var current = self.data('currentDirection'),
+				newDir = 'SE';
 
 			switch(current) {
-				case 'SE': return 'SW';
-				case 'SW': return 'NW';
-				case 'NW': return 'NE';
-				case 'NE': return 'SE';
+				case 'SE': newDir = 'SW'; break;
+				case 'SW': newDir = 'NW'; break;
+				case 'NW': newDir = 'NE'; break;
+				case 'NE': newDir = 'SE'; break;
 			}
+
+			console.log(newDir);
+			return newDir;
 		}
 
+		//Get the new direction
 		var newDirection = getNewDirection(),
 			direction = self.data('object')['offsets'][newDirection];
 
+		//Update the current direction
 		this.data('currentDirection', newDirection);
 
+		//Set the new sprite cell, anchor, and update texture given
+		//the new direction
 		self.cell(direction[0])
 			.anchor(direction[1], direction[2])
 			.dimensionsFromCell();
 
-			console.log( newDirection);
+		//Update the tile x and y values
+		self.data('tileXWidth', direction[3])
+			.data('tileYHeight', direction[4]);
+
+		if($HIGHLIGHT_SELECTED)
+			ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
+
+		self.moveTo();
 	}
 });
 

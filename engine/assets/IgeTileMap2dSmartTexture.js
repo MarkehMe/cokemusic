@@ -71,7 +71,7 @@ var IgeTileMap2dSmartTexture = {
 				ctx.stroke();
 			}
 		}
-		
+
 		if (entity._highlightOccupied) {
 			ctx.fillStyle = '#ff0000';
 			for (y in entity.map._mapData) {
@@ -151,7 +151,7 @@ var IgeTileMap2dSmartTexture = {
 				tilePoint,
 				text,
 				textMeasurement;
-			
+
 			if (mouseTile.x >= 0 && mouseTile.y >= 0 && mouseTile.x < gridSize.x && mouseTile.y < gridSize.y) {
 				// Paint the tile the mouse is currently intersecting
 				ctx.fillStyle = entity._hoverColor || '#6000ff';
@@ -198,6 +198,33 @@ var IgeTileMap2dSmartTexture = {
 					ctx.fillStyle = '#ffffff';
 					ctx.fillText(text, Math.floor(mousePos.x - textMeasurement.width / 2), Math.floor(mousePos.y - 30));
 				}
+			}
+		}
+
+		if(entity._highlightTile) {
+			//Only iso support
+			if (entity._mountMode === 1) {
+				var highlightTiles = entity._highlightTile,
+					tilePoint;
+
+				$(highlightTiles).each(function() {
+					tilePoint = new IgePoint2d(tileWidth * this.x, tileHeight * this.y)
+									.thisToIso();
+
+					tilePoint.y += tileHeight / 2;
+
+					//Fill
+					ctx.beginPath();
+					ctx.moveTo(tilePoint.x, tilePoint.y - tileHeight / 2);
+					ctx.lineTo(tilePoint.x + tileWidth, tilePoint.y);
+					ctx.lineTo(tilePoint.x, tilePoint.y + tileHeight / 2);
+					ctx.lineTo(tilePoint.x - tileWidth, tilePoint.y);
+					ctx.lineTo(tilePoint.x, tilePoint.y - tileHeight / 2);
+
+					//Stroke
+					ctx.strokeStyle = entity._hoverStrokeColor;
+					ctx.stroke();
+				});
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 var igeClientConfig = {
 	include: [
+		'./assets/vars.js',
 
 		//Floor, Tiles, Map, etc
 		'./gameClasses/Map/FloorTextureMap.js',
