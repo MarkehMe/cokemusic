@@ -86,63 +86,10 @@ var GameItem = IgeEntity.extend({
 			this.data('tileYHeight')
 		);
 
-		var translateX = this.data('tileX'), 
-			translateY = this.data('tileY');
-
-		//If both sides are greater than 2. i.e the obj is larger than 2x2
-		if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) { 
-			var translateX = this.data('tileX') +
-							((ige.$('tileMap1').tileWidth() / 
-							this.data('tileXWidth')) /
-							ige.$('tileMap1').tileWidth());
-
-			var translateY = this.data('tileY') +
-							((ige.$('tileMap1').tileHeight() / 
-							this.data('tileYHeight')) /
-							ige.$('tileMap1').tileHeight());
-
-			this.translateToTile(
-				translateX,
-				translateY,
-				0
-			);
-		} 
-		//If the tile height is greater or equal 1x2
-		else if(this.data('tileYHeight') >= 2) {
-			var translateY = this.data('tileY') +
-							((ige.$('tileMap1').tileHeight() / 
-							this.data('tileYHeight')) /
-							ige.$('tileMap1').tileHeight());
-
-			this.translateToTile(
-				this.data('tileX'),
-				translateY,
-				0
-			);
-		} 
-		//If the tile width is greater or equal 2x1
-		else if(this.data('tileXWidth') >= 2) { 
-			var translateX = this.data('tileX') +
-							((ige.$('tileMap1').tileWidth() / 
-							this.data('tileXWidth')) /
-							ige.$('tileMap1').tileWidth());
-
-			this.translateToTile(
-				translateX,
-				this.data('tileY'),
-				0
-			);
-		} 
-		//All is good it's just a 1x1
-		else {
-			this.translateToTile(
-				this.data('tileX'),
-				this.data('tileY'), 
-				0
-			);
-		}
-
-		var tilemap = ige.$('tileMap1');
+		var cords = this.getItemTransform(),
+			tilemap = ige.$('tileMap1'),
+			translateX = cords['x'], 
+			translateY = cords['y'];
 
 		this.mount(ige.$('tileMap1'))
 			.tileWidth( this.data('tileXWidth'))
@@ -190,64 +137,68 @@ var GameItem = IgeEntity.extend({
 				this.data('tileYHeight')
 			);
 
-			//If both sides are greater than 2. i.e the obj is larger than 2x2
-			if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) { 
-				var translateX = this.data('tileX') +
-								((ige.$('tileMap1').tileWidth() / 
-								this.data('tileXWidth')) /
-								ige.$('tileMap1').tileWidth());
-
-				var translateY = this.data('tileY') +
-								((ige.$('tileMap1').tileHeight() / 
-								this.data('tileYHeight')) /
-								ige.$('tileMap1').tileHeight());
-
-				this.translateToTile(
-					translateX,
-					translateY,
-					0
-				);
-			} 
-			//If the tile height is greater or equal 1x2
-			else if(this.data('tileYHeight') >= 2) {
-				var translateY = this.data('tileY') +
-								((ige.$('tileMap1').tileHeight() / 
-								this.data('tileYHeight')) /
-								ige.$('tileMap1').tileHeight());
-
-				this.translateToTile(
-					this.data('tileX'),
-					translateY,
-					0
-				);
-			} 
-			//If the tile width is greater or equal 2x1
-			else if(this.data('tileXWidth') >= 2) { 
-				var translateX = this.data('tileX') +
-								((ige.$('tileMap1').tileWidth() / 
-								this.data('tileXWidth')) /
-								ige.$('tileMap1').tileWidth());
-
-				this.translateToTile(
-					translateX,
-					this.data('tileY'),
-					0
-				);
-			} 
-			//All is good it's just a 1x1
-			else {
-				this.translateToTile(
-					this.data('tileX'),
-					this.data('tileY'), 
-					0
-				);
-			}
+			var cords = this.getItemTransform();
+			this.translateToTile(
+				cords['x'],
+				cords['y'],
+				0
+			);
 
 			if($HIGHLIGHT_SELECTED)
 				ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
 		}
 
 		return this;
+	},
+
+	/**
+	 * Gets the new x,y location for the object
+	 */
+	getItemTransform: function(x, y) {
+		var translateX = this.data('tileX'),
+			translateY = this.data('tileY'),
+			returnObj;
+
+		if(x !== undefined)
+			translateX = x;
+		if(y !== undefined)
+			translateY = y;
+
+		//If both sides are greater than 2. i.e the obj is larger than 2x2
+		if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) { 
+			translateX = this.data('tileX') +
+							((ige.$('tileMap1').tileWidth() / 
+							this.data('tileXWidth')) /
+							ige.$('tileMap1').tileWidth());
+
+			translateY = this.data('tileY') +
+							((ige.$('tileMap1').tileHeight() / 
+							this.data('tileYHeight')) /
+							ige.$('tileMap1').tileHeight());
+
+		} 
+		//If the tile height is greater or equal 1x2
+		else if(this.data('tileYHeight') >= 2) {
+			translateY = this.data('tileY') +
+							((ige.$('tileMap1').tileHeight() / 
+							this.data('tileYHeight')) /
+							ige.$('tileMap1').tileHeight());
+
+		} 
+		//If the tile width is greater or equal 2x1
+		else if(this.data('tileXWidth') >= 2) { 
+			translateX = this.data('tileX') +
+							((ige.$('tileMap1').tileWidth() / 
+							this.data('tileXWidth')) /
+							ige.$('tileMap1').tileWidth());
+		} 
+
+		returnObj = {
+			'x' : translateX,
+			'y' : translateY,
+		}
+
+		return returnObj;
 	},
 
 	/**
