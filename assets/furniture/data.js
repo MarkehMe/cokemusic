@@ -219,7 +219,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'trashcan_small.png',
 			'title' : 'Trash Can',
-			'description' : "If you look closely you can someone through out their ex.",
+			'description' : "If you look closely you can someone threw out their ex.",
 			'height' : '33',
 			'stackable' : false,
 			'counter' 	: false
