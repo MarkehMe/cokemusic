@@ -461,6 +461,20 @@ var IgeTileMap2d = IgeEntity.extend({
 		
 		return this._hoverStrokeColor;
 	},
+
+	/**
+	 * Gets / sets the tiles to highlight
+	 * Custom function to draw selection on specific tile(s)
+	 * @param {Object}
+	 */
+	 highlightTile: function(tiles) {
+	 	if(tiles !== undefined) {
+	 		this._highlightTile = tiles;
+	 		return this;
+	 	}
+
+	 	return this._highlightTile;
+	 },
 	
 	/**
 	 * Loads map data from a saved map.

@@ -7,18 +7,18 @@ var Client = IgeClass.extend({
 
 		// Load our textures
 		var self = this;
-		this.obj = [];
+		this.gameItems = [];
 
 		// Load our textures
-		self.gameTexture = {};
+		ige.gameTexture = {};
 		//self.gameTexture.grassSheet = new IgeCellSheet('../assets/textures/tiles/tilea5b.png', 8, 16);
-		self.gameTexture.grassSheet = new IgeCellSheet(rootPath + 'assets/textures/tiles/grassSheet-2.png', 6, 3);
-		self.gameTexture.carpetTest = new IgeCellSheet(rootPath + 'assets/textures/tiles/carpet-test-2.png', 1, 1);
-		self.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
+		ige.gameTexture.grassSheet = new IgeCellSheet(rootPath + 'assets/textures/tiles/grassSheet-2.png', 6, 3);
+		ige.gameTexture.carpetTest = new IgeCellSheet(rootPath + 'assets/textures/tiles/carpet-test-2.png', 1, 1);
+		ige.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
 		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
 
 		//Furniture
-		self.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
+		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
 
 		ige.addComponent(IgeEditorComponent);
 		
@@ -51,7 +51,7 @@ var Client = IgeClass.extend({
 						.mount(self.gameScene);
 
 					// Create an isometric tile map
-					self.tileMap1 = new IgeTileMap2d()
+					self.tileMap1 = new GameMap()
 						.id('tileMap1')
 						.isometricMounts(true)
 						.tileWidth(45)
@@ -61,7 +61,7 @@ var Client = IgeClass.extend({
 						.drawMouse(true)
 						.hoverStrokeColor('#FFE436')
 						.hoverColor('transparent')
-						.highlightOccupied(true)
+						.highlightOccupied($HIGHLIGHT_OCCUPIED)
 						.mount(self.objectScene);
 
 					// Create the texture maps
@@ -105,7 +105,7 @@ var Client = IgeClass.extend({
 					}
 
 					//** Generate Carpet Tiles
-					var texIndex = self.textureMap1.addTexture(self.gameTexture.carpetTest);
+					var texIndex = self.textureMap1.addTexture(ige.gameTexture.carpetTest);
 					// Generate some random tiles
 					for (var x = 0; x < 11; x++) {
 						for (var y = 0; y < 11; y++) {
@@ -114,60 +114,28 @@ var Client = IgeClass.extend({
 						}
 					}
 
-					//Fridge
-					new IgeEntity()
-						.isometric(true)
-						.texture(self.gameTexture.furniture)
-						.anchor(0, -15)
-						.cell(4)
-						.dimensionsFromCell()
-						.mount(self.tileMap1)
-						.translateToTile(0, 2)
-						.bounds3d(45, 45, 1)
-						.occupyTile(0, 2);
+					var TV = new GameItem('tv', 'NW', 1, 1);
+					var Fridge = new GameItem('treasure_chest', 'SE', 1, 2);
+					var Fridge = new GameItem('n_stereo', 'SE', 1, 3);
+					var Fridge = new GameItem('n_stool', 'SE', 1, 4);
+					var Fridge = new GameItem('standing_lamp', 'SE', 1, 5);
+					var Fridge = new GameItem('mini_coke_fridge', 'NE', 1, 6);
+					var Fridge = new GameItem('rack', 'SE', 1, 7);
+					var FridgeT = new GameItem('fridge', 'NW', 1, 8);
+					var FridgeT = new GameItem('round_stereo', 'SE', 1, 9);
 
-					//TV
-					new IgeEntity()
-						.isometric(true)
-						.triggerPolygon('bounds3dPolygon')
-						.mount(self.tileMap1)
-						//.bounds3d(45, 45, 0)
-						.texture(self.gameTexture.furniture)
-						.anchor(0, -10)
-						.cell(7)
-						.bounds3d(45, 45, 1)
-						.dimensionsFromCell()
-						//.mount(self.tileMap1)
-						.translateToTile(0, 1)
-						.occupyTile(0, 1);
+					var FridgeT = new GameItem('trashcan', 'SE', 9, 0);
+					var FridgeT = new GameItem('n_table', 'SE', 3, 3);
 
-					//Fridge, far out
-					new IgeEntity()
-						.isometric(true)
-						.texture(self.gameTexture.furniture)
-						.anchor(0, -15)
-						.cell(4)
-						//.depth(3)
-						.bounds3d(45, 45, 1)
-						.dimensionsFromCell()
-						.mount(self.tileMap1)
-						.translateToTile(4, 4)
-						.occupyTile(4, 4);
 
 					//Coke Sofa, far out
-					new IgeEntity()
-						.isometric(true)
-						.texture(self.gameTexture.furniture)
-						.anchor(0, -20)
-						.cell(1)
-						.bounds3d(45, 90, 1)
-						.dimensionsFromCell()
-						.mount(self.tileMap1)
-						.tileWidth(1)
-						.tileHeight(2)
-						.translateToTile(.95, 4.45, 0)
-						.occupyTile(1, 4, 1, 2);
-
+					//var Coke = new GameItem('sofa_coke', 'SE', 1, 4);
+					//var Coke = new GameItem('sofa_coke', 'SE', 2, 4);
+					var Coke = new GameItem('sofa_coke', 'SW', 6, 1);
+					var Coke = new GameItem('sofa_coke', 'SW', 6, 2);
+					var Coke = new GameItem('northern_sofa', 'SW', 6, 3);
+					var Coke = new GameItem('northern_sofa', 'SW', 6, 4);
+					//var Coke = new GameItem('sofa_coke', 'SE', 4, 4);
 
 					//Shrubs
 					// var xAdj = 0,
@@ -195,7 +163,16 @@ var Client = IgeClass.extend({
 				}
 			});
 		});
-	}
+	},
+	/**
+	 * Returns the item occupying the tile co-ordinates of the tile map.
+	 * @param tileX
+	 * @param tileY
+	 */
+	itemAt: function (tileX, tileY) {
+		// Return the data at the map's tile co-ordinates
+		return this.tileMap1.map.tileData(tileX, tileY);
+	},
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = Client; }

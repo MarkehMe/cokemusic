@@ -1,0 +1,38 @@
+.button {
+	//background-color: $button-blue-bg;
+	color: $button-font-color;
+	font-size: $button-font-size;
+	position: relative;
+	display: block;
+	line-height: 20px;
+	padding: 0 12px;
+	border-radius: 8px;
+	background-image: url('../assets/ui/button-blue-center.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	@include no-select();
+
+	&:before, &:after {
+		content: ' ';
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+	    width: 8px;
+	    height: 20px;
+	}
+
+	&:before {
+		background-image: url('../assets/ui/button-blue-left.png');
+		left: 0px;
+	}
+
+	&:after {
+		background-image: url('../assets/ui/button-blue-right.png');
+		right: 0px;
+	}
+}
+
+.button.blue {
+
+}
