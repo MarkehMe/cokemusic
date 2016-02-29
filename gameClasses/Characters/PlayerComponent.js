@@ -94,9 +94,9 @@ var PlayerComponent = IgeClass.extend({
 		var direction = this._entity.path.getDirection();
 		if(direction != '') {
 			this._entity.changeDirection(direction);
-			//If they are about to start a path might aswell
-			//hide the selection here
-			//$('#infostand').hide();
+
+			// If we didn't just click an item, we hide the infostand
+			if ( ! ige.overItem) $('#infostand').hide();
 		}
 	},
 });
