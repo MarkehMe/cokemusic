@@ -43,13 +43,13 @@ var Character = IgeEntity.extend({
 		self.head = new CharacterHead(self);
 
 		//Spawn left arm
-		self.leftArm = new CharacterLeftArm(self);		
+		self.leftArm = new CharacterLeftArm(self);
 
 		//Spawn right arm
-		self.rightArm = new CharacterRightArm(self);	
+		self.rightArm = new CharacterRightArm(self);
 
 		//Spawn shirt
-		self.shirt = new CharacterShirt(self);	
+		self.shirt = new CharacterShirt(self);
 
 		//Load the character texture
 		this._characterTexture = new IgeCellSheet(rootPath + 'assets/bodies.png', 5, 8);
@@ -57,10 +57,10 @@ var Character = IgeEntity.extend({
 		// Wait for the texture to load
 		this._characterTexture.on('loaded', function () {
 			self.texture(self._characterTexture)
-				.dimensionsFromCell();		
+				.dimensionsFromCell();
 		}, false, true);
 	},
-	
+
 	/**
 	 * Sets the type of character which determines the character's
 	 * animation sequences and appearance.
@@ -183,7 +183,7 @@ var Character = IgeEntity.extend({
 		// the closer they become to the bottom of the screen
 		//this.depth(this._translate.y);
 		IgeEntity.prototype.tick.call(this, ctx);
-	}, 
+	},
 
 	// Define a function that will be called when the
 	// mouse cursor moves away from one of our entities
