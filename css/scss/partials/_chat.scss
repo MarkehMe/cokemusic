@@ -1,0 +1,32 @@
+$bubble_move_speed: 2s;
+
+x-bubble {
+    position: absolute;
+
+    font-family: Verdana;
+    font-size: 12px;
+
+    transition-property: all;
+    -webkit-transition-duration: $bubble_move_speed;
+    transition-duration: $bubble_move_speed;
+
+    z-index: 9000;
+
+    x-chat-name {
+        float: left;
+        height: 23px;
+        line-height: 23px;
+        padding-left: 10px;
+        padding-right: 5px;
+        background-image: url('../assets/chat/name.png');
+    }
+
+    x-chat-msg {
+        float: left;
+        height: 23px;
+        line-height: 23px;
+        padding-left: 10px;
+        padding-right: 15px;
+        background-image: url('../assets/chat/container.png');
+    }
+}
