@@ -30,11 +30,16 @@ var GameItem = IgeEntity.extend({
 			.data('objectHeight', object['info']['height']);
 
 		self.place();
-		
+
 		self._mouseEventsActive = true;
+
+		// We store a variable to know if we're over an item or not 
+		ige.overItem = false;
 
 		//Mouse Over
 		self._mouseOver = function(x, y) {
+			ige.overItem = true;
+
 			if(ige.movingItem === false) {
 				//self.highlight(true);
 			}
@@ -42,6 +47,8 @@ var GameItem = IgeEntity.extend({
 
 		//Mouse Out
 		self._mouseOut = function(x, y) {
+			ige.overItem = false;
+
 			if(ige.movingItem === false) {
 				//self.highlight(false);
 			}
@@ -88,7 +95,7 @@ var GameItem = IgeEntity.extend({
 
 		var cords = this.getItemTransform(),
 			tilemap = ige.$('tileMap1'),
-			translateX = cords['x'], 
+			translateX = cords['x'],
 			translateY = cords['y'];
 
 		this.mount(ige.$('tileMap1'))
@@ -165,33 +172,33 @@ var GameItem = IgeEntity.extend({
 			translateY = y;
 
 		//If both sides are greater than 2. i.e the obj is larger than 2x2
-		if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) { 
+		if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) {
 			translateX = this.data('tileX') +
-							((ige.$('tileMap1').tileWidth() / 
+							((ige.$('tileMap1').tileWidth() /
 							this.data('tileXWidth')) /
 							ige.$('tileMap1').tileWidth());
 
 			translateY = this.data('tileY') +
-							((ige.$('tileMap1').tileHeight() / 
+							((ige.$('tileMap1').tileHeight() /
 							this.data('tileYHeight')) /
 							ige.$('tileMap1').tileHeight());
 
-		} 
+		}
 		//If the tile height is greater or equal 1x2
 		else if(this.data('tileYHeight') >= 2) {
 			translateY = this.data('tileY') +
-							((ige.$('tileMap1').tileHeight() / 
+							((ige.$('tileMap1').tileHeight() /
 							this.data('tileYHeight')) /
 							ige.$('tileMap1').tileHeight());
 
-		} 
+		}
 		//If the tile width is greater or equal 2x1
-		else if(this.data('tileXWidth') >= 2) { 
+		else if(this.data('tileXWidth') >= 2) {
 			translateX = this.data('tileX') +
-							((ige.$('tileMap1').tileWidth() / 
+							((ige.$('tileMap1').tileWidth() /
 							this.data('tileXWidth')) /
 							ige.$('tileMap1').tileWidth());
-		} 
+		}
 
 		returnObj = {
 			'x' : translateX,
