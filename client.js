@@ -123,18 +123,34 @@ var Client = IgeClass.extend({
 					var Fridge = new GameItem('rack', 'SE', 1, 7);
 					var FridgeT = new GameItem('fridge', 'NW', 1, 8);
 					var FridgeT = new GameItem('round_stereo', 'SE', 1, 9);
+					var FridgeT = new GameItem('sponge_wall', 'SE', 1, 10);
+
+					var FridgeT = new GameItem('northern_stereo', 'SE', 0, 3);
+					
 
 					var FridgeT = new GameItem('trashcan', 'SE', 9, 0);
+
+					
+					var FridgeT = new GameItem('northern_side_table', 'SE', 3, 2);
 					var FridgeT = new GameItem('n_table', 'SE', 3, 3);
+					var FridgeT = new GameItem('v_coke_bookshelf', 'SE', 0, 9);
+					var FridgeT = new GameItem('v_coke_table', 'SE', 3, 7);
+					var FridgeT = new GameItem('northern_stool', 'SE', 2, 4);
+					var FridgeT = new GameItem('acoustopad', 'SW', 0, 4);
+					var FridgeT = new GameItem('aquarium', 'SW', 0, 6);
+					var FridgeT = new GameItem('bubble_gum', 'SW', 0, 7);
+					var FridgeT = new GameItem('beanbag', 'SE', 3, 5);
+					var FridgeT = new GameItem('block', 'SW', 6, 0);
+					
 
 
 					//Coke Sofa, far out
 					//var Coke = new GameItem('sofa_coke', 'SE', 1, 4);
 					//var Coke = new GameItem('sofa_coke', 'SE', 2, 4);
 					var Coke = new GameItem('sofa_coke', 'SW', 6, 1);
-					var Coke = new GameItem('sofa_coke', 'SW', 6, 2);
+					var Coke = new GameItem('dorm_couch', 'SW', 6, 2);
 					var Coke = new GameItem('northern_sofa', 'SW', 6, 3);
-					var Coke = new GameItem('northern_sofa', 'SW', 6, 4);
+					var Coke = new GameItem('grundge_couch', 'SW', 6, 4);
 					//var Coke = new GameItem('sofa_coke', 'SE', 4, 4);
 
 					//Shrubs
