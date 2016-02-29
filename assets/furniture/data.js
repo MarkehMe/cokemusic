@@ -1,5 +1,4 @@
 var FURNITURE = {
-	//37 = V Coke
 	//54 = BLOCK
 	//56 = Bookshelf
 	//120 = Polar Bear
@@ -10,7 +9,6 @@ var FURNITURE = {
 	//112 = Stool
 	//109 = StandingSpeaker
 	//105 = Grundge Table
-	//103 = northern table
 	//102 = ocean table
 	//101 = mic
 	//100 = box
@@ -77,7 +75,8 @@ var FURNITURE = {
 			'description' : "A table.",
 			'height' : '20',
 			'stackable' : false,
-			'counter' : false
+			'counter' : false,
+			'table'		: true
 		},
 		'offsets': {
 			'NW': [9, 0, 0, 2, 2],
@@ -116,10 +115,10 @@ var FURNITURE = {
 			'counter' : false
 		},
 		'offsets': {
-			'NW': [12, -1, 4, 1, 1],
-			'NE': [12, -1, 4, 1, 1],
-			'SE': [12, -1, 4, 1, 1],
-			'SW': [12, -1, 4, 1, 1]
+			'NW': [12, -1, -5, 1, 1],
+			'NE': [12, -1, -5, 1, 1],
+			'SE': [12, -1, -5, 1, 1],
+			'SW': [12, -1, -5, 1, 1]
 		}
 	},
 
@@ -247,6 +246,244 @@ var FURNITURE = {
 			'NE': [35, -5, 0, 1, 1],
 			'SE': [30, -5, 0, 1, 1],
 			'SW': [29, 5, 0, 1, 1]
+		}
+	},
+
+	//Northern Stereo
+	'northern_stereo' : {
+		'info': {
+			'icon' : 'northern_stereo_small.png',
+			'title' : 'Northern Stereo',
+			'description' : "Handle with care, ty.",
+			'height' : '55',
+			'stackable' : false,
+			'counter' 	: false
+		},
+		'offsets': {
+			'NW': [18, -2, -3, 1, 1],
+			'NE': [19, -2, -3, 1, 1],
+			'SE': [18, -2, -3, 1, 1],
+			'SW': [19, -2, -3, 1, 1]
+		}
+	},
+
+	//V Coke bookshelf
+	'v_coke_bookshelf' : {
+		'info': {
+			'icon' : 'vanillacokeshelf_small.png',
+			'title' : 'Vanilla Coke Shelf',
+			'description' : "Perfect for hiding drugs in.",
+			'height' : '60',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [38, 3, 2, 1, 2],
+			'NE': [37, 3, 2, 2, 1],
+			'SE': [38, 3, 2, 1, 2],
+			'SW': [37, 3, 2, 2, 1]
+		}
+	},
+
+	//V Coke
+	'v_coke_table' : {
+		'info': {
+			'icon' : 'vanillacoketable_small.png',
+			'title' : 'Vanilla Coke Table',
+			'description' : "Perfect for doing drugs on.",
+			'height' : '20',
+			'stackable' : false,
+			'counter' 	: false,
+			'table'		: true
+		},
+		'offsets': {
+			'NW': [50, -5, -6, 2, 2],
+			'NE': [50, -5, -6, 2, 2],
+			'SE': [50, -5, -6, 2, 2],
+			'SW': [50, -5, -6, 2, 2]
+		}
+	},
+
+	//Sponge Wall
+	'sponge_wall' : {
+		'info': {
+			'icon' : 'seaspongebarrier_small.png',
+			'title' : 'Sea Sponge Barrier',
+			'description' : "Used to keep out the underwater zombies.",
+			'height' : '95',
+			'stackable' : false,
+			'counter' 	: false
+		},
+		'offsets': {
+			'NW': [31, -5, 0, 1, 1],
+			'NE': [32, -5, 0, 1, 1],
+			'SE': [31, -5, 0, 1, 1],
+			'SW': [32, -5, 0, 1, 1]
+		}
+	},
+
+	//Northern Side Table
+	'northern_side_table' : {
+		'info': {
+			'icon' : '5001_ctable_small.png',
+			'title' : 'Northern Side Table',
+			'description' : "",
+			'height' : '20',
+			'stackable' : false,
+			'counter' 	: false,
+			'table'		: true
+		},
+		'offsets': {
+			'NW': [39, -1, -3, 1, 1],
+			'NE': [39, -1, -3, 1, 1],
+			'SE': [39, -1, -3, 1, 1],
+			'SW': [39, -1, -3, 1, 1]
+		}
+	},
+
+	//Northern Stool
+	'northern_stool' : {
+		'info': {
+			'icon' : 'northern_stool_small.png',
+			'title' : 'Northern Stool',
+			'description' : "",
+			'height' : '10',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [41, -1, -3, 1, 1],
+			'NE': [42, -1, -3, 1, 1],
+			'SE': [41, -1, -3, 1, 1],
+			'SW': [42, -1, -3, 1, 1]
+		}
+	},
+
+	//Sound Barrier
+	'acoustopad' : {
+		'info': {
+			'icon' : 'acoustopad_small.png',
+			'title' : 'Acousto Pad',
+			'description' : "Blocks 100% of noise but only blocks 50% of talent.",
+			'height' : '55',
+			'scale': .9,
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [52, 1, 1, 2, 1],
+			'NE': [43, 1, 1, 1, 2],
+			'SE': [52, 1, 1, 2, 1],
+			'SW': [43, 1, 1, 1, 2]
+		}
+	},
+
+	//Aqurium
+	'aquarium' : {
+		'info': {
+			'icon' : 'rectaquarium_small.png',
+			'title' : 'Acousto Pad',
+			'description' : "Blocks 100% of noise but only blocks 50% of talent.",
+			'height' : '50',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [44, -1, -3, 1, 1],
+			'NE': [44, -1, -3, 1, 1],
+			'SE': [44, -1, -3, 1, 1],
+			'SW': [44, -1, -3, 1, 1]
+		}
+	},
+
+	//Beanbag
+	'beanbag' : {
+		'info': {
+			'icon' : 'beanbag_small.png',
+			'title' : 'Cow Bean Bag',
+			'description' : "Looks fucking sick but hurts the shit out of your back.",
+			'height' : '30',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [47, -1, -3, 1, 1],
+			'NE': [48, -1, -3, 1, 1],
+			'SE': [46, -1, -3, 1, 1],
+			'SW': [45, -1, -3, 1, 1]
+		}
+	},
+
+	//Block
+	'block' : {
+		'info': {
+			'icon' : 'blocks_small.png',
+			'title' : 'Block',
+			'description' : "Stops people.",
+			'height' : '30',
+			'stackable' : true,
+			'counter' 	: false,
+			'table'		: true,
+		},
+		'offsets': {
+			'NW': [54, -1, -3, 1, 2],
+			'NE': [53, -1, -3, 2, 1],
+			'SE': [54, -1, -3, 1, 2],
+			'SW': [53, -1, -3, 2, 1]
+		}
+	},
+
+	//Dorm Couch
+	'dorm_couch' : {
+		'info': {
+			'icon' : 'dorm_couch_small.png',
+			'title' : 'Dorm Couch',
+			'description' : "Someone had sex on this couch.",
+			'height' : '30',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [62, -1, -3, 1, 2],
+			'NE': [63, -1, -3, 2, 1],
+			'SE': [60, -1, -3, 1, 2],
+			'SW': [61, -1, -3, 2, 1]
+		}
+	},
+
+	//Grundge Couch
+	'grundge_couch' : {
+		'info': {
+			'icon' : 'grungecouch_small.png',
+			'title' : 'Grundge Couch',
+			'description' : "",
+			'height' : '30',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [77, -1, -3, 1, 2],
+			'NE': [76, -1, -3, 2, 1],
+			'SE': [78, -1, -3, 1, 2],
+			'SW': [79, -1, -3, 2, 1]
+		}
+	},
+
+	//Bubble Gum Machine
+	'bubble_gum' : {
+		'info': {
+			'icon' : 'gumball_small.png',
+			'title' : 'Coke Gum Machine',
+			'description' : "Secretly coke inside the gumballs.",
+			'height' : '60',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [82, -1, -5, 1, 1],
+			'NE': [82, -1, -5, 1, 1],
+			'SE': [82, -1, -5, 1, 1],
+			'SW': [82, -1, -5, 1, 1]
 		}
 	},
 
