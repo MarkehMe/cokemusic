@@ -23,11 +23,13 @@ var igeClientConfig = {
 		'./gameClasses/Items/GameItem.js',
 		'./gameClasses/Items/GameItemOffsets.js',
 
-		
+		// Chat
+		'/gameClasses/Chat/Chat.js',
+
 		/* Standard game scripts */
 		'./client.js',
 		'./index.js'
-	], 
+	],
 	debug: false
 };
 

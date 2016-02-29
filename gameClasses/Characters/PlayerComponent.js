@@ -5,7 +5,7 @@
 var PlayerComponent = IgeClass.extend({
 	classId: 'PlayerComponent',
 	componentId: 'player',
-	
+	targetPos: { x: null, y: null },
 	init: function (entity, options) {
 		var self = this;
 
@@ -46,6 +46,12 @@ var PlayerComponent = IgeClass.extend({
 		 	return;
 
 		overTiles = this._entity.overTiles()[0];
+
+		// If we're already headed here we don't want to try again
+		if (this.targetPos.x == endTile.x && this.targetPos.y == endTile.y) return;
+
+		this.targetPos.x = endTile.x;
+		this.targetPos.y = endTile.y;
 
 		// Tell the entity to start navigating along the new path
 		//TODO: need to add the speed to some sort of global var JS
@@ -88,12 +94,11 @@ var PlayerComponent = IgeClass.extend({
 		var direction = this._entity.path.getDirection();
 		if(direction != '') {
 			this._entity.changeDirection(direction);
-			//If they are about to start a path might aswell
-			//hide the selection here
-			//$('#infostand').hide();
+
+			// If we didn't just click an item, we hide the infostand
+			if ( ! ige.overItem) $('#infostand').hide();
 		}
 	},
-
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = PlayerComponent; }

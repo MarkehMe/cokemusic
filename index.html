@@ -14,7 +14,7 @@
     <script type="text/javascript" src="/js/inventory.js"></script>
 
 	<title>CokeMusic</title>
-	
+
 	<!-- Isogenic Loader -->
 	<script type="text/javascript">
 		var igeRoot = '/engine/';
@@ -24,18 +24,15 @@
 </head>
 <body>
     <div class="igeLoading loadingFloat">
-        <div class="loadingLogo"></div>
-        <div class="loadingCircle"></div>
-        <div class="loadingCircleInner"></div>
-        <div class="loadingText" id="loadingText">
-            Loading
+        <div class="loadbox" id="loadbox">
+            <p>Just a moment... </p>
         </div>
     </div>
 
     <div class="bottom-bar">
     	<div class="contain clearfix">
     		<div class="chat-input-wrapper">
-    			<input class="chat-input" type="text">
+    			<input id="chat-input" class="chat-input" type="text">
     		</div>
 
     		<div class="actions-wrapper">
