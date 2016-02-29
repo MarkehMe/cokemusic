@@ -1,6 +1,6 @@
 var GameItem = IgeEntity.extend({
 	classId: 'GameItem',
-
+	lastClick: new Date().getTime(),
 	init: function (gameItem, direction, x, y) {
 		IgeEntity.prototype.init.call(this);
 
@@ -33,7 +33,7 @@ var GameItem = IgeEntity.extend({
 
 		self._mouseEventsActive = true;
 
-		// We store a variable to know if we're over an item or not 
+		// We store a variable to know if we're over an item or not
 		ige.overItem = false;
 
 		//Mouse Over
@@ -56,6 +56,13 @@ var GameItem = IgeEntity.extend({
 
 		//Mouse Down
 		self._mouseDown = function(mouseEvent) {
+			if (new Date().getTime() - self.lastClick < 500) {
+				// double click woah
+				return;
+			}
+			
+			self.lastClick = new Date().getTime();
+
 			var stand = $('#infostand'),
 				standImage = $('#infostand .furniture'),
 				standTitle = $('#infostand .title'),
