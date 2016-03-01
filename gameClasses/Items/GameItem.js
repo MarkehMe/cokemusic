@@ -62,6 +62,8 @@ var GameItem = IgeEntity.extend({
 
 		//Mouse Down
 		self._mouseDown = function(mouseEvent) {
+			if (ige.movingItem) return;
+			
 			if (new Date().getTime() - self.lastClick < 500) {
 				// double click woah
 				return;

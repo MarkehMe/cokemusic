@@ -25,6 +25,7 @@ var PlayerComponent = IgeClass.extend({
 		entity.path.on('pointComplete', function () { self._pointReached(); });
 		entity.path.on('pathComplete', function () { self._pathComplete(); });
 		entity.path.on('started', function () { self._pathStarted(); });
+		entity.path.on('dynamicFail', function() { self._pathHalt(); });
 	},
 
 	/**
@@ -100,6 +101,13 @@ var PlayerComponent = IgeClass.extend({
 			// If we didn't just click an item, we hide the infostand
 			if ( ! ige.overItem) $('#infostand').hide();
 		}
+	},
+
+	_pathHalt: function() {
+		// Something happened and we had to stop, so we will just
+		// stop the animation
+		this._entity.animation.stop();
+		this._entity.rest();
 	},
 });
 
