@@ -3,7 +3,7 @@ var Chat = {
         // Start shuffling bubbles
         setInterval(function() { Chat.shuffleBubbles(); }, this.getSettings().pushTime);
 
-        // Start listening for chat input 
+        // Start listening for chat input
         $("#chat-input").keyup(function(e) {
             if (e.which != 13) return;
 
@@ -13,7 +13,7 @@ var Chat = {
             var message = $("#chat-input").val().trim();
 
             // If the message isn't blank, create it
-            if (message != "") Chat.create("Mark", message, null);
+            if (message != "" && ! Chat.handleAsLocalCommand(message)) Chat.create("Mark", message, null);
 
             // Clear chat field
             $("#chat-input").val("");
@@ -39,10 +39,8 @@ var Chat = {
                 elementOffset = $msg.offset().top,
                 distance      = (elementOffset - scrollTop);
 
-            var msgTop = distance- Chat.getSettings().changeAmount;
-
-            window.$msg= $msg;
-
+            var msgTop = distance - Chat.getSettings().changeAmount;
+            
             // Update msg top
             $msg.css("top", msgTop);
 
@@ -78,7 +76,15 @@ var Chat = {
 	},
     escapeHtmlEntities: function(text) {
         return text;
-    }
+    },
+    handleAsLocalCommand: function(text) {
+        if (text.trim() == "/teditor") {
+            ige.editor.toggle();
+            return true;
+        }
+
+        return false;
+    },
 };
 
 Chat.init();
