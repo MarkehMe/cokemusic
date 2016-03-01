@@ -37,49 +37,6 @@ var Client = IgeClass.extend({
 					self.scene1 = new IgeScene2d()
 						.id('scene1')
 
-					// var baseScene = ige.$('baseScene');
-
-					// self.gameScene = new IgeScene2d()
-					// 	.id('gameScene')
-					// 	.translateTo(0, -120, 0)
-					// 	.mount(baseScene);
-
-					// self.objectScene = new IgeScene2d()
-					// 	.id('objectScene')
-					// 	.drawBounds(false)
-					// 	.drawBoundsData(false)
-					// 	.mount(self.gameScene);
-
-					// // Create an isometric tile map
-					// self.tileMap1 = new GameMap()
-					// 	.id('tileMap1')
-					// 	.isometricMounts(true)
-					// 	.tileWidth(45)
-					// 	.tileHeight(45)
-					// 	.gridSize(11, 11)
-					// 	.drawGrid(false)
-					// 	.drawMouse(true)
-					// 	.hoverStrokeColor('#FFE436')
-					// 	.hoverColor('transparent')
-					// 	.highlightOccupied($HIGHLIGHT_OCCUPIED)
-					// 	.mount(self.objectScene);
-
-					// // Create the texture maps
-					// self.textureMap1 = new IgeTextureMap()
-					// 	.tileWidth(45)
-					// 	.tileHeight(45)
-					// 	.gridSize(11, 11)
-					// 	.gridColor('#470930')
-					// 	.drawGrid(true)
-					// 	.drawMouse(false)
-					// 	.autoSection(11)
-					// 	.drawSectionBounds(false)
-					// 	.isometricMounts(true)
-					// 	.mount(self.objectScene);
-
-					// //Collision map
-					// ige.$collisionMap1 = new IgeMap2d();
-
 					var playerStudio = new PlayerStudio()
 						.type('room_a')
 						.owner('dev')
