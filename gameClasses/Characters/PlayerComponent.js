@@ -42,7 +42,7 @@ var PlayerComponent = IgeClass.extend({
 
 		// Check the bounds
 		//TODO: this needs to be alot more complex
-		 if(endTile.x < 0 || endTile.x >= 11 || endTile.y < 0 || endTile.y >= 11)
+		 if(endTile.x < 0 || endTile.x >= ige.room.width() || endTile.y < 0 || endTile.y >= ige.room.height())
 		 	return;
 
 		overTiles = this._entity.overTiles()[0];

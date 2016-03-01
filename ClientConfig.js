@@ -1,6 +1,7 @@
 var igeClientConfig = {
 	include: [
 		'./assets/vars.js',
+		'./gameClasses/Class.js',
 
 		//Floor, Tiles, Map, etc
 		'./gameClasses/Map/FloorTextureMap.js',
@@ -22,6 +23,11 @@ var igeClientConfig = {
 		'./assets/furniture/data.js',
 		'./gameClasses/Items/GameItem.js',
 		'./gameClasses/Items/GameItemOffsets.js',
+
+		//Rooms
+		'./assets/rooms/rooms.js',
+		'./gameClasses/Room/Room.js',
+		'./gameClasses/Room/PlayerStudio.js',
 
 		// Chat
 		'/gameClasses/Chat/Chat.js',
