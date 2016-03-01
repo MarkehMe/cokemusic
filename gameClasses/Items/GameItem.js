@@ -20,7 +20,6 @@ var GameItem = IgeEntity.extend({
 		//Check if we need to scale the item
 		if(object['info']['scale'] !== undefined) {
 			self.scaleTo(object['info']['scale'], object['info']['scale'], object['info']['scale']);
-			console.log('scaled ');
 		}
 
 		//Load in the texture and offsets.
@@ -81,7 +80,7 @@ var GameItem = IgeEntity.extend({
 			stand.show();
 
 			if($HIGHLIGHT_SELECTED)
-				ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
+				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
 
 			ige.selected = self;
 		};
@@ -107,11 +106,11 @@ var GameItem = IgeEntity.extend({
 		);
 
 		var cords = this.getItemTransform(),
-			tilemap = ige.$('tileMap1'),
+			tilemap = ige.room.tileMap(),
 			translateX = cords['x'],
 			translateY = cords['y'];
 
-		this.mount(ige.$('tileMap1'))
+		this.mount(ige.room.tileMap())
 			.tileWidth( this.data('tileXWidth'))
 			.tileHeight( this.data('tileYHeight'))
 			.bounds3d(this.data('tileXWidth') * tilemap._tileWidth, this.data('tileYHeight') * tilemap._tileHeight, this.data('objectHeight'))
@@ -119,7 +118,7 @@ var GameItem = IgeEntity.extend({
 			.occupyTile(this.data('tileX'), this.data('tileY'), this.data('tileXWidth'), this.data('tileYHeight'));
 
 		if($HIGHLIGHT_SELECTED)
-			ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
+			ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
 
 		this.data('placed', true);
 
@@ -165,7 +164,7 @@ var GameItem = IgeEntity.extend({
 			);
 
 			if($HIGHLIGHT_SELECTED)
-				ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
+				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
 		}
 
 		return this;
@@ -187,30 +186,30 @@ var GameItem = IgeEntity.extend({
 		//If both sides are greater than 2. i.e the obj is larger than 2x2
 		if( (this.data('tileXWidth') >= 2) && (this.data('tileYHeight') >= 2) ) {
 			translateX = this.data('tileX') +
-							((ige.$('tileMap1').tileWidth() /
+							((ige.room.tileMap().tileWidth() /
 							this.data('tileXWidth')) /
-							ige.$('tileMap1').tileWidth());
+							ige.room.tileMap().tileWidth());
 
 			translateY = this.data('tileY') +
-							((ige.$('tileMap1').tileHeight() /
+							((ige.room.tileMap().tileHeight() /
 							this.data('tileYHeight')) /
-							ige.$('tileMap1').tileHeight());
+							ige.room.tileMap().tileHeight());
 
 		}
 		//If the tile height is greater or equal 1x2
 		else if(this.data('tileYHeight') >= 2) {
 			translateY = this.data('tileY') +
-							((ige.$('tileMap1').tileHeight() /
+							((ige.room.tileMap().tileHeight() /
 							this.data('tileYHeight')) /
-							ige.$('tileMap1').tileHeight());
+							ige.room.tileMap().tileHeight());
 
 		}
 		//If the tile width is greater or equal 2x1
 		else if(this.data('tileXWidth') >= 2) {
 			translateX = this.data('tileX') +
-							((ige.$('tileMap1').tileWidth() /
+							((ige.room.tileMap().tileWidth() /
 							this.data('tileXWidth')) /
-							ige.$('tileMap1').tileWidth());
+							ige.room.tileMap().tileWidth());
 		}
 
 		returnObj = {
@@ -291,7 +290,7 @@ var GameItem = IgeEntity.extend({
 			.data('tileYHeight', direction[4]);
 
 		if($HIGHLIGHT_SELECTED)
-			ige.$('tileMap1').strokeTile(this.data('tileX'), this.data('tileY'));
+			ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
 
 		self.moveTo();
 	}

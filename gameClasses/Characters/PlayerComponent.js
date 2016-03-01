@@ -37,7 +37,7 @@ var PlayerComponent = IgeClass.extend({
 			return false;
 
 		// Get the tile co-ordinates that the mouse is currently over
-		var endTile = ige.$('tileMap1').mouseToTile(),
+		var endTile = ige.room.tileMap().mouseToTile(),
 			overTiles;
 
 		// Check the bounds
