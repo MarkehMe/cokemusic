@@ -9,6 +9,8 @@ var PlayerComponent = IgeClass.extend({
 	init: function (entity, options) {
 		var self = this;
 
+		window.player = this;
+
 		// Store the entity that this component has been added to
 		this._entity = entity;
 
@@ -54,12 +56,64 @@ var PlayerComponent = IgeClass.extend({
 		this.targetPos.x = endTile.x;
 		this.targetPos.y = endTile.y;
 
-		if (ige.$('tileMap1').isTileOccupied (endTile.x, endTile.y)) return;
+		// Check if its a seat
+		if (ige.$('tileMap1').isTileOccupied (this.targetPos.x, this.targetPos.y)) {
+			var occupying = ige.client.itemAt(this.targetPos.x, this.targetPos.y);
+
+			// it's not a seat, so lets just not move there
+			if (occupying.data('object').info.seat != true) {
+				console.log('occupied');
+				return;
+			}
+
+			console.log('it\'s a seat');
+
+			// is a seat.. store the target seat
+			this.data("targetSeat", occupying);
+
+			// find a tile near the seat we can navigate to
+			var x1 = this.targetPos.x - 1,
+				y1 = this.targetPos.y - 1,
+				x2 = 0
+				found = false;
+
+			// we only want to check in the 3x3 area
+			// TODO: make it check for closer tiles first
+			while (x2 < 3) {
+				if (found) break;
+
+				var y2 = 0;
+
+				if ( ! ige.$('tileMap1').isTileOccupied (x1 + x2, y1 + y2)) {
+					found = true; break;
+				}
+
+				while (y2 < 3) {
+					if ( ! ige.$('tileMap1').isTileOccupied (x1 + x2, y1 + y2)) {
+						found = true; break;
+					}
+					x2++;
+					y2++;
+				}
+			}
+
+			// We couldn't find a free tile, which means there is no
+			// free spots near the seat - don't go there
+			if ( ! found) {
+				console.log('found nothing');
+				return;
+			}
+
+
+			this.targetPos.x = x1 + x2;
+			this.targetPos.y = y1 + y2;
+		}
 
 		// Tell the entity to start navigating along the new path
-		//TODO: need to add the speed to some sort of global var JS
+		// TODO: need to add the speed to some sort of global var JS
+
 		this._entity.path
-			.set(overTiles.x, overTiles.y, 0, endTile.x, endTile.y, 0)
+			.set(overTiles.x, overTiles.y, 0, this.targetPos.x, this.targetPos.y, 0)
 			.speed(1.75)
 			.start();
 	},
@@ -88,6 +142,14 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pathComplete: function() {
+		if (this.data("targetSeat") != null) {
+			// path completed and we were aiming for a seat
+			// TODO: mount the seat
+
+			this.data("seat", this.targetSeat);
+			this.data("targetSeat", null);
+		}
+
 		this._entity.animation.stop();
 
 		this._entity.rest();
