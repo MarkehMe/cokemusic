@@ -57,7 +57,8 @@ var FURNITURE = {
 			'description' : "A stool for kids at a BBQ.",
 			'height' : '20',
 			'stackable' : false,
-			'counter' : false
+			'counter' : false,
+			'seat': true,
 		},
 		'offsets': {
 			'NW': [7, 0, 2, 1, 1],
@@ -94,7 +95,8 @@ var FURNITURE = {
 			'description' : 'Never forget homies.',
 			'height' : '20',
 			'stackable' : false,
-			'counter' : false
+			'counter' : false,
+			'seat': true,
 		},
 		'offsets': {
 			'NW': [22, -3, -5, 1, 2],
@@ -148,7 +150,8 @@ var FURNITURE = {
 			'description' : 'Northern Sofa Description.',
 			'height' : '30',
 			'stackable' : false,
-			'counter' : false
+			'counter' : false,
+			'seat': true,
 		},
 		'offsets': {
 			'NW': [118, 0, 0, 1, 2],
@@ -350,6 +353,7 @@ var FURNITURE = {
 			'height' : '10',
 			'stackable' : false,
 			'counter' 	: false,
+			'seat': true,
 		},
 		'offsets': {
 			'NW': [41, -1, -3, 1, 1],
@@ -405,6 +409,7 @@ var FURNITURE = {
 			'height' : '30',
 			'stackable' : false,
 			'counter' 	: false,
+			'seat': true,
 		},
 		'offsets': {
 			'NW': [47, -1, -3, 1, 1],
@@ -442,6 +447,7 @@ var FURNITURE = {
 			'height' : '30',
 			'stackable' : false,
 			'counter' 	: false,
+			'seat': true,
 		},
 		'offsets': {
 			'NW': [62, -1, -3, 1, 2],
@@ -460,6 +466,7 @@ var FURNITURE = {
 			'height' : '30',
 			'stackable' : false,
 			'counter' 	: false,
+			'seat': true,
 		},
 		'offsets': {
 			'NW': [77, -1, -3, 1, 2],

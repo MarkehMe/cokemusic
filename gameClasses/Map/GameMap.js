@@ -19,6 +19,8 @@ var GameMap = IgeTileMap2d.extend({
 		$('#itemPickup').on('click', function() { self.itemPickup(); });
 		$('#itemRotate').on('click', function() { self.itemRotate(); });
 		$('#itemMove').on('click', function() { self.itemMove(); });
+
+		$('.bottom-bar').show();
 	},
 
 	mouseDown: function(x, y) {
