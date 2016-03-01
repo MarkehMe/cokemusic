@@ -53,6 +53,8 @@ var PlayerComponent = IgeClass.extend({
 		this.targetPos.x = endTile.x;
 		this.targetPos.y = endTile.y;
 
+		if (ige.$('tileMap1').isTileOccupied (endTile.x, endTile.y)) return;
+
 		// Tell the entity to start navigating along the new path
 		//TODO: need to add the speed to some sort of global var JS
 		this._entity.path
