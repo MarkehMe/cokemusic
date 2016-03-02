@@ -143,7 +143,7 @@ var Client = IgeClass.extend({
 	 */
 	itemAt: function (tileX, tileY) {
 		// Return the data at the map's tile co-ordinates
-		return this.tileMap1.map.tileData(tileX, tileY);
+		return ige.room.tileMap().map.tileData(tileX, tileY);
 	},
 });
 
