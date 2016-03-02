@@ -29,7 +29,20 @@
 		}
 	}
 
+	.inventory-navigation {
+		color: #efefef;
+		font-size: 12px;
+		text-align: center;
+
+		.i-page-display {
+			padding: 0 7px;
+		}
+	}
+
 	.inventory-data {
+		position: relative;
+		height: 89%;
+
 		li {
 			.items {
 				li {
