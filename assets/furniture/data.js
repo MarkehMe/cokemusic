@@ -16,7 +16,7 @@ var FURNITURE = {
 	//FRIDGE
 	'fridge' : {
 		'info': {
-			'icon' : 'northern_minibar.png',
+			'icon' : '5001_minibar_small.png',
 			'title' : 'Mini Fridge',
 			'description' : "I'm coolin' fam.",
 			'height' : '20',
