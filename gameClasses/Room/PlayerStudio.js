@@ -154,13 +154,15 @@ var PlayerStudio = Room.extend({
 			.mount(self._objScene);
 
 		//Create the background map
-		// self._leftWall = new IgeTextureMap()
-		// 	.tileWidth($TILESIZE)
-		// 	.tileHeight($TILESIZE)
-		// 	.drawMouse(false)
-		// 	//.backgroundPattern(ige.gameTexture.leftWall, 'repeat-x', false, false)
-		// 	.texture(ige.gameTexture.leftWall)
-		// 	.mount(self._gameScene);
+		self._leftWall = new IgeTextureMap()
+			.tileWidth($TILESIZE)
+			.tileHeight($TILESIZE)
+			.drawMouse(false)
+			//.backgroundPattern(ige.gameTexture.leftWall, 'repeat-x', false, false)
+			.texture(ige.gameTexture.studio_model_c)
+			.dimensionsFromTexture()
+			.anchor(0, 64)
+			.mount(self._gameScene);
 
 		// Collision map
 		self._colmap = new IgeMap2d();
