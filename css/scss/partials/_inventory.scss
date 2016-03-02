@@ -13,6 +13,20 @@
 		width: 100%;
 		top: 30px;
 		left: 0;
+		text-align: center;
+
+		.title {
+			margin-top: 24px;
+			font-weight: bold;
+			font-size: $inventory-title-font-size;
+			color: $inventory-title-font-color;
+		}
+
+		a {
+			position: absolute;
+		    right: 45px;
+		    top: 22px;
+		}
 	}
 
 	.inventory-data {
