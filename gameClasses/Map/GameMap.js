@@ -89,4 +89,17 @@ var GameMap = IgeTileMap2d.extend({
 		this.clearStrokes();
 		ige.movingItem = true;
 	},
+
+	/**
+	 * Gets the total wall offset that will be used to calculate each individual 
+	 * wall section placement on the x offset.
+	 * @return { int }
+	 */
+	wallXOffset: function() {
+		return (((this._gridSize.x - 1) * this._tileWidth) + (this._tileWidth / 2));
+	},
+
+	wallYOffset: function() {
+		return ((this._tileWidth / (this._gridSize.y - 1) * this._gridSize.y));
+	}
 });

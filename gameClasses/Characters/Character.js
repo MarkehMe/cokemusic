@@ -25,7 +25,7 @@ var Character = IgeEntity.extend({
 		// Assign the pathfinder to the player
 		self.addComponent(IgePathComponent).path
 			.finder(self.pathFinder)
-			.tileMap(ige.$('tileMap1'))
+			.tileMap(ige.room.tileMap())
 			.tileChecker(function (tileData, tileX, tileY, node, prevNodeX, prevNodeY, dynamic) {
 				// If the map tile data is set to 1, don't allow a path along it
 				if (tileData != null) return false;
