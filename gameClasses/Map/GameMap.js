@@ -21,6 +21,9 @@ var GameMap = IgeTileMap2d.extend({
 		$('#itemMove').on('click', function() { self.itemMove(); });
 
 		$('.bottom-bar').show();
+
+		//Setup click handlers for item selections in bag
+		$('body').on('click', '.inventory-data a', function() { self.itemInventoryClick( $(this)); });
 	},
 
 	mouseDown: function(x, y) {
@@ -77,8 +80,22 @@ var GameMap = IgeTileMap2d.extend({
 		ige.selected.destroy();
 	},
 
+	/**
+	 * Called whenever the user click the pickup button for selected object
+	 */
 	itemPickup: function() {
+		if(ige.selected === undefined)
+			return false;
 
+		//Add the item to inventory
+		//TODO: this needs a lot of improvements. Right now we are just adding to page 1
+		//		but we need to create a method to add to the last page / create new page
+		//		if the last is full etc.
+		$('<li><a data-item="'+ige.selected.data('gameItem')+'"><img src="'+ige.selected.data('icon')+'"></a></li>').
+		appendTo('.inventory-data > li > .items');
+
+		//Destory the actual game item.
+		ige.selected.destroy();
 	},
 
 	itemRotate: function() {
@@ -91,7 +108,46 @@ var GameMap = IgeTileMap2d.extend({
 	},
 
 	/**
-	 * Gets the total wall offset that will be used to calculate each individual 
+	 * Called whenever an item is selected from the inventory bag
+	 * @param {*} The jQuery caller object (anchor tag)
+	 */
+	itemInventoryClick: function(caller) {
+		if(caller === undefined)
+			return false;
+
+		//Check and make sure the item data actually has data.
+		var itemName = caller.data('item');
+		if(itemName === undefined || itemName == '')
+			return false;;
+
+		//Make sure this item exsists in the the preloaded furni data.
+		if(!this.itemExistsInData(itemName))
+			return false;
+
+		var mousePos = this.mouseToTile(),
+		//TODO: instead of placing the item at the mouse position
+		//		we need to create a new function to get the closest
+		//		avalible position to temporaliy store this item incase
+		//		the client gets dc'ed, etc
+			newItem = new GameItem(itemName, 'SE', mousePos.x, mousePos.y);
+
+		//Remove the li elements so all the other items get adjusted
+		//TODO: eventually when we incorporate the server we should just 
+		//query for an updated inventory object instead of just removing.
+		caller.parent().remove();
+
+		//Set the selected item as the newly created one from inventory
+		ige.selected = newItem;
+		ige.movingItem = true
+	},
+
+	itemExistsInData: function(item) {
+		if(FURNITURE[item] === undefined)
+			return false
+		return true;
+	},
+	
+	/* Gets the total wall offset that will be used to calculate each individual 
 	 * wall section placement on the x offset.
 	 * @return { int }
 	 */

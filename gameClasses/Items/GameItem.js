@@ -27,6 +27,9 @@ var GameItem = IgeEntity.extend({
 			.anchor(object['offsets'][direction][1], object['offsets'][direction][2])
 			.dimensionsFromCell();
 
+		//Load in the item icon
+		self.data('icon', './assets/furniture/icons/' + object['info']['icon']);
+
 		//Set the tileX and tileY cordinates
 		self.data('tileX', x)
 			.data('tileY', y)
