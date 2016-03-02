@@ -82,3 +82,54 @@
 		height: 20px;
 	}
 }
+
+#nav-user-studios {
+	.nav-user-studios-menu {
+		list-style-type: none;
+		margin-bottom: 6px;
+
+		li {
+			float: left;
+			margin-right: 5px;
+
+			a {
+				display: block;
+			}
+
+			.button {
+				padding: 0 15px;
+			}
+		}
+	}
+
+	.nav-user-studios-list {
+		li {
+			border-bottom: 1px dotted $studio-list-border-color;
+		}
+
+		.studio-user-count, .studio-name, .studio-navigate-go {
+			display: inline-block;
+			color: $studio-list-font-color;
+			font-size: $studio-list-font-size;
+		}
+
+		.studio-user-count {
+			width: 5%;
+		}
+
+		.studio-name {
+			width: 80%;
+			text-decoration: underline;
+		}
+
+		.studio-navigate-go {
+			width: 7%;
+			text-align: right;
+			text-decoration: underline;
+		}
+	}
+}
+
+.popup-content-area {
+	padding: 8px 5px;
+}

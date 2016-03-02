@@ -34,5 +34,20 @@
 }
 
 .button.blue {
+	line-height: 20px;
+	background-image: url('../assets/ui/button.b1.middle.active.png');
+	background-size: 100% 100%;
+	background-repeat: repeat;
 
+	&:before, &:after {
+		background-size: initial;
+	}
+
+	&:before {
+		background-image: url('../assets/ui/button.b1.left.active.png');
+	}
+
+	&:after {
+		background-image: url('../assets/ui/button.b1.right.active.png');
+	}
 }
