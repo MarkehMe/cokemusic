@@ -1,5 +1,5 @@
 var GameMap = IgeTileMap2d.extend({
-	classId: 'GameMap',	
+	classId: 'GameMap',
 
 	init: function() {
 		IgeTileMap2d.prototype.init.call(this);
@@ -19,17 +19,26 @@ var GameMap = IgeTileMap2d.extend({
 		$('#itemPickup').on('click', function() { self.itemPickup(); });
 		$('#itemRotate').on('click', function() { self.itemRotate(); });
 		$('#itemMove').on('click', function() { self.itemMove(); });
+
+		$('.bottom-bar').show();
 	},
 
 	mouseDown: function(x, y) {
 		if(ige.movingItem == true) {
+			ige.movingItem = false;
+
 			var tile = this.mouseToTile(),
 				transformX = tile.x,
 				transformY = tile.y;
 
-			ige.selected.moveTo(transformX, transformY);
-			ige.movingItem = false;
-		} 
+			if ( ! ige.$('tileMap1').isTileOccupied (transformX, transformY)) {
+				// If its not occupied, move to it
+				ige.selected.moveTo(transformX, transformY);
+			} else {
+				// it's occupied - move back to original spot
+				ige.selected.moveTo();
+			}
+		}
 	},
 
 	mouseMove: function(mouseX, mouseY) {
@@ -38,7 +47,7 @@ var GameMap = IgeTileMap2d.extend({
 				transformX = tile.x,
 				transformY = tile.y;
 
-			if(ige.selected.data('tileYHeight') >= 2) { 
+			if(ige.selected.data('tileYHeight') >= 2) {
 				var objectHeight = ige.selected.data('tileYHeight');
 				transformY += 1 / objectHeight;
 			} else if(ige.selected.data('tileXWidth') >= 2) {

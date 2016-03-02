@@ -61,11 +61,13 @@ var GameItem = IgeEntity.extend({
 
 		//Mouse Down
 		self._mouseDown = function(mouseEvent) {
+			if (ige.movingItem) return;
+			
 			if (new Date().getTime() - self.lastClick < 500) {
 				// double click woah
 				return;
 			}
-			
+
 			self.lastClick = new Date().getTime();
 
 			var stand = $('#infostand'),
@@ -248,36 +250,23 @@ var GameItem = IgeEntity.extend({
 	rotate: function() {
 		var self = this;
 
-		//console.log(this.data('tileX'), this.data('tileY'));
+		// First ensure this item can rotate
+		if ( ! self.canRotate()) return;
+
+		// Get the new direction
+		var newDirection = self.getNextRotation(),
+			direction    = self.data('object')['offsets'][newDirection];
+
 		//Un-occupy the current tiles
-		this.unOccupyTile(
-			this.data('tileX'),
-			this.data('tileY'),
-			this.data('tileXWidth'),
-			this.data('tileYHeight')
+		self.unOccupyTile(
+			self.data('tileX'),
+			self.data('tileY'),
+			self.data('tileXWidth'),
+			self.data('tileYHeight')
 		);
 
-		function getNewDirection() {
-			var current = self.data('currentDirection'),
-				newDir = 'SE';
-
-			switch(current) {
-				case 'SE': newDir = 'SW'; break;
-				case 'SW': newDir = 'NW'; break;
-				case 'NW': newDir = 'NE'; break;
-				case 'NE': newDir = 'SE'; break;
-			}
-
-			console.log(newDir);
-			return newDir;
-		}
-
-		//Get the new direction
-		var newDirection = getNewDirection(),
-			direction = self.data('object')['offsets'][newDirection];
-
 		//Update the current direction
-		this.data('currentDirection', newDirection);
+		self.data('currentDirection', newDirection);
 
 		//Set the new sprite cell, anchor, and update texture given
 		//the new direction
@@ -293,6 +282,46 @@ var GameItem = IgeEntity.extend({
 			ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
 
 		self.moveTo();
+	},
+
+	/**
+	 * Can this item rotate in a direction.
+	 * @return boolean
+	 */
+	canRotate: function() {
+		// if it's only a single tile size it doesn't need to be checked
+
+		if (this.data('tileXWidth') == 1) return true;
+
+		var y = this.data('tileY');
+		var x = this.data('tileX');
+
+		if (this.getNextRotation() == 'SE' || this.getNextRotation() == 'NW') {
+			y++;
+		} else {
+			x++;
+		}
+
+		var entityHere = ige.$('tileMap1').isTileOccupied (x, y);
+
+		return entityHere != true;
+	},
+	/**
+	 * Gets the next rotation for this item
+	 * @return
+	 */
+	getNextRotation: function() {
+		var current = this.data('currentDirection'),
+			newDir = 'SE';
+
+		switch(current) {
+			case 'SE': newDir = 'SW'; break;
+			case 'SW': newDir = 'NW'; break;
+			case 'NW': newDir = 'NE'; break;
+			case 'NE': newDir = 'SE'; break;
+		}
+
+		return newDir;
 	}
 });
 

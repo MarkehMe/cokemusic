@@ -87,6 +87,7 @@ html, body {
     right: 0px; }
 
 .bottom-bar {
+  display: none;
   position: absolute;
   bottom: 0;
   height: 47px;
@@ -302,6 +303,7 @@ html, body {
     left: 179px; }
 
 .infostand-wrapper {
+  pointer-events: none;
   position: absolute;
   bottom: 100px;
   left: 0;
@@ -309,6 +311,7 @@ html, body {
   height: 100px; }
 
 #infostand {
+  pointer-events: none;
   width: 1024px;
   height: 100px;
   margin: 0 auto;
@@ -352,6 +355,7 @@ html, body {
     list-style-type: none;
     text-align: right; }
     #infostand .infostand-wrapper-actions ul li {
+      pointer-events: all;
       display: inline-block; }
 
 #navigation-ui {
