@@ -17,6 +17,9 @@ var Client = IgeClass.extend({
 		ige.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
 		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
 
+		ige.gameTexture.studio_model_c = new IgeTexture(rootPath + 'assets/rooms/studio_model_c.png');
+		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
+
 		//Furniture
 		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
 
@@ -36,9 +39,10 @@ var Client = IgeClass.extend({
 					// Create the scene
 					self.scene1 = new IgeScene2d()
 						.id('scene1')
+						.ignoreCamera(true);
 
 					var playerStudio = new PlayerStudio()
-						.type('room_a')
+						.type('studio_model_c')
 						.owner('dev')
 						.render();
 

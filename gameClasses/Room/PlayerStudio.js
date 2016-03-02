@@ -110,25 +110,30 @@ var PlayerStudio = Room.extend({
 		// Create the game scene
 		self._gameScene = new IgeScene2d()
 			.id('gameScene')
-			.translateTo(0, -120, 0)
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+			.ignoreCamera(true)
 			.mount(ige.$('baseScene'));
 
 		// Create the object scene
 		self._objScene = new IgeScene2d()
 			.id('objectScene')
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
 			.drawBounds(false)
 			.drawBoundsData(false)
+			.ignoreCamera(true)
 			.mount(self._gameScene);
 
 		// Create an isometric tile map
 		self._tilemap = new GameMap()
 			.id('tileMap1')
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
 			.isometricMounts(true)
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
 			.gridSize(self.object['width'], self.object['height'])
 			.drawGrid(false)
 			.drawMouse(true)
+			.gridColor('transparent')
 			.hoverStrokeColor($HOVER_TILE_COLOR)
 			.hoverColor($HOVER_TILE_BG_COLOR)
 			.highlightOccupied($HIGHLIGHT_OCCUPIED)
@@ -136,6 +141,7 @@ var PlayerStudio = Room.extend({
 
 		// Create the texture map
 		self._texMap = new IgeTextureMap()
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
 			.gridSize(self.object['width'], self.object['height'])
@@ -146,6 +152,15 @@ var PlayerStudio = Room.extend({
 			.drawSectionBounds(false)
 			.isometricMounts(true)
 			.mount(self._objScene);
+
+		//Create the background map
+		// self._leftWall = new IgeTextureMap()
+		// 	.tileWidth($TILESIZE)
+		// 	.tileHeight($TILESIZE)
+		// 	.drawMouse(false)
+		// 	//.backgroundPattern(ige.gameTexture.leftWall, 'repeat-x', false, false)
+		// 	.texture(ige.gameTexture.leftWall)
+		// 	.mount(self._gameScene);
 
 		// Collision map
 		self._colmap = new IgeMap2d();
@@ -166,6 +181,36 @@ var PlayerStudio = Room.extend({
 				self._texMap.paintTile(x, y, texIndex, 1);
 			}
 		}
+
+
+		var leftWallX = (self._tilemap.wallXOffset() * -1),
+			rightWallX = self._tilemap.wallXOffset(),
+			leftWallY = (self._tilemap.wallYOffset());
+
+		//Generate Left Walls
+		for (var width = 0; width < self.object['width']; width++) {
+			var x = leftWallX + width * $TILESIZE,
+				y = leftWallY - width * ($TILESIZE / 2);
+
+			new IgeEntity()
+				.isometric(true)
+				.texture(ige.gameTexture.leftWall)
+				.dimensionsFromTexture()
+				.anchor(x, y)
+				.mount(self._objScene);
+		}
+
+		//Generate Right Walls
+		// for (var height = 0; height < self.object['height']; height++) {
+		// 	x = rightWallX + height * $TILESIZE;
+
+		// 	new IgeEntity()
+		// 		.isometric(true)
+		// 		.texture(ige.gameTexture.leftWall)
+		// 		.dimensionsFromTexture()
+		// 		.anchor(x, 0)
+		// 		.mount(self._objScene);
+		// }
 
 		return this;
 	}

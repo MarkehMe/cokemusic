@@ -1,5 +1,5 @@
 /* Size of the tiles in the grid */
-$TILESIZE = 45;
+$TILESIZE = 36;
 $DRAW_GRIDLINES = true;
 $HOVER_TILE_COLOR = '#FFE436';
 $HOVER_TILE_BG_COLOR = 'transparent';

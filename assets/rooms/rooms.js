@@ -13,7 +13,13 @@ var ROOMS = {
 
 	},
 
-	'room_c' : {
+	'studio_model_c' : {
+		'width' : 6,
+		'height' : 6,
+		'x_offset' : 0,
+		'y_offset' : 0,
 
+		'background' : 'studio_model_c.png',
+		'scale' : 1
 	},
 };
