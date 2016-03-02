@@ -20,13 +20,15 @@ var GameItem = IgeEntity.extend({
 		//Check if we need to scale the item
 		if(object['info']['scale'] !== undefined) {
 			self.scaleTo(object['info']['scale'], object['info']['scale'], object['info']['scale']);
-			console.log('scaled ');
 		}
 
 		//Load in the texture and offsets.
 		self.cell(object['offsets'][direction][0])
 			.anchor(object['offsets'][direction][1], object['offsets'][direction][2])
 			.dimensionsFromCell();
+
+		//Load in the item icon
+		self.data('icon', './assets/furniture/icons/' + object['info']['icon']);
 
 		//Set the tileX and tileY cordinates
 		self.data('tileX', x)

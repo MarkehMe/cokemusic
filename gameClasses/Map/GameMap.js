@@ -23,7 +23,7 @@ var GameMap = IgeTileMap2d.extend({
 		$('.bottom-bar').show();
 
 		//Setup click handlers for item selections in bag
-		$('.inventory-data a').on('click', function() { self.itemInventoryClick( $(this)); })
+		$('body').on('click', '.inventory-data a', function() { self.itemInventoryClick( $(this)); });
 	},
 
 	mouseDown: function(x, y) {
@@ -80,8 +80,22 @@ var GameMap = IgeTileMap2d.extend({
 		ige.selected.destroy();
 	},
 
+	/**
+	 * Called whenever the user click the pickup button for selected object
+	 */
 	itemPickup: function() {
+		if(ige.selected === undefined)
+			return false;
 
+		//Add the item to inventory
+		//TODO: this needs a lot of improvements. Right now we are just adding to page 1
+		//		but we need to create a method to add to the last page / create new page
+		//		if the last is full etc.
+		$('<li><a data-item="'+ige.selected.data('gameItem')+'"><img src="'+ige.selected.data('icon')+'"></a></li>').
+		appendTo('.inventory-data > li > .items');
+
+		//Destory the actual game item.
+		ige.selected.destroy();
 	},
 
 	itemRotate: function() {
