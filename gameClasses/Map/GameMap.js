@@ -21,6 +21,9 @@ var GameMap = IgeTileMap2d.extend({
 		$('#itemMove').on('click', function() { self.itemMove(); });
 
 		$('.bottom-bar').show();
+
+		//Setup click handlers for item selections in bag
+		$('.inventory-data a').on('click', function() { self.itemInventoryClick( $(this)); })
 	},
 
 	mouseDown: function(x, y) {
@@ -88,5 +91,45 @@ var GameMap = IgeTileMap2d.extend({
 	itemMove: function() {
 		this.clearStrokes();
 		ige.movingItem = true;
+	},
+
+	/**
+	 * Called whenever an item is selected from the inventory bag
+	 * @param {*} The jQuery caller object (anchor tag)
+	 */
+	itemInventoryClick: function(caller) {
+		if(caller === undefined)
+			return false;
+
+		//Check and make sure the item data actually has data.
+		var itemName = caller.data('item');
+		if(itemName === undefined || itemName == '')
+			return false;;
+
+		//Make sure this item exsists in the the preloaded furni data.
+		if(!this.itemExistsInData(itemName))
+			return false;
+
+		var mousePos = this.mouseToTile(),
+		//TODO: instead of placing the item at the mouse position
+		//		we need to create a new function to get the closest
+		//		avalible position to temporaliy store this item incase
+		//		the client gets dc'ed, etc
+			newItem = new GameItem(itemName, 'SE', mousePos.x, mousePos.y);
+
+		//Remove the li elements so all the other items get adjusted
+		//TODO: eventually when we incorporate the server we should just 
+		//query for an updated inventory object instead of just removing.
+		caller.parent().remove();
+
+		//Set the selected item as the newly created one from inventory
+		ige.selected = newItem;
+		ige.movingItem = true
+	},
+
+	itemExistsInData: function(item) {
+		if(FURNITURE[item] === undefined)
+			return false
+		return true;
 	},
 });
