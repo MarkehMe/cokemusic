@@ -116,12 +116,12 @@ Each object of the character broken down with event information and general info
 #### Head <a name="head"></a> ####
 The characters head. At the base level the head does not have hair, eyes, or mouth.
 
-**Children **
+**Children**
 + Hair
 + Eyes
 + Mouth
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Waking
@@ -129,7 +129,7 @@ The characters head. At the base level the head does not have hair, eyes, or mou
 #### Hair <a name="hair"></a> ####
 The characters hair that is a child element of ``head``.
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Walking
@@ -137,7 +137,7 @@ The characters hair that is a child element of ``head``.
 #### Eyes <a name="eyes"></a> ####
 The characters eyes that are a child element of ``head``. They play a key role in showcasing emotions i.e. facial expressions.
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Walking
@@ -146,7 +146,7 @@ The characters eyes that are a child element of ``head``. They play a key role i
 #### Mouth <a name="mouth"></a> ####
 The characters mouth that is a child element of ``head``. The mouth also plays a key role in showcasing emotions i.e. facial expressions.
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Walking
@@ -155,14 +155,14 @@ The characters mouth that is a child element of ``head``. The mouth also plays a
 #### Torso <a name="torso"></a> ####
 The characters torso. It is involved in every event that is causing the character to change direction ``x,y``.
 
-**Children **
+**Children**
 + Shirt
 + Left Sleve
 + Right Sleve
 + Left Arm 
 + Right Arm
 
-**Events **
+**Events**
 + Dancing
 + Drinking
 + Standing
@@ -172,7 +172,7 @@ The characters torso. It is involved in every event that is causing the characte
 #### Shirt <a name="shirt"></a> ####
 The characters shirt that is a child element of ``torso``. The shirt goes ontop of the torso in the depth sorting.
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Sitting
@@ -181,7 +181,7 @@ The characters shirt that is a child element of ``torso``. The shirt goes ontop 
 #### Left Sleve <a name="l-sleve"></a> ####
 The characters left sleve that is a child element of ``torso``. The Sleve goes ontop of the left arm in the depth sorting. 
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Sitting
@@ -190,7 +190,7 @@ The characters left sleve that is a child element of ``torso``. The Sleve goes o
 #### Right Sleve <a name="r-sleve"></a> ####
 The characters right sleve that is a child element of ``torso``. The Sleve goes ontop of the right arm in the depth sorting. Is apart of the drinking event (right hand goes up to "sip" the drink)
 
-**Events **
+**Events**
 + Dancing
 + Drinking
 + Standing
@@ -200,7 +200,7 @@ The characters right sleve that is a child element of ``torso``. The Sleve goes 
 #### Left Arm <a name="l-arm"></a> ####
 The characters left arm that is a child element of ``torso``.
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Sitting
@@ -209,7 +209,7 @@ The characters left arm that is a child element of ``torso``.
 #### Right Arm <a name="r-arm"></a> ####
 The characters right sleve that is a child element of ``torso``. Is apart of the drinking event (right hand goes up to "sip" the drink)
 
-**Events **
+**Events**
 + Dancing
 + Drinking
 + Standing
@@ -219,7 +219,7 @@ The characters right sleve that is a child element of ``torso``. Is apart of the
 #### Pants <a name="pants"></a> ####
 The characters pants.
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Sitting
@@ -228,7 +228,7 @@ The characters pants.
 #### Shoes <a name="shoes"></a> ####
 The characters shoes.
 
-**Events **
+**Events**
 + Dancing
 + Standing
 + Sitting
