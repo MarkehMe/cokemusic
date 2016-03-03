@@ -20,6 +20,9 @@ var Client = IgeClass.extend({
 		ige.gameTexture.studio_model_c = new IgeTexture(rootPath + 'assets/rooms/studio_model_c_1.png');
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
 
+		//ige.gameTexture.people = new IgeSpriteSheet(rootPath + 'assets/character/people.png');
+		ige.gameTexture.people = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/people.png', rootPath + 'assets/character/people.js');
+
 		//Furniture
 		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
 
@@ -109,6 +112,14 @@ var Client = IgeClass.extend({
 					// var Coke = new GameItem('northern_sofa', 'SW', 6, 3);
 					// var Coke = new GameItem('grundge_couch', 'SW', 6, 4);
 
+						var obj = new IgeEntity()
+							.isometric(true)
+							.texture(ige.gameTexture.people)
+							.cellById('h_spk_hr_013_7_0.png.png')
+							.dimensionsFromCell()
+							.mount(ige.room.tileMap())
+							.translateToTile(4, 4, 0);
+
 					//Shrubs
 					// var xAdj = 0,
 					// 	xAdj2 = 0;
@@ -117,12 +128,12 @@ var Client = IgeClass.extend({
 					// 		xAdj += self.gameTexture.shrubs._cells[i][2] / 2;
 					// 	}
 
-					// 	new IgeEntity()
-					// 		.texture(self.gameTexture.shrubs)
-					// 		.cell(i)
-					// 		.dimensionsFromCell()
-					// 		.translateTo(-450 + xAdj + xAdj2, 130, 0)
-					// 		.mount(self.gameScene);
+						// new IgeEntity()
+						// 	.texture(self.gameTexture.shrubs)
+						// 	.cell(i)
+						// 	.dimensionsFromCell()
+						// 	.translateTo(-450 + xAdj + xAdj2, 130, 0)
+						// 	.mount(self.gameScene);
 
 					// 	xAdj += (self.gameTexture.shrubs._cells[i][2] / 2) + 5;
 					// }

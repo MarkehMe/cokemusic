@@ -2,12 +2,14 @@ var igeClientConfig = {
 	include: [
 		'./assets/vars.js',
 		'./gameClasses/Class.js',
+		'./gameClasses/TexturePackerAtlas.js',
 
 		//Floor, Tiles, Map, etc
 		'./gameClasses/Map/FloorTextureMap.js',
 		'./gameClasses/Map/GameMap.js',
 
 		//Character movements, clothing, etc
+		'./assets/character/people.js',
 		'./gameClasses/Components/AnimatorComponent.js',
 		'./gameClasses/Characters/CharacterHead.js',
 		'./gameClasses/Characters/CharacterHair.js',
