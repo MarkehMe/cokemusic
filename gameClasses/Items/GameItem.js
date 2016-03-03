@@ -271,6 +271,8 @@ var GameItem = IgeEntity.extend({
 		//Update the current direction
 		self.data('currentDirection', newDirection);
 
+		console.log(newDirection);
+
 		//Set the new sprite cell, anchor, and update texture given
 		//the new direction
 		self.cell(direction[0])
