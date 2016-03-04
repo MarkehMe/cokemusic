@@ -11,7 +11,7 @@ var GameMap = IgeTileMap2d.extend({
 			self.mouseMove(x, y);
 		};
 
-		ige.input.on('mouseDown', function (x, y) { self.mouseDown(x, y); });
+		ige.input.on('mouseUp', function (x, y) { self.mouseUp(x, y); });
 		//ige.input.on('mouseOver', function (x, y) { self.mouseOver(x, y); });
 
 		//Setup click handlers for item selections
@@ -26,7 +26,7 @@ var GameMap = IgeTileMap2d.extend({
 		$('body').on('click', '.inventory-data a', function() { self.itemInventoryClick( $(this)); });
 	},
 
-	mouseDown: function(x, y) {
+	mouseUp: function(x, y) {
 		if(ige.movingItem == true) {
 			ige.movingItem = false;
 
