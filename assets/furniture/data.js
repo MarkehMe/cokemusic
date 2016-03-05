@@ -1,6 +1,4 @@
 var FURNITURE = {
-	//54 = BLOCK
-	//56 = Bookshelf
 	//120 = Polar Bear
 	//125 Pinball
 	//114 = Pinball
@@ -13,10 +11,23 @@ var FURNITURE = {
 	//101 = mic
 	//100 = box
 
+	/***
+		@icon[string]		 - The small icon that is displayed in the inventory bag
+					   	  	   and on the bottom right whenever an item is selected.
+		@title[string] 		 - Title that is displayed when the item is selected.
+		@description[string] - Information below the title.
+		@height[int]		 - Height of the object in 3dbounds.
+		@stackable[bool]	 - Can this item be stacked ontop of another item.
+		@counter[bool]	 	 - Can this item be placed ontop of a table.
+		@seat[bool] 		 - Can this item be sat in by a player.
+		@table[bool]       	 - Can this item have items placed ontop of it.
+		@rug[bool]			 - Is this item a rug that can have placed ontop of it.
+	**/
+
 	//FRIDGE
 	'fridge' : {
 		'info': {
-			'icon' : 'northern_minibar.png',
+			'icon' : '5001_minibar_small.png',
 			'title' : 'Mini Fridge',
 			'description' : "I'm coolin' fam.",
 			'height' : '20',
@@ -438,6 +449,80 @@ var FURNITURE = {
 		}
 	},
 
+	//Bookshelf
+	'bookshelf' : {
+		'info': {
+			'icon' : 'dorm_bookshelf_small.png',
+			'title' : 'Bookshelf',
+			'description' : "A bookshelf with no books #study",
+			'height' : '40',
+			'stackable' : false,
+			'counter' 	: false,
+		},
+		'offsets': {
+			'NW': [56, 0, -2, 1, 2],
+			'NE': [57, 0, -2, 2, 1],
+			'SE': [56, 0, -2, 1, 2],
+			'SW': [57, 0, -2, 2, 1]
+		}
+	},
+
+	//Lamp
+	'lamp' : {
+		'info': {
+			'icon' : 'dorm_light_small.png',
+			'title' : 'Dorm Light',
+			'description' : "Dorm light because your future is so bright.",
+			'height' : '80',
+			'stackable' : false,
+			'counter' 	: true,
+		},
+		'offsets': {
+			'NW': [58, 0, -4, 1, 1],
+			'NE': [58, 0, -4, 1, 1],
+			'SE': [58, 0, -4, 1, 1],
+			'SW': [58, 0, -4, 1, 1]
+		}
+	},
+
+	//Oster Sofa
+	'oster_sofa' : {
+		'info': {
+			'icon' : 'oystercouch_small.png',
+			'title' : 'Oster Sofa',
+			'description' : "The tiny legs on this sofa can only support up to 250lbs.",
+			'height' : '40',
+			'stackable' : false,
+			'counter' 	: false,
+			'seat'		: true,
+		},
+		'offsets': {
+			'NW': [59, 0, -4, 1, 2],
+			'NE': [68, 0, -4, 2, 1],
+			'SE': [69, 0, -4, 1, 2],
+			'SW': [70, 0, -4, 2, 1]
+		}
+	},
+
+	//Oster Sofa
+	'eye_lamp' : {
+		'info': {
+			'icon' : 'oystercouch_small.png',
+			'title' : 'Oster Sofa',
+			'description' : "The tiny legs on this sofa can only support up to 250lbs.",
+			'height' : '40',
+			'stackable' : false,
+			'counter' 	: false,
+			'seat'		: true,
+		},
+		'offsets': {
+			'NW': [59, 0, -4, 1, 2],
+			'NE': [68, 0, -4, 2, 1],
+			'SE': [69, 0, -4, 1, 2],
+			'SW': [70, 0, -4, 2, 1]
+		}
+	},
+
 	//Dorm Couch
 	'dorm_couch' : {
 		'info': {
@@ -497,7 +582,7 @@ var FURNITURE = {
 	//TV
 	'tv': {
 		'info': {
-			'icon' : 'tv.png',
+			'icon' : 'tv_small.png',
 			'title' : 'A badass TV',
 			'description' : "This TV does not turn on that's why it's so badass.",
 			'height' : '20',
