@@ -1,0 +1,100 @@
+/* PAGE 3 */
+a2 nlch		["prev": "northern_chair_a_0_1_1_2_0"]
+a2 nlst		["prev": "northern_stool_a_0_1_1_0_0"]
+a2 nlso		["prev": "northern_sofa_a_0_2_1_2_0"]
+a2 nlct 		["prev": "northern_ctable_a_0_1_1_0_0"]
+a2 nlt		["prev": "northern_table_a_0_2_2_0_0"]
+a2 nlstr		["prev": "northern_stereo_a_0_1_1_2_0"]
+a2 nlmi		["prev": "northern_minibar_a_0_1_1_2_0"]
+a2 nlli		["prev": "northern_light_a_0_1_1_0_0"]
+
+/* PAGE 4 */
+a2 5ch		["prev": "5001_chair_a_0_1_1_2_0"]
+a2 5st		["prev": "5001_stool_a_0_1_1_2_0"]
+a2 5so		["prev": "5001_sofa_a_0_2_1_2_0"]
+a2 5ct 		["prev": "5001_ctable_a_0_1_1_0_0"]
+a2 5ta		["prev": "5001_table_a_0_2_2_0_0"]
+a2 5cd		["prev": "5001_stereo_a_0_1_1_2_0"]
+a2 5mi		["prev": "5001_minibar_a_0_1_1_2_0"]
+a2 5li		["prev": "5001_light_a_0_1_1_0_0"]
+
+/* PAGE 5 */
+a2 rck		["prev": "rack1_a_0_1_1_2_0"]
+a2 rack2	["prev": "rack2_a_0_1_1_2_0"]
+a2 mo1		["prev": "monitor1_a_0_1_1_2_0"]
+a2 mic 	["prev": "microphone_a_0_1_1_0_0"]
+a2 wire	["prev": "wire_a_0_1_1_0_0"]
+a2 tv		["prev": "tv_a_0_1_1_2_0"]
+a2 spk1	["prev": "speaker1_a_0_1_1_2_0"]
+a2 cd		["prev": "burnedcd_a_0_1_1_0_0"]
+
+/* page 6 */
+a2 aco		["prev": "acoustopad_a_0_2_1_2_0"]
+a2 scrn	["prev": "screen_wall_a_0_2_1_2_0"]
+a2 plant1	["prev": "plant1_a_0_1_1_0_0"]
+a2 plant2	["prev": "plant2_a_0_1_1_0_0"]
+a2 rug1	["prev": "rug1_a_0_2_3_0_0"]
+a2 rug2	["prev": "rug2_a_0_3_3_0_0"]
+a2 rug3	["prev": "rug3_a_0_3_3_0_0"]
+a2 scc		["prev": "screen_corner_a_0_1_1_0_0"]
+
+/* page 7 */
+a2 bl1		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#FEFEFE", "c":"#FEFEFE", "d":"#FEFEFE"]]
+a2 bl2		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#CCA463", "c":"#CCA463", "d":"#CCA463"]]
+a2 bl3		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#585868", "c":"#585868", "d":"#585868"]]
+a2 bl4		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#FFEE00", "c":"#FFEE00", "d":"#FFEE00"]]
+a2 bl5		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#87BFB8", "c":"#87BFB8", "d":"#87BFB8"]]
+a2 bl6		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#F7A52A", "c":"#F7A52A", "d":"#F7A52A"]]
+a2 bl7		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#89BB38", "c":"#89BB38", "d":"#89BB38"]]
+a2 bl8		["prev": "blocks_a_0_2_1_2_0","colors":["small":"#4492FF", "c":"#4492FF", "d":"#4492FF"]]
+
+/* page 8 */
+a2 cokebar		["prev": "minibar_coke_a_0_1_1_4_0"]
+a2 cokechair	["prev": "chair_coke_a_0_1_1_2_0"]
+a2 coolcase	["prev": "coolcase_a_0_1_1_0_0"]
+a2 polarbear	["prev": "polarbear_a_0_1_1_2_0"]
+a2 cokecd		["prev": "coke_cd_player_a_0_1_1_0_0"]
+a2 lava		["prev": "lava_a_0_1_1_0_0"]
+a2 deal 9		["prev": "leftwall poster neonsign", "type": "poster"]
+a2 cokesofa	["prev": "sofa_coke_b_0_2_1_2_0"]
+
+/* page 9 */
+a2 deal 1		["prev": "rightwall poster bass", "type": "poster"]
+a2 deal 3		["prev": "rightwall poster guitar", "type": "poster"]
+a2 deal 4		["prev": "rightwall poster trumpet", "type": "poster"]
+a2 deal 5		["prev": "rightwall poster acoustic_foam", "type": "poster"]
+a2 deal 6		["prev": "rightwall poster mini", "type": "poster"]
+a2 deal 7		["prev": "rightwall poster disco", "type": "poster"]
+a2 deal 8		["prev": "rightwall poster enviromental", "type": "poster"]
+a2 chart		["prev": "rightwall poster chart", "type": "poster"]
+
+/* page 10 */
+a2 aquarium		["prev": "aquarium_a_0_1_1_0_0", "blend": ["b":60, "d":25]]
+a2 hardwood		["prev": "hardwood_a_0_3_3_0_0"]
+a2 ovi				["prev": "door_a_0_1_1_2_0", "blend": ["b":0, "d":0, "f":0, "g":0]]
+a2 futchair		["prev": "futchair_a_0_1_1_2_0"]
+a2 leosofa 		["prev": "leopard_sofa_a_0_2_1_2_0"]
+a2 zebrasofa		["prev": "zebra_sofa_a_0_2_1_2_0"]
+a2 grungecouch	["prev": "grungecouch_a_0_2_1_2_0"]
+a2 messytable		["prev": "messytable_a_0_2_1_2_0"]
+
+/* PAGE 11 */
+a2 messybox		["prev": "messybox_a_0_1_1_0_0"]
+a2 cokemachine	["prev": "cokemachine_a_0_2_1_2_0"]
+a2 jukebox 		["prev": "jukebox_a_0_1_1_2_0"]
+a2 dinerseat		["prev": "diner_seating_a_0_2_1_2_0"]
+a2 dinertable		["prev": "diner_table_b_0_2_1_2_0"]
+a2 lights			["prev": "lightpole_a_0_1_1_0_0", "visible": ["c":0, "d":0, "e":0, "f":0]]
+a2 deal 12			["prev": "rightwall poster christmas", "type": "poster"]
+
+/* page 12 */
+a2 dormbar			["prev": "dorm_minibar_a_0_1_1_2_0"]
+a2 ghettoblaster	["prev": "ghettoblaster_a_0_1_1_2_0"]
+a2 bookshelf 		["prev": "dorm_bookshelf_a_0_3_1_2_0"]
+a2 dormlight		["prev": "dorm_light_a_0_1_1_0_0", "visible": ["b":0]]
+a2 dormtable		["prev": "dorm_table_a_0_2_2_0_0"]
+a2 dormchair		["prev": "dorm_chair_a_0_1_1_2_0"]
+a2 dormcouch		["prev": "dorm_couch_a_0_2_1_2_0"]
+a2 deal 13			["prev": "rightwall poster surf", "type": "poster"]
+
+/* page 13 */
