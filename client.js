@@ -56,9 +56,13 @@ var Client = IgeClass.extend({
 					// entity will be mounted to
 					self.player = new Character()
 						.id('player')
-						.addComponent(PlayerComponent)
-						.isometric(true)
-						.mount(playerStudio.tileMap());
+						.setStyle('001')
+						.setHairStyle('013')
+						.setEyeStyle('001')
+						.setShirtStyle('005')
+						.setPantStyle('001')
+						.setShoeStyle('001')
+						.startPlayer();
 					
 					//self.player.triggerPolygon('bounds3dPolygon');
 
@@ -113,13 +117,13 @@ var Client = IgeClass.extend({
 					// var Coke = new GameItem('northern_sofa', 'SW', 6, 3);
 					// var Coke = new GameItem('grundge_couch', 'SW', 6, 4);
 
-						var obj = new IgeEntity()
-							.isometric(true)
-							.texture(ige.gameTexture.people)
-							.cellById('h_sit_bd_002_2_0.png.png')
-							.dimensionsFromCell()
-							.mount(ige.room.tileMap())
-							.translateToTile(4, 4, 0);
+						// var obj = new IgeEntity()
+						// 	.isometric(true)
+						// 	.texture(ige.gameTexture.people)
+						// 	.cellById('h_sit_bd_002_2_0.png.png')
+						// 	.dimensionsFromCell()
+						// 	.mount(ige.room.tileMap())
+						// 	.translateToTile(4, 4, 0);
 
 					//Shrubs
 					// var xAdj = 0,

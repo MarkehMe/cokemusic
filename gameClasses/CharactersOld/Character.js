@@ -9,7 +9,9 @@ var Character = IgeEntity.extend({
 		// Create a character entity as a child of this container
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
+			//.addComponent(IgeVelocityComponent)
 			.depth(2)
+			.setType(8)
 			.bounds3d(45, 45, 45)
 			.anchor(0, 0);
 
@@ -37,79 +39,6 @@ var Character = IgeEntity.extend({
 			.drawPathGlow(false) // Enable path glowing (eye candy)
 			.drawPathText(false); // Enable path text output
 
-
-		// //Spawn the head
-		// self.head = new CharacterHead(self);
-
-		// //Spawn left arm
-		// self.leftArm = new CharacterLeftArm(self);
-
-		// //Spawn right arm
-		// self.rightArm = new CharacterRightArm(self);
-
-		// //Spawn shirt
-		// self.shirt = new CharacterShirt(self);
-
-		//Load the character texture
-		// this._characterTexture = new IgeCellSheet(rootPath + 'assets/bodies.png', 5, 8);
-
-		// Wait for the texture to load
-		// this._characterTexture.on('loaded', function () {
-		// 	self.texture(self._characterTexture)
-		// 		.dimensionsFromCell();
-		// }, false, true);
-	},
-
-	setStyle: function(str) {
-		this.data('style', str);
-		return this;
-	},
-
-	setHairStyle: function(str) {
-		this.data('hair_style', str);
-		return this;
-	},
-
-	setEyeStyle: function(str) {
-		this.data('eye_style', str);
-		return this;
-	},
-
-	setMouthStyle: function(str) {
-		this.data('mouth_style', str);
-		return this;
-	},
-
-	setShirtStyle: function(str) {
-		this.data('shirt_style', str);
-		return this;
-	},
-
-	setPantStyle: function(str) {
-		this.data('pant_style', str);
-		return this;
-	},
-
-	setShoeStyle: function(str) {
-		this.data('shoe_style', str);
-		return this;
-	},
-
-	startPlayer: function() {
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'bd',
-			style 		= this.data('style'),
-			direction 	= '3',
-			subsection  = '0',
-
-			self 		= this;
-
-		//Set the body texture
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
-
 		//Spawn the head
 		self.head = new CharacterHead(self);
 
@@ -122,21 +51,14 @@ var Character = IgeEntity.extend({
 		//Spawn shirt
 		self.shirt = new CharacterShirt(self);
 
-		//Spawn left shirt sleve
-		self.leftSleve = new CharacterLeftSleve(self);
+		//Load the character texture
+		this._characterTexture = new IgeCellSheet(rootPath + 'assets/bodies.png', 5, 8);
 
-		//Spawn right shirt sleve
-		self.rightSleve = new CharacterRightSleve(self);
-
-		//Spawn pants
-		self.pant = new CharacterPants(self);
-
-		//Spawn shoes
-		self.shoes = new CharacterShoes(self);
-
-		//Finally mount the player
-		self.addComponent(PlayerComponent)
-			.mount(ige.room.tileMap());
+		// Wait for the texture to load
+		this._characterTexture.on('loaded', function () {
+			self.texture(self._characterTexture)
+				.dimensionsFromCell();
+		}, false, true);
 	},
 
 	/**

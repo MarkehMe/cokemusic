@@ -16,17 +16,6 @@ var CharacterHead = IgeEntity.extend({
 			.bounds3d(45, 45, 45)
 			.anchor(0, -45);
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'hd',
-			style 		= container.data('style'),
-			direction 	= '3',
-			subsection  = '0';
-
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
-
 		//Spawn the hair
 		self.hair = new CharacterHair(self);
 
@@ -36,22 +25,32 @@ var CharacterHead = IgeEntity.extend({
 		//Spawn the mouth
 		self.mouth = new CharacterMouth(self);
 
+		//TODO: should probably load all the textures at once and
+		//store in global vars
+		//Load the texture
+		this._texture = new IgeCellSheet(rootPath + 'assets/faces.png', 8, 2);
+
+		// Wait for the texture to load
+		this._texture.on('loaded', function () {
+			self.texture(self._texture)
+				.dimensionsFromCell();		
+		}, false, true);
 
 		//Initilize the animations
-		// fps = 5.5;
-		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [8], fps, -1)
-		// 	.animation.define('W',  [7], fps, -1)
-		// 	.animation.define('E',  [2], fps, -1)
-		// 	.animation.define('SW', [6], fps, -1)
-		// 	.animation.define('SE', [3], fps, -1)
-		// 	.animation.define('S',  [4], fps, -1)
-		// 	.animation.define('N',  [5], fps, -1);
+		fps = 5.5;
+		this.animation.define('NE', [1], fps, -1)
+			.animation.define('NW', [8], fps, -1)
+			.animation.define('W',  [7], fps, -1)
+			.animation.define('E',  [2], fps, -1)
+			.animation.define('SW', [6], fps, -1)
+			.animation.define('SE', [3], fps, -1)
+			.animation.define('S',  [4], fps, -1)
+			.animation.define('N',  [5], fps, -1);
 
-		// //Listen for the changeDirection event so we can change
-		// //the heads animation
-		// container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
-		// container.on('onRest', function() { self.rest(); });
+		//Listen for the changeDirection event so we can change
+		//the heads animation
+		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
+		container.on('onRest', function() { self.rest(); });
 
 		//Finally mount to the container (body)
 		self.mount(container);

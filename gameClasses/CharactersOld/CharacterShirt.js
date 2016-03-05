@@ -14,29 +14,31 @@ var CharacterShirt = IgeEntity.extend({
 			.addComponent(AnimatorComponent)
 			.depth(3)
 			.bounds3d(45, 45, 45)
-			.anchor(0, -19);
+			.anchor(1, -13);
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'ch',
-			style 		= container.data('shirt_style'),
-			direction 	= '3',
-			subsection  = '0';
+		//TODO: should probably load all the textures at once and
+		//store in global vars
+		//Load the texture
+		this._texture = new IgeCellSheet(rootPath + 'assets/shirts.png', 1, 8);
 
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		// Wait for the texture to load
+		this._texture.on('loaded', function () {
+			self.texture(self._texture)
+				.dimensionsFromCell();	
 
-		// //Initilize the animations
-		// fps = 5.5;
-		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [2], fps, -1)
-		// 	.animation.define('W',  [4], fps, -1)
-		// 	.animation.define('E',  [3], fps, -1)
-		// 	.animation.define('SW', [5], fps, -1)
-		// 	.animation.define('SE', [6], fps, -1)
-		// 	.animation.define('N',  [7], fps, -1)
-		// 	.animation.define('S',  [8], fps, -1);
+			self.setColor('rgba(54, 39, 19, 0.6)');	
+		}, false, true);
+
+		//Initilize the animations
+		fps = 5.5;
+		this.animation.define('NE', [1], fps, -1)
+			.animation.define('NW', [2], fps, -1)
+			.animation.define('W',  [4], fps, -1)
+			.animation.define('E',  [3], fps, -1)
+			.animation.define('SW', [5], fps, -1)
+			.animation.define('SE', [6], fps, -1)
+			.animation.define('N',  [7], fps, -1)
+			.animation.define('S',  [8], fps, -1);
 
 		//Listen for the changeDirection event so we can change
 		//the hair animation

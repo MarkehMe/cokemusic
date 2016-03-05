@@ -19,6 +19,10 @@ var igeClientConfig = {
 		'./gameClasses/Characters/CharacterLeftArm.js',
 		'./gameClasses/Characters/CharacterRightArm.js',
 		'./gameClasses/Characters/CharacterShirt.js',
+		'./gameClasses/Characters/CharacterLeftSleve.js',
+		'./gameClasses/Characters/CharacterRightSleve.js',
+		'./gameClasses/Characters/CharacterPants.js',
+		'./gameClasses/Characters/CharacterShoes.js',
 		'./gameClasses/Characters/Character.js',
 		'./gameClasses/Characters/PlayerComponent.js',
 

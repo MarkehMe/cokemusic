@@ -14,37 +14,37 @@ var CharacterRightArm = IgeEntity.extend({
 			.addComponent(AnimatorComponent)
 			.depth(2)
 			.bounds3d(45, 45, 45)
-			.anchor(-10, -18);
+			.anchor(-2, -9);
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'rh',
-			style 		= container.data('style'),
-			direction 	= '3',
-			subsection  = '0';
+		//TODO: should probably load all the textures at once and
+		//store in global vars
+		//Load the texture
+		this._texture = new IgeCellSheet(rootPath + 'assets/arms-vert.png', 1, 42);
 
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		// Wait for the texture to load
+		this._texture.on('loaded', function () {
+			self.texture(self._texture)
+				.dimensionsFromCell();		
+		}, false, true);
 
 		//Initilize the animations
-		// fps = 5.3 / 2;
-		// this.animation.define('NE', [1, 2], fps, -1)
-		//     .animation.define('NW', [6, 5], fps, -1)
-		// 	.animation.define('E',  [9, 10], fps, -1)
-		// 	.animation.define('SW', [14, 13], fps, -1)
-		// 	.animation.define('SE', [20, 19], fps, -1)
-		// 	.animation.define('S',  [21, 22], fps, -1)
-		// 	.animation.define('N',  [25, 26], fps, -1);
+		fps = 5.3 / 2;
+		this.animation.define('NE', [1, 2], fps, -1)
+		    .animation.define('NW', [6, 5], fps, -1)
+			.animation.define('E',  [9, 10], fps, -1)
+			.animation.define('SW', [14, 13], fps, -1)
+			.animation.define('SE', [20, 19], fps, -1)
+			.animation.define('S',  [21, 22], fps, -1)
+			.animation.define('N',  [25, 26], fps, -1);
 
-		// //Standing Animations
-		// this.animation.define('standNE', [30], fps, -1)
-		//     .animation.define('standNW', [32], fps, -1)
-		// 	.animation.define('standE',  [34], fps, -1)
-		// 	.animation.define('standSW', [36], fps, -1)
-		// 	.animation.define('standSE', [37], fps, -1)
-		// 	.animation.define('standS',  [42], fps, -1)
-		// 	.animation.define('standN',  [40], fps, -1);
+		//Standing Animations
+		this.animation.define('standNE', [30], fps, -1)
+		    .animation.define('standNW', [32], fps, -1)
+			.animation.define('standE',  [34], fps, -1)
+			.animation.define('standSW', [36], fps, -1)
+			.animation.define('standSE', [37], fps, -1)
+			.animation.define('standS',  [42], fps, -1)
+			.animation.define('standN',  [40], fps, -1);
 
 
 		//Listen for the changeDirection event so we can change

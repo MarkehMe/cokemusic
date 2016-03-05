@@ -1,6 +1,6 @@
 // Define our player character shirt container classes
-var CharacterShirt = IgeEntity.extend({
-	classId: 'CharacterShirt',
+var CharacterShoes = IgeEntity.extend({
+	classId: 'CharacterShoes',
 
 	init: function (container) {
 		var self = this, fps;
@@ -12,14 +12,14 @@ var CharacterShirt = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(3)
+			.depth(2)
 			.bounds3d(45, 45, 45)
-			.anchor(0, -19);
+			.anchor(0, 26);
 
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'ch',
-			style 		= container.data('shirt_style'),
+			part 		= 'sh',
+			style 		= container.data('shoe_style'),
 			direction 	= '3',
 			subsection  = '0';
 

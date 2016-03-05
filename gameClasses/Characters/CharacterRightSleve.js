@@ -1,6 +1,6 @@
 // Define our player character head container classes
-var CharacterRightArm = IgeEntity.extend({
-	classId: 'CharacterRightArm',
+var CharacterRightSleve = IgeEntity.extend({
+	classId: 'CharacterRightSleve',
 
 	init: function (container) {
 		var self = this, fps;
@@ -12,14 +12,14 @@ var CharacterRightArm = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(2)
+			.depth(3)
 			.bounds3d(45, 45, 45)
 			.anchor(-10, -18);
 
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'rh',
-			style 		= container.data('style'),
+			part 		= 'rs',
+			style 		= container.data('shirt_style'),
 			direction 	= '3',
 			subsection  = '0';
 

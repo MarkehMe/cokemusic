@@ -13,37 +13,34 @@ var CharacterPants = IgeEntity.extend({
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(2)
-			.bounds3d(45, 45, 45)
-			.anchor(0, -45);
+			.anchor(0, -19);
 
-		//TODO: should probably load all the textures at once and
-		//store in global vars
-		//Load the texture
-		this._texture = new IgeCellSheet(rootPath + 'assets/hair.png', 1, 8);
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'lg',
+			style 		= container.data('pant_style'),
+			direction 	= '3',
+			subsection  = '0';
 
-		// Wait for the texture to load
-		this._texture.on('loaded', function () {
-			self.texture(self._texture)
-				.dimensionsFromCell();	
-
-			self.setColor('rgba(54, 39, 19, 0.6)');	
-		}, false, true);
+		self.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
+			.dimensionsFromCell();
 
 		//Initilize the animations
-		fps = 5.5;
-		this.animation.define('NE', [1], fps, -1)
-			.animation.define('NW', [2], fps, -1)
-			.animation.define('W',  [3], fps, -1)
-			.animation.define('E',  [4], fps, -1)
-			.animation.define('SW', [5], fps, -1)
-			.animation.define('SE', [6], fps, -1)
-			.animation.define('N',  [7], fps, -1)
-			.animation.define('S',  [8], fps, -1);
+		// fps = 5.5;
+		// this.animation.define('NE', [1], fps, -1)
+		// 	.animation.define('NW', [2], fps, -1)
+		// 	.animation.define('W',  [3], fps, -1)
+		// 	.animation.define('E',  [4], fps, -1)
+		// 	.animation.define('SW', [5], fps, -1)
+		// 	.animation.define('SE', [6], fps, -1)
+		// 	.animation.define('N',  [7], fps, -1)
+		// 	.animation.define('S',  [8], fps, -1);
 
 		//Listen for the changeDirection event so we can change
 		//the hair animation
-		container._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
-		container._container.on('onRest', function() { self.rest(); });
+		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
+		container.on('onRest', function() { self.rest(); });
 
 		//Finally mount to the container (body)
 		self.mount(container);

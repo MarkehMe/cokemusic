@@ -14,26 +14,26 @@ var CharacterEyes = IgeEntity.extend({
 			.addComponent(AnimatorComponent)
 			.depth(2)
 			.bounds3d(45, 45, 45)
-			.anchor(0, -44);
+			.anchor(-2, -9);
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'ey',
-			style 		= container._container.data('eye_style'),
-			direction 	= '3',
-			subsection  = '0';
+		//TODO: should probably load all the textures at once and
+		//store in global vars
+		//Load the texture
+		this._texture = new IgeCellSheet(rootPath + 'assets/eyes.png', 1, 5);
 
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		// Wait for the texture to load
+		this._texture.on('loaded', function () {
+			self.texture(self._texture)
+				.dimensionsFromCell();		
+		}, false, true);
 
 		//Initilize the animations
-		// fps = 1;
-		// this.animation.define('W',  [5], fps, -1)
-		//     .animation.define('E',  [4], fps, -1)
-		//     .animation.define('SW', [3], fps, -1)
-		// 	.animation.define('SE', [2], fps, -1)
-		// 	.animation.define('S',  [1], fps, -1);
+		fps = 1;
+		this.animation.define('W',  [5], fps, -1)
+		    .animation.define('E',  [4], fps, -1)
+		    .animation.define('SW', [3], fps, -1)
+			.animation.define('SE', [2], fps, -1)
+			.animation.define('S',  [1], fps, -1);
 
 		//Listen for the changeDirection event so we can change
 		//the eye direction
