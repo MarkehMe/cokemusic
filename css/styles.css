@@ -187,7 +187,8 @@ html, body {
     width: 100%;
     top: 30px;
     left: 0;
-    text-align: center; }
+    text-align: center;
+    z-index: 1; }
     #inventory .i-move .title {
       margin-top: 24px;
       font-weight: bold;

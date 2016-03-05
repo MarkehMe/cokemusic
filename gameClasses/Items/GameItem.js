@@ -22,6 +22,9 @@ var GameItem = IgeEntity.extend({
 			self.scaleTo(object['info']['scale'], object['info']['scale'], object['info']['scale']);
 		}
 
+		//Set other misc properties
+		self.data('seat', (object['info']['seat'] === undefined) ? false : object['info']['seat']);
+
 		//Load in the texture and offsets.
 		self.cell(object['offsets'][direction][0])
 			.anchor(object['offsets'][direction][1], object['offsets'][direction][2])
@@ -327,7 +330,15 @@ var GameItem = IgeEntity.extend({
 		}
 
 		return newDir;
-	}
+	},
+
+	/**
+	 * TODO: gets the closest free tile that is relative to this object
+	 * @return [x, y] of the tile
+	 */
+	getClosestFreeTile: function() {
+
+	},
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = ClientItem; }
