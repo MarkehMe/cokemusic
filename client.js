@@ -27,6 +27,7 @@ var Client = IgeClass.extend({
 		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
 
 		ige.addComponent(IgeEditorComponent);
+		//ige.addComponent(IgeEditorRotateComponent);
 		
 		// Create the HTML canvas
 		ige.createFrontBuffer(true);
@@ -115,7 +116,7 @@ var Client = IgeClass.extend({
 						var obj = new IgeEntity()
 							.isometric(true)
 							.texture(ige.gameTexture.people)
-							.cellById('h_spk_hr_013_7_0.png.png')
+							.cellById('h_sit_bd_002_2_0.png.png')
 							.dimensionsFromCell()
 							.mount(ige.room.tileMap())
 							.translateToTile(4, 4, 0);

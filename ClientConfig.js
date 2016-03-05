@@ -10,6 +10,7 @@ var igeClientConfig = {
 
 		//Character movements, clothing, etc
 		'./assets/character/people.js',
+		'./assets/character/data.js',
 		'./gameClasses/Components/AnimatorComponent.js',
 		'./gameClasses/Characters/CharacterHead.js',
 		'./gameClasses/Characters/CharacterHair.js',
