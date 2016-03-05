@@ -48,14 +48,14 @@ var CharacterMouth = IgeEntity.extend({
 		this.show();
 
 		switch(direction) {
-			case 'NE': 	this.hide(); 	break;
-			case 'NW': 	this.hide(); 	break;
-			case 'W': 	this.anchor(-3, -37); 	break;
-			case 'E': 	this.anchor(3, -37);	break;
-			case 'SW': 	this.anchor(-3, -35); 	break;
-			case 'SE': 	this.anchor(5, -36); 	break;
-			case 'S': 	this.anchor(-2, -35); 	break;
-			case 'N': 	this.hide(); 	break;
+			// case 'NE': 	this.hide(); 	break;
+			// case 'NW': 	this.hide(); 	break;
+			// case 'W': 	this.anchor(-3, -37); 	break;
+			// case 'E': 	this.anchor(3, -37);	break;
+			// case 'SW': 	this.anchor(-3, -35); 	break;
+			// case 'SE': 	this.anchor(5, -36); 	break;
+			// case 'S': 	this.anchor(-2, -35); 	break;
+			// case 'N': 	this.hide(); 	break;
 			default:
 		}
 

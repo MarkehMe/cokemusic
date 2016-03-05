@@ -3,7 +3,7 @@ var CharacterShoes = IgeEntity.extend({
 	classId: 'CharacterShoes',
 
 	init: function (container) {
-		var self = this, fps;
+		var self = this, fps, y;
 		IgeEntity.prototype.init.call(this);
 		
 		//Set the container (body)
@@ -12,9 +12,7 @@ var CharacterShoes = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(2)
-			.bounds3d(45, 45, 45)
-			.anchor(0, 26);
+			.depth(2);
 
 		var	start 		= 'h',
 			action		= 'std',
@@ -26,6 +24,10 @@ var CharacterShoes = IgeEntity.extend({
 		self.texture(ige.gameTexture.people)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
 			.dimensionsFromCell();
+
+		//Get the anchor
+		y = (self._container.bounds2d().y / 2) - (self.bounds2d().y / 2)
+		self.anchor(0, 0);
 
 		// //Initilize the animations
 		// fps = 5.5;
@@ -48,42 +50,15 @@ var CharacterShoes = IgeEntity.extend({
 	},
 
 	changedDirection: function(container, direction) {
-		this._container.leftArm.depth(2);
-		this._container.rightArm.depth(2);
-
 		switch(direction) {
-			case 'NE': 	
-				this.anchor(-2, -14); 	
-				this._container.rightArm.depth(4);
-				break;
-			case 'NW': 	
-				this.anchor(0, -15); 	
-				this._container.rightArm.depth(4);
-				break;
-			case 'W': 	
-				this.anchor(1, -13); 	
-				this._container.leftArm.depth(4);
-				break;
-			case 'E': 	
-				this.anchor(-4, -13); 	
-				this._container.rightArm.depth(4);
-				break;
-			case 'SW': 	
-				this.anchor(1, -13); 
-				this._container.leftArm.depth(4);	
-				break;
-			case 'SE': 	
-				this.anchor(1, -15); 	
-				this._container.rightArm.depth(4);
-				break;
-			case 'S': 	
-				this.anchor(-3, -15); 	
-				this._container.leftArm.depth(4);
-				this._container.rightArm.depth(4);
-				break;
-			case 'N': 	
-				this.anchor(-1, -13); 	
-				break;
+			// case 'NE': 	this.anchor(-3, -37); 	break;
+			// case 'NW': 	this.anchor(2, -35); 	break;
+			// case 'W': 	this.anchor(4, -35); 	break;
+			// case 'E': 	this.anchor(-4, -35); 	break;
+			// case 'SW': 	this.anchor(3, -37); 	break;
+			// case 'SE': 	this.anchor(-1, -38); 	break;
+			// case 'S': 	this.anchor(-3, -36); 	break;
+			// case 'N': 	this.anchor(-1, -35); 	break;
 			default:
 		}
 

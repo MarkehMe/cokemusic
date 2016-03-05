@@ -48,14 +48,14 @@ var CharacterEyes = IgeEntity.extend({
 		this.show();
 
 		switch(direction) {
-			case 'NE': 	this.hide(); 	break;
-			case 'NW': 	this.hide(); 	break;
-			case 'W': 	this.anchor(-7, -42); 	break;
-			case 'E': 	this.anchor(7, -42);	break;
-			case 'SW': 	this.anchor(-2, -42); 	break;
-			case 'SE': 	this.anchor(5, -44); 	break;
-			case 'S': 	this.anchor(-2, -40); 	break;
-			case 'N': 	this.hide(); 	break;
+			// case 'NE': 	this.hide(); 	break;
+			// case 'NW': 	this.hide(); 	break;
+			// case 'W': 	this.anchor(-7, -42); 	break;
+			// case 'E': 	this.anchor(7, -42);	break;
+			// case 'SW': 	this.anchor(-2, -42); 	break;
+			// case 'SE': 	this.anchor(5, -44); 	break;
+			// case 'S': 	this.anchor(-2, -40); 	break;
+			// case 'N': 	this.hide(); 	break;
 			default:
 		}
 

@@ -9,8 +9,7 @@ var Character = IgeEntity.extend({
 		// Create a character entity as a child of this container
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(2)
-			.bounds3d(45, 45, 45)
+			.bounds3d(45, 45, 58)
 			.anchor(0, 0);
 
 		self.mouseOver(self.overFunc);
@@ -65,6 +64,12 @@ var Character = IgeEntity.extend({
 		return this;
 	},
 
+	setHeadStyle: function(str) {
+		this.data('head_style', str);
+		return this;
+	},
+
+
 	setHairStyle: function(str) {
 		this.data('hair_style', str);
 		return this;
@@ -96,19 +101,10 @@ var Character = IgeEntity.extend({
 	},
 
 	startPlayer: function() {
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'bd',
-			style 		= this.data('style'),
-			direction 	= '3',
-			subsection  = '0',
-
-			self 		= this;
-
-		//Set the body texture
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		var self = this;
+		
+		//Spawn the body
+		self.body = new CharacterBody(self);
 
 		//Spawn the head
 		self.head = new CharacterHead(self);
@@ -120,16 +116,16 @@ var Character = IgeEntity.extend({
 		self.rightArm = new CharacterRightArm(self);
 
 		//Spawn shirt
-		self.shirt = new CharacterShirt(self);
+		//self.shirt = new CharacterShirt(self);
 
 		//Spawn left shirt sleve
-		self.leftSleve = new CharacterLeftSleve(self);
+		//self.leftSleve = new CharacterLeftSleve(self);
 
 		//Spawn right shirt sleve
-		self.rightSleve = new CharacterRightSleve(self);
+		//self.rightSleve = new CharacterRightSleve(self);
 
 		//Spawn pants
-		self.pant = new CharacterPants(self);
+		//self.pant = new CharacterPants(self);
 
 		//Spawn shoes
 		self.shoes = new CharacterShoes(self);

@@ -49,14 +49,14 @@ var CharacterHair = IgeEntity.extend({
 
 	changedDirection: function(container, direction) {
 		switch(direction) {
-			case 'NE': 	this.anchor(-3, -37); 	break;
-			case 'NW': 	this.anchor(2, -35); 	break;
-			case 'W': 	this.anchor(4, -35); 	break;
-			case 'E': 	this.anchor(-4, -35); 	break;
-			case 'SW': 	this.anchor(3, -37); 	break;
-			case 'SE': 	this.anchor(-1, -38); 	break;
-			case 'S': 	this.anchor(-3, -36); 	break;
-			case 'N': 	this.anchor(-1, -35); 	break;
+			// case 'NE': 	this.anchor(-3, -37); 	break;
+			// case 'NW': 	this.anchor(2, -35); 	break;
+			// case 'W': 	this.anchor(4, -35); 	break;
+			// case 'E': 	this.anchor(-4, -35); 	break;
+			// case 'SW': 	this.anchor(3, -37); 	break;
+			// case 'SE': 	this.anchor(-1, -38); 	break;
+			// case 'S': 	this.anchor(-3, -36); 	break;
+			// case 'N': 	this.anchor(-1, -35); 	break;
 			default:
 		}
 

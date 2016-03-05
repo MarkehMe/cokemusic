@@ -57,6 +57,7 @@ var Client = IgeClass.extend({
 					self.player = new Character()
 						.id('player')
 						.setStyle('001')
+						.setHeadStyle('001')
 						.setHairStyle('013')
 						.setEyeStyle('001')
 						.setShirtStyle('005')

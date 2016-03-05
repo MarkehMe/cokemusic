@@ -59,14 +59,14 @@ var CharacterLeftArm = IgeEntity.extend({
 		this.show();
 
 		switch(direction) {
-			case 'NE': 	this.depth(1); this.anchor(-10, -14); 	break;
-			case 'NW': 	this.depth(2); this.anchor(7, -14); 	break;
-			case 'W': 	this.anchor(5, -12); 	break;
-			case 'E': 	this.hide(); 			break;
-			case 'SW': 	this.anchor(8, -13); 	break;
-			case 'SE': 	this.anchor(3, -13); 	break;
-			case 'S': 	this.anchor(4, -15); 	break;
-			case 'N': 	this.anchor(-10, -12); 	break;
+			// case 'NE': 	this.depth(1); this.anchor(-10, -14); 	break;
+			// case 'NW': 	this.depth(2); this.anchor(7, -14); 	break;
+			// case 'W': 	this.anchor(5, -12); 	break;
+			// case 'E': 	this.hide(); 			break;
+			// case 'SW': 	this.anchor(8, -13); 	break;
+			// case 'SE': 	this.anchor(3, -13); 	break;
+			// case 'S': 	this.anchor(4, -15); 	break;
+			// case 'N': 	this.anchor(-10, -12); 	break;
 			default:
 		}
 

@@ -12,6 +12,7 @@ var igeClientConfig = {
 		'./assets/character/people.js',
 		'./assets/character/data.js',
 		'./gameClasses/Components/AnimatorComponent.js',
+		'./gameClasses/Characters/CharacterBody.js',
 		'./gameClasses/Characters/CharacterHead.js',
 		'./gameClasses/Characters/CharacterHair.js',
 		'./gameClasses/Characters/CharacterEyes.js',
