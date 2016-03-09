@@ -14,7 +14,7 @@ var CharacterLeftArm = IgeEntity.extend({
 			.addComponent(AnimatorComponent)
 			.depth(2)
 			.drawBounds(false)
-			.anchor(0, container.data('anchorY'));
+			.anchor(12, -43);
 
 		self.setTexture();
 
@@ -47,6 +47,18 @@ var CharacterLeftArm = IgeEntity.extend({
 	},
 
 	changedDirection: function(container, direction) {
+		// switch(direction) {
+		// 	// case 'NE': 	this.depth(1); this.anchor(-10, -14); 	break;
+		// 	// case 'NW': 	this.depth(2); this.anchor(7, -14); 	break;
+		// 	// case 'W': 	this.anchor(5, -12); 	break;
+		// 	// case 'E': 	this.hide(); 			break;
+		// 	// case 'SW': 	this.anchor(8, -13); 	break;
+		// 	// case 'SE': 	this.anchor(3, -13); 	break;
+		// 	// case 'S': 	this.anchor(4, -15); 	break;
+		// 	// case 'N': 	this.anchor(-10, -12); 	break;
+		// 	default:
+		// }
+
 		this._scale.x = 1;
 		this.show();
 
@@ -84,16 +96,14 @@ var CharacterLeftArm = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = '1';
 		if(subDir === undefined)
 			subDir = 0;
 
-		dir = this._container.directionToInt(dir);
-		
 		var	start 		= 'h',
 			action		= 'std',
 			part 		= 'lh',
-			style 		= '001',//this._container.data('style'),
+			style 		= this._container.data('style'),
 			direction 	= dir,
 			subsection  = subDir;
 
@@ -103,6 +113,9 @@ var CharacterLeftArm = IgeEntity.extend({
 	},
 
 	rest: function() {
+		switch(this._container._currentDirection) {
+			case 'SE': this.anchor(3, -16); break;
+		}
 
 		this.animation.setFrame('stand' + this._container._currentDirection, 0);
 

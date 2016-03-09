@@ -3,6 +3,7 @@ var UI_ACTIVE = false;
 $(document).ready(function() {
 	init_bar_ui();
 	init_inventory();
+	init_avatar_editor();
 	init_toggles();
 	init_popups();
 });
@@ -35,7 +36,8 @@ function init_bar_ui() {
 	});
 
 	$('#help').click(function(){
-
+		toggle_popup('#avatar-editor');
+		$(this).toggleClass('active');
 	});	
 }
 

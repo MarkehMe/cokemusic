@@ -13,20 +13,10 @@ var CharacterBody = IgeEntity.extend({
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(1)
-			.bounds3d(45, 45, 45)
-			.anchor(0, 0);
+			//.bounds3d(45, 45, 45)
+			.anchor(0, container.data('anchorY'));
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'bd',
-			style 		= container.data('style'),
-			direction 	= '1',
-			subsection  = '0';
-
-		//Set the body texture
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		self.setTexture();
 
 		//Initilize the animations
 		// fps = 5.5;
@@ -48,24 +38,61 @@ var CharacterBody = IgeEntity.extend({
 	},
 
 	changedDirection: function(container, direction) {
+		this._scale.x = 1;
+
 		switch(direction) {
-			case 'W': this._scale.x = -1; 	break;
-			case 'E': this._scale.x = 1;	break;
+			case 'NW': this._scale.x = -1; 	
+			case 'NE': 
+				this.setTexture(0);  
+			break;
+
+			case 'W' : this._scale.x = -1; 	
+			case 'E' : 
+				this.setTexture(1);  
+			break;
+
+			case 'SW': this._scale.x = -1; 	
+			case 'SE' : 
+				this.setTexture(2);  
+			break;
+
+			case 'S' : 
+				this.setTexture(3);  
+			break;
+
+			case 'N' : 
+				this.setTexture(7);  
+			break;	
 		}
 
 		//String builder for the direction
 		var anim = 'walk' + direction;
 
 		//Animate
-		this.animation.select(anim);
-
-		//Store the values
-		this._currentDirection = direction;
-		this._currentAnimation = anim;
-
-		//Let all the children know
-		this.emit('onChangedDirection', [this, direction]);
+		//this.animation.select(anim);
 	},
+
+	setTexture: function(dir, subDir) {
+		if(dir === undefined)
+			dir = '1';
+		if(subDir === undefined)
+			subDir = 0;
+
+		dir = this._container.directionToInt(dir);
+		
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'bd',
+			style 		= this._container.data('style'),
+			direction 	= dir,
+			subsection  = subDir;
+
+		//Set the body texture
+		this.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.dimensionsFromCell();
+	},
+
 	rest: function() {
 		this.animation.stop();
 	},

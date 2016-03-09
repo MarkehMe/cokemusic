@@ -13,19 +13,9 @@ var CharacterRightArm = IgeEntity.extend({
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(2)
-			.bounds3d(45, 45, 45)
-			.anchor(-10, -18);
+			.anchor(0, container.data('anchorY'));
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'rh',
-			style 		= container.data('style'),
-			direction 	= '3',
-			subsection  = '0';
-
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		self.setTexture();
 
 		//Initilize the animations
 		// fps = 5.3 / 2;
@@ -39,7 +29,7 @@ var CharacterRightArm = IgeEntity.extend({
 
 		// //Standing Animations
 		// this.animation.define('standNE', [30], fps, -1)
-		//     .animation.define('standNW', [32], fps, -1)
+		//  .animation.define('standNW', [32], fps, -1)
 		// 	.animation.define('standE',  [34], fps, -1)
 		// 	.animation.define('standSW', [36], fps, -1)
 		// 	.animation.define('standSE', [37], fps, -1)
@@ -57,29 +47,61 @@ var CharacterRightArm = IgeEntity.extend({
 	},
 
 	changedDirection: function(container, direction) {
+		this._scale.x = 1;
 		this.show();
-		this.depth(2);
 
 		switch(direction) {
-			case 'NE': 	this.anchor(5, -12); 	break;
-			case 'NW': 	this.anchor(-7, -14); 	break;
-			case 'W': 	this.hide(); 	break;
-			case 'E': 	this.anchor(-5, -12); 	break;
-			case 'SW': 	this.depth(1); this.anchor(-4, -13); 	break;
-			case 'SE': 	this.anchor(-7, -14); 	break;
-			case 'S': 	this.anchor(-11, -15); 	break;
-			case 'N': 	this.anchor(5, -13); 	break;
-			default:
+			case 'NW': this._scale.x = -1; 	
+			case 'NE': 
+				this.setTexture(0);  
+			break;
+
+			case 'W' : 
+				this.hide();
+			break;
+
+			case 'E' : 
+				this.setTexture(1);
+			break;
+
+			case 'SW': this._scale.x = -1; 	
+			case 'SE' : 
+				this.setTexture(2);  
+			break;
+
+			case 'S' : 
+				this.setTexture(3);  
+			break;
+
+			case 'N' : 
+				this.setTexture(7);  
+			break;	
 		}
 
 		this.animation.select(direction);
 	},
 
+	setTexture: function(dir, subDir) {
+		if(dir === undefined)
+			dir = '3';
+		if(subDir === undefined)
+			subDir = 0;
+
+		dir = this._container.directionToInt(dir);
+		
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'rh',
+			style 		= '001',//this._container.data('style'),
+			direction 	= dir,
+			subsection  = subDir;
+
+		this.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.dimensionsFromCell();
+	},
+
 	rest: function() {
-		switch(this._container._currentDirection) {
-			case 'SW': this.anchor(-4, -17); break;
-			case 'E': this.anchor(-7, -12); break;
-		}
 
 		this.animation.setFrame('stand' + this._container._currentDirection, 0);
 		

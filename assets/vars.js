@@ -4,6 +4,8 @@ $DRAW_GRIDLINES = true;
 $HOVER_TILE_COLOR = '#FFE436';
 $HOVER_TILE_BG_COLOR = 'transparent';
 
+$DRAW_DEBUG_DATA =  true;
+
 /* Should selected furniture remain highlighted */
 $HIGHLIGHT_SELECTED = false;
 

@@ -6,6 +6,8 @@ var Character = IgeEntity.extend({
 		var self = this;
 		IgeEntity.prototype.init.call(this);
 
+		self.data('anchorY', -41);
+
 		// Create a character entity as a child of this container
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
@@ -69,7 +71,6 @@ var Character = IgeEntity.extend({
 		return this;
 	},
 
-
 	setHairStyle: function(str) {
 		this.data('hair_style', str);
 		return this;
@@ -87,6 +88,16 @@ var Character = IgeEntity.extend({
 
 	setShirtStyle: function(str) {
 		this.data('shirt_style', str);
+		return this;
+	},
+
+	setLeftSleveStyle: function(str) {
+		this.data('shirt_ls', str);
+		return this;
+	},
+
+	setRightSleveStyle: function(str) {
+		this.data('shirt_rs', str);
 		return this;
 	},
 
@@ -116,16 +127,16 @@ var Character = IgeEntity.extend({
 		self.rightArm = new CharacterRightArm(self);
 
 		//Spawn shirt
-		//self.shirt = new CharacterShirt(self);
+		self.shirt = new CharacterShirt(self);
 
 		//Spawn left shirt sleve
-		//self.leftSleve = new CharacterLeftSleve(self);
+		self.leftSleve = new CharacterLeftSleve(self);
 
 		//Spawn right shirt sleve
-		//self.rightSleve = new CharacterRightSleve(self);
+		self.rightSleve = new CharacterRightSleve(self);
 
 		//Spawn pants
-		//self.pant = new CharacterPants(self);
+		self.pants = new CharacterPants(self);
 
 		//Spawn shoes
 		self.shoes = new CharacterShoes(self);
@@ -133,6 +144,8 @@ var Character = IgeEntity.extend({
 		//Finally mount the player
 		self.addComponent(PlayerComponent)
 			.mount(ige.room.tileMap());
+
+		return this;
 	},
 
 	/**
@@ -190,53 +203,19 @@ var Character = IgeEntity.extend({
 	 * @return {*}
 	 */
 	walkTo: function (x, y) {
-		var self = this,
-			distX = x - this.translate().x(),
-			distY = y - this.translate().y(),
-			distance = Math.distance(
-				this.translate().x(),
-				this.translate().y(),
-				x,
-				y
-			),
-			speed = 0.1,
-			time = (distance / speed),
-			direction = '';
-
-		// Set the animation based on direction - these are modified
-		// for isometric views
-		if (distY < 0) {
-			direction += 'N';
-		}
-
-		if (distY > 0) {
-			direction += 'S';
-		}
-
-		if (distX > 0) {
-			direction += 'E';
-		}
-
-		if (distX < 0) {
-			direction += 'W';
-		}
-
-		this.changeDirection(direction);
-
-		// Start tweening the little person to their destination
-		this._translate.tween()
-			.stopAll()
-			.properties({x: x, y: y})
-			.duration(time)
-			.afterTween(function () {
-				self.animation.stop();
-			})
+		//TODO: need to get the actual location not jsut pass in 0,0
+		this.path
+			.set(0, 0, 0, x, y, 0)
+			.speed(1.75)
 			.start();
 
 		return this;
 	},
 
 	changeDirection: function(direction) {
+		if(direction === undefined)
+			direction = this._currentDirection;
+		
 		//String builder for the direction
 		var anim = 'walk' + direction;
 
@@ -257,6 +236,20 @@ var Character = IgeEntity.extend({
 		// the closer they become to the bottom of the screen
 		//this.depth(this._translate.y);
 		IgeEntity.prototype.tick.call(this, ctx);
+	},
+
+	directionToInt : function(dir) {
+		switch(dir) {
+			case 'NE': return '0';
+			case 'E': return '1';
+			case 'SE': return '2';
+			case 'S': return '3';
+			case 'SW': return '4';
+			case 'W': return '5';
+			case 'NW': return '6';
+			case 'N': return '7';
+			default: return dir;
+		}
 	},
 
 	// Define a function that will be called when the

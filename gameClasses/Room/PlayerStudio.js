@@ -112,6 +112,8 @@ var PlayerStudio = Room.extend({
 			.id('gameScene')
 			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
 			.ignoreCamera(true)
+			.drawBounds(false)
+			.drawBoundsData(false)
 			.mount(ige.$('baseScene'));
 
 		// Create the object scene
@@ -126,6 +128,8 @@ var PlayerStudio = Room.extend({
 		// Create an isometric tile map
 		self._tilemap = new GameMap()
 			.id('tileMap1')
+			.drawBounds(false)
+			.drawBoundsData(false)
 			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
 			.isometricMounts(true)
 			.tileWidth($TILESIZE)

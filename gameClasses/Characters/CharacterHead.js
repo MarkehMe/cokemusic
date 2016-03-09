@@ -13,19 +13,10 @@ var CharacterHead = IgeEntity.extend({
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(4)
-			.bounds3d(45, 45, 45)
-			.anchor(0, -45);
+			//.bounds3d(45, 45, 45)
+			.anchor(0, container.data('anchorY'));
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'hd',
-			style 		= container.data('head_style'),
-			direction 	= '3',
-			subsection  = '0';
-
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		self.setTexture();
 
 		//Spawn the hair
 		self.hair = new CharacterHair(self);
@@ -35,7 +26,6 @@ var CharacterHead = IgeEntity.extend({
 
 		//Spawn the mouth
 		self.mouth = new CharacterMouth(self);
-
 
 		//Initilize the animations
 		// fps = 5.5;
@@ -50,28 +40,64 @@ var CharacterHead = IgeEntity.extend({
 
 		// //Listen for the changeDirection event so we can change
 		// //the heads animation
-		// container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
-		// container.on('onRest', function() { self.rest(); });
+		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
+		container.on('onRest', function() { self.rest(); });
 
 		//Finally mount to the container (body)
 		self.mount(container);
 	},
 
 	changedDirection: function(container, direction) {
+		this._scale.x = 1;
+
 		switch(direction) {
-			case 'NE': 	this.anchor(-2, -45); 	break;
-			case 'NW': 	this.anchor(0, -45); 	break;
-			case 'W': 	this.anchor(2, -45); 	break;
-			case 'E': 	this.anchor(-2, -45); 	break;
-			case 'SW': 	this.anchor(2, -46); 	break;
-			case 'SE': 	this.anchor(0, -47); 	break;
-			case 'S': 	this.anchor(-2, -45); 	break;
-			case 'N': 	this.anchor(0, -43); 	break;
-			default:
+			case 'NW': this._scale.x = -1; 	
+			case 'NE': 
+				this.setTexture(0);  
+			break;
+
+			case 'W' : this._scale.x = -1; 	
+			case 'E' : 
+				this.setTexture(1);  
+			break;
+
+			case 'SW': this._scale.x = -1; 	
+			case 'SE' : 
+				this.setTexture(2);  
+			break;
+
+			case 'S' : 
+				this.setTexture(3);  
+			break;
+
+			case 'N' : 
+				this.setTexture(7);  
+			break;	
 		}
 
 		this.animation.select(direction);
 	},
+
+	setTexture: function(dir, subDir) {
+		if(dir === undefined)
+			dir = '1';
+		if(subDir === undefined)
+			subDir = 0;
+
+		dir = this._container.directionToInt(dir);
+		
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'hd',
+			style 		= this._container.data('head_style'),
+			direction 	= dir,
+			subsection  = subDir;
+
+		this.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.dimensionsFromCell();
+	},
+
 	rest: function() {
 		this.animation.stop();
 	},

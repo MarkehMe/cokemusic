@@ -1,9 +1,9 @@
 // Define our player character shirt container classes
-var CharacterShirt = IgeEntity.extend({
-	classId: 'CharacterShirt',
+var CharacterShoes = IgeEntity.extend({
+	classId: 'CharacterShoes',
 
 	init: function (container) {
-		var self = this, fps;
+		var self = this, fps, y;
 		IgeEntity.prototype.init.call(this);
 		
 		//Set the container (body)
@@ -12,12 +12,23 @@ var CharacterShirt = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(3)
-			//.bounds3d(45, 45, 45)
-			.anchor(0, container.data('anchorY'));
+			.depth(2);
 
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'sh',
+			style 		= container.data('shoe_style'),
+			direction 	= '3',
+			subsection  = '0';
 
-		self.setTexture();
+		self.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
+			.dimensionsFromCell();
+
+		//Get the anchor
+		y = (self._container.bounds2d().y / 2) - (self.bounds2d().y / 2)
+		self.anchor(0, 0);
+
 		// //Initilize the animations
 		// fps = 5.5;
 		// this.animation.define('NE', [1], fps, -1)
@@ -39,54 +50,19 @@ var CharacterShirt = IgeEntity.extend({
 	},
 
 	changedDirection: function(container, direction) {
-		this._scale.x = 1;
-
 		switch(direction) {
-			case 'NW': this._scale.x = -1; 	
-			case 'NE': 
-				this.setTexture(0);  
-			break;
-
-			case 'W' : this._scale.x = -1; 	
-			case 'E' : 
-				this.setTexture(1);  
-			break;
-
-			case 'SW': this._scale.x = -1; 	
-			case 'SE' : 
-				this.setTexture(2);  
-			break;
-
-			case 'S' : 
-				this.setTexture(3);  
-			break;
-
-			case 'N' : 
-				this.setTexture(7);  
-			break;	
+			// case 'NE': 	this.anchor(-3, -37); 	break;
+			// case 'NW': 	this.anchor(2, -35); 	break;
+			// case 'W': 	this.anchor(4, -35); 	break;
+			// case 'E': 	this.anchor(-4, -35); 	break;
+			// case 'SW': 	this.anchor(3, -37); 	break;
+			// case 'SE': 	this.anchor(-1, -38); 	break;
+			// case 'S': 	this.anchor(-3, -36); 	break;
+			// case 'N': 	this.anchor(-1, -35); 	break;
+			default:
 		}
 
 		this.animation.select(direction);
-	},
-
-	setTexture: function(dir, subDir) {
-		if(dir === undefined)
-			dir = '3';
-		if(subDir === undefined)
-			subDir = 0;
-
-		dir = this._container.directionToInt(dir);
-		
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'ch',
-			style 		= this._container.data('shirt_style'),
-			direction 	= dir,
-			subsection  = subDir;
-
-		this.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
-			.dimensionsFromCell();
 	},
 
 	rest: function() {

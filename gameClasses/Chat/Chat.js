@@ -78,9 +78,24 @@ var Chat = {
         return text;
     },
     handleAsLocalCommand: function(text) {
-        if (text.trim() == "/teditor") {
-            ige.editor.toggle();
-            return true;
+        if(text == '' || text.charAt(0) != '.')
+            return false;
+
+        var args = text.split(" ");
+
+        switch(args[0]) {
+            case '.teditor': 
+                ige.editor.toggle();
+                return true;
+
+            case '.hair': 
+                if(args[1] === undefined || args[1] == '')
+                    return true;
+
+                ige.player.setHairStyle(args[1]);
+                ige.player.changeDirection();
+                console.log('Set hair style to ' + args[1]);
+                return true;
         }
 
         return false;

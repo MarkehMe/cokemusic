@@ -21,7 +21,7 @@ var Client = IgeClass.extend({
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
 
 		//ige.gameTexture.people = new IgeSpriteSheet(rootPath + 'assets/character/people.png');
-		ige.gameTexture.people = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/people.png', rootPath + 'assets/character/people.js');
+		ige.gameTexture.people = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');
 
 		//Furniture
 		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
@@ -54,13 +54,16 @@ var Client = IgeClass.extend({
 
 					// Create the 3d container that the player
 					// entity will be mounted to
-					self.player = new Character()
+					ige.player = new Character()
 						.id('player')
 						.setStyle('001')
 						.setHeadStyle('001')
-						.setHairStyle('013')
+						.setHairStyle('001')
 						.setEyeStyle('001')
-						.setShirtStyle('005')
+						.setMouthStyle('001')
+						.setLeftSleveStyle('001')
+						.setRightSleveStyle('001')
+						.setShirtStyle('001')
 						.setPantStyle('001')
 						.setShoeStyle('001')
 						.startPlayer();

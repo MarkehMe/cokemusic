@@ -1,6 +1,6 @@
 // Define our player character head container classes
-var CharacterRightSleve = IgeEntity.extend({
-	classId: 'CharacterRightSleve',
+var CharacterBody = IgeEntity.extend({
+	classId: 'CharacterBody',
 
 	init: function (container) {
 		var self = this, fps;
@@ -12,34 +12,24 @@ var CharacterRightSleve = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(4)
-			//.bounds3d(45, 45, 45)
-			.anchor(0, container.data('anchorY'));
+			.depth(1)
+			.bounds3d(45, 45, 45)
+			.anchor(0, 0);
 
 		self.setTexture();
 
 		//Initilize the animations
-		// fps = 5.3 / 2;
-		// this.animation.define('NE', [1, 2], fps, -1)
-		//     .animation.define('NW', [6, 5], fps, -1)
-		// 	.animation.define('E',  [9, 10], fps, -1)
-		// 	.animation.define('SW', [14, 13], fps, -1)
-		// 	.animation.define('SE', [20, 19], fps, -1)
-		// 	.animation.define('S',  [21, 22], fps, -1)
-		// 	.animation.define('N',  [25, 26], fps, -1);
+		// fps = 5.5;
+		// this.animation.define('NE', [1], fps, -1)
+		// 	.animation.define('NW', [8], fps, -1)
+		// 	.animation.define('W',  [7], fps, -1)
+		// 	.animation.define('E',  [2], fps, -1)
+		// 	.animation.define('SW', [6], fps, -1)
+		// 	.animation.define('SE', [3], fps, -1)
+		// 	.animation.define('S',  [4], fps, -1)
+		// 	.animation.define('N',  [5], fps, -1);
 
-		// //Standing Animations
-		// this.animation.define('standNE', [30], fps, -1)
-		//     .animation.define('standNW', [32], fps, -1)
-		// 	.animation.define('standE',  [34], fps, -1)
-		// 	.animation.define('standSW', [36], fps, -1)
-		// 	.animation.define('standSE', [37], fps, -1)
-		// 	.animation.define('standS',  [42], fps, -1)
-		// 	.animation.define('standN',  [40], fps, -1);
-
-
-		//Listen for the changeDirection event so we can change
-		//the heads animation
+		// //Listen for the changeDirection event
 		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
 		container.on('onRest', function() { self.rest(); });
 
@@ -49,7 +39,6 @@ var CharacterRightSleve = IgeEntity.extend({
 
 	changedDirection: function(container, direction) {
 		this._scale.x = 1;
-		this.show();
 
 		switch(direction) {
 			case 'NW': this._scale.x = -1; 	
@@ -57,12 +46,9 @@ var CharacterRightSleve = IgeEntity.extend({
 				this.setTexture(0);  
 			break;
 
-			case 'W' : 
-				this.hide();
-			break;
-
+			case 'W' : this._scale.x = -1; 	
 			case 'E' : 
-				this.setTexture(1);
+				this.setTexture(1);  
 			break;
 
 			case 'SW': this._scale.x = -1; 	
@@ -79,32 +65,33 @@ var CharacterRightSleve = IgeEntity.extend({
 			break;	
 		}
 
-		this.animation.select(direction);
+		//String builder for the direction
+		var anim = 'walk' + direction;
+
+		//Animate
+		//this.animation.select(anim);
 	},
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = '1';
 		if(subDir === undefined)
 			subDir = 0;
 
-		dir = this._container.directionToInt(dir);
-
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'rs',
-			style 		= this._container.data('shirt_rs'),
+			part 		= 'bd',
+			style 		= this._container.data('style'),
 			direction 	= dir,
 			subsection  = subDir;
 
+		//Set the body texture
 		this.texture(ige.gameTexture.people)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
 			.dimensionsFromCell();
 	},
 
 	rest: function() {
-		this.animation.setFrame('stand' + this._container._currentDirection, 0);
-		
-		//this.animation.stop();
+		this.animation.stop();
 	},
 });

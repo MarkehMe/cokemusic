@@ -1,6 +1,6 @@
 // Define our player character head container classes
-var CharacterLeftArm = IgeEntity.extend({
-	classId: 'CharacterLeftArm',
+var CharacterHead = IgeEntity.extend({
+	classId: 'CharacterHead',
 
 	init: function (container) {
 		var self = this, fps;
@@ -12,33 +12,34 @@ var CharacterLeftArm = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(2)
-			.drawBounds(false)
-			.anchor(0, container.data('anchorY'));
+			.depth(4)
+			.bounds3d(45, 45, 45)
+			.anchor(0, -45);
 
 		self.setTexture();
 
-		// //Initilize the animations
-		// fps = 5.3 / 2;
-		// this.animation.define('NE', [3, 4], fps, -1)
-		// 	.animation.define('NW', [8, 7], fps, -1)
-		//  	.animation.define('W',  [11, 12], fps, -1)
-		//     .animation.define('SW', [15, 16], fps, -1)
-		// 	.animation.define('SE', [18, 17], fps, -1)
-		// 	.animation.define('S',  [24, 23], fps, -1)
-		// 	.animation.define('N',  [28, 27], fps, -1);
+		//Spawn the hair
+		// self.hair = new CharacterHair(self);
 
-		// //Standing Animations
-		// this.animation.define('standNE', [29], fps, -1)
-		// 	.animation.define('standNW', [31], fps, -1)
-		//  	.animation.define('standW',  [33], fps, -1)
-		//     .animation.define('standSW', [35], fps, -1)
-		// 	.animation.define('standSE', [38], fps, -1)
-		// 	.animation.define('standS',  [41], fps, -1)
-		// 	.animation.define('standN',  [39], fps, -1);
+		// //Spawn the eyes
+		// self.eyes = new CharacterEyes(self);
 
-		//Listen for the changeDirection event so we can change
-		//the heads animation
+		// //Spawn the mouth
+		// self.mouth = new CharacterMouth(self);
+
+		//Initilize the animations
+		// fps = 5.5;
+		// this.animation.define('NE', [1], fps, -1)
+		// 	.animation.define('NW', [8], fps, -1)
+		// 	.animation.define('W',  [7], fps, -1)
+		// 	.animation.define('E',  [2], fps, -1)
+		// 	.animation.define('SW', [6], fps, -1)
+		// 	.animation.define('SE', [3], fps, -1)
+		// 	.animation.define('S',  [4], fps, -1)
+		// 	.animation.define('N',  [5], fps, -1);
+
+		// //Listen for the changeDirection event so we can change
+		// //the heads animation
 		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
 		container.on('onRest', function() { self.rest(); });
 
@@ -48,7 +49,6 @@ var CharacterLeftArm = IgeEntity.extend({
 
 	changedDirection: function(container, direction) {
 		this._scale.x = 1;
-		this.show();
 
 		switch(direction) {
 			case 'NW': this._scale.x = -1; 	
@@ -56,13 +56,9 @@ var CharacterLeftArm = IgeEntity.extend({
 				this.setTexture(0);  
 			break;
 
-			case 'W' : 
-				this._scale.x = -1;
-				this.setTexture(1);
-			break;
-
+			case 'W' : this._scale.x = -1; 	
 			case 'E' : 
-				this.hide();
+				this.setTexture(1);  
 			break;
 
 			case 'SW': this._scale.x = -1; 	
@@ -84,16 +80,14 @@ var CharacterLeftArm = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = '1';
 		if(subDir === undefined)
 			subDir = 0;
 
-		dir = this._container.directionToInt(dir);
-		
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'lh',
-			style 		= '001',//this._container.data('style'),
+			part 		= 'hd',
+			style 		= this._container.data('head_style'),
 			direction 	= dir,
 			subsection  = subDir;
 
@@ -103,9 +97,6 @@ var CharacterLeftArm = IgeEntity.extend({
 	},
 
 	rest: function() {
-
-		this.animation.setFrame('stand' + this._container._currentDirection, 0);
-
-		//this.animation.stop();
+		this.animation.stop();
 	},
 });

@@ -12,20 +12,11 @@ var CharacterLeftSleve = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(3)
-			.bounds3d(45, 45, 45)
-			.anchor(13, -18);
+			.depth(4)
+			//.bounds3d(45, 45, 45)
+			.anchor(0, container.data('anchorY'));
 
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'ls',
-			style 		= container.data('shirt_style'),
-			direction 	= '3',
-			subsection  = '0';
-
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
-			.dimensionsFromCell();
+		self.setTexture();
 
 		// //Initilize the animations
 		// fps = 5.3 / 2;
@@ -56,28 +47,62 @@ var CharacterLeftSleve = IgeEntity.extend({
 	},
 
 	changedDirection: function(container, direction) {
+		this._scale.x = 1;
 		this.show();
 
 		switch(direction) {
-			case 'NE': 	this.depth(1); this.anchor(-10, -14); 	break;
-			case 'NW': 	this.depth(2); this.anchor(7, -14); 	break;
-			case 'W': 	this.anchor(5, -12); 	break;
-			case 'E': 	this.hide(); 			break;
-			case 'SW': 	this.anchor(8, -13); 	break;
-			case 'SE': 	this.anchor(3, -13); 	break;
-			case 'S': 	this.anchor(4, -15); 	break;
-			case 'N': 	this.anchor(-10, -12); 	break;
-			default:
+			case 'NW': this._scale.x = -1; 	
+			case 'NE': 
+				this.setTexture(0);  
+			break;
+
+			case 'W' : 
+				this._scale.x = -1;
+				this.setTexture(1);
+			break;
+
+			case 'E' : 
+				this.hide();
+			break;
+
+			case 'SW': this._scale.x = -1; 	
+			case 'SE' : 
+				this.setTexture(2);  
+			break;
+
+			case 'S' : 
+				this.setTexture(3);  
+			break;
+
+			case 'N' : 
+				this.setTexture(7);  
+			break;	
 		}
 
 		this.animation.select(direction);
 	},
 
-	rest: function() {
-		switch(this._container._currentDirection) {
-			case 'SE': this.anchor(3, -16); break;
-		}
+	setTexture: function(dir, subDir) {
+		if(dir === undefined)
+			dir = '3';
+		if(subDir === undefined)
+			subDir = 0;
 
+		dir = this._container.directionToInt(dir);
+		
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'ls',
+			style 		= this._container.data('shirt_ls'),
+			direction 	= dir,
+			subsection  = subDir;
+
+		this.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.dimensionsFromCell();
+	},
+
+	rest: function() {
 		this.animation.setFrame('stand' + this._container._currentDirection, 0);
 
 		//this.animation.stop();

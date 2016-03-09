@@ -1,6 +1,6 @@
 // Define our player character head container classes
-var CharacterRightSleve = IgeEntity.extend({
-	classId: 'CharacterRightSleve',
+var CharacterRightArm = IgeEntity.extend({
+	classId: 'CharacterRightArm',
 
 	init: function (container) {
 		var self = this, fps;
@@ -12,9 +12,8 @@ var CharacterRightSleve = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(4)
-			//.bounds3d(45, 45, 45)
-			.anchor(0, container.data('anchorY'));
+			.depth(2)
+			.anchor(-12, -43);
 
 		self.setTexture();
 
@@ -48,6 +47,21 @@ var CharacterRightSleve = IgeEntity.extend({
 	},
 
 	changedDirection: function(container, direction) {
+		// this.show();
+		// this.depth(2);
+
+		// switch(direction) {
+		// 	case 'NE': 	this.anchor(5, -12); 	break;
+		// 	case 'NW': 	this.anchor(-7, -14); 	break;
+		// 	case 'W': 	this.hide(); 	break;
+		// 	case 'E': 	this.anchor(-5, -12); 	break;
+		// 	case 'SW': 	this.depth(1); this.anchor(-4, -13); 	break;
+		// 	case 'SE': 	this.anchor(-7, -14); 	break;
+		// 	case 'S': 	this.anchor(-11, -15); 	break;
+		// 	case 'N': 	this.anchor(5, -13); 	break;
+		// 	default:
+		// }
+
 		this._scale.x = 1;
 		this.show();
 
@@ -84,25 +98,28 @@ var CharacterRightSleve = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = '1';
 		if(subDir === undefined)
 			subDir = 0;
 
-		dir = this._container.directionToInt(dir);
-
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'rs',
-			style 		= this._container.data('shirt_rs'),
+			part 		= 'rh',
+			style 		= this._container.data('style'),
 			direction 	= dir,
 			subsection  = subDir;
 
 		this.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
 			.dimensionsFromCell();
 	},
 
 	rest: function() {
+		switch(this._container._currentDirection) {
+			case 'SW': this.anchor(-4, -17); break;
+			case 'E': this.anchor(-7, -12); break;
+		}
+
 		this.animation.setFrame('stand' + this._container._currentDirection, 0);
 		
 		//this.animation.stop();

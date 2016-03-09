@@ -214,7 +214,7 @@ var IgeViewport = IgeEntity.extend([
 			
 			// Check if we should draw bounds on this viewport
 			// (usually for debug purposes)
-			if (this._drawBounds && ctx === ige._ctx) {
+			if (this._drawBounds && ctx === ige._ctx && $DRAW_DEBUG_DATA == true) {
 				// Traverse the scenegraph and draw axis-aligned
 				// bounding boxes for every object
 				ctx.save();
