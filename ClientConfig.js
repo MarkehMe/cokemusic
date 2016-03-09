@@ -9,7 +9,7 @@ var igeClientConfig = {
 		'./gameClasses/Map/GameMap.js',
 
 		//Character movements, clothing, etc
-		'./assets/character/people.js',
+		'./assets/character/characters.js',
 		'./assets/character/data.js',
 		'./gameClasses/Components/AnimatorComponent.js',
 		'./gameClasses/Characters/CharacterBody.js',
