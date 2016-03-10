@@ -1,6 +1,6 @@
-// Define our player character shirt container classes
-var CharacterShirt = IgeEntity.extend({
-	classId: 'CharacterShirt',
+// Define our player character head container classes
+var CharacterHead = IgeEntity.extend({
+	classId: 'CharacterHead',
 
 	init: function (container) {
 		var self = this, fps;
@@ -12,25 +12,34 @@ var CharacterShirt = IgeEntity.extend({
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(3)
-			//.bounds3d(45, 45, 45)
-			.anchor(0, container.data('anchorY'));
-
+			.depth(4)
+			.bounds3d(45, 45, 45)
+			.anchor(0, -45);
 
 		self.setTexture();
-		// //Initilize the animations
+
+		//Spawn the hair
+		// self.hair = new CharacterHair(self);
+
+		// //Spawn the eyes
+		// self.eyes = new CharacterEyes(self);
+
+		// //Spawn the mouth
+		// self.mouth = new CharacterMouth(self);
+
+		//Initilize the animations
 		// fps = 5.5;
 		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [2], fps, -1)
-		// 	.animation.define('W',  [4], fps, -1)
-		// 	.animation.define('E',  [3], fps, -1)
-		// 	.animation.define('SW', [5], fps, -1)
-		// 	.animation.define('SE', [6], fps, -1)
-		// 	.animation.define('N',  [7], fps, -1)
-		// 	.animation.define('S',  [8], fps, -1);
+		// 	.animation.define('NW', [8], fps, -1)
+		// 	.animation.define('W',  [7], fps, -1)
+		// 	.animation.define('E',  [2], fps, -1)
+		// 	.animation.define('SW', [6], fps, -1)
+		// 	.animation.define('SE', [3], fps, -1)
+		// 	.animation.define('S',  [4], fps, -1)
+		// 	.animation.define('N',  [5], fps, -1);
 
-		//Listen for the changeDirection event so we can change
-		//the hair animation
+		// //Listen for the changeDirection event so we can change
+		// //the heads animation
 		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
 		container.on('onRest', function() { self.rest(); });
 
@@ -71,16 +80,14 @@ var CharacterShirt = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = '1';
 		if(subDir === undefined)
 			subDir = 0;
 
-		dir = this._container.directionToInt(dir);
-		
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'ch',
-			style 		= this._container.data('shirt_style'),
+			part 		= 'hd',
+			style 		= this._container.data('head_style'),
 			direction 	= dir,
 			subsection  = subDir;
 
@@ -92,9 +99,4 @@ var CharacterShirt = IgeEntity.extend({
 	rest: function() {
 		this.animation.stop();
 	},
-
-	setColor: function(colorSelection) {
-		//'rgba(0, 0, 255, 0.5)'
-		this._texture.applyFilter(IgeFilters.colorOverlay, {color: colorSelection});
-	}
 });

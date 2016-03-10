@@ -13,10 +13,19 @@ var CharacterMouth = IgeEntity.extend({
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(2)
-			//.bounds3d(45, 45, 45)
-			.anchor(0, container._container.data('anchorY'));
+			.bounds3d(45, 45, 45)
+			.anchor(0, -40);
 
-		self.setTexture();
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'fc',
+			style 		= container._container.data('eye_style'),
+			direction 	= '3',
+			subsection  = '0';
+
+		self.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
+			.dimensionsFromCell();
 
 		//Initilize the animations
 		// fps = 1;
@@ -39,49 +48,18 @@ var CharacterMouth = IgeEntity.extend({
 		this.show();
 
 		switch(direction) {
-			case 'N':
-			case 'NW': 
-			case 'NE': 
-				this.hide();
-			break;
-
-			case 'W' :
-			case 'E' : 
-				this.setTexture(1);  
-			break;
-
-			case 'SW': 
-			case 'SE' : 
-				this.setTexture(2);  
-			break;
-
-			case 'S' : 
-				this.setTexture(3);  
-			break;
+			// case 'NE': 	this.hide(); 	break;
+			// case 'NW': 	this.hide(); 	break;
+			// case 'W': 	this.anchor(-3, -37); 	break;
+			// case 'E': 	this.anchor(3, -37);	break;
+			// case 'SW': 	this.anchor(-3, -35); 	break;
+			// case 'SE': 	this.anchor(5, -36); 	break;
+			// case 'S': 	this.anchor(-2, -35); 	break;
+			// case 'N': 	this.hide(); 	break;
+			default:
 		}
 
 		this.animation.select(direction);
-	},
-
-	setTexture: function(dir, subDir) {
-		if(dir === undefined)
-			dir = '3';
-		if(subDir === undefined)
-			subDir = 0;
-
-		dir = this._container._container.directionToInt(dir);
-		
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'fc',
-			style 		= this._container._container.data('mouth_style'),
-			direction 	= dir,
-			subsection  = subDir;
-
-		//Set the body texture
-		this.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
-			.dimensionsFromCell();
 	},
 
 	rest: function() {

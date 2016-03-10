@@ -35,7 +35,8 @@ function init_bar_ui() {
 	});
 
 	$('#help').click(function(){
-
+		toggle_popup('#avatar-editor');
+		$(this).toggleClass('active');
 	});	
 }
 

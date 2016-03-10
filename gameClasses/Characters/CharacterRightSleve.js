@@ -1,11 +1,11 @@
-var CharacterRightArm = CharacterPart.extend({
-	classId: 'CharacterRightArm',
+var CharacterRightSleve = CharacterPart.extend({
+	classId: 'CharacterRightSleve',
 
 	init: function (container) {
 		var self = this;
-		self._part = 'rh';
-		self._depthTemp = 3;
-		self._style = '001';
+		self._part = 'rs';
+		self._depthTemp = 4;
+		self._style = container.data('shirt_rs');
 		self._customFPS = $CHARACTER_FPS / 2;
 		self._container = container;
 
@@ -52,7 +52,7 @@ var CharacterRightArm = CharacterPart.extend({
 			start 		= 'h',
 			action		= 'wlk',
 			part 		= this._part,
-			style 		= '001',
+			style 		= this._container.data('shirt_rs'),
 			direction 	= vDir,
 			subsection  = ANIMATION_FRAMES['wlk_arm'][i];
 

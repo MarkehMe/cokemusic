@@ -4,7 +4,7 @@ var Game = IgeClass.extend({
 	init: function (App, options) {
 		// Create the engine
 		ige = new IgeEngine();
-		ige.debugEnabled(false);
+		ige.debugEnabled($DEBUG_MODE);
 
 		if (ige.isClient) {
 			ige.client = new App();

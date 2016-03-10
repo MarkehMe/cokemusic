@@ -13,10 +13,19 @@ var CharacterHair = IgeEntity.extend({
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(2)
-			//.bounds3d(45, 45, 45)
-			.anchor(0, container._container.data('anchorY'));
+			.bounds3d(45, 45, 45)
+			.anchor(0, -50);
 
-		self.setTexture();
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'hr',
+			style 		= container._container.data('hair_style'),
+			direction 	= '3',
+			subsection  = '0';
+
+		self.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.dimensionsFromCell();
 
 		//Initilize the animations
 		// fps = 5.5;
@@ -40,28 +49,15 @@ var CharacterHair = IgeEntity.extend({
 
 	changedDirection: function(container, direction) {
 		switch(direction) {
-			case 'NW': 	
-			case 'NE': 
-				this.setTexture(0);  
-			break;
-
-			case 'W' :  	
-			case 'E' : 
-				this.setTexture(1);  
-			break;
-
-			case 'SW':
-			case 'SE' : 
-				this.setTexture(2);  
-			break;
-
-			case 'S' : 
-				this.setTexture(3);  
-			break;
-
-			case 'N' : 
-				this.setTexture(7);  
-			break;	
+			// case 'NE': 	this.anchor(-3, -37); 	break;
+			// case 'NW': 	this.anchor(2, -35); 	break;
+			// case 'W': 	this.anchor(4, -35); 	break;
+			// case 'E': 	this.anchor(-4, -35); 	break;
+			// case 'SW': 	this.anchor(3, -37); 	break;
+			// case 'SE': 	this.anchor(-1, -38); 	break;
+			// case 'S': 	this.anchor(-3, -36); 	break;
+			// case 'N': 	this.anchor(-1, -35); 	break;
+			default:
 		}
 
 		this.animation.select(direction);
@@ -69,22 +65,20 @@ var CharacterHair = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = '1';
 		if(subDir === undefined)
 			subDir = 0;
 
-		dir = this._container._container.directionToInt(dir);
-		
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'hr',
-			style 		= this._container._container.data('hair_style'),
+			part 		= 'bd',
+			style 		= this._container.data('style'),
 			direction 	= dir,
 			subsection  = subDir;
 
 		//Set the body texture
 		this.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
 			.dimensionsFromCell();
 	},
 

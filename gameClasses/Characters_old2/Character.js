@@ -6,14 +6,10 @@ var Character = IgeEntity.extend({
 		var self = this;
 		IgeEntity.prototype.init.call(this);
 
-		self.data('anchorY', -41);
-		this._currentDirection = 'S';
-
 		// Create a character entity as a child of this container
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.bounds3d(45, 45, 58)
-			.texture(ige.gameTexture.people)
 			.anchor(0, 0);
 
 		self.mouseOver(self.overFunc);
@@ -39,6 +35,28 @@ var Character = IgeEntity.extend({
 			.drawPath(false) // Enable debug drawing the paths
 			.drawPathGlow(false) // Enable path glowing (eye candy)
 			.drawPathText(false); // Enable path text output
+
+
+		// //Spawn the head
+		// self.head = new CharacterHead(self);
+
+		// //Spawn left arm
+		// self.leftArm = new CharacterLeftArm(self);
+
+		// //Spawn right arm
+		// self.rightArm = new CharacterRightArm(self);
+
+		// //Spawn shirt
+		// self.shirt = new CharacterShirt(self);
+
+		//Load the character texture
+		// this._characterTexture = new IgeCellSheet(rootPath + 'assets/bodies.png', 5, 8);
+
+		// Wait for the texture to load
+		// this._characterTexture.on('loaded', function () {
+		// 	self.texture(self._characterTexture)
+		// 		.dimensionsFromCell();
+		// }, false, true);
 	},
 
 	setStyle: function(str) {
@@ -50,6 +68,7 @@ var Character = IgeEntity.extend({
 		this.data('head_style', str);
 		return this;
 	},
+
 
 	setHairStyle: function(str) {
 		this.data('hair_style', str);
@@ -71,16 +90,6 @@ var Character = IgeEntity.extend({
 		return this;
 	},
 
-	setLeftSleveStyle: function(str) {
-		this.data('shirt_ls', str);
-		return this;
-	},
-
-	setRightSleveStyle: function(str) {
-		this.data('shirt_rs', str);
-		return this;
-	},
-
 	setPantStyle: function(str) {
 		this.data('pant_style', str);
 		return this;
@@ -89,13 +98,6 @@ var Character = IgeEntity.extend({
 	setShoeStyle: function(str) {
 		this.data('shoe_style', str);
 		return this;
-	},
-
-	addAnimation(id, frames) {
-		fps = 5.5;
-		this.animation.define(id, frames, fps, -1);
-
-		console.log(this.animation);
 	},
 
 	startPlayer: function() {
@@ -114,16 +116,16 @@ var Character = IgeEntity.extend({
 		self.rightArm = new CharacterRightArm(self);
 
 		//Spawn shirt
-		self.shirt = new CharacterShirt(self);
+		//self.shirt = new CharacterShirt(self);
 
 		//Spawn left shirt sleve
-		self.leftSleve = new CharacterLeftSleve(self);
+		//self.leftSleve = new CharacterLeftSleve(self);
 
 		//Spawn right shirt sleve
-		self.rightSleve = new CharacterRightSleve(self);
+		//self.rightSleve = new CharacterRightSleve(self);
 
 		//Spawn pants
-		self.pants = new CharacterPants(self);
+		//self.pant = new CharacterPants(self);
 
 		//Spawn shoes
 		self.shoes = new CharacterShoes(self);
@@ -131,8 +133,6 @@ var Character = IgeEntity.extend({
 		//Finally mount the player
 		self.addComponent(PlayerComponent)
 			.mount(ige.room.tileMap());
-
-		return this;
 	},
 
 	/**
@@ -177,8 +177,10 @@ var Character = IgeEntity.extend({
 	},
 
 	rest: function() {
+		this.animation.setFrame('stand' + this._currentDirection, 0);
+
 		//Let all the children know
-		this.emit('onRest', this._currentDirection);
+		this.emit('onRest', []);
 	},
 
 	/**
@@ -188,21 +190,58 @@ var Character = IgeEntity.extend({
 	 * @return {*}
 	 */
 	walkTo: function (x, y) {
-		//TODO: need to get the actual location not jsut pass in 0,0
-		this.path
-			.set(0, 0, 0, x, y, 0)
-			.speed(1.75)
+		var self = this,
+			distX = x - this.translate().x(),
+			distY = y - this.translate().y(),
+			distance = Math.distance(
+				this.translate().x(),
+				this.translate().y(),
+				x,
+				y
+			),
+			speed = 0.1,
+			time = (distance / speed),
+			direction = '';
+
+		// Set the animation based on direction - these are modified
+		// for isometric views
+		if (distY < 0) {
+			direction += 'N';
+		}
+
+		if (distY > 0) {
+			direction += 'S';
+		}
+
+		if (distX > 0) {
+			direction += 'E';
+		}
+
+		if (distX < 0) {
+			direction += 'W';
+		}
+
+		this.changeDirection(direction);
+
+		// Start tweening the little person to their destination
+		this._translate.tween()
+			.stopAll()
+			.properties({x: x, y: y})
+			.duration(time)
+			.afterTween(function () {
+				self.animation.stop();
+			})
 			.start();
 
 		return this;
 	},
 
 	changeDirection: function(direction) {
-		if(direction === undefined || direction == '')
-			direction = this._currentDirection;
-		
 		//String builder for the direction
 		var anim = 'walk' + direction;
+
+		//Animate
+		this.animation.select(anim);
 
 		//Store the values
 		this._currentDirection = direction;
@@ -212,30 +251,12 @@ var Character = IgeEntity.extend({
 		this.emit('onChangedDirection', [this, direction]);
 	},
 
-	changeAnimation: function(anim) {
-		this.emit('onChangedAnimation', [anim, this._currentDirection]);
-	},
-
 	tick: function (ctx) {
 		// Set the depth to the y co-ordinate which basically
 		// makes the entity appear further in the foreground
 		// the closer they become to the bottom of the screen
 		//this.depth(this._translate.y);
 		IgeEntity.prototype.tick.call(this, ctx);
-	},
-
-	directionToInt : function(dir) {
-		switch(dir) {
-			case 'NE': return '0';
-			case 'E': return '1';
-			case 'SE': return '2';
-			case 'S': return '3';
-			case 'SW': return '4';
-			case 'W': return '5';
-			case 'NW': return '6';
-			case 'N': return '7';
-			default: return dir;
-		}
 	},
 
 	// Define a function that will be called when the

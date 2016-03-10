@@ -129,20 +129,20 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_keyUp: function (event, keyCode) {
-		// if (keyCode === ige.input.key.space) {
-		// 	// Change the character
-		// 	this._entity._characterType++;
+		if (keyCode === ige.input.key.space) {
+			// Change the character
+			this._entity._characterType++;
 
-		// 	if (this._entity._characterType > 7) {
-		// 		this._entity._characterType = 0;
-		// 	}
+			if (this._entity._characterType > 7) {
+				this._entity._characterType = 0;
+			}
 
-		// 	this._entity.setType(this._entity._characterType);
+			this._entity.setType(this._entity._characterType);
 
-		// 	//If the character is currently moving update the direction.
-		// 	if(this._entity.path._active == true)
-		// 		this._entity.changeDirection(this._entity.path.getDirection());
-		// }
+			//If the character is currently moving update the direction.
+			if(this._entity.path._active == true)
+				this._entity.changeDirection(this._entity.path.getDirection());
+		}
 	},
 
 	_pointReached: function() {
@@ -160,6 +160,8 @@ var PlayerComponent = IgeClass.extend({
 			this.data("targetSeat", null);
 		}
 
+		this._entity.animation.stop();
+
 		this._entity.rest();
 	},
 
@@ -167,7 +169,6 @@ var PlayerComponent = IgeClass.extend({
 		var direction = this._entity.path.getDirection();
 		if(direction != '') {
 			this._entity.changeDirection(direction);
-			this._entity.changeAnimation('walk');
 
 			// If we didn't just click an item, we hide the infostand
 			if ( ! ige.overItem) $('#infostand').hide();

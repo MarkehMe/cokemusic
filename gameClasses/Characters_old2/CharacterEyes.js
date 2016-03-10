@@ -13,10 +13,19 @@ var CharacterEyes = IgeEntity.extend({
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(2)
-			//.bounds3d(45, 45, 45)
-			.anchor(0, container._container.data('anchorY'));
+			.bounds3d(45, 45, 45)
+			.anchor(0, -44);
 
-		self.setTexture();
+		var	start 		= 'h',
+			action		= 'std',
+			part 		= 'ey',
+			style 		= container._container.data('eye_style'),
+			direction 	= '3',
+			subsection  = '0';
+
+		self.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.dimensionsFromCell();
 
 		//Initilize the animations
 		// fps = 1;
@@ -39,25 +48,15 @@ var CharacterEyes = IgeEntity.extend({
 		this.show();
 
 		switch(direction) {
-			case 'N':
-			case 'NW':
-			case 'NE': 
-				this.hide();
-			break;
-
-			case 'W' :
-			case 'E' : 
-				this.setTexture(1);  
-			break;
-
-			case 'SW':
-			case 'SE' : 
-				this.setTexture(2);  
-			break;
-
-			case 'S' : 
-				this.setTexture(3);  
-			break;
+			// case 'NE': 	this.hide(); 	break;
+			// case 'NW': 	this.hide(); 	break;
+			// case 'W': 	this.anchor(-7, -42); 	break;
+			// case 'E': 	this.anchor(7, -42);	break;
+			// case 'SW': 	this.anchor(-2, -42); 	break;
+			// case 'SE': 	this.anchor(5, -44); 	break;
+			// case 'S': 	this.anchor(-2, -40); 	break;
+			// case 'N': 	this.hide(); 	break;
+			default:
 		}
 
 		this.animation.select(direction);
@@ -65,22 +64,20 @@ var CharacterEyes = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = '1';
 		if(subDir === undefined)
 			subDir = 0;
 
-		dir = this._container._container.directionToInt(dir);
-
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'ey',
-			style 		= this._container._container.data('eye_style'),
+			part 		= 'bd',
+			style 		= this._container.data('style'),
 			direction 	= dir,
 			subsection  = subDir;
 
 		//Set the body texture
 		this.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png.png')
 			.dimensionsFromCell();
 	},
 

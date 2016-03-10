@@ -1,85 +1,65 @@
-// Define our player character head container classes
-var CharacterLeftArm = IgeEntity.extend({
+var CharacterLeftArm = CharacterPart.extend({
 	classId: 'CharacterLeftArm',
 
 	init: function (container) {
-		var self = this, fps;
-		IgeEntity.prototype.init.call(this);
-		
-		//Set the container (body)
+		var self = this;
+		self._part = 'lh';
+		self._depthTemp = 3;
+		self._style = '001';
+		self._customFPS = $CHARACTER_FPS / 2;
 		self._container = container;
 
-		//Create the entity
-		self.isometric(true)
-			.addComponent(AnimatorComponent)
-			.depth(2)
-			.bounds3d(45, 45, 45)
-			.anchor(-2, -9);
-
-		//TODO: should probably load all the textures at once and
-		//store in global vars
-		//Load the texture
-		this._texture = new IgeCellSheet(rootPath + 'assets/arms-vert.png', 1, 42);
-
-		// Wait for the texture to load
-		this._texture.on('loaded', function () {
-			self.texture(self._texture)
-				.dimensionsFromCell();		
-		}, false, true);
-
-		//Initilize the animations
-		fps = 5.3 / 2;
-		this.animation.define('NE', [3, 4], fps, -1)
-			.animation.define('NW', [8, 7], fps, -1)
-		 	.animation.define('W',  [11, 12], fps, -1)
-		    .animation.define('SW', [15, 16], fps, -1)
-			.animation.define('SE', [18, 17], fps, -1)
-			.animation.define('S',  [24, 23], fps, -1)
-			.animation.define('N',  [28, 27], fps, -1);
-
-		//Standing Animations
-		this.animation.define('standNE', [29], fps, -1)
-			.animation.define('standNW', [31], fps, -1)
-		 	.animation.define('standW',  [33], fps, -1)
-		    .animation.define('standSW', [35], fps, -1)
-			.animation.define('standSE', [38], fps, -1)
-			.animation.define('standS',  [41], fps, -1)
-			.animation.define('standN',  [39], fps, -1);
-
-		//Listen for the changeDirection event so we can change
-		//the heads animation
-		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
-		container.on('onRest', function() { self.rest(); });
-
-		//Finally mount to the container (body)
-		self.mount(container);
+		CharacterPart.prototype.init.call(this);
 	},
 
 	changedDirection: function(container, direction) {
+		this._scale.x = 1;
 		this.show();
 
 		switch(direction) {
-			case 'NE': 	this.depth(1); this.anchor(-10, -14); 	break;
-			case 'NW': 	this.depth(2); this.anchor(7, -14); 	break;
-			case 'W': 	this.anchor(5, -12); 	break;
-			case 'E': 	this.hide(); 			break;
-			case 'SW': 	this.anchor(8, -13); 	break;
-			case 'SE': 	this.anchor(3, -13); 	break;
-			case 'S': 	this.anchor(4, -15); 	break;
-			case 'N': 	this.anchor(-10, -12); 	break;
-			default:
-		}
+			case 'NW': this._scale.x = -1; 	
+			case 'NE': 
+				this.setTexture(0);  
+			break;
 
-		this.animation.select(direction);
+			case 'W' : 
+				this._scale.x = -1;
+				this.setTexture(1);
+			break;
+
+			case 'E' : 
+				this.hide();
+			break;
+
+			case 'SW': this._scale.x = -1; 	
+			case 'SE' : 
+				this.setTexture(2);  
+			break;
+
+			case 'S' : 
+				this.setTexture(3);  
+			break;
+
+			case 'N' : 
+				this.setTexture(7);  
+			break;	
+		}
 	},
 
-	rest: function() {
-		switch(this._container._currentDirection) {
-			case 'SE': this.anchor(3, -16); break;
+	getWalkingAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
+
+		for (var i = 0; i < ANIMATION_FRAMES['wlk_arm'].length; i++) {
+			start 		= 'h',
+			action		= 'wlk',
+			part 		= this._part,
+			style 		= '001',
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['wlk_arm'][i];
+
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
 		}
 
-		this.animation.setFrame('stand' + this._container._currentDirection, 0);
-
-		//this.animation.stop();
+		return frames;
 	},
 });
