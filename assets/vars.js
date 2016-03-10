@@ -1,4 +1,4 @@
-$DEBUG_MODE = false;
+$DEBUG_MODE = true;
 
 /* Size of the tiles in the grid */
 $TILESIZE = 36;

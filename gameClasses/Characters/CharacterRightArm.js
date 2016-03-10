@@ -43,8 +43,6 @@ var CharacterRightArm = CharacterPart.extend({
 				this.setTexture(7);  
 			break;	
 		}
-
-		this.animation.select(direction);
 	},
 
 	getWalkingAnimation: function(vDir) {

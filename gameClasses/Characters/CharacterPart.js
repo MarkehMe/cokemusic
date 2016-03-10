@@ -33,7 +33,7 @@ var CharacterPart = IgeEntity.extend({
 		//Listen for numerous events that fire off.
 		this._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
 		this._container.on('onChangedAnimation', function (anim, dir) { self.changedAnimation(anim, dir); });
-		this._container.on('onRest', function() { self.rest(); });
+		this._container.on('onRest', function(dir) { self.rest(dir); });
 
 		//Finally mount to the Character container
 		this.mount(this._container);
@@ -75,16 +75,18 @@ var CharacterPart = IgeEntity.extend({
 		}
 	},
 
-	setTexture: function(dir, subDir) {
+	setTexture: function(dir, subDir, action) {
 		if(dir === undefined)
 			dir = '3';
 		if(subDir === undefined)
 			subDir = 0;
+		if(action === undefined)
+			action = 'std';
 
-		dir = this.directionToInt(dir);
+		dir = this.directionToIntRelative(dir);
 
 		var	start 		= 'h',
-			action		= 'std',
+			action		= action,
 			part 		= this._part,
 			style 		= this._style,
 			direction 	= dir,
@@ -110,6 +112,34 @@ var CharacterPart = IgeEntity.extend({
 		}
 	},
 
+	directionToIntRelative: function(dir) {
+		switch(dir) {
+			case 'NW': 
+			case 'NE': 
+				return 0;  
+			break;
+
+			case 'W' :
+			case 'E' : 
+				return 1;
+			break;
+
+			case 'SW':
+			case 'SE' : 
+				return 2;
+			break;
+
+			case 'S' : 
+				return 3;
+			break;
+
+			case 'N' : 
+				return 7;
+			break;	
+			default: return dir;
+		}
+	},
+
 	getWalkingAnimation: function(vDir) {
 		var frames = [], start, action, part, style, direction, subsection;
 
@@ -127,8 +157,10 @@ var CharacterPart = IgeEntity.extend({
 		return frames;
 	},
 
-	rest: function() {
+	rest: function(vDir) {
 		this.animation.stop();
+
+		this.setTexture(vDir, undefined, 'std');
 	},
 
 	setColor: function(colorSelection) {

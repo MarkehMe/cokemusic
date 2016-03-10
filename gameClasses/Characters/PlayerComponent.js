@@ -160,8 +160,7 @@ var PlayerComponent = IgeClass.extend({
 			this.data("targetSeat", null);
 		}
 
-		// this._entity.animation.stop();
-		// this._entity.rest();
+		this._entity.rest();
 	},
 
 	_pathStarted: function() {

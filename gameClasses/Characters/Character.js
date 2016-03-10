@@ -177,10 +177,8 @@ var Character = IgeEntity.extend({
 	},
 
 	rest: function() {
-		//this.animation.setFrame('stand' + this._currentDirection, 0);
-
 		//Let all the children know
-		this.emit('onRest', []);
+		this.emit('onRest', this._currentDirection);
 	},
 
 	/**
@@ -206,9 +204,6 @@ var Character = IgeEntity.extend({
 		//String builder for the direction
 		var anim = 'walk' + direction;
 
-		//Animate
-		//this.animation.select(anim);
-
 		//Store the values
 		this._currentDirection = direction;
 		this._currentAnimation = anim;
@@ -218,7 +213,6 @@ var Character = IgeEntity.extend({
 	},
 
 	changeAnimation: function(anim) {
-		//Let all the children know
 		this.emit('onChangedAnimation', [anim, this._currentDirection]);
 	},
 
