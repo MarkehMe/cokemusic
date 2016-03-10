@@ -16,14 +16,19 @@ var CharacterPart = IgeEntity.extend({
 		this.setTexture();
 
 		//Initilize the animations
-		this.animation.define('wlk_NE', this.getWalkingAnimation('0'), $CHARACTER_FPS, -1)
-			.animation.define('wlk_NW', this.getWalkingAnimation('0'), $CHARACTER_FPS, -1)
-			.animation.define('wlk_W',  this.getWalkingAnimation('1'), $CHARACTER_FPS, -1)
-			.animation.define('wlk_E',  this.getWalkingAnimation('1'), $CHARACTER_FPS, -1)
-			.animation.define('wlk_SW', this.getWalkingAnimation('2'), $CHARACTER_FPS, -1)
-			.animation.define('wlk_SE', this.getWalkingAnimation('2'), $CHARACTER_FPS, -1)
-			.animation.define('wlk_S',  this.getWalkingAnimation('3'), $CHARACTER_FPS, -1)
-			.animation.define('wlk_N',  this.getWalkingAnimation('7'), $CHARACTER_FPS, -1);
+		if(this._customFPS !== undefined)
+			$fps = this._customFPS;
+		else
+			$fps = $CHARACTER_FPS;
+
+		this.animation.define('wlk_NE', this.getWalkingAnimation('0'), $fps, -1)
+			.animation.define('wlk_NW', this.getWalkingAnimation('0'), $fps, -1)
+			.animation.define('wlk_W',  this.getWalkingAnimation('1'), $fps, -1)
+			.animation.define('wlk_E',  this.getWalkingAnimation('1'), $fps, -1)
+			.animation.define('wlk_SW', this.getWalkingAnimation('2'), $fps, -1)
+			.animation.define('wlk_SE', this.getWalkingAnimation('2'), $fps, -1)
+			.animation.define('wlk_S',  this.getWalkingAnimation('3'), $fps, -1)
+			.animation.define('wlk_N',  this.getWalkingAnimation('7'), $fps, -1);
 
 		//Listen for numerous events that fire off.
 		this._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
@@ -125,4 +130,8 @@ var CharacterPart = IgeEntity.extend({
 	rest: function() {
 		this.animation.stop();
 	},
+
+	setColor: function(colorSelection) {
+		this._texture.applyFilter(IgeFilters.colorOverlay, {color: colorSelection});
+	}
 });
