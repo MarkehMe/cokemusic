@@ -165,6 +165,18 @@ var Client = IgeClass.extend({
 		// Return the data at the map's tile co-ordinates
 		return ige.room.tileMap().map.tileData(tileX, tileY);
 	},
+
+	getTexture: function(tAction, tPart, tStyle, tDirection, tSubsection) {
+		var	start 		= 'h',
+			action		= tAction,
+			part 		= tPart,
+			style 		= tStyle,
+			direction 	= tDirection,
+			subsection  = tSubsection;
+
+		//Return the compiled value
+		return start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png';
+	},
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = Client; }

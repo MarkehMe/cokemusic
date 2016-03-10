@@ -1,100 +1,32 @@
 // Define our player character head container classes
-var CharacterPants = IgeEntity.extend({
+var CharacterPants = CharacterPart.extend({
 	classId: 'CharacterPants',
 
 	init: function (container) {
 		var self = this, fps;
-		IgeEntity.prototype.init.call(this);
-		
-		//Set the container (head)
+		self._part = 'lg';
+		self._depthTemp = 2;
+		self._style = container.data('pant_style');
 		self._container = container;
 
-		//Create the entity
-		self.isometric(true)
-			.addComponent(AnimatorComponent)
-			.depth(2)
-			.anchor(0, container.data('anchorY'));
-
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'lg',
-			style 		= container.data('pant_style'),
-			direction 	= '3',
-			subsection  = '0';
-
-		self.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
-			.dimensionsFromCell();
-
-		//Initilize the animations
-		// fps = 5.5;
-		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [2], fps, -1)
-		// 	.animation.define('W',  [3], fps, -1)
-		// 	.animation.define('E',  [4], fps, -1)
-		// 	.animation.define('SW', [5], fps, -1)
-		// 	.animation.define('SE', [6], fps, -1)
-		// 	.animation.define('N',  [7], fps, -1)
-		// 	.animation.define('S',  [8], fps, -1);
-
-		//Listen for the changeDirection event so we can change
-		//the hair animation
-		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
-		container.on('onRest', function() { self.rest(); });
-
-		//Finally mount to the container (body)
-		self.mount(container);
+		CharacterPart.prototype.init.call(this);
 	},
 
-	changedDirection: function(container, direction) {
-		this._scale.x = 1;
+	getWalkingAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
 
-		switch(direction) {
-			case 'NW': this._scale.x = -1; 	
-			case 'NE': 
-				this.setTexture(0);  
-			break;
+		for (var i = 0; i < ANIMATION_FRAMES['wlk'].length; i++) {
+			start 		= 'h',
+			action		= 'wlk',
+			part 		= this._part,
+			style 		= this._container.data('pant_style'),
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['wlk'][i];
 
-			case 'W' : this._scale.x = -1; 	
-			case 'E' : 
-				this.setTexture(1);  
-			break;
-
-			case 'SW': this._scale.x = -1; 	
-			case 'SE' : 
-				this.setTexture(2);  
-			break;
-
-			case 'S' : 
-				this.setTexture(3);  
-			break;
-
-			case 'N' : 
-				this.setTexture(7);  
-			break;	
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
 		}
 
-		this.animation.select(direction);
-	},
-
-	setTexture: function(dir, subDir) {
-		if(dir === undefined)
-			dir = '3';
-		if(subDir === undefined)
-			subDir = 0;
-
-		dir = this._container.directionToInt(dir);
-		
-		var	start 		= 'h',
-			action		= 'std',
-			part 		= 'lg',
-			style 		= this._container.data('pant_style'),
-			direction 	= dir,
-			subsection  = subDir;
-
-		this.texture(ige.gameTexture.people)
-			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
-			.dimensionsFromCell();
+		return frames;
 	},
 
 	rest: function() {

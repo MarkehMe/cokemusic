@@ -9,32 +9,42 @@ var CharacterBody = IgeEntity.extend({
 		//Set the container (body)
 		self._container = container;
 
+		//Set the part string
+		this._part = 'bd';
+
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.depth(1)
-			//.bounds3d(45, 45, 45)
 			.anchor(0, container.data('anchorY'));
 
 		self.setTexture();
 
 		//Initilize the animations
-		// fps = 5.5;
-		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [8], fps, -1)
-		// 	.animation.define('W',  [7], fps, -1)
-		// 	.animation.define('E',  [2], fps, -1)
-		// 	.animation.define('SW', [6], fps, -1)
-		// 	.animation.define('SE', [3], fps, -1)
-		// 	.animation.define('S',  [4], fps, -1)
-		// 	.animation.define('N',  [5], fps, -1);
+		fps = $CHARACTER_FPS;
+		this.animation.define('wlk_NE', self.getWalkingAnimation('0'), fps, -1)
+			.animation.define('wlk_NW', self.getWalkingAnimation('0'), fps, -1)
+			.animation.define('wlk_W',  self.getWalkingAnimation('1'), fps, -1)
+			.animation.define('wlk_E',  self.getWalkingAnimation('1'), fps, -1)
+			.animation.define('wlk_SW', self.getWalkingAnimation('2'), fps, -1)
+			.animation.define('wlk_SE', self.getWalkingAnimation('2'), fps, -1)
+			.animation.define('wlk_S',  self.getWalkingAnimation('3'), fps, -1)
+			.animation.define('wlk_N',  self.getWalkingAnimation('7'), fps, -1);
 
 		// //Listen for the changeDirection event
 		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
+		container.on('onChangedAnimation', function (anim, dir) { self.changedAnimation(anim, dir); });
 		container.on('onRest', function() { self.rest(); });
 
 		//Finally mount to the container (body)
 		self.mount(container);
+	},
+
+	changedAnimation: function(animation, dir) {
+		if(animation == 'walk') {
+			animation = 'wlk';
+			this.animation.select(animation + '_' + dir);
+		}
 	},
 
 	changedDirection: function(container, direction) {
@@ -66,7 +76,7 @@ var CharacterBody = IgeEntity.extend({
 		}
 
 		//String builder for the direction
-		var anim = 'walk' + direction;
+		//var anim = 'walk' + direction;
 
 		//Animate
 		//this.animation.select(anim);
@@ -74,15 +84,16 @@ var CharacterBody = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '1';
+			dir = '3';
 		if(subDir === undefined)
 			subDir = 0;
 
 		dir = this._container.directionToInt(dir);
+		this._style = this._container.data('style');
 		
 		var	start 		= 'h',
 			action		= 'std',
-			part 		= 'bd',
+			part 		= this._part,
 			style 		= this._container.data('style'),
 			direction 	= dir,
 			subsection  = subDir;
@@ -91,6 +102,23 @@ var CharacterBody = IgeEntity.extend({
 		this.texture(ige.gameTexture.people)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
 			.dimensionsFromCell();
+	},
+
+	getWalkingAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
+
+		for (var i = 0; i < ANIMATION_FRAMES['wlk'].length; i++) {
+			start 		= 'h',
+			action		= 'wlk',
+			part 		= this._part,
+			style 		= this._container.data('style'),
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['wlk'][i];
+
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
+		}
+
+		return frames;
 	},
 
 	rest: function() {

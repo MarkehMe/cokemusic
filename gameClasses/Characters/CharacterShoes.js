@@ -8,6 +8,7 @@ var CharacterShoes = IgeEntity.extend({
 		
 		//Set the container (body)
 		self._container = container;
+		self._part = 'sh';
 
 		//Create the entity
 		self.isometric(true)
@@ -18,23 +19,31 @@ var CharacterShoes = IgeEntity.extend({
 		self.setTexture();
 
 		// //Initilize the animations
-		// fps = 5.5;
-		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [2], fps, -1)
-		// 	.animation.define('W',  [4], fps, -1)
-		// 	.animation.define('E',  [3], fps, -1)
-		// 	.animation.define('SW', [5], fps, -1)
-		// 	.animation.define('SE', [6], fps, -1)
-		// 	.animation.define('N',  [7], fps, -1)
-		// 	.animation.define('S',  [8], fps, -1);
+		fps = $CHARACTER_FPS;
+		self.animation.define('wlk_NE', self.getWalkingAnimation('0'), fps, -1)
+			.animation.define('wlk_NW', self.getWalkingAnimation('0'), fps, -1)
+			.animation.define('wlk_W',  self.getWalkingAnimation('1'), fps, -1)
+			.animation.define('wlk_E',  self.getWalkingAnimation('1'), fps, -1)
+			.animation.define('wlk_SW', self.getWalkingAnimation('2'), fps, -1)
+			.animation.define('wlk_SE', self.getWalkingAnimation('2'), fps, -1)
+			.animation.define('wlk_S',  self.getWalkingAnimation('3'), fps, -1)
+			.animation.define('wlk_N',  self.getWalkingAnimation('7'), fps, -1);
 
 		//Listen for the changeDirection event so we can change
 		//the hair animation
 		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
+		container.on('onChangedAnimation', function (anim, dir) { self.changedAnimation(anim, dir); });
 		container.on('onRest', function() { self.rest(); });
 
 		//Finally mount to the container (body)
 		self.mount(container);
+	},
+
+	changedAnimation: function(animation, dir) {
+		if(animation == 'walk') {
+			animation = 'wlk';
+			this.animation.select(animation + '_' + dir);
+		}
 	},
 
 	changedDirection: function(container, direction) {
@@ -86,6 +95,23 @@ var CharacterShoes = IgeEntity.extend({
 		this.texture(ige.gameTexture.people)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
 			.dimensionsFromCell();
+	},
+	
+	getWalkingAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
+
+		for (var i = 0; i < ANIMATION_FRAMES['wlk'].length; i++) {
+			start 		= 'h',
+			action		= 'wlk',
+			part 		= this._part,
+			style 		= this._container.data('pant_style'),
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['wlk'][i];
+
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
+		}
+
+		return frames;
 	},
 
 	rest: function() {

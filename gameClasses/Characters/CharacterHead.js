@@ -80,7 +80,7 @@ var CharacterHead = IgeEntity.extend({
 
 	setTexture: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '1';
+			dir = '3';
 		if(subDir === undefined)
 			subDir = 0;
 

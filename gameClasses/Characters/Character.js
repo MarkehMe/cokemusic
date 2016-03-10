@@ -7,11 +7,13 @@ var Character = IgeEntity.extend({
 		IgeEntity.prototype.init.call(this);
 
 		self.data('anchorY', -41);
+		this._currentDirection = 'S';
 
 		// Create a character entity as a child of this container
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
 			.bounds3d(45, 45, 58)
+			.texture(ige.gameTexture.people)
 			.anchor(0, 0);
 
 		self.mouseOver(self.overFunc);
@@ -37,28 +39,6 @@ var Character = IgeEntity.extend({
 			.drawPath(false) // Enable debug drawing the paths
 			.drawPathGlow(false) // Enable path glowing (eye candy)
 			.drawPathText(false); // Enable path text output
-
-
-		// //Spawn the head
-		// self.head = new CharacterHead(self);
-
-		// //Spawn left arm
-		// self.leftArm = new CharacterLeftArm(self);
-
-		// //Spawn right arm
-		// self.rightArm = new CharacterRightArm(self);
-
-		// //Spawn shirt
-		// self.shirt = new CharacterShirt(self);
-
-		//Load the character texture
-		// this._characterTexture = new IgeCellSheet(rootPath + 'assets/bodies.png', 5, 8);
-
-		// Wait for the texture to load
-		// this._characterTexture.on('loaded', function () {
-		// 	self.texture(self._characterTexture)
-		// 		.dimensionsFromCell();
-		// }, false, true);
 	},
 
 	setStyle: function(str) {
@@ -109,6 +89,13 @@ var Character = IgeEntity.extend({
 	setShoeStyle: function(str) {
 		this.data('shoe_style', str);
 		return this;
+	},
+
+	addAnimation(id, frames) {
+		fps = 5.5;
+		this.animation.define(id, frames, fps, -1);
+
+		console.log(this.animation);
 	},
 
 	startPlayer: function() {
@@ -190,7 +177,7 @@ var Character = IgeEntity.extend({
 	},
 
 	rest: function() {
-		this.animation.setFrame('stand' + this._currentDirection, 0);
+		//this.animation.setFrame('stand' + this._currentDirection, 0);
 
 		//Let all the children know
 		this.emit('onRest', []);
@@ -213,14 +200,14 @@ var Character = IgeEntity.extend({
 	},
 
 	changeDirection: function(direction) {
-		if(direction === undefined)
+		if(direction === undefined || direction == '')
 			direction = this._currentDirection;
 		
 		//String builder for the direction
 		var anim = 'walk' + direction;
 
 		//Animate
-		this.animation.select(anim);
+		//this.animation.select(anim);
 
 		//Store the values
 		this._currentDirection = direction;
@@ -228,6 +215,11 @@ var Character = IgeEntity.extend({
 
 		//Let all the children know
 		this.emit('onChangedDirection', [this, direction]);
+	},
+
+	changeAnimation: function(anim) {
+		//Let all the children know
+		this.emit('onChangedAnimation', [anim, this._currentDirection]);
 	},
 
 	tick: function (ctx) {

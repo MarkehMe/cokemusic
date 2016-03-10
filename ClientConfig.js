@@ -3,6 +3,7 @@ var igeClientConfig = {
 		'./assets/vars.js',
 		'./gameClasses/Class.js',
 		'./gameClasses/TexturePackerAtlas.js',
+		'./gameClasses/Components/AnimatorComponent.js',
 
 		//Floor, Tiles, Map, etc
 		'./gameClasses/Map/FloorTextureMap.js',
@@ -11,7 +12,7 @@ var igeClientConfig = {
 		//Character movements, clothing, etc
 		'./assets/character/characters.js',
 		'./assets/character/data.js',
-		'./gameClasses/Components/AnimatorComponent.js',
+		'./gameClasses/Characters/CharacterPart.js',
 		'./gameClasses/Characters/CharacterBody.js',
 		'./gameClasses/Characters/CharacterHead.js',
 		'./gameClasses/Characters/CharacterHair.js',
@@ -44,7 +45,7 @@ var igeClientConfig = {
 		'./client.js',
 		'./index.js'
 	],
-	debug: false
+	debug: true
 };
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = igeClientConfig; }

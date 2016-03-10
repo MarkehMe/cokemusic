@@ -96,6 +96,14 @@ var Chat = {
                 ige.player.changeDirection();
                 console.log('Set hair style to ' + args[1]);
                 return true;
+
+            case '.a':
+                if(args[1] === undefined || args[1] == '')
+                    return true;
+
+                ige.player.changeAnimation(args[1]);
+                console.log('Changed player animation to ' + args[1]);
+                return true;
         }
 
         return false;

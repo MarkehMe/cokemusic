@@ -8,25 +8,26 @@ var CharacterLeftArm = IgeEntity.extend({
 		
 		//Set the container (body)
 		self._container = container;
+		self._part = 'lh';
 
 		//Create the entity
 		self.isometric(true)
 			.addComponent(AnimatorComponent)
-			.depth(2)
-			.drawBounds(false)
+			.depth(3)
 			.anchor(0, container.data('anchorY'));
 
 		self.setTexture();
 
 		// //Initilize the animations
-		// fps = 5.3 / 2;
-		// this.animation.define('NE', [3, 4], fps, -1)
-		// 	.animation.define('NW', [8, 7], fps, -1)
-		//  	.animation.define('W',  [11, 12], fps, -1)
-		//     .animation.define('SW', [15, 16], fps, -1)
-		// 	.animation.define('SE', [18, 17], fps, -1)
-		// 	.animation.define('S',  [24, 23], fps, -1)
-		// 	.animation.define('N',  [28, 27], fps, -1);
+		fps = $CHARACTER_FPS / 2;
+		self.animation.define('wlk_NE', self.getWalkingAnimation('0'), fps, -1)
+			.animation.define('wlk_NW', self.getWalkingAnimation('0'), fps, -1)
+			.animation.define('wlk_W',  self.getWalkingAnimation('1'), fps, -1)
+			.animation.define('wlk_E',  self.getWalkingAnimation('1'), fps, -1)
+			.animation.define('wlk_SW', self.getWalkingAnimation('2'), fps, -1)
+			.animation.define('wlk_SE', self.getWalkingAnimation('2'), fps, -1)
+			.animation.define('wlk_S',  self.getWalkingAnimation('3'), fps, -1)
+			.animation.define('wlk_N',  self.getWalkingAnimation('7'), fps, -1);
 
 		// //Standing Animations
 		// this.animation.define('standNE', [29], fps, -1)
@@ -40,10 +41,19 @@ var CharacterLeftArm = IgeEntity.extend({
 		//Listen for the changeDirection event so we can change
 		//the heads animation
 		container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
+		container.on('onChangedAnimation', function (anim, dir) { self.changedAnimation(anim, dir); });
 		container.on('onRest', function() { self.rest(); });
 
 		//Finally mount to the container (body)
 		self.mount(container);
+	},
+
+	changedAnimation: function(animation, dir) {
+		if(animation == 'walk') {
+			animation = 'wlk';
+			//console.log(this._container.animation);
+			this.animation.select(animation + '_' + dir);
+		}
 	},
 
 	changedDirection: function(container, direction) {
@@ -102,10 +112,27 @@ var CharacterLeftArm = IgeEntity.extend({
 			.dimensionsFromCell();
 	},
 
+	getWalkingAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
+
+		for (var i = 0; i < ANIMATION_FRAMES['wlk_arm'].length; i++) {
+			start 		= 'h',
+			action		= 'wlk',
+			part 		= this._part,
+			style 		= '001',//this._container.data('style'),
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['wlk_arm'][i];
+
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
+		}
+
+		return frames;
+	},
+
 	rest: function() {
 
-		this.animation.setFrame('stand' + this._container._currentDirection, 0);
+		//this.animation.setFrame('stand' + this._container._currentDirection, 0);
 
-		//this.animation.stop();
+		this.animation.stop();
 	},
 });
