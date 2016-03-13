@@ -82,8 +82,10 @@ var PlayerComponent = IgeClass.extend({
 
 	_pointReached: function() {
 		var direction = this._entity.path.getDirection();
-		if(direction != '')
+		if(direction != '' && direction != this._entity._currentDirection) {
 			this._entity.changeDirection(direction);
+			this._entity.changeAnimation('walk');
+		}
 	},
 
 	_pathComplete: function() {
