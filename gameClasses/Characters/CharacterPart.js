@@ -6,6 +6,9 @@ var CharacterPart = IgeEntity.extend({
 
 		IgeEntity.prototype.init.call(this);
 
+		if(this._depthTemp === undefined)
+			this._depthTemp = 0;
+
 		//Create the entity
 		this.isometric(true)
 			.addComponent(AnimatorComponent)
@@ -21,14 +24,49 @@ var CharacterPart = IgeEntity.extend({
 		else
 			$fps = $CHARACTER_FPS;
 
-		this.animation.define('wlk_NE', this.getWalkingAnimation('0'), $fps, -1)
-			.animation.define('wlk_NW', this.getWalkingAnimation('0'), $fps, -1)
-			.animation.define('wlk_W',  this.getWalkingAnimation('1'), $fps, -1)
-			.animation.define('wlk_E',  this.getWalkingAnimation('1'), $fps, -1)
-			.animation.define('wlk_SW', this.getWalkingAnimation('2'), $fps, -1)
-			.animation.define('wlk_SE', this.getWalkingAnimation('2'), $fps, -1)
-			.animation.define('wlk_S',  this.getWalkingAnimation('3'), $fps, -1)
-			.animation.define('wlk_N',  this.getWalkingAnimation('7'), $fps, -1);
+		//Walking animations
+		if(typeof self.defineWalkingAnimations != 'function') {
+			this.animation.define('wlk_NE', this.getWalkingAnimation('0'), $fps, -1)
+				.animation.define('wlk_NW', this.getWalkingAnimation('0'), $fps, -1)
+				.animation.define('wlk_W',  this.getWalkingAnimation('1'), $fps, -1)
+				.animation.define('wlk_E',  this.getWalkingAnimation('1'), $fps, -1)
+				.animation.define('wlk_SW', this.getWalkingAnimation('2'), $fps, -1)
+				.animation.define('wlk_SE', this.getWalkingAnimation('2'), $fps, -1)
+				.animation.define('wlk_S',  this.getWalkingAnimation('3'), $fps, -1)
+				.animation.define('wlk_N',  this.getWalkingAnimation('7'), $fps, -1);
+		} else {
+			this.defineWalkingAnimations();
+		}
+
+		//Sitting animations
+		this.animation.define('sit_NE', this.getSittingAnimation('0'), $fps, -1)
+			.animation.define('sit_NW', this.getSittingAnimation('0'), $fps, -1)
+			.animation.define('sit_W',  this.getSittingAnimation('1'), $fps, -1)
+			.animation.define('sit_E',  this.getSittingAnimation('1'), $fps, -1)
+			.animation.define('sit_SW', this.getSittingAnimation('2'), $fps, -1)
+			.animation.define('sit_SE', this.getSittingAnimation('2'), $fps, -1)
+			.animation.define('sit_S',  this.getSittingAnimation('3'), $fps, -1)
+			.animation.define('sit_N',  this.getSittingAnimation('7'), $fps, -1);
+
+		//Carrying
+		this.animation.define('crr_NE', this.getCarryAnimation('0'), $fps, -1)
+			.animation.define('crr_NW', this.getCarryAnimation('0'), $fps, -1)
+			.animation.define('crr_W',  this.getCarryAnimation('1'), $fps, -1)
+			.animation.define('crr_E',  this.getCarryAnimation('1'), $fps, -1)
+			.animation.define('crr_SW', this.getCarryAnimation('2'), $fps, -1)
+			.animation.define('crr_SE', this.getCarryAnimation('2'), $fps, -1)
+			.animation.define('crr_S',  this.getCarryAnimation('3'), $fps, -1)
+			.animation.define('crr_N',  this.getCarryAnimation('7'), $fps, -1);
+
+		//Drinking
+		this.animation.define('drk_NE', this.getDrinkingAnimation('0'), $fps, -1)
+			.animation.define('drk_NW', this.getDrinkingAnimation('0'), $fps, -1)
+			.animation.define('drk_W',  this.getDrinkingAnimation('1'), $fps, -1)
+			.animation.define('drk_E',  this.getDrinkingAnimation('1'), $fps, -1)
+			.animation.define('drk_SW', this.getDrinkingAnimation('2'), $fps, -1)
+			.animation.define('drk_SE', this.getDrinkingAnimation('2'), $fps, -1)
+			.animation.define('drk_S',  this.getDrinkingAnimation('3'), $fps, -1)
+			.animation.define('drk_N',  this.getDrinkingAnimation('7'), $fps, -1);
 
 		//Listen for numerous events that fire off.
 		this._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
@@ -42,6 +80,9 @@ var CharacterPart = IgeEntity.extend({
 	changedAnimation: function(animation, dir) {
 		if(animation == 'walk') {
 			animation = 'wlk';
+			this.animation.select(animation + '_' + dir);
+		} else if(animation == 'sit') {
+			animation = 'sit';
 			this.animation.select(animation + '_' + dir);
 		}
 	},
@@ -150,6 +191,58 @@ var CharacterPart = IgeEntity.extend({
 			style 		= this._style,
 			direction 	= vDir,
 			subsection  = ANIMATION_FRAMES['wlk'][i];
+
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
+		}
+
+		return frames;
+	},
+
+
+	getSittingAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
+
+		for (var i = 0; i < ANIMATION_FRAMES['sit'].length; i++) {
+			start 		= 'h',
+			action		= 'sit',
+			part 		= this._part,
+			style 		= this._style,
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['sit'][i];
+
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
+		}
+
+		return frames;
+	},
+
+	getCarryAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
+
+		for (var i = 0; i < ANIMATION_FRAMES['sit'].length; i++) {
+			start 		= 'h',
+			action		= 'sit',
+			part 		= this._part,
+			style 		= this._style,
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['sit'][i];
+
+			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
+		}
+
+		return frames;
+	},
+
+	getDrinkingAnimation: function(vDir) {
+		var frames = [], start, action, part, style, direction, subsection;
+
+		for (var i = 0; i < ANIMATION_FRAMES['sit'].length; i++) {
+			start 		= 'h',
+			action		= 'sit',
+			part 		= this._part,
+			style 		= this._style,
+			direction 	= vDir,
+			subsection  = ANIMATION_FRAMES['sit'][i];
 
 			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
 		}

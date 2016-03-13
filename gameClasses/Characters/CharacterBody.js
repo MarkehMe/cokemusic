@@ -4,7 +4,7 @@ var CharacterBody = CharacterPart.extend({
 	init: function (container) {
 		var self = this;
 		self._part = 'bd';
-		self._depthTemp = 1;
+		self._depthTemp = 0;
 		self._style = container.data('style');
 		self._container = container;
 

@@ -28,6 +28,7 @@ var EMOTIONS = {
 
 var ANIMATION_FRAMES = {
 	'wlk' : [ 0, 1, 2, 3 ],
+	'sit' : [ 0 ],
 	'wlk_arm' : [ 1, 3 ],
 	'drink' : [ ]
 }

@@ -8,6 +8,20 @@ var CharacterLeftSleve = CharacterPart.extend({
 		self._style = container.data('shirt_ls');
 		self._customFPS = $CHARACTER_FPS / 2;
 		self._container = container;
+		self.defineWalkingAnimations = function() {
+			this.animation.define('wlk_NE', this.getWalkingAnimation('0'), $fps, -1)
+				.animation.define('wlk_NW', this.getWalkingAnimation('0'), $fps, -1)
+				.animation.define('wlk_E',  this.getWalkingAnimation('1'), $fps, -1)
+				.animation.define('wlk_SW', this.getWalkingAnimation('2'), $fps, -1)
+				.animation.define('wlk_SE', this.getWalkingAnimation('2'), $fps, -1)
+				.animation.define('wlk_S',  this.getWalkingAnimation('3'), $fps, -1)
+				.animation.define('wlk_N',  this.getWalkingAnimation('7'), $fps, -1);
+
+			//Have to flip the walking W direction
+			this._part = 'rs';
+			this.animation.define('wlk_W',  this.getWalkingAnimation('1'), $fps, -1)
+			this._part = 'ls';
+		};
 
 		CharacterPart.prototype.init.call(this);
 	},
@@ -23,7 +37,7 @@ var CharacterLeftSleve = CharacterPart.extend({
 			break;
 
 			case 'W' : 
-				this._scale.x = -1;
+				this._scale.x = -1; 	
 				this.setTexture(1);
 			break;
 

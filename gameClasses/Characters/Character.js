@@ -28,8 +28,16 @@ var Character = IgeEntity.extend({
 			.finder(self.pathFinder)
 			.tileMap(ige.room.tileMap())
 			.tileChecker(function (tileData, tileX, tileY, node, prevNodeX, prevNodeY, dynamic) {
-				// If the map tile data is set to 1, don't allow a path along it
-				if (tileData != null) return false;
+				// If the map tile data is set to 1 then there is something there.
+				if (tileData != null) {
+					//Check if it's a seat, otherwise don't allow movement
+					var occupying = ige.client.itemAt(tileX, tileY);
+					if(occupying.data('seat') == true) {
+						return true;
+					}
+
+					return false;
+				}
 				return true;
 			})
 			.lookAheadSteps(10)

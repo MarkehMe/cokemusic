@@ -22,6 +22,7 @@ var Client = IgeClass.extend({
 
 		//ige.gameTexture.people = new IgeSpriteSheet(rootPath + 'assets/character/people.png');
 		ige.gameTexture.people = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');
+		ige.gameTexture.people.hair = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');
 
 		//Furniture
 		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
@@ -58,7 +59,7 @@ var Client = IgeClass.extend({
 						.id('player')
 						.setStyle('001')
 						.setHeadStyle('001')
-						.setHairStyle('001')
+						.setHairStyle('008')
 						.setEyeStyle('001')
 						.setMouthStyle('001')
 						.setLeftSleveStyle('001')

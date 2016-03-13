@@ -17,6 +17,7 @@ var CharacterHair = IgeEntity.extend({
 			.anchor(0, container._container.data('anchorY'));
 
 		self.setTexture();
+		//self.setColor('red');
 
 		//Initilize the animations
 		// fps = 5.5;
@@ -83,7 +84,7 @@ var CharacterHair = IgeEntity.extend({
 			subsection  = subDir;
 
 		//Set the body texture
-		this.texture(ige.gameTexture.people)
+		this.texture(ige.gameTexture.people.hair)
 			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
 			.dimensionsFromCell();
 	},
@@ -93,7 +94,6 @@ var CharacterHair = IgeEntity.extend({
 	},
 
 	setColor: function(colorSelection) {
-		//'rgba(0, 0, 255, 0.5)'
 		this._texture.applyFilter(IgeFilters.colorOverlay, {color: colorSelection});
 	}
 });
