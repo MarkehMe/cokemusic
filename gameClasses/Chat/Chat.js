@@ -113,6 +113,10 @@ var Chat = {
                 ige.player.changeAnimation(args[1]);
                 console.log('Changed player animation to ' + args[1]);
             return true;
+
+            case '.carry':
+                ige.player.carryToggle();
+            return true;
         }
 
         return false;

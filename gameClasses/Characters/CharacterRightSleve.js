@@ -4,12 +4,34 @@ var CharacterRightSleve = CharacterPart.extend({
 	init: function (container) {
 		var self = this;
 		self._part = 'rs';
-		self._depthTemp = 4;
+		self._depthTemp = 5;
 		self._style = container.data('shirt_rs');
 		self._customFPS = $CHARACTER_FPS / 2;
 		self._container = container;
+		this._container.on('onCarryStop', function () { self.carryStop(); });
 
 		CharacterPart.prototype.init.call(this);
+	},
+
+	carryStop: function() {
+		this._action = undefined;
+		this._changedDirection(this._container, ige.player._currentDiretion);
+	},
+
+	changedAnimation: function(animation, dir) {
+		if(animation == 'carry') {
+			animation = 'crr';
+			this._action = 'crr';
+			this.animation.select(animation + '_' + dir);
+		} else if(animation == 'drink') {
+			animation = 'drk';
+			this._action = 'drk';
+			this.animation.select(animation + '_' + dir);
+		}
+
+		if(ige.player._carry != true) {
+			CharacterPart.prototype.changedAnimation.call(this, animation, dir);
+		}
 	},
 
 	changedDirection: function(container, direction) {

@@ -189,6 +189,32 @@ var Character = IgeEntity.extend({
 		this.emit('onRest', this._currentDirection);
 	},
 
+	sit: function() {
+
+	},
+
+	carryToggle: function() {
+		if(this._carry == true)
+			this.carryStop();
+		else
+			this.carry();
+	},
+
+	carry: function() {
+		this._carry = true;
+		this.emit('onCarry');
+		this.changeAnimation('carry');
+	},
+
+	carryStop: function() {
+		this._carry = false;
+		this.emit('onCarryStop');
+	},
+
+	drink: function() {
+
+	},
+
 	/**
 	 * Tweens the character to the specified world co-ordinates.
 	 * @param x

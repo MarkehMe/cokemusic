@@ -84,10 +84,19 @@ var CharacterPart = IgeEntity.extend({
 		} else if(animation == 'sit') {
 			animation = 'sit';
 			this.animation.select(animation + '_' + dir);
+		} else if(animation == 'carry') {
+
+		} else if(animation == 'drink') {
+
+		} else if(animation == 'stand') {
+
 		}
 	},
 
 	changedDirection: function(container, direction) {
+		if(direction === undefined)
+			direction = ige.player._currentDirection;
+		
 		this._scale.x = 1;
 
 		switch(direction) {
@@ -125,6 +134,9 @@ var CharacterPart = IgeEntity.extend({
 			action = 'std';
 
 		dir = this.directionToIntRelative(dir);
+
+		if(this._action !== undefined)
+			action = this._action;
 
 		var	start 		= 'h',
 			action		= action,
@@ -219,13 +231,13 @@ var CharacterPart = IgeEntity.extend({
 	getCarryAnimation: function(vDir) {
 		var frames = [], start, action, part, style, direction, subsection;
 
-		for (var i = 0; i < ANIMATION_FRAMES['sit'].length; i++) {
+		for (var i = 0; i < ANIMATION_FRAMES['carry'].length; i++) {
 			start 		= 'h',
-			action		= 'sit',
+			action		= 'crr',
 			part 		= this._part,
 			style 		= this._style,
 			direction 	= vDir,
-			subsection  = ANIMATION_FRAMES['sit'][i];
+			subsection  = ANIMATION_FRAMES['carry'][i];
 
 			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
 		}
@@ -236,13 +248,13 @@ var CharacterPart = IgeEntity.extend({
 	getDrinkingAnimation: function(vDir) {
 		var frames = [], start, action, part, style, direction, subsection;
 
-		for (var i = 0; i < ANIMATION_FRAMES['sit'].length; i++) {
+		for (var i = 0; i < ANIMATION_FRAMES['drink'].length; i++) {
 			start 		= 'h',
-			action		= 'sit',
+			action		= 'drk',
 			part 		= this._part,
 			style 		= this._style,
 			direction 	= vDir,
-			subsection  = ANIMATION_FRAMES['sit'][i];
+			subsection  = ANIMATION_FRAMES['drink'][i];
 
 			frames.push(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png');
 		}
