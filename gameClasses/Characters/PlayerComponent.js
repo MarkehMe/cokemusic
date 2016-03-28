@@ -94,10 +94,7 @@ var PlayerComponent = IgeClass.extend({
 			var occupying = ige.client.itemAt(this.targetPos.x, this.targetPos.y);
 
 			if(occupying.data('seat') == true) {
-				var direction = occupying.data('currentDirection');
-				this._entity.layer(1);
-				this._entity.changeDirection(direction);
-				this._entity.changeAnimation('sit');
+				this._entity.sit(occupying);
 			}
 		} else {
 			this._entity.rest();

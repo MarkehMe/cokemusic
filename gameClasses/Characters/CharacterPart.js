@@ -39,14 +39,18 @@ var CharacterPart = IgeEntity.extend({
 		}
 
 		//Sitting animations
-		this.animation.define('sit_NE', this.getSittingAnimation('0'), $fps, -1)
-			.animation.define('sit_NW', this.getSittingAnimation('0'), $fps, -1)
-			.animation.define('sit_W',  this.getSittingAnimation('1'), $fps, -1)
-			.animation.define('sit_E',  this.getSittingAnimation('1'), $fps, -1)
-			.animation.define('sit_SW', this.getSittingAnimation('2'), $fps, -1)
-			.animation.define('sit_SE', this.getSittingAnimation('2'), $fps, -1)
-			.animation.define('sit_S',  this.getSittingAnimation('3'), $fps, -1)
-			.animation.define('sit_N',  this.getSittingAnimation('7'), $fps, -1);
+		if(typeof self.defineSittingAnimations != 'function') {
+			this.animation.define('sit_NE', this.getSittingAnimation('0'), $fps, -1)
+				.animation.define('sit_NW', this.getSittingAnimation('0'), $fps, -1)
+				.animation.define('sit_W',  this.getSittingAnimation('1'), $fps, -1)
+				.animation.define('sit_E',  this.getSittingAnimation('1'), $fps, -1)
+				.animation.define('sit_SW', this.getSittingAnimation('2'), $fps, -1)
+				.animation.define('sit_SE', this.getSittingAnimation('2'), $fps, -1)
+				.animation.define('sit_S',  this.getSittingAnimation('3'), $fps, -1)
+				.animation.define('sit_N',  this.getSittingAnimation('7'), $fps, -1);
+		} else {
+			this.defineSittingAnimations();
+		}
 
 		//Carrying
 		this.animation.define('crr_NE', this.getCarryAnimation('0'), $fps, -1)
@@ -59,14 +63,14 @@ var CharacterPart = IgeEntity.extend({
 			.animation.define('crr_N',  this.getCarryAnimation('7'), $fps, -1);
 
 		//Drinking
-		this.animation.define('drk_NE', this.getDrinkingAnimation('0'), $fps, -1)
-			.animation.define('drk_NW', this.getDrinkingAnimation('0'), $fps, -1)
-			.animation.define('drk_W',  this.getDrinkingAnimation('1'), $fps, -1)
-			.animation.define('drk_E',  this.getDrinkingAnimation('1'), $fps, -1)
-			.animation.define('drk_SW', this.getDrinkingAnimation('2'), $fps, -1)
-			.animation.define('drk_SE', this.getDrinkingAnimation('2'), $fps, -1)
-			.animation.define('drk_S',  this.getDrinkingAnimation('3'), $fps, -1)
-			.animation.define('drk_N',  this.getDrinkingAnimation('7'), $fps, -1);
+		this.animation.define('drk_NE', this.getDrinkingAnimation('0'), $CHARACTER_DRINK_FPS, -1)
+			.animation.define('drk_NW', this.getDrinkingAnimation('0'), $CHARACTER_DRINK_FPS, -1)
+			.animation.define('drk_W',  this.getDrinkingAnimation('1'), $CHARACTER_DRINK_FPS, -1)
+			.animation.define('drk_E',  this.getDrinkingAnimation('1'), $CHARACTER_DRINK_FPS, -1)
+			.animation.define('drk_SW', this.getDrinkingAnimation('2'), $CHARACTER_DRINK_FPS, -1)
+			.animation.define('drk_SE', this.getDrinkingAnimation('2'), $CHARACTER_DRINK_FPS, -1)
+			.animation.define('drk_S',  this.getDrinkingAnimation('3'), $CHARACTER_DRINK_FPS, -1)
+			.animation.define('drk_N',  this.getDrinkingAnimation('7'), $CHARACTER_DRINK_FPS, -1);
 
 		//Listen for numerous events that fire off.
 		this._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
@@ -82,6 +86,14 @@ var CharacterPart = IgeEntity.extend({
 			animation = 'wlk';
 			this.animation.select(animation + '_' + dir);
 		} else if(animation == 'sit') {
+
+			//Make sure this isnt an arm
+			if(this._part == 'ls' || this._part == 'rs' || this._part == 'lh' || this._part == 'rh'){
+				this.animation.stop();
+				this.setTexture(ige.player._currentDirection);
+				return;
+			}
+
 			animation = 'sit';
 			this.animation.select(animation + '_' + dir);
 		} else if(animation == 'carry') {
@@ -89,7 +101,7 @@ var CharacterPart = IgeEntity.extend({
 		} else if(animation == 'drink') {
 
 		} else if(animation == 'stand') {
-
+			//this.stand(dir);
 		}
 	},
 
@@ -137,6 +149,29 @@ var CharacterPart = IgeEntity.extend({
 
 		if(this._action !== undefined)
 			action = this._action;
+
+		var	start 		= 'h',
+			action		= action,
+			part 		= this._part,
+			style 		= this._style,
+			direction 	= dir,
+			subsection  = subDir;
+
+		//Set the texture
+		this.texture(ige.gameTexture.people)
+			.cellById(start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png')
+			.dimensionsFromCell();
+	},
+
+	stand: function(dir, subDir) {
+		if(dir === undefined)
+			dir = '3';
+		if(subDir === undefined)
+			subDir = 0;
+		
+		action = 'std';
+
+		dir = this.directionToIntRelative(dir);
 
 		var	start 		= 'h',
 			action		= action,
@@ -247,6 +282,9 @@ var CharacterPart = IgeEntity.extend({
 
 	getDrinkingAnimation: function(vDir) {
 		var frames = [], start, action, part, style, direction, subsection;
+
+		//Get the carry animations because carry + drink go together.
+		frames = frames.concat(this.getCarryAnimation(vDir));
 
 		for (var i = 0; i < ANIMATION_FRAMES['drink'].length; i++) {
 			start 		= 'h',

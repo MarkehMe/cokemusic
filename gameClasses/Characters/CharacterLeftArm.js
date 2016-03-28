@@ -22,15 +22,6 @@ var CharacterLeftArm = CharacterPart.extend({
 			this.animation.define('wlk_W',  this.getWalkingAnimation('1'), $fps, -1)
 			this._part = 'lh';
 		};
-		self.defineCustomAnimations = function() {
-			// this.animation.define('crr_NE', this.getWalkingAnimation('0'), $fps, -1)
-			// 	.animation.define('crr_NW', this.getWalkingAnimation('0'), $fps, -1)
-			// 	.animation.define('crr_E',  this.getWalkingAnimation('1'), $fps, -1)
-			// 	.animation.define('crr_SW', this.getWalkingAnimation('2'), $fps, -1)
-			// 	.animation.define('crr_SE', this.getWalkingAnimation('2'), $fps, -1)
-			// 	.animation.define('crr_S',  this.getWalkingAnimation('3'), $fps, -1)
-			// 	.animation.define('crr_N',  this.getWalkingAnimation('7'), $fps, -1);
-		};
 
 		CharacterPart.prototype.init.call(this);
 	},

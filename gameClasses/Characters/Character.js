@@ -136,6 +136,9 @@ var Character = IgeEntity.extend({
 		//Spawn shoes
 		self.shoes = new CharacterShoes(self);
 
+		//Spawn carry placeholder
+		self.carry = new CharacterCarry(self);
+
 		//Finally mount the player
 		self.addComponent(PlayerComponent)
 			.mount(ige.room.tileMap());
@@ -189,30 +192,57 @@ var Character = IgeEntity.extend({
 		this.emit('onRest', this._currentDirection);
 	},
 
-	sit: function() {
-
+	sit: function(sitOn) {
+		var direction = sitOn.data('currentDirection');
+		this.layer(1);
+		this.changeDirection(direction);
+		this.changeAnimation('sit');
+		this.emit('onSit');
 	},
 
 	carryToggle: function() {
-		if(this._carry == true)
+		if(this._carry == true) {
 			this.carryStop();
-		else
-			this.carry();
+		}
+		else {
+			this.carryStart();
+		}
 	},
 
-	carry: function() {
+	carryStart: function() {
 		this._carry = true;
-		this.emit('onCarry');
+		this.emit('onCarryStart');
 		this.changeAnimation('carry');
 	},
 
 	carryStop: function() {
 		this._carry = false;
 		this.emit('onCarryStop');
+		this.changeAnimation('stand');
 	},
 
-	drink: function() {
+	drinkToggle: function() {
+		if(this._carry == true) {
+			this.drinkStop();
+		}
+		else {
+			this.drinkStart();
+		}
+	},
 
+	drinkStart: function() {
+		this._carry = true;
+		this._drink = true;
+		this.emit('onCarryStart');
+		this.emit('onDrinkStart');
+		this.changeAnimation('drink');
+	},
+
+	drinkStop: function() {
+		this._carry = false;
+		this._drink = false;
+		this.emit('onCarryStop');
+		this.emit('onDrinkStop');
 	},
 
 	/**

@@ -117,6 +117,10 @@ var Chat = {
             case '.carry':
                 ige.player.carryToggle();
             return true;
+
+            case '.drink':
+                ige.player.drinkToggle();
+            return true;
         }
 
         return false;

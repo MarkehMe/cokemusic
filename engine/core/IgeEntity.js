@@ -3158,7 +3158,7 @@ var IgeEntity = IgeObject.extend({
 			this._localMatrix.multiply(this._localMatrix._newTranslate(isoPoint.x, isoPoint.y));
 		}
 		
-		this._localMatrix.rotateBy(this._rotate.z);
+		this._localMatrix.rotateBy(this._rotate.x, this._rotate.y, this._rotate.z);
 		this._localMatrix.scaleBy(this._scale.x, this._scale.y);
 		
 		// Adjust local matrix for origin values if not at center

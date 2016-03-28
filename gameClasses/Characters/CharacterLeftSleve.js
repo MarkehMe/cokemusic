@@ -22,7 +22,7 @@ var CharacterLeftSleve = CharacterPart.extend({
 			this.animation.define('wlk_W',  this.getWalkingAnimation('1'), $fps, -1)
 			this._part = 'ls';
 		};
-
+		
 		CharacterPart.prototype.init.call(this);
 	},
 

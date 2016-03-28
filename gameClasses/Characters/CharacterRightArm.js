@@ -15,7 +15,7 @@ var CharacterRightArm = CharacterPart.extend({
 
 	carryStop: function() {
 		this._action = undefined;
-		this._changedDirection(this._container, ige.player._currentDiretion);
+		this.changedDirection(this._container, ige.player._currentDiretion);
 	},
 
 	changedAnimation: function(animation, dir) {

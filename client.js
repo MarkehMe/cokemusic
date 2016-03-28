@@ -1,3 +1,12 @@
+var c = Math.cos(-90),
+	s = Math.sin(-90);
+
+var trans = [
+	c,  -s,  0,
+	s + .225,  c, 0, 
+	0,  0,  1
+];
+
 var Client = IgeClass.extend({
 	classId: 'Client',
 	init: function () {

@@ -5,7 +5,7 @@ var CharacterHead = CharacterPart.extend({
 	init: function (container) {
 		var self = this;
 		self._part = 'hd';
-		self._depthTemp = 4;
+		self._depthTemp = 3;
 		self._style = container.data('head_style');
 		self._container = container;
 
