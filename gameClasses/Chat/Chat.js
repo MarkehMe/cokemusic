@@ -86,7 +86,7 @@ var Chat = {
         switch(args[0]) {
             case '.teditor': 
                 ige.editor.toggle();
-                return true;
+            return true;
 
             case '.hair': 
                 if(args[1] === undefined || args[1] == '')
@@ -95,7 +95,16 @@ var Chat = {
                 ige.player.setHairStyle(args[1]);
                 ige.player.changeDirection();
                 console.log('Set hair style to ' + args[1]);
-                return true;
+            return true;
+
+            case '.haircolor':
+                if(args[1] === undefined || args[1] == '')
+                    return true;
+
+                ige.player.head.hair.setColor(args[1]);
+
+                console.log('Set hair color to ' + args[1]);
+            return true;
 
             case '.a':
                 if(args[1] === undefined || args[1] == '')
@@ -103,7 +112,15 @@ var Chat = {
 
                 ige.player.changeAnimation(args[1]);
                 console.log('Changed player animation to ' + args[1]);
-                return true;
+            return true;
+
+            case '.carry':
+                ige.player.carryToggle();
+            return true;
+
+            case '.drink':
+                ige.player.drinkToggle();
+            return true;
         }
 
         return false;

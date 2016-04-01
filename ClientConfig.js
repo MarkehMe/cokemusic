@@ -8,6 +8,8 @@ var igeClientConfig = {
 		//Floor, Tiles, Map, etc
 		'./gameClasses/Map/FloorTextureMap.js',
 		'./gameClasses/Map/GameMap.js',
+		'./gameClasses/Map/GameWallMatrix.js',
+		'./gameClasses/Map/GameWall.js',
 
 		//Character movements, clothing, etc
 		'./assets/character/characters.js',
@@ -25,6 +27,7 @@ var igeClientConfig = {
 		'./gameClasses/Characters/CharacterRightSleve.js',
 		'./gameClasses/Characters/CharacterPants.js',
 		'./gameClasses/Characters/CharacterShoes.js',
+		'./gameClasses/Characters/CharacterCarry.js',
 		'./gameClasses/Characters/Character.js',
 		'./gameClasses/Characters/PlayerComponent.js',
 

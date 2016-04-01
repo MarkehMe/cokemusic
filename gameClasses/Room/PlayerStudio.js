@@ -143,6 +143,37 @@ var PlayerStudio = Room.extend({
 			.highlightOccupied($HIGHLIGHT_OCCUPIED)
 			.mount(self._objScene);
 
+		// Create an isometric left wall
+		self._leftWall = new GameWall()
+			.id('leftWall')
+			.drawBounds(false)
+			.drawBoundsData(false)
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+			.isometricMounts(true)
+			.tileWidth($TILESIZE)
+			.tileHeight($TILESIZE_WALL)
+			.gridSize(3, self.object['height'])
+			.drawGrid(false)
+			.drawMouse(true)
+			.gridColor('transparent')
+			.hoverStrokeColor($HOVER_TILE_COLOR)
+			.hoverColor($HOVER_TILE_BG_COLOR)
+			.highlightOccupied($HIGHLIGHT_OCCUPIED)
+			.mount(self._objScene);
+
+		self._texWallMap = new IgeTextureMap()
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+			.tileWidth($TILESIZE)
+			.tileHeight($TILESIZE_WALL)
+			.gridSize(3, self.object['height'])
+			.gridColor('#470930')
+			.drawGrid($DRAW_GRIDLINES)
+			.drawMouse(false)
+			.autoSection(self.object['width'])
+			.drawSectionBounds(false)
+			.isometricMounts(true)
+			.mount(self._leftWall);
+
 		// Create the texture map
 		self._texMap = new IgeTextureMap()
 			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)

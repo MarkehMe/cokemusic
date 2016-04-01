@@ -28,8 +28,16 @@ var Character = IgeEntity.extend({
 			.finder(self.pathFinder)
 			.tileMap(ige.room.tileMap())
 			.tileChecker(function (tileData, tileX, tileY, node, prevNodeX, prevNodeY, dynamic) {
-				// If the map tile data is set to 1, don't allow a path along it
-				if (tileData != null) return false;
+				// If the map tile data is set to 1 then there is something there.
+				if (tileData != null) {
+					//Check if it's a seat, otherwise don't allow movement
+					var occupying = ige.client.itemAt(tileX, tileY);
+					if(occupying.data('seat') == true) {
+						return true;
+					}
+
+					return false;
+				}
 				return true;
 			})
 			.lookAheadSteps(10)
@@ -128,6 +136,9 @@ var Character = IgeEntity.extend({
 		//Spawn shoes
 		self.shoes = new CharacterShoes(self);
 
+		//Spawn carry placeholder
+		self.carry = new CharacterCarry(self);
+
 		//Finally mount the player
 		self.addComponent(PlayerComponent)
 			.mount(ige.room.tileMap());
@@ -179,6 +190,59 @@ var Character = IgeEntity.extend({
 	rest: function() {
 		//Let all the children know
 		this.emit('onRest', this._currentDirection);
+	},
+
+	sit: function(sitOn) {
+		var direction = sitOn.data('currentDirection');
+		this.layer(1);
+		this.changeDirection(direction);
+		this.changeAnimation('sit');
+		this.emit('onSit');
+	},
+
+	carryToggle: function() {
+		if(this._carry == true) {
+			this.carryStop();
+		}
+		else {
+			this.carryStart();
+		}
+	},
+
+	carryStart: function() {
+		this._carry = true;
+		this.emit('onCarryStart');
+		this.changeAnimation('carry');
+	},
+
+	carryStop: function() {
+		this._carry = false;
+		this.emit('onCarryStop');
+		this.changeAnimation('stand');
+	},
+
+	drinkToggle: function() {
+		if(this._carry == true) {
+			this.drinkStop();
+		}
+		else {
+			this.drinkStart();
+		}
+	},
+
+	drinkStart: function() {
+		this._carry = true;
+		this._drink = true;
+		this.emit('onCarryStart');
+		this.emit('onDrinkStart');
+		this.changeAnimation('drink');
+	},
+
+	drinkStop: function() {
+		this._carry = false;
+		this._drink = false;
+		this.emit('onCarryStop');
+		this.emit('onDrinkStop');
 	},
 
 	/**

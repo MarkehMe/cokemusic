@@ -274,8 +274,6 @@ var GameItem = IgeEntity.extend({
 		//Update the current direction
 		self.data('currentDirection', newDirection);
 
-		console.log(newDirection);
-
 		//Set the new sprite cell, anchor, and update texture given
 		//the new direction
 		self.cell(direction[0])
@@ -290,6 +288,11 @@ var GameItem = IgeEntity.extend({
 			ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
 
 		self.moveTo();
+
+		//TODO: if this item is a chair / interactive item we need to 
+		//let fire off some events for the player to update animation
+		//i.e. if a player is sitting and u rotate the sofa the character
+		//direction needs to change
 	},
 
 	/**
