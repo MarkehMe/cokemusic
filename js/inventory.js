@@ -21,6 +21,17 @@ function init_inventory() {
     	inventory_panel.css( 'cursor', 'default' );
         dragging = false;
     });
+
+    //Inventory close
+    $('#backpack_close').on("mousedown", function(e) {
+    	dragging = false;
+
+		inventory.animate({
+			top: "999px",
+		});
+		$('#backpack').removeClass('active');
+		INVENTORY_OPEN = false;
+    });
 }
 
 function on_inventory_click() {
@@ -41,4 +52,8 @@ function on_inventory_click() {
 		backpack.removeClass('active');
 		INVENTORY_OPEN = false;
 	}
+}
+
+function on_inventory_close_click() {
+
 }

@@ -2,6 +2,7 @@ var UI_ACTIVE = false;
 
 $(document).ready(function() {
 	init_bar_ui();
+	init_navigation();
 	init_inventory();
 	init_toggles();
 	init_popups();
@@ -9,9 +10,7 @@ $(document).ready(function() {
 
 function init_bar_ui() {
 	$('#navigation').click(function(){
-		//on_navigation_click();
-		toggle_popup('#navigation-ui');
-		$(this).toggleClass('active');
+		on_navigation_click();
 	});
 
 	$('#message').click(function(){
@@ -35,8 +34,8 @@ function init_bar_ui() {
 	});
 
 	$('#help').click(function(){
-		toggle_popup('#avatar-editor');
-		$(this).toggleClass('active');
+		// toggle_popup('#avatar-editor');
+		// $(this).toggleClass('active');
 	});	
 }
 

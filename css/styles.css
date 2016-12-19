@@ -53,6 +53,12 @@ html, body {
 .popup {
   display: none; }
 
+.donateform {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 7%; }
+
 .button {
   color: #fae9da;
   font-size: 10px;
