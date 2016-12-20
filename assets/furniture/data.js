@@ -596,4 +596,22 @@ var FURNITURE = {
 			'SW': [33, 0, 0, 1, 1]
 		}
 	},
+
+	//TV
+	'pinball': {
+		'info': {
+			'icon' : 'pinball_small.png',
+			'title' : 'Pinball Machine',
+			'description' : "Super, Ultra, Mega, Rare. Scam me for it.",
+			'height' : '53',
+			'stackable' : false,
+			'counter' : false
+		},
+		'offsets': {
+			'NW': [124, 0, 0, 2, 1],
+			'NE': [114, 0, 0, 1, 2],
+			'SE': [114, 0, -3, 2, 1],
+			'SW': [124, 0, -3, 1, 2]
+		}
+	},
 }
