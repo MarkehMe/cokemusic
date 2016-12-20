@@ -62,8 +62,8 @@
 						@include no-select();
 
 						img {
-							width: $inventory-icon-size;
-							height: auto;
+							max-width: $inventory-icon-size;
+    						max-height: $inventory-icon-size;
 							padding: $inventory-icon-padding;
 							@include no-select();
 
