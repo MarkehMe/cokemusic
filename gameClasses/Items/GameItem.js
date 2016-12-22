@@ -48,6 +48,7 @@ var GameItem = IgeEntity.extend({
 
 		// We store a variable to know if we're over an item or not
 		ige.overItem = false;
+		self._beingUsed = false;
 
 		//Mouse Over
 		self._mouseOver = function(x, y) {
@@ -70,8 +71,6 @@ var GameItem = IgeEntity.extend({
 		//Mouse Down
 		self._mouseDown = function(mouseEvent) {
 			if (ige.movingItem) return;
-
-			console.log(ige.selected);
 			
 			if (new Date().getTime() - self.lastClick < 500) {
 				// double click woah
@@ -185,8 +184,17 @@ var GameItem = IgeEntity.extend({
 				this.translateBy(0,0,zPlacement);
 			}
 
-			if($HIGHLIGHT_SELECTED)
+			if($HIGHLIGHT_SELECTED) {
 				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
+			}
+
+			//Check if this is a seat
+			if(this.isSeat()) {
+				if(ige.player.isAtTile(this.data('tileX'), this.data('tileY'))) {
+					ige.player.sit(this);
+					this.beingUsed(true, ige.player);
+				}
+			}
 		}
 
 		return this;
@@ -368,7 +376,24 @@ var GameItem = IgeEntity.extend({
 
 	isStackable: function() {
 		return this.data('stackable');
-	}
+	},
+
+	isSeat: function() {
+		return this.data('seat');
+	},
+
+	beingUsed: function(value, caller) {
+		if(typeof value === 'undefined') {
+			return this._beingUsed;
+		}
+
+		this._beingUsed = value;
+		this._beingUsedBy = caller;
+	},
+
+	beingUsedBy: function() {
+		return this._beingUsedBy;
+	},
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = ClientItem; }

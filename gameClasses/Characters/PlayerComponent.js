@@ -6,6 +6,7 @@ var PlayerComponent = IgeClass.extend({
 	classId: 'PlayerComponent',
 	componentId: 'player',
 	targetPos: { x: null, y: null },
+	currentPos: { x: null, y: null },
 	init: function (entity, options) {
 		var self = this;
 
@@ -106,14 +107,18 @@ var PlayerComponent = IgeClass.extend({
 
 		//Check if it's a seat
 		if (ige.room.tileMap().isTileOccupied (this.targetPos.x, this.targetPos.y)) {
-			var occupying = ige.client.itemAt(this.targetPos.x, this.targetPos.y);
+			var occupying = ige.client.itemAt(this.targetPos.x, this.targetPos.y, true);
 
 			if(occupying.data('seat') == true) {
+				occupying.beingUsed(true, this._entity);
 				this._entity.sit(occupying);
 			}
 		} else {
 			this._entity.rest();
 		}
+
+		//Set current cordinates
+		this.currentPos = { x: this.targetPos.x, y: this.targetPos.y };
 	},
 
 	_pathStarted: function() {

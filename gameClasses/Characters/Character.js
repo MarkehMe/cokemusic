@@ -8,6 +8,9 @@ var Character = IgeEntity.extend({
 
 		self.data('anchorY', -41);
 		this._currentDirection = 'S';
+		this._sit = false;
+		this._carry = false;
+		this._drink = false;
 
 		// Create a character entity as a child of this container
 		self.isometric(true)
@@ -210,6 +213,9 @@ var Character = IgeEntity.extend({
 
 	sit: function(sitOn) {
 		var direction = sitOn.data('currentDirection');
+		this._sit = true;
+		this._interactingWith = sitOn;
+
 		this.layer(1);
 		this.changeDirection(direction);
 		this.changeAnimation('sit');
@@ -316,6 +322,14 @@ var Character = IgeEntity.extend({
 			case 'N': return '7';
 			default: return dir;
 		}
+	},
+
+	isAtTile: function(x, y, width, height) {
+		if(this.player.currentPos.x == x && this.player.currentPos.y == y) {
+			return true;
+		}
+
+		return false;
 	},
 
 	// Define a function that will be called when the

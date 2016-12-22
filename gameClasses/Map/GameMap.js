@@ -118,7 +118,14 @@ var GameMap = IgeTileMap2d.extend({
 	itemMove: function() {
 		//Un-occupy the tile
 		ige.selected.unplace();
-		
+
+		//Check if the item is being used
+		if(ige.selected.beingUsed() == true) {
+			var person = ige.selected.beingUsedBy();
+			person.rest();
+			ige.selected.beingUsed(false);
+		}
+
 		this.clearStrokes();
 		ige.movingItem = true;
 	},
