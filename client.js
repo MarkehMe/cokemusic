@@ -26,7 +26,10 @@ var Client = IgeClass.extend({
 		ige.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
 		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
 
+		//TODO: need to have it auto load all the studio images automaticly from the datafile
+		ige.gameTexture.studio_model_b = new IgeTexture(rootPath + 'assets/rooms/studio_model_b.png');
 		ige.gameTexture.studio_model_c = new IgeTexture(rootPath + 'assets/rooms/studio_model_c_1.png');
+		
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
 
 		//ige.gameTexture.people = new IgeSpriteSheet(rootPath + 'assets/character/people.png');
@@ -56,7 +59,7 @@ var Client = IgeClass.extend({
 						.ignoreCamera(true);
 
 					var playerStudio = new PlayerStudio()
-						.type('studio_model_c')
+						.type('studio_model_b')
 						.owner('dev')
 						.render();
 

@@ -144,35 +144,35 @@ var PlayerStudio = Room.extend({
 			.mount(self._objScene);
 
 		// Create an isometric left wall
-		self._leftWall = new GameWall()
-			.id('leftWall')
-			.drawBounds(false)
-			.drawBoundsData(false)
-			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
-			.isometricMounts(true)
-			.tileWidth($TILESIZE)
-			.tileHeight($TILESIZE_WALL)
-			.gridSize(3, self.object['height'])
-			.drawGrid(false)
-			.drawMouse(true)
-			.gridColor('transparent')
-			.hoverStrokeColor($HOVER_TILE_COLOR)
-			.hoverColor($HOVER_TILE_BG_COLOR)
-			.highlightOccupied($HIGHLIGHT_OCCUPIED)
-			.mount(self._objScene);
+		// self._leftWall = new GameWall()
+		// 	.id('leftWall')
+		// 	.drawBounds(false)
+		// 	.drawBoundsData(false)
+		// 	.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+		// 	.isometricMounts(true)
+		// 	.tileWidth($TILESIZE)
+		// 	.tileHeight($TILESIZE_WALL)
+		// 	.gridSize(3, self.object['height'])
+		// 	.drawGrid(false)
+		// 	.drawMouse(true)
+		// 	.gridColor('transparent')
+		// 	.hoverStrokeColor($HOVER_TILE_COLOR)
+		// 	.hoverColor($HOVER_TILE_BG_COLOR)
+		// 	.highlightOccupied($HIGHLIGHT_OCCUPIED)
+		// 	.mount(self._objScene);
 
-		self._texWallMap = new IgeTextureMap()
-			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
-			.tileWidth($TILESIZE)
-			.tileHeight($TILESIZE_WALL)
-			.gridSize(3, self.object['height'])
-			.gridColor('#470930')
-			.drawGrid($DRAW_GRIDLINES)
-			.drawMouse(false)
-			.autoSection(self.object['width'])
-			.drawSectionBounds(false)
-			.isometricMounts(true)
-			.mount(self._leftWall);
+		// self._texWallMap = new IgeTextureMap()
+		// 	.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+		// 	.tileWidth($TILESIZE)
+		// 	.tileHeight($TILESIZE_WALL)
+		// 	.gridSize(3, self.object['height'])
+		// 	.gridColor('#470930')
+		// 	.drawGrid($DRAW_GRIDLINES)
+		// 	.drawMouse(false)
+		// 	.autoSection(self.object['width'])
+		// 	.drawSectionBounds(false)
+		// 	.isometricMounts(true)
+		// 	.mount(self._leftWall);
 
 		// Create the texture map
 		self._texMap = new IgeTextureMap()
@@ -189,25 +189,35 @@ var PlayerStudio = Room.extend({
 			.mount(self._objScene);
 
 		//Create the background map
-		self._leftWall = new IgeTextureMap()
+		self._backgroundImage = new IgeTextureMap()
+			.id('background')
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
 			.drawMouse(false)
-			//.backgroundPattern(ige.gameTexture.leftWall, 'repeat-x', false, false)
-			.texture(ige.gameTexture.studio_model_c)
+			.texture(ige.gameTexture[self._type])
+			.anchor(self.object['x_anchor'], self.object['y_anchor'])
 			.dimensionsFromTexture()
-			.anchor(0, 64)
 			.mount(self._gameScene);
 
 		// Collision map
 		self._colmap = new IgeMap2d();
 
 		// Occupy all the border tiles
-		for (var x = 0; x < self.object['width'] + 1; x++) {
-			for (var y = 0; y < self.object['height'] + 1; y++) {
-				if(x == 0) {
-					self._colmap.tileData(x, y, true);
-				}
+		// for (var x = 0; x < self.object['width'] + 1; x++) {
+		// 	for (var y = 0; y < self.object['height'] + 1; y++) {
+		// 		if(x == 0) {
+		// 			var invisibleObj = new InvisibleBlock();
+		// 			self._tilemap.occupyTile(x, y, 1, 1, invisibleObj);
+		// 		}
+		// 	}
+		// }
+
+		// Occupy all blocked titles as needed
+		var blockedTiles = self.object['blocked_tiles'];
+		if(typeof blockedTiles != 'undefined') {
+			for (var i = blockedTiles.length - 1; i >= 0; i--) {
+				var invisibleObj = new InvisibleBlock();
+				self._tilemap.occupyTile(blockedTiles[i]['x'], blockedTiles[i]['y'], 1, 1, invisibleObj);
 			}
 		}
 
@@ -215,27 +225,43 @@ var PlayerStudio = Room.extend({
 		var texIndex = self._texMap.addTexture(ige.gameTexture.carpetTest);
 		for (var x = 0; x < self.object['width']; x++) {
 			for (var y = 0; y < self.object['height']; y++) {
-				self._texMap.paintTile(x, y, texIndex, 1);
+
+				//Make sure the tile isnt blocked
+				if(typeof blockedTiles != 'undefined') {
+					var isBlocked = false;
+					for (var i = 0; i < blockedTiles.length; i++) {
+						if(x === blockedTiles[i]['x'] && y == blockedTiles[i]['y']) {
+							isBlocked = true;
+						}
+					}
+
+					if(isBlocked == false) {
+						self._texMap.paintTile(x, y, texIndex, 1);
+					}
+				} else {
+					//console.log('painting x: ' + x + ', y: ' + y);
+					self._texMap.paintTile(x, y, texIndex, 1);
+				}
 			}
 		}
 
 
-		var leftWallX = (self._tilemap.wallXOffset() * -1),
-			rightWallX = self._tilemap.wallXOffset(),
-			leftWallY = (self._tilemap.wallYOffset());
+		// var leftWallX = (self._tilemap.wallXOffset() * -1),
+		// 	rightWallX = self._tilemap.wallXOffset(),
+		// 	leftWallY = (self._tilemap.wallYOffset());
 
 		//Generate Left Walls
-		for (var width = 0; width < self.object['width']; width++) {
-			var x = leftWallX + width * $TILESIZE,
-				y = leftWallY - width * ($TILESIZE / 2);
+		// for (var width = 0; width < self.object['width']; width++) {
+		// 	var x = leftWallX + width * $TILESIZE,
+		// 		y = leftWallY - width * ($TILESIZE / 2);
 
-			new IgeEntity()
-				.isometric(true)
-				.texture(ige.gameTexture.leftWall)
-				.dimensionsFromTexture()
-				.anchor(x, y)
-				.mount(self._objScene);
-		}
+		// 	new IgeEntity()
+		// 		.isometric(true)
+		// 		.texture(ige.gameTexture.leftWall)
+		// 		.dimensionsFromTexture()
+		// 		.anchor(x, y)
+		// 		.mount(self._objScene);
+		// }
 
 		//Generate Right Walls
 		// for (var height = 0; height < self.object['height']; height++) {
@@ -250,5 +276,9 @@ var PlayerStudio = Room.extend({
 		// }
 
 		return this;
+	},
+
+	playerStartCords: function() {
+		return this.object['player_start'];
 	}
 });

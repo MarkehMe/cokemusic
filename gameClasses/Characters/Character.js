@@ -139,9 +139,13 @@ var Character = IgeEntity.extend({
 		//Spawn carry placeholder
 		self.carry = new CharacterCarry(self);
 
+		//StartCordinates
+		var startCords = ige.room.playerStartCords();
+
 		//Finally mount the player
 		self.addComponent(PlayerComponent)
-			.mount(ige.room.tileMap());
+			.mount(ige.room.tileMap())
+			.translateToTile(startCords.x, startCords.y, 0);
 
 		return this;
 	},

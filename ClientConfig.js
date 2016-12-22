@@ -3,6 +3,7 @@ var igeClientConfig = {
 		'./assets/vars.js',
 		'./gameClasses/Class.js',
 		'./gameClasses/TexturePackerAtlas.js',
+		'./gameClasses/TextureCopy.js',
 		'./gameClasses/Components/AnimatorComponent.js',
 
 		//Floor, Tiles, Map, etc
@@ -34,6 +35,7 @@ var igeClientConfig = {
 		//Furniture
 		'./assets/furniture/data.js',
 		'./gameClasses/Items/GameItem.js',
+		'./gameClasses/Items/InvisibleBlock.js',
 		'./gameClasses/Items/GameItemOffsets.js',
 
 		//Rooms

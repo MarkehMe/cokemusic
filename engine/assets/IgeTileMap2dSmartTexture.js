@@ -185,8 +185,16 @@ var IgeTileMap2dSmartTexture = {
 
 					//Stroke
 					if(entity._hoverStrokeColor) {
-						ctx.strokeStyle = entity._hoverStrokeColor;
-						ctx.stroke();
+						var occupiedBy = entity.tileOccupiedBy(mouseTile.x, mouseTile.y);
+						if(typeof occupiedBy !== 'undefined') {
+							if(occupiedBy._classId != 'InvisibleBlock') {
+								ctx.strokeStyle = entity._hoverStrokeColor;
+								ctx.stroke();
+							}
+						} else {
+							ctx.strokeStyle = entity._hoverStrokeColor;
+							ctx.stroke();
+						}
 					}
 				}
 				

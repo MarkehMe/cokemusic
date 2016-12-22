@@ -1,6 +1,7 @@
 // Define our player character head container classes
 var CharacterHair = IgeEntity.extend({
 	classId: 'CharacterHair',
+	hairTexture: '',
 
 	init: function (container) {
 		var self = this, fps;
@@ -94,6 +95,8 @@ var CharacterHair = IgeEntity.extend({
 	},
 
 	setColor: function(colorSelection) {
+		var newTexture = TextureCopy();
+		
 		this._texture.applyFilter(IgeFilters.colorOverlay, {color: colorSelection});
 	}
 });
