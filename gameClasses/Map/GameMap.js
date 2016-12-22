@@ -116,6 +116,9 @@ var GameMap = IgeTileMap2d.extend({
 	},
 
 	itemMove: function() {
+		//Un-occupy the tile
+		ige.selected.unplace();
+		
 		this.clearStrokes();
 		ige.movingItem = true;
 	},
@@ -204,7 +207,6 @@ var GameMap = IgeTileMap2d.extend({
 			for (xi = 0; xi < width; xi++) {
 				for (yi = 0; yi < height; yi++) {
 					var tileData = this.tileOccupiedBy(x + xi, y + yi);
-					console.log(tileData);
 
 					if(typeof tileData !== 'undefined') {
 						var arr = [tileData, obj];
@@ -220,6 +222,67 @@ var GameMap = IgeTileMap2d.extend({
 			if (obj) {
 				obj._occupiedRect = new IgeRect(x, y, width, height);
 			}
+		}
+		return this;
+	},
+
+	/**
+	 * Removes last data from the specified tile or area.
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @param {Number=} width
+	 * @param {Number=} height
+	 * @return {*}
+	 */
+	unOccupyTile: function (x, y, width, height) {
+		var xi, yi, item;
+
+		if (width === undefined) { width = 1; }
+		if (height === undefined) { height = 1; }
+
+		// Floor the values
+		x = Math.floor(x);
+		y = Math.floor(y);
+		width = Math.floor(width);
+		height = Math.floor(height);
+
+		if (x !== undefined && y !== undefined) {
+			for (xi = 0; xi < width; xi++) {
+				for (yi = 0; yi < height; yi++) {
+					item = this.map.tileData(x + xi, y + yi);
+
+					//Remove the last one
+					if(item && item.constructor === Array) {
+						if(item.length <= 1) {
+							delete item[0]._occupiedRect;
+							this.map.clearData(x + xi, y + yi);
+							continue;
+						} else {
+							var lastItem = item[item.length - 1];
+							delete lastItem;
+
+							//Remove the last item from array and reset the
+							//tile data
+							item.splice(item.length - 1, 1);
+							if(item.length <= 1) {
+								this.map.tileData(x + xi, y + yi, item[0]);
+							} else {
+								this.map.tileData(x + xi, y + yi, item);
+							}
+
+							continue;
+						}
+					}
+
+					if (item && item._occupiedRect) {
+						delete item._occupiedRect;
+					}
+
+					this.map.clearData(x + xi, y + yi);
+				}
+			}
+
+
 		}
 		return this;
 	},

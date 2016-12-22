@@ -70,6 +70,8 @@ var GameItem = IgeEntity.extend({
 		//Mouse Down
 		self._mouseDown = function(mouseEvent) {
 			if (ige.movingItem) return;
+
+			console.log(ige.selected);
 			
 			if (new Date().getTime() - self.lastClick < 500) {
 				// double click woah
@@ -77,6 +79,12 @@ var GameItem = IgeEntity.extend({
 			}
 
 			self.lastClick = new Date().getTime();
+
+			var itemAtTile = ige.client.itemAt(this.data('tileX'), this.data('tileY'), true);
+			if(itemAtTile._id != self._id) {
+				itemAtTile._mouseDown(null);
+				return;
+			}
 
 			var stand = $('#infostand'),
 				standImage = $('#infostand .furniture'),
@@ -146,12 +154,12 @@ var GameItem = IgeEntity.extend({
 	moveTo: function (tileX, tileY, zPlacement) {
 		if (this.data('placed')) {
 			// Un-occupy the current tiles
-			this.unOccupyTile(
-				this.data('tileX'),
-				this.data('tileY'),
-				this.data('tileXWidth'),
-				this.data('tileYHeight')
-			);
+			// this.unOccupyTile(
+			// 	this.data('tileX'),
+			// 	this.data('tileY'),
+			// 	this.data('tileXWidth'),
+			// 	this.data('tileYHeight')
+			// );
 
 			// Set the new tile position
 			if(tileX !== undefined && tileY !== undefined) {
@@ -254,6 +262,15 @@ var GameItem = IgeEntity.extend({
 
 		// Call the parent class destroy method
 		IgeEntity.prototype.destroy.call(this);
+	},
+
+	unplace: function() {
+		this.unOccupyTile(
+			this.data('tileX'),
+			this.data('tileY'),
+			this.data('tileXWidth'),
+			this.data('tileYHeight')
+		);
 	},
 
 	/**
