@@ -46,6 +46,9 @@ var igeClientConfig = {
 		// Chat
 		'/gameClasses/Chat/Chat.js',
 
+		//Navigation
+		'/gameClasses/Navigation/Navigation.js',
+
 		/* Standard game scripts */
 		'./client.js',
 		'./index.js'

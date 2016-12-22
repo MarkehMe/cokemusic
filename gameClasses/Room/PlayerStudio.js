@@ -176,6 +176,7 @@ var PlayerStudio = Room.extend({
 
 		// Create the texture map
 		self._texMap = new IgeTextureMap()
+			.id('textureMap')
 			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
@@ -200,7 +201,7 @@ var PlayerStudio = Room.extend({
 			.mount(self._gameScene);
 
 		// Collision map
-		self._colmap = new IgeMap2d();
+		//self._colmap = new IgeMap2d();
 
 		// Occupy all the border tiles
 		// for (var x = 0; x < self.object['width'] + 1; x++) {

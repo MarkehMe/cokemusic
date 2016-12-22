@@ -52,11 +52,6 @@ var Client = IgeClass.extend({
 				// Check if the engine started successfully
 				if (success) {
 					ige.addGraph('IgeBaseScene');
-					
-					// Create the scene
-					self.scene1 = new IgeScene2d()
-						.id('scene1')
-						.ignoreCamera(true);
 
 					var playerStudio = new PlayerStudio()
 						.type('studio_model_b')

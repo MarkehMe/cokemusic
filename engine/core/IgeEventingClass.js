@@ -175,6 +175,10 @@ var IgeEventingClass = IgeClass.extend({
 		return false;
 	},
 
+	clearEvent: function(eventName) {
+		this._eventListeners[eventName] = undefined;
+	},
+
 	/**
 	 * Emit an event by name.
 	 * @param {Object} eventName The name of the event to emit.

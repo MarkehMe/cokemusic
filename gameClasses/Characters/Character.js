@@ -150,6 +150,18 @@ var Character = IgeEntity.extend({
 		return this;
 	},
 
+	respawnCharacter: function() {
+		//StartCordinates
+		var startCords = ige.room.playerStartCords();
+
+		//Finally mount the player
+		this.addComponent(new PlayerComponent())
+			.mount(ige.room.tileMap())
+			.translateToTile(startCords.x, startCords.y, 0);
+
+		return this;
+	},
+
 	/**
 	 * Sets the type of character which determines the character's
 	 * animation sequences and appearance.

@@ -15,9 +15,14 @@ var IgeBaseScene = IgeSceneGraph.extend({
 	addGraph: function (options) {
 		// Clear existing graph data
 		if (ige.$('baseScene')) {
-			this.destroyGraph();
+			this.removeGraph();
 		}
 		
+		// Create the scene
+		var scene1 = new IgeScene2d()
+			.id('scene1')
+			.ignoreCamera(true);
+
 		// Create the scene
 		var baseScene = new IgeScene2d()
 			.id('baseScene');
@@ -36,9 +41,29 @@ var IgeBaseScene = IgeSceneGraph.extend({
 	 * active graph.
 	 */
 	removeGraph: function () {
+		//console.log(ige.player.player._mouseDownEvent);
+		// console.log(ige.input.eventList());
+		ige.input.clearEvent('mouseDown');
+		ige.input.clearEvent('mouseUp');
+		ige.input.clearEvent('keyUp');
+		//ige.input.off('mouseDown', ige.player.player._mouseDownEvent);
+
+		ige.player.removeComponent('player');
+		ige.player.removeComponent('animation');
+		ige.player.removeComponent('path');
+
+		ige.$('background').destroy();
+		ige.$('textureMap').destroy();
+		ige.$('tileMap1').destroy();
+		ige.$('objectScene').destroy();
+		ige.$('gameScene').destroy();
+
+		//Destroy the scene
+		ige.$('scene1').destroy();
+		
 		// Destroy the viewport
 		ige.$('vp1').destroy();
-		
+
 		// Destroy the baseScene
 		ige.$('baseScene').destroy();
 	}

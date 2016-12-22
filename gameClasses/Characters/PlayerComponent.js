@@ -18,10 +18,10 @@ var PlayerComponent = IgeClass.extend({
 		this._options = options;
 
 		// Listen for the mouse up event
-		ige.input.on('mouseDown', function () { self._mouseDown(); });
+		this._mouseDownEvent = ige.input.on('mouseDown', function () { self._mouseDown(); });
 
 		//Listen for key event
-		ige.input.on('keyUp', function (event, keyCode) { self._keyUp(event, keyCode); });
+		this._keyUpEvent = ige.input.on('keyUp', function (event, keyCode) { self._keyUp(event, keyCode); });
 
 		// Listen for point reach input
 		entity.path.on('pointComplete', function () { self._pointReached(); });
@@ -38,6 +38,10 @@ var PlayerComponent = IgeClass.extend({
 	_mouseDown: function () {
 		if(ige.movingItem == true)
 			return false;
+
+		if(this._entity._alive == false) {
+			ige.input.off('mouseDown', this._mouseDownEvent);
+		}
 
 		// Get the tile co-ordinates that the mouse is currently over
 		var endTile = ige.room.tileMap().mouseToTile(),
@@ -64,6 +68,9 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_keyUp: function (event, keyCode) {
+		if(typeof this._entity === 'undefined') {
+			return false;
+		}
 		// if (keyCode === ige.input.key.space) {
 		// 	// Change the character
 		// 	this._entity._characterType++;
@@ -81,6 +88,10 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pointReached: function() {
+		if(typeof this._entity === 'undefined') {
+			return false;
+		}
+
 		var direction = this._entity.path.getDirection();
 		if(direction != '' && direction != this._entity._currentDirection) {
 			this._entity.changeDirection(direction);
@@ -89,6 +100,10 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pathComplete: function() {
+		if(typeof this._entity === 'undefined') {
+			return false;
+		}
+
 		//Check if it's a seat
 		if (ige.room.tileMap().isTileOccupied (this.targetPos.x, this.targetPos.y)) {
 			var occupying = ige.client.itemAt(this.targetPos.x, this.targetPos.y);
@@ -102,6 +117,10 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pathStarted: function() {
+		if(typeof this._entity === 'undefined') {
+			return false;
+		}
+
 		//Reset the players layer, it might have been modified
 		//if they are sitting ontop of another object.
 		this._entity.layer(0);
@@ -117,6 +136,10 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pathHalt: function() {
+		if(typeof this._entity === 'undefined') {
+			return false;
+		}
+
 		// Something happened and we had to stop, so we will just
 		// stop the animation
 		this._entity.animation.stop();

@@ -8,6 +8,13 @@ function init_navigation() {
 		close_popup($('#navigation-ui'));
 		$('#navigation').removeClass('active');
     });
+
+    //Navigate Studio
+    $('.nav-name, .nav-go').on("click", function(e) {
+    	NAVIGATION_OPEN = false;
+		close_popup($('#navigation-ui'));
+		$('#navigation').removeClass('active');
+    });
 }
 
 function on_navigation_click() {

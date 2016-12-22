@@ -23,7 +23,7 @@ var GameMap = IgeTileMap2d.extend({
 		$('.bottom-bar').show();
 
 		//Setup click handlers for item selections in bag
-		$('body').on('click', '.inventory-data a', function() { self.itemInventoryClick( $(this)); });
+		this._inventoryListener = $('body').on('click', '.inventory-data a', function() { self.itemInventoryClick( $(this)); });
 	},
 
 	mouseUp: function(x, y) {
@@ -114,6 +114,11 @@ var GameMap = IgeTileMap2d.extend({
 	itemInventoryClick: function(caller) {
 		if(caller === undefined)
 			return false;
+
+		if(this._alive == false) {
+			this._inventoryListener.off();
+			return false;
+		}
 
 		//Check and make sure the item data actually has data.
 		var itemName = caller.data('item');

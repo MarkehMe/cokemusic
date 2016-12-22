@@ -4,6 +4,7 @@
 	font-size: $button-font-size;
 	position: relative;
 	display: block;
+	text-align: center;
 	line-height: 20px;
 	padding: 0 12px;
 	border-radius: 8px;
@@ -33,6 +34,20 @@
 	}
 }
 
-.button.blue {
+.button.blue-alt {
+	background-image: url('../assets/ui/button.b1.middle.active.png');
+	background-repeat: repeat-x;
+    background-size: 100% 100%;
+    display: inline-block;
+    min-width: 40px;
 
+	&:before {
+		background-image: url('../assets/ui/button.b1.left.active.png');
+		left: 0px;
+	}
+
+	&:after {
+		background-image: url('../assets/ui/button.b1.right.active.png');
+		right: 0px;
+	}
 }

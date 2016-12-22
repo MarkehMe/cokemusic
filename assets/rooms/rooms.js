@@ -34,10 +34,6 @@ var ROOMS = {
 		},
 	},
 
-	'room_b' : {
-
-	},
-
 	'studio_model_c' : {
 		'width' : 6,
 		'height' : 6,
@@ -47,7 +43,7 @@ var ROOMS = {
 		'y_anchor' : 64,
 
 		'player_start' : {
-			'x' : 2,
+			'x' : 1,
 			'y' : 0,
 		},
 
