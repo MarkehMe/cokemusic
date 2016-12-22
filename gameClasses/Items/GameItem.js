@@ -24,6 +24,8 @@ var GameItem = IgeEntity.extend({
 
 		//Set other misc properties
 		self.data('seat', (object['info']['seat'] === undefined) ? false : object['info']['seat']);
+		self.data('stackable', (object['info']['stackable'] === undefined) ? false : object['info']['stackable']);
+		self.data('table', (object['info']['table'] === undefined) ? false : object['info']['table']);
 
 		//Load in the texture and offsets.
 		self.cell(object['offsets'][direction][0])
@@ -141,7 +143,7 @@ var GameItem = IgeEntity.extend({
 	 * @param tileY
 	 * @return {*}
 	 */
-	moveTo: function (tileX, tileY) {
+	moveTo: function (tileX, tileY, zPlacement) {
 		if (this.data('placed')) {
 			// Un-occupy the current tiles
 			this.unOccupyTile(
@@ -170,6 +172,10 @@ var GameItem = IgeEntity.extend({
 				cords['y'],
 				0
 			);
+
+			if(typeof zPlacement !== 'undefined') {
+				this.translateBy(0,0,zPlacement);
+			}
 
 			if($HIGHLIGHT_SELECTED)
 				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
@@ -342,6 +348,10 @@ var GameItem = IgeEntity.extend({
 	getClosestFreeTile: function() {
 
 	},
+
+	isStackable: function() {
+		return this.data('stackable');
+	}
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = ClientItem; }

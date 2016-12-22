@@ -168,10 +168,17 @@ var Client = IgeClass.extend({
 	 * Returns the item occupying the tile co-ordinates of the tile map.
 	 * @param tileX
 	 * @param tileY
+	 * @param topMost since items can be stacked ontop of eachother check and see
+	 *				  if the data is an array and give the last item
 	 */
-	itemAt: function (tileX, tileY) {
+	itemAt: function (tileX, tileY, topMost) {
 		// Return the data at the map's tile co-ordinates
-		return ige.room.tileMap().map.tileData(tileX, tileY);
+		var tileData = ige.room.tileMap().map.tileData(tileX, tileY);
+		if(typeof tileData !== 'undefined' && tileData.constructor === Array && topMost) {
+			return tileData[tileData.length - 1];
+		}
+
+		return tileData;
 	},
 
 	getTexture: function(tAction, tPart, tStyle, tDirection, tSubsection) {

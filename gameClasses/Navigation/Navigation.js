@@ -12,10 +12,11 @@ var Navigation = {
 				data: { id: studioId },
 			})
 			.success(function(data) {
+					//Restart the scene
 					ige.removeGraph();
-					
 					ige.addGraph('IgeBaseScene');
 
+					//Create the new studio
 					var playerStudio = new PlayerStudio()
 						.type(data.room_type)
 						.owner(data.room_owner)
@@ -23,8 +24,7 @@ var Navigation = {
 
 					ige.room = playerStudio;
 
-					// Create the 3d container that the player
-					// entity will be mounted to
+					//Recreate the player
 					ige.player = new Character()
 						.id('player')
 						.setStyle('001')
@@ -38,6 +38,9 @@ var Navigation = {
 						.setPantStyle('001')
 						.setShoeStyle('001')
 						.startPlayer();
+
+					//Show any items in the room
+					
 
 			})
 			.complete(function(data) {

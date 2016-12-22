@@ -32,14 +32,20 @@ var GameMap = IgeTileMap2d.extend({
 
 			var tile = this.mouseToTile(),
 				transformX = tile.x,
-				transformY = tile.y;
+				transformY = tile.y,
+				item = ige.client.itemAt(transformX, transformY, true);
 
-			if ( ! ige.$('tileMap1').isTileOccupied (transformX, transformY)) {
+			if ( ! this.isTileOccupied (transformX, transformY)) {
 				// If its not occupied, move to it
 				ige.selected.moveTo(transformX, transformY);
 			} else {
-				// it's occupied - move back to original spot
-				ige.selected.moveTo();
+				if(ige.selected.isStackable() && item.isStackable()) {
+					var displacement = this.getTileZHeight(transformX, transformY);
+					ige.selected.moveTo(transformX, transformY, displacement);
+				} else {
+					// it's occupied - move back to original spot
+					ige.selected.moveTo();
+				}
 			}
 		}
 	},
@@ -48,7 +54,8 @@ var GameMap = IgeTileMap2d.extend({
 		if(ige.movingItem == true) {
 			var tile = this.mouseToTile(),
 				transformX = tile.x,
-				transformY = tile.y;
+				transformY = tile.y, 
+				item = ige.client.itemAt(transformX, transformY, true);
 
 			if(ige.selected.data('tileYHeight') >= 2) {
 				var objectHeight = ige.selected.data('tileYHeight');
@@ -58,8 +65,14 @@ var GameMap = IgeTileMap2d.extend({
 				transformX += 1 / objectWidth;
 			}
 
-			if(!ige.client.itemAt(transformX, transformY)) {
+			//Check if it's stackable
+			if(ige.selected.isStackable() == true && item && item.isStackable() == true) {
 				ige.selected.translateToTile(transformX, transformY, 0);
+				ige.selected.translateBy(0,0,this.getTileZHeight(transformX, transformY));
+			} else {
+				if(!item) {
+					ige.selected.translateToTile(transformX, transformY, 0);	
+				}
 			}
 		}
 	},
@@ -162,5 +175,73 @@ var GameMap = IgeTileMap2d.extend({
 
 	wallYOffset: function() {
 		return ((this._tileWidth / (this._gridSize.y - 1) * this._gridSize.y));
-	}
+	},
+
+	/**
+	 * Sets a tile or area as occupied by the passed obj parameter.
+	 * Any previous occupy data on the specified tile or area will be
+	 * overwritten.
+	 * @param {Number} x X co-ordinate of the tile to un-occupy.
+	 * @param {Number} y Y co-ordinate of the tile to un-occupy.
+	 * @param {Number} width Number of tiles along the x-axis to occupy.
+	 * @param {Number} height Number of tiles along the y-axis to occupy.
+	 * @param {*} obj
+	 * @return {*}
+	 */
+	occupyTile: function (x, y, width, height, obj) {
+		var xi, yi;
+
+		if (width === undefined) { width = 1; }
+		if (height === undefined) { height = 1; }
+
+		// Floor the values
+		x = Math.floor(x);
+		y = Math.floor(y);
+		width = Math.floor(width);
+		height = Math.floor(height);
+
+		if (x !== undefined && y !== undefined) {
+			for (xi = 0; xi < width; xi++) {
+				for (yi = 0; yi < height; yi++) {
+					var tileData = this.tileOccupiedBy(x + xi, y + yi);
+					console.log(tileData);
+
+					if(typeof tileData !== 'undefined') {
+						var arr = [tileData, obj];
+						this.map.tileData(x + xi, y + yi, arr);
+					} else {
+						this.map.tileData(x + xi, y + yi, obj);
+					}
+				}
+			}
+
+			// Create an IgeRect to represent the tiles this
+			// entity has just occupied
+			if (obj) {
+				obj._occupiedRect = new IgeRect(x, y, width, height);
+			}
+		}
+		return this;
+	},
+
+	/* Gets the total z value of all items placed on this tile
+	 * @return { int }
+	 */
+	getTileZHeight: function(x, y) {
+		var tileData = this.tileOccupiedBy(x, y);
+		if(typeof tileData === 'undefined') {
+			return 0;
+		}
+
+		//Multiple items
+		if(tileData.constructor === Array) {
+			var total = 0;
+			for (var i = tileData.length - 1; i >= 0; i--) {
+				total += tileData[i]._bounds3d.z;
+			}
+			return total;
+		}
+
+		return tileData._bounds3d.z;
+	},
 });

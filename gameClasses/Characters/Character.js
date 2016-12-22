@@ -31,7 +31,7 @@ var Character = IgeEntity.extend({
 				// If the map tile data is set to 1 then there is something there.
 				if (tileData != null) {
 					//Check if it's a seat, otherwise don't allow movement
-					var occupying = ige.client.itemAt(tileX, tileY);
+					var occupying = ige.client.itemAt(tileX, tileY, true);
 					if(occupying.data('seat') == true) {
 						return true;
 					}
