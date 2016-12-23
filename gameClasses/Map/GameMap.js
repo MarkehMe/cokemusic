@@ -37,7 +37,7 @@ var GameMap = IgeTileMap2d.extend({
 
 			if ( ! this.isTileOccupied (transformX, transformY)) {
 				// If its not occupied, move to it
-				ige.selected.moveTo(transformX, transformY);
+				ige.selected.moveTo(transformX, transformY, 0);
 			} else {
 				if(ige.selected.isStackable() && item.isStackable()) {
 					var displacement = this.getTileZHeight(transformX, transformY);

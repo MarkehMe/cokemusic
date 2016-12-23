@@ -42,6 +42,8 @@ var GameItem = IgeEntity.extend({
 			.data('tileYHeight', object['offsets'][direction][4])
 			.data('objectHeight', object['info']['height']);
 
+		self.data('zPlacement', 0);
+
 		self.place();
 
 		self._mouseEventsActive = true;
@@ -166,6 +168,13 @@ var GameItem = IgeEntity.extend({
 					.data('tileY', tileY);
 			}
 
+			//Set zPlacement as it's optional param
+			if(typeof zPlacement === 'undefined') {
+				zPlacement = this.data('zPlacement');
+			} else {
+				this.data('zPlacement', zPlacement);
+			}
+
 			this.occupyTile(
 				this.data('tileX'),
 				this.data('tileY'),
@@ -180,9 +189,10 @@ var GameItem = IgeEntity.extend({
 				0
 			);
 
-			if(typeof zPlacement !== 'undefined') {
-				this.translateBy(0,0,zPlacement);
-			}
+			//Update the zPlacement (stackable items)
+			this._translate.z = zPlacement;
+			//this.translate(cords['x'],cords['y'],zPlacement);
+			
 
 			if($HIGHLIGHT_SELECTED) {
 				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
