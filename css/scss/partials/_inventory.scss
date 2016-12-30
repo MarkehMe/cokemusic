@@ -181,12 +181,16 @@
 		position: absolute;
 		top: 14px;
 		right: 0;
+		text-align: center;
 	}
 
 	.furniture {
 		position: absolute;
-	    top: 4px;
-	    right: 12px;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+		top: -12px;
 	}
 
 	.infostand-wrapper-text {
