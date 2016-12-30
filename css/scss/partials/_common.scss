@@ -45,6 +45,18 @@ html, body {
 		color: #FFFFFF;		
 	}
 
+	a {
+		color: #FFFFFF;
+
+		&:active, &:focus, &:visited {
+			color: #FFFFFF;			
+		}
+
+		&:hover {
+			color: red;
+		}
+	}
+
 	.progress {
 		position: relative;
 		height: 5px;

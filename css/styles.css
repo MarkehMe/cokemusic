@@ -64,6 +64,12 @@ html, body {
   color: #FFFFFF; }
   .progress-bar span {
     color: #FFFFFF; }
+  .progress-bar a {
+    color: #FFFFFF; }
+    .progress-bar a:active, .progress-bar a:focus, .progress-bar a:visited {
+      color: #FFFFFF; }
+    .progress-bar a:hover {
+      color: red; }
   .progress-bar .progress {
     position: relative;
     height: 5px;
