@@ -94,6 +94,15 @@ html, body {
       height: 10px;
       border-radius: 3px; }
 
+#entry {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  text-align: center; }
+
 .button {
   color: #fae9da;
   font-size: 10px;
