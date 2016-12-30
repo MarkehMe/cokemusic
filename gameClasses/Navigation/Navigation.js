@@ -29,7 +29,7 @@ var Navigation = {
 						.id('player')
 						.setStyle('001')
 						.setHeadStyle('001')
-						.setHairStyle('008')
+						.setHairStyle('013')
 						.setEyeStyle('001')
 						.setMouthStyle('001')
 						.setLeftSleveStyle('001')
@@ -38,6 +38,20 @@ var Navigation = {
 						.setPantStyle('001')
 						.setShoeStyle('001')
 						.startPlayer();
+
+					// ige.player = new Character()
+					// 	.id('player')
+					// 	.setStyle('002')
+					// 	.setHeadStyle('004')
+					// 	.setHairStyle('006')
+					// 	.setEyeStyle('001')
+					// 	.setMouthStyle('001')
+					// 	.setLeftSleveStyle('005')
+					// 	.setRightSleveStyle('005')
+					// 	.setShirtStyle('008')
+					// 	.setPantStyle('001')
+					// 	.setShoeStyle('001')
+					// 	.startPlayer();
 
 					//Show any items in the room
 					

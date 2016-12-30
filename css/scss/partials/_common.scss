@@ -37,3 +37,40 @@ html, body {
 	width: 100%;
 	top: 7%;
 }
+
+.progress-bar {
+	color: #FFFFFF;
+
+	span {
+		color: #FFFFFF;		
+	}
+
+	.progress {
+		position: relative;
+		height: 5px;
+		width: 20%;
+		margin: 10px auto 15px auto;
+
+		&:before {
+			content: '';
+			position: absolute;
+			width: 100%;
+			border: 1px solid #FFF;
+			top: 0; 
+			left: 0;
+			height: 10px;
+			border-radius: 3px;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			width: 60%;
+			background-color: green;
+			top: 0; 
+			left: 0;
+			height: 10px;
+			border-radius: 3px;
+		}
+	}
+}

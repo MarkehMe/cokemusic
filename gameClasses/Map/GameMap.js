@@ -57,6 +57,12 @@ var GameMap = IgeTileMap2d.extend({
 				transformY = tile.y, 
 				item = ige.client.itemAt(transformX, transformY, true);
 
+				//For some weird reason when youare dragging an item around
+				//it sometimes recongizes itself
+				if(typeof item !== 'undefined' && item._id == ige.selected._id) {
+					item = undefined;
+				}
+
 			if(ige.selected.data('tileYHeight') >= 2) {
 				var objectHeight = ige.selected.data('tileYHeight');
 				transformY += 1 / objectHeight;
@@ -66,7 +72,7 @@ var GameMap = IgeTileMap2d.extend({
 			}
 
 			//Check if it's stackable
-			if(ige.selected.isStackable() == true && item && item.isStackable() == true) {
+			if(ige.selected.isStackable() == true && typeof item !== 'undefined' && item.isStackable() == true) {
 				ige.selected.translateToTile(transformX, transformY, 0);
 				ige.selected.translateBy(0,0,this.getTileZHeight(transformX, transformY));
 			} else {
@@ -135,22 +141,23 @@ var GameMap = IgeTileMap2d.extend({
 	 * @param {*} The jQuery caller object (anchor tag)
 	 */
 	itemInventoryClick: function(caller) {
-		if(caller === undefined)
-			return false;
-
-		if(this._alive == false) {
-			this._inventoryListener.off();
+		if(caller === undefined) {
+			console.log('caller is undefined');
 			return false;
 		}
 
 		//Check and make sure the item data actually has data.
 		var itemName = caller.data('item');
-		if(itemName === undefined || itemName == '')
+		if(itemName === undefined || itemName == '') {
+			console.log('could not find item data');
 			return false;;
+		}
 
 		//Make sure this item exsists in the the preloaded furni data.
-		if(!this.itemExistsInData(itemName))
+		if(!this.itemExistsInData(itemName)) {
+			console.log('could not find item data. 1a');
 			return false;
+		}
 
 		var mousePos = this.mouseToTile(),
 		//TODO: instead of placing the item at the mouse position

@@ -97,6 +97,33 @@ var Chat = {
                 console.log('Set hair style to ' + args[1]);
             return true;
 
+            case '.shirt': 
+                if(args[1] === undefined || args[1] == '')
+                    return true;
+
+                ige.player.setShirtStyle(args[1]);
+                ige.player.changeDirection();
+                console.log('Set shirt style to ' + args[1]);
+            return true;
+
+            case '.pant': 
+                if(args[1] === undefined || args[1] == '')
+                    return true;
+
+                ige.player.setPantStyle(args[1]);
+                ige.player.changeDirection();
+                console.log('Set pants style to ' + args[1]);
+            return true;
+
+            case '.shoe': 
+                if(args[1] === undefined || args[1] == '')
+                    return true;
+
+                ige.player.setShoeStyle(args[1]);
+                ige.player.changeDirection();
+                console.log('Set shoes style to ' + args[1]);
+            return true;
+
             case '.haircolor':
                 if(args[1] === undefined || args[1] == '')
                     return true;

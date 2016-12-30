@@ -46,6 +46,8 @@ var IgeBaseScene = IgeSceneGraph.extend({
 		ige.input.clearEvent('mouseDown');
 		ige.input.clearEvent('mouseUp');
 		ige.input.clearEvent('keyUp');
+		ige.$('tileMap1')._inventoryListener.off();
+		
 		//ige.input.off('mouseDown', ige.player.player._mouseDownEvent);
 
 		ige.player.removeComponent('player');

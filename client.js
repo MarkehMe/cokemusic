@@ -27,8 +27,12 @@ var Client = IgeClass.extend({
 		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
 
 		//TODO: need to have it auto load all the studio images automaticly from the datafile
+		ige.gameTexture.studio_model_a = new IgeTexture(rootPath + 'assets/rooms/studio_model_a.png');
 		ige.gameTexture.studio_model_b = new IgeTexture(rootPath + 'assets/rooms/studio_model_b.png');
 		ige.gameTexture.studio_model_c = new IgeTexture(rootPath + 'assets/rooms/studio_model_c_1.png');
+		ige.gameTexture.studio_model_d = new IgeTexture(rootPath + 'assets/rooms/studio_model_d.png');
+		ige.gameTexture.studio_model_rooftop = new IgeTexture(rootPath + 'assets/rooms/Studio_Rooftop_with_Grid_256.png');
+		ige.gameTexture.studio_wayne = new IgeTexture(rootPath + 'assets/rooms/wayne_ent_4.png');
 		
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
 
@@ -66,7 +70,7 @@ var Client = IgeClass.extend({
 						.id('player')
 						.setStyle('001')
 						.setHeadStyle('001')
-						.setHairStyle('008')
+						.setHairStyle('013')
 						.setEyeStyle('001')
 						.setMouthStyle('001')
 						.setLeftSleveStyle('001')
@@ -174,6 +178,9 @@ var Client = IgeClass.extend({
 	itemAt: function (tileX, tileY, topMost) {
 		// Return the data at the map's tile co-ordinates
 		var tileData = ige.room.tileMap().map.tileData(tileX, tileY);
+
+		console.log(tileData);
+		
 		if(typeof tileData !== 'undefined' && tileData.constructor === Array && topMost) {
 			return tileData[tileData.length - 1];
 		}

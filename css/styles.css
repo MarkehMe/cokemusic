@@ -60,6 +60,34 @@ html, body {
   width: 100%;
   top: 7%; }
 
+.progress-bar {
+  color: #FFFFFF; }
+  .progress-bar span {
+    color: #FFFFFF; }
+  .progress-bar .progress {
+    position: relative;
+    height: 5px;
+    width: 20%;
+    margin: 10px auto 15px auto; }
+    .progress-bar .progress:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      border: 1px solid #FFF;
+      top: 0;
+      left: 0;
+      height: 10px;
+      border-radius: 3px; }
+    .progress-bar .progress:after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      background-color: green;
+      top: 0;
+      left: 0;
+      height: 10px;
+      border-radius: 3px; }
+
 .button {
   color: #fae9da;
   font-size: 10px;

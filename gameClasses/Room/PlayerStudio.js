@@ -223,25 +223,27 @@ var PlayerStudio = Room.extend({
 		}
 
 		// Generate Carpet Tiles
-		var texIndex = self._texMap.addTexture(ige.gameTexture.carpetTest);
-		for (var x = 0; x < self.object['width']; x++) {
-			for (var y = 0; y < self.object['height']; y++) {
+		if(typeof self.object['draw_floor'] === 'undefined' || self.object['draw_floor'] == true) {
+			var texIndex = self._texMap.addTexture(ige.gameTexture.carpetTest);
+			for (var x = 0; x < self.object['width']; x++) {
+				for (var y = 0; y < self.object['height']; y++) {
 
-				//Make sure the tile isnt blocked
-				if(typeof blockedTiles != 'undefined') {
-					var isBlocked = false;
-					for (var i = 0; i < blockedTiles.length; i++) {
-						if(x === blockedTiles[i]['x'] && y == blockedTiles[i]['y']) {
-							isBlocked = true;
+					//Make sure the tile isnt blocked
+					if(typeof blockedTiles != 'undefined') {
+						var isBlocked = false;
+						for (var i = 0; i < blockedTiles.length; i++) {
+							if(x === blockedTiles[i]['x'] && y == blockedTiles[i]['y']) {
+								isBlocked = true;
+							}
 						}
-					}
 
-					if(isBlocked == false) {
+						if(isBlocked == false) {
+							self._texMap.paintTile(x, y, texIndex, 1);
+						}
+					} else {
+						//console.log('painting x: ' + x + ', y: ' + y);
 						self._texMap.paintTile(x, y, texIndex, 1);
 					}
-				} else {
-					//console.log('painting x: ' + x + ', y: ' + y);
-					self._texMap.paintTile(x, y, texIndex, 1);
 				}
 			}
 		}
