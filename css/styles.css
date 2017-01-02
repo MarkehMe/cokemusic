@@ -454,8 +454,8 @@ html, body {
 #navigation-ui {
   position: absolute;
   z-index: 9;
-  top: 10%;
-  right: 20%;
+  top: calc(42vh - 200px);
+  right: 10%;
   border-radius: 4px;
   width: 309px;
   height: 404px;
