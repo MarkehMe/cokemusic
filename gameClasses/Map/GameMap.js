@@ -35,6 +35,13 @@ var GameMap = IgeTileMap2d.extend({
 				transformY = tile.y,
 				item = ige.client.itemAt(transformX, transformY, true);
 
+			//Check if the player is on this tile
+			if(ige.player.currentPos.x == transformX && ige.player.currentPos.y == transformY) {
+				//Move back to original spot
+				ige.selected.moveTo();
+				return;
+			}
+
 			if ( ! this.isTileOccupied (transformX, transformY)) {
 				// If its not occupied, move to it
 				ige.selected.moveTo(transformX, transformY, 0);
@@ -57,11 +64,16 @@ var GameMap = IgeTileMap2d.extend({
 				transformY = tile.y, 
 				item = ige.client.itemAt(transformX, transformY, true);
 
-				//For some weird reason when youare dragging an item around
-				//it sometimes recongizes itself
-				if(typeof item !== 'undefined' && item._id == ige.selected._id) {
-					item = undefined;
-				}
+			//Check if the player is on this tile
+			if(ige.player.currentPos.x == transformX && ige.player.currentPos.y == transformY) {
+				return;
+			}
+
+			//For some weird reason when youare dragging an item around
+			//it sometimes recongizes itself
+			if(typeof item !== 'undefined' && item._id == ige.selected._id) {
+				item = undefined;
+			}
 
 			if(ige.selected.data('tileYHeight') >= 2) {
 				var objectHeight = ige.selected.data('tileYHeight');

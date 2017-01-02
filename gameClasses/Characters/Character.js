@@ -1,6 +1,7 @@
 // Define our player character container classes
 var Character = IgeEntity.extend({
 	classId: 'Character',
+	currentPos: { x: null, y: null },
 
 	init: function () {
 		var self = this;
@@ -149,6 +150,9 @@ var Character = IgeEntity.extend({
 		self.addComponent(PlayerComponent)
 			.mount(ige.room.tileMap())
 			.translateToTile(startCords.x, startCords.y, 0);
+
+		//Set the starting cordinates
+		self.currentPos = { x: startCords.x, y: startCords.y };
 
 		return this;
 	},

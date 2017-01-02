@@ -119,6 +119,7 @@ var PlayerComponent = IgeClass.extend({
 
 		//Set current cordinates
 		this.currentPos = { x: this.targetPos.x, y: this.targetPos.y };
+		this._entity.currentPos = this.currentPos;
 	},
 
 	_pathStarted: function() {

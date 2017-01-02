@@ -87,7 +87,7 @@ html, body {
     .progress-bar .progress:after {
       content: '';
       position: absolute;
-      width: 60%;
+      width: 100%;
       background-color: green;
       top: 0;
       left: 0;
@@ -95,6 +95,11 @@ html, body {
       border-radius: 3px; }
 
 #entry {
+  width: 760px;
+  height: 520px;
+  background-image: url("../assets/ui/cc.entry.bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   display: none;
   position: fixed;
   top: 50%;
