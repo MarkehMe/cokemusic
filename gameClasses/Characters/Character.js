@@ -146,13 +146,13 @@ var Character = IgeEntity.extend({
 		//StartCordinates
 		var startCords = ige.room.playerStartCords();
 
+		//Set the starting cordinates
+		self.currentPos = { x: startCords.x, y: startCords.y };
+
 		//Finally mount the player
 		self.addComponent(PlayerComponent)
 			.mount(ige.room.tileMap())
 			.translateToTile(startCords.x, startCords.y, 0);
-
-		//Set the starting cordinates
-		self.currentPos = { x: startCords.x, y: startCords.y };
 
 		return this;
 	},

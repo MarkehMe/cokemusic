@@ -15,6 +15,9 @@ var PlayerComponent = IgeClass.extend({
 		// Store the entity that this component has been added to
 		this._entity = entity;
 
+		//Set the starting cordinates
+		this.currentPos = this._entity.currentPos;
+
 		// Store any options that were passed to us
 		this._options = options;
 
@@ -51,19 +54,24 @@ var PlayerComponent = IgeClass.extend({
 		// Check the bounds
 		//TODO: this needs to be alot more complex
 		 if(endTile.x < 0 || endTile.x >= ige.room.width() || endTile.y < 0 || endTile.y >= ige.room.height()) {
+		 	console.log('failed 3');
 		 	return false;
 		 }
 
 		overTiles = this._entity.overTiles()[0];
 
 		// If we're already headed here we don't want to try again
-		if (this.targetPos.x == endTile.x && this.targetPos.y == endTile.y) return;
+		if (this.targetPos.x == endTile.x && this.targetPos.y == endTile.y) {
+			console.log('failed 2');
+			return;
+		} 
 
 		this.targetPos.x = endTile.x;
 		this.targetPos.y = endTile.y;
 
 		this._entity.path
-			.set(overTiles.x, overTiles.y, 0, this.targetPos.x, this.targetPos.y, 0)
+			//.set(overTiles.x, overTiles.y, 0, this.targetPos.x, this.targetPos.y, 0)
+			.set(this.currentPos.x, this.currentPos.y, 0, this.targetPos.x, this.targetPos.y, 0)
 			.speed(1.75)
 			.start();
 	},
@@ -89,6 +97,8 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pointReached: function() {
+		//console.log('point complete');
+
 		if(typeof this._entity === 'undefined') {
 			return false;
 		}
@@ -101,6 +111,8 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pathComplete: function() {
+		//console.log('path complete');
+
 		if(typeof this._entity === 'undefined') {
 			return false;
 		}
@@ -142,6 +154,8 @@ var PlayerComponent = IgeClass.extend({
 	},
 
 	_pathHalt: function() {
+		//console.log('failed');
+
 		if(typeof this._entity === 'undefined') {
 			return false;
 		}

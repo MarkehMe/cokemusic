@@ -179,7 +179,7 @@ var Client = IgeClass.extend({
 		// Return the data at the map's tile co-ordinates
 		var tileData = ige.room.tileMap().map.tileData(tileX, tileY);
 
-		console.log(tileData);
+		//console.log(tileData);
 		
 		if(typeof tileData !== 'undefined' && tileData.constructor === Array && topMost) {
 			return tileData[tileData.length - 1];
