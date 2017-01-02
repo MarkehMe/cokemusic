@@ -45,6 +45,8 @@ var Character = IgeEntity.extend({
 				return true;
 			})
 			.lookAheadSteps(10)
+			.autoStop(true)
+			.dynamic(true)
 			.dynamic(true)
 			.allowSquare(true) // Allow north, south, east and west movement
 			.allowDiagonal(true) // Allow north-east, north-west, south-east, south-west movement

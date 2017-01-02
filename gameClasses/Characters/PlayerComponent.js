@@ -28,7 +28,7 @@ var PlayerComponent = IgeClass.extend({
 		this._keyUpEvent = ige.input.on('keyUp', function (event, keyCode) { self._keyUp(event, keyCode); });
 
 		// Listen for point reach input
-		entity.path.on('pointComplete', function () { self._pointReached(); });
+		entity.path.on('pointComplete', function (sender, x, y) { self._pointReached(sender, x, y); });
 		entity.path.on('pathComplete', function () { self._pathComplete(); });
 		entity.path.on('started', function () { self._pathStarted(); });
 		entity.path.on('dynamicFail', function() { self._pathHalt(); });
@@ -51,9 +51,9 @@ var PlayerComponent = IgeClass.extend({
 		var endTile = ige.room.tileMap().mouseToTile(),
 			overTiles;
 
+
 		// Check the bounds
-		//TODO: this needs to be alot more complex
-		 if(endTile.x < 0 || endTile.x >= ige.room.width() || endTile.y < 0 || endTile.y >= ige.room.height()) {
+		 if(ige.client.withinBounds(endTile.x, endTile.y) == false) {
 		 	console.log('failed 3');
 		 	return false;
 		 }
@@ -62,7 +62,7 @@ var PlayerComponent = IgeClass.extend({
 
 		// If we're already headed here we don't want to try again
 		if (this.targetPos.x == endTile.x && this.targetPos.y == endTile.y) {
-			console.log('failed 2');
+			//console.log('failed 2');
 			return;
 		} 
 
@@ -70,8 +70,8 @@ var PlayerComponent = IgeClass.extend({
 		this.targetPos.y = endTile.y;
 
 		this._entity.path
-			//.set(overTiles.x, overTiles.y, 0, this.targetPos.x, this.targetPos.y, 0)
-			.set(this.currentPos.x, this.currentPos.y, 0, this.targetPos.x, this.targetPos.y, 0)
+			.set(overTiles.x, overTiles.y, 0, this.targetPos.x, this.targetPos.y, 0)
+			//.set(this.currentPos.x, this.currentPos.y, 0, this.targetPos.x, this.targetPos.y, 0)
 			.speed(1.75)
 			.start();
 	},
@@ -96,9 +96,7 @@ var PlayerComponent = IgeClass.extend({
 		// }
 	},
 
-	_pointReached: function() {
-		//console.log('point complete');
-
+	_pointReached: function(sender, x, y) {
 		if(typeof this._entity === 'undefined') {
 			return false;
 		}
@@ -108,11 +106,13 @@ var PlayerComponent = IgeClass.extend({
 			this._entity.changeDirection(direction);
 			this._entity.changeAnimation('walk');
 		}
+
+		//Set current cordinates
+		// this.currentPos = { x: x, y: y };
+		// this._entity.currentPos = this.currentPos;
 	},
 
 	_pathComplete: function() {
-		//console.log('path complete');
-
 		if(typeof this._entity === 'undefined') {
 			return false;
 		}

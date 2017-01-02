@@ -164,6 +164,12 @@ var GameItem = IgeEntity.extend({
 
 			// Set the new tile position
 			if(tileX !== undefined && tileY !== undefined) {
+				//Check if this item even has an existing position
+				if(typeof this.data('tileX') === 'undefined' || this.data('tileX') == 0) {
+					ige.room._tilemap.itemPickup();
+					return;
+				}
+
 				this.data('tileX', tileX)
 					.data('tileY', tileY);
 			}

@@ -199,6 +199,28 @@ var Client = IgeClass.extend({
 		//Return the compiled value
 		return start+'_'+action+'_'+part+'_'+style+'_'+direction+'_'+subsection+'.png';
 	},
+
+	//Checks if the cordinates are within the map
+	withinBounds: function(tileX, tileY) {
+		//All tiles will have a positive value
+		if(tileX < 0 || tileY < 0) {
+			return false;
+		}
+
+		//Check if the X or Y is greater than the bounds
+		if(tileX >= ige.room.object['width'] || tileY >= ige.room.object['height'] ) {
+			return false;
+		}
+
+		//Check if this is an invisible block
+		var itemAt = this.itemAt(tileX, tileY, true);
+		if(typeof itemAt !== 'undefined' && itemAt._classId == 'InvisibleBlock') {
+			return false;
+		}
+		
+		//All checks out good
+		return true;
+	},
 });
 
 if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') { module.exports = Client; }

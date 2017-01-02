@@ -30,6 +30,13 @@ var GameMap = IgeTileMap2d.extend({
 		if(ige.movingItem == true) {
 			ige.movingItem = false;
 
+			//If the mouse is outside the bounds
+			if(typeof transformX === 'undefined' && typeof transformY === 'undefined') {
+				//Move back to original spot
+				ige.selected.moveTo();
+				return;
+			}
+
 			var tile = this.mouseToTile(),
 				transformX = tile.x,
 				transformY = tile.y,
@@ -127,6 +134,9 @@ var GameMap = IgeTileMap2d.extend({
 
 		//Destory the actual game item.
 		ige.selected.destroy();
+
+		//Set the selected item to null
+		ige.selected = undefined;
 	},
 
 	itemRotate: function() {
@@ -176,7 +186,7 @@ var GameMap = IgeTileMap2d.extend({
 		//		we need to create a new function to get the closest
 		//		avalible position to temporaliy store this item incase
 		//		the client gets dc'ed, etc
-			newItem = new GameItem(itemName, 'SE', mousePos.x, mousePos.y);
+		newItem = new GameItem(itemName, 'SE', mousePos.x, mousePos.y);
 
 		//Remove the li elements so all the other items get adjusted
 		//TODO: eventually when we incorporate the server we should just 
