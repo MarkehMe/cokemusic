@@ -40,8 +40,9 @@ var PlayerComponent = IgeClass.extend({
 	 * @private
 	 */
 	_mouseDown: function () {
-		if(ige.movingItem == true)
+		if(ige.movingItem == true) {
 			return false;
+		}
 
 		if(this._entity._alive == false) {
 			ige.input.off('mouseDown', this._mouseDownEvent);
@@ -54,7 +55,6 @@ var PlayerComponent = IgeClass.extend({
 
 		// Check the bounds
 		 if(ige.client.withinBounds(endTile.x, endTile.y) == false) {
-		 	console.log('failed 3');
 		 	return false;
 		 }
 

@@ -43,8 +43,12 @@ var GameItem = IgeEntity.extend({
 			.data('objectHeight', object['info']['height']);
 
 		self.data('zPlacement', 0);
-
 		self.place();
+
+		//If the x and y are negative its being placed
+		if(x < 0 || y < 0) {
+			self.hide();
+		}
 
 		self._mouseEventsActive = true;
 
@@ -153,7 +157,7 @@ var GameItem = IgeEntity.extend({
 	 * @return {*}
 	 */
 	moveTo: function (tileX, tileY, zPlacement) {
-		if (this.data('placed')) {
+		//if (this.data('placed')) {
 			// Un-occupy the current tiles
 			// this.unOccupyTile(
 			// 	this.data('tileX'),
@@ -161,15 +165,20 @@ var GameItem = IgeEntity.extend({
 			// 	this.data('tileXWidth'),
 			// 	this.data('tileYHeight')
 			// );
+			
+			//If the item is hidden then it's not within the bounds of the map
+			if(this.isHidden()) {
+				ige.room._tilemap.itemPickup(true);
+				return;
+			}
 
-			// Set the new tile position
-			if(tileX !== undefined && tileY !== undefined) {
+			if(tileX == undefined || tileY == undefined) {
 				//Check if this item even has an existing position
-				if(typeof this.data('tileX') === 'undefined' || this.data('tileX') == 0) {
-					ige.room._tilemap.itemPickup();
+				if(typeof this.data('tileX') === 'undefined' || this.data('tileX') < 0) {
+					ige.room._tilemap.itemPickup(true);
 					return;
 				}
-
+			} else {
 				this.data('tileX', tileX)
 					.data('tileY', tileY);
 			}
@@ -211,7 +220,7 @@ var GameItem = IgeEntity.extend({
 					this.beingUsed(true, ige.player);
 				}
 			}
-		}
+		//}
 
 		return this;
 	},

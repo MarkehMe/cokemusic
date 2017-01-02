@@ -10,8 +10,13 @@ var GameMap = IgeTileMap2d.extend({
 		self._mouseMove = function(x, y) {
 			self.mouseMove(x, y);
 		};
+		
+		self._mouseOut = function(x, y) {
+			self.mouseOut(x, y);
+		};
 
 		ige.input.on('mouseUp', function (x, y) { self.mouseUp(x, y); });
+		//ige.input.on('mouseOver', function (x, y) { self.mouseUp(x, y); });
 		//ige.input.on('mouseOver', function (x, y) { self.mouseOver(x, y); });
 
 		//Setup click handlers for item selections
@@ -30,6 +35,11 @@ var GameMap = IgeTileMap2d.extend({
 		if(ige.movingItem == true) {
 			ige.movingItem = false;
 
+			var tile = this.mouseToTile(),
+				transformX = tile.x,
+				transformY = tile.y,
+				item = ige.client.itemAt(transformX, transformY, true);
+
 			//If the mouse is outside the bounds
 			if(typeof transformX === 'undefined' && typeof transformY === 'undefined') {
 				//Move back to original spot
@@ -37,10 +47,12 @@ var GameMap = IgeTileMap2d.extend({
 				return;
 			}
 
-			var tile = this.mouseToTile(),
-				transformX = tile.x,
-				transformY = tile.y,
-				item = ige.client.itemAt(transformX, transformY, true);
+			//If the selection is outside the bounds
+			if(ige.client.withinBounds(transformX, transformY) == false) {
+				//Move back to original spot
+				ige.selected.moveTo();
+				return;
+			}
 
 			//Check if the player is on this tile
 			if(ige.player.currentPos.x == transformX && ige.player.currentPos.y == transformY) {
@@ -49,12 +61,18 @@ var GameMap = IgeTileMap2d.extend({
 				return;
 			}
 
-			if ( ! this.isTileOccupied (transformX, transformY)) {
+			if (this.isTileOccupied(transformX, transformY) == false) {
 				// If its not occupied, move to it
+				ige.selected.data('tileX', transformX);
+				ige.selected.data('tileY', transformY);
+				ige.selected.place();
 				ige.selected.moveTo(transformX, transformY, 0);
 			} else {
 				if(ige.selected.isStackable() && item.isStackable()) {
 					var displacement = this.getTileZHeight(transformX, transformY);
+					ige.selected.data('tileX', transformX);
+					ige.selected.data('tileY', transformY);
+					ige.selected.place();
 					ige.selected.moveTo(transformX, transformY, displacement);
 				} else {
 					// it's occupied - move back to original spot
@@ -76,6 +94,12 @@ var GameMap = IgeTileMap2d.extend({
 				return;
 			}
 
+			//Check if this tile is within the bounds
+			if(ige.client.withinBounds(transformX, transformY) == false) {
+				ige.selected.hide();
+				return;
+			}
+
 			//For some weird reason when youare dragging an item around
 			//it sometimes recongizes itself
 			if(typeof item !== 'undefined' && item._id == ige.selected._id) {
@@ -90,6 +114,11 @@ var GameMap = IgeTileMap2d.extend({
 				transformX += 1 / objectWidth;
 			}
 
+			//Make sure it's visible
+			if(ige.selected.isHidden() == true) {
+				ige.selected.show();
+			}
+
 			//Check if it's stackable
 			if(ige.selected.isStackable() == true && typeof item !== 'undefined' && item.isStackable() == true) {
 				ige.selected.translateToTile(transformX, transformY, 0);
@@ -99,6 +128,16 @@ var GameMap = IgeTileMap2d.extend({
 					ige.selected.translateToTile(transformX, transformY, 0);	
 				}
 			}
+		}
+	},
+
+	mouseOut: function(mouseX, mouseY) {
+		if(ige.movingItem == false) {
+			return;
+		}
+		
+		if(typeof ige.selected !== 'undefined') {
+			ige.selected.hide();
 		}
 	},
 
@@ -121,7 +160,7 @@ var GameMap = IgeTileMap2d.extend({
 	/**
 	 * Called whenever the user click the pickup button for selected object
 	 */
-	itemPickup: function() {
+	itemPickup: function(first) {
 		if(ige.selected === undefined)
 			return false;
 
@@ -129,8 +168,13 @@ var GameMap = IgeTileMap2d.extend({
 		//TODO: this needs a lot of improvements. Right now we are just adding to page 1
 		//		but we need to create a method to add to the last page / create new page
 		//		if the last is full etc.
-		$('<li><a data-item="'+ige.selected.data('gameItem')+'"><img src="'+ige.selected.data('icon')+'"></a></li>').
-		appendTo('.inventory-data > li > .items');
+		if(typeof first === 'undefined') {
+			$('<li><a data-item="'+ige.selected.data('gameItem')+'"><img src="'+ige.selected.data('icon')+'"></a></li>').
+			appendTo('.inventory-data > li > .items');
+		} else {
+			$('<li><a data-item="'+ige.selected.data('gameItem')+'"><img src="'+ige.selected.data('icon')+'"></a></li>').
+			prependTo('.inventory-data > li > .items');
+		}
 
 		//Destory the actual game item.
 		ige.selected.destroy();
@@ -163,6 +207,12 @@ var GameMap = IgeTileMap2d.extend({
 	 * @param {*} The jQuery caller object (anchor tag)
 	 */
 	itemInventoryClick: function(caller) {
+		//Check and see if we are currently placing another item
+		if(ige.movingItem == true && typeof ige.selected !== 'undefined') {
+			this.itemPickup(true);
+			return;
+		}
+
 		if(caller === undefined) {
 			console.log('caller is undefined');
 			return false;
@@ -186,7 +236,8 @@ var GameMap = IgeTileMap2d.extend({
 		//		we need to create a new function to get the closest
 		//		avalible position to temporaliy store this item incase
 		//		the client gets dc'ed, etc
-		newItem = new GameItem(itemName, 'SE', mousePos.x, mousePos.y);
+		//newItem = new GameItem(itemName, 'SE', mousePos.x, mousePos.y);
+		newItem = new GameItem(itemName, 'SE', -1, -1);
 
 		//Remove the li elements so all the other items get adjusted
 		//TODO: eventually when we incorporate the server we should just 
@@ -195,6 +246,8 @@ var GameMap = IgeTileMap2d.extend({
 
 		//Set the selected item as the newly created one from inventory
 		ige.selected = newItem;
+		//Set it as hidden by default
+		ige.selected.hide();
 		ige.movingItem = true
 	},
 

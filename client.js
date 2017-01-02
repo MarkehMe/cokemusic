@@ -202,6 +202,9 @@ var Client = IgeClass.extend({
 
 	//Checks if the cordinates are within the map
 	withinBounds: function(tileX, tileY) {
+		console.log('room: ' + ige.room.object['width'] + " : " + ige.room.object['height']);
+		console.log(tileX + " : " + tileY);
+
 		//All tiles will have a positive value
 		if(tileX < 0 || tileY < 0) {
 			return false;
