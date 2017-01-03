@@ -248,6 +248,27 @@ var PlayerStudio = Room.extend({
 			}
 		}
 
+		var startCords = self.playerStartCords();
+
+		//Spawn doorway overlay
+		var doortop = new IgeEntity()
+			.isometric(true)
+			.texture(ige.gameTexture.entry_top)
+			.dimensionsFromTexture()
+			.mount(self._tilemap)
+			.anchor(-20, -102)
+			.layer(0)
+			.translateToTile(startCords.x, startCords.y, 0);
+
+		//Spawn doorside overlay
+		var doorside = new IgeEntity()
+			.isometric(true)
+			.texture(ige.gameTexture.entry_side)
+			.dimensionsFromTexture()
+			.mount(self._tilemap)
+			.anchor(15, -38)
+			.layer(0)
+			.translateToTile(startCords.x, startCords.y, 0);
 
 		// var leftWallX = (self._tilemap.wallXOffset() * -1),
 		// 	rightWallX = self._tilemap.wallXOffset(),

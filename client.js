@@ -21,7 +21,7 @@ var Client = IgeClass.extend({
 		// Load our textures
 		ige.gameTexture = {};
 		//self.gameTexture.grassSheet = new IgeCellSheet('../assets/textures/tiles/tilea5b.png', 8, 16);
-		ige.gameTexture.grassSheet = new IgeCellSheet(rootPath + 'assets/textures/tiles/grassSheet-2.png', 6, 3);
+		//ige.gameTexture.grassSheet = new IgeCellSheet(rootPath + 'assets/textures/tiles/grassSheet-2.png', 6, 3);
 		ige.gameTexture.carpetTest = new IgeCellSheet(rootPath + 'assets/textures/tiles/carpet-test-2.png', 1, 1);
 		ige.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
 		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
@@ -33,6 +33,8 @@ var Client = IgeClass.extend({
 		ige.gameTexture.studio_model_d = new IgeTexture(rootPath + 'assets/rooms/studio_model_d.png');
 		ige.gameTexture.studio_model_rooftop = new IgeTexture(rootPath + 'assets/rooms/Studio_Rooftop_with_Grid_256.png');
 		ige.gameTexture.studio_wayne = new IgeTexture(rootPath + 'assets/rooms/wayne_ent_4.png');
+		ige.gameTexture.entry_top = new IgeTexture(rootPath + 'assets/rooms/wall_doormask.png');
+		ige.gameTexture.entry_side = new IgeTexture(rootPath + 'assets/rooms/wall_doormask_side.png');
 		
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
 
@@ -202,8 +204,8 @@ var Client = IgeClass.extend({
 
 	//Checks if the cordinates are within the map
 	withinBounds: function(tileX, tileY) {
-		console.log('room: ' + ige.room.object['width'] + " : " + ige.room.object['height']);
-		console.log(tileX + " : " + tileY);
+		// console.log('room: ' + ige.room.object['width'] + " : " + ige.room.object['height']);
+		// console.log(tileX + " : " + tileY);
 
 		//All tiles will have a positive value
 		if(tileX < 0 || tileY < 0) {
