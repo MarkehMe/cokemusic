@@ -63,16 +63,16 @@ var GameMap = IgeTileMap2d.extend({
 
 			if (this.isTileOccupied(transformX, transformY) == false) {
 				// If its not occupied, move to it
-				ige.selected.data('tileX', transformX);
-				ige.selected.data('tileY', transformY);
-				ige.selected.place();
+				// ige.selected.data('tileX', transformX);
+				// ige.selected.data('tileY', transformY);
+				// ige.selected.place();
 				ige.selected.moveTo(transformX, transformY, 0);
 			} else {
 				if(ige.selected.isStackable() && item.isStackable()) {
 					var displacement = this.getTileZHeight(transformX, transformY);
-					ige.selected.data('tileX', transformX);
-					ige.selected.data('tileY', transformY);
-					ige.selected.place();
+					// ige.selected.data('tileX', transformX);
+					// ige.selected.data('tileY', transformY);
+					// ige.selected.place();
 					ige.selected.moveTo(transformX, transformY, displacement);
 				} else {
 					// it's occupied - move back to original spot
@@ -87,6 +87,8 @@ var GameMap = IgeTileMap2d.extend({
 			var tile = this.mouseToTile(),
 				transformX = tile.x,
 				transformY = tile.y, 
+				tileWidth = ige.selected.data('tileXWidth') || 1,
+				tileHeight = ige.selected.data('tileYHeight') || 1,
 				item = ige.client.itemAt(transformX, transformY, true);
 
 			//Check if the player is on this tile
@@ -106,17 +108,32 @@ var GameMap = IgeTileMap2d.extend({
 				item = undefined;
 			}
 
-			if(ige.selected.data('tileYHeight') >= 2) {
-				var objectHeight = ige.selected.data('tileYHeight');
-				transformY += 1 / objectHeight;
-			} else if(ige.selected.data('tileXWidth') >= 2) {
-				var objectWidth = ige.selected.data('tileXWidth');
-				transformX += 1 / objectWidth;
+			//We want to check and see if the item can be moved to this position
+			//since some items occupy multiple tiles at the same time we have to
+			//get the point and verify if it can be moved
+			if(tileHeight >= 2 || tileWidth >= 2) {
+				var translatePoint = this.mouseTilePoint(),
+					x, y, 
+					tileArr = [];
+
+				for (x = 0; x < tileWidth; x++) {
+					for (y = 0; y < tileHeight; y++) {			
+						if(ige.client.withinBounds(tile.x + x, tile.y + y) == false) {
+							ige.selected.hide();
+							return;
+						}
+					}
+				}
 			}
 
-			//Make sure it's visible
-			if(ige.selected.isHidden() == true) {
-				ige.selected.show();
+			//Adjust the actual tile selection so the item isn't in the middle of
+			//two tiles
+			if(tileHeight >= 2) {
+				var objectHeight = tileHeight;
+				transformY += 1 / objectHeight;
+			} else if(tileWidth >= 2) {
+				var objectWidth = tileWidth;
+				transformX += 1 / objectWidth;
 			}
 
 			//Check if it's stackable
@@ -128,6 +145,11 @@ var GameMap = IgeTileMap2d.extend({
 					ige.selected.translateToTile(transformX, transformY, 0);	
 				}
 			}
+
+			//Make sure it's visible
+			if(ige.selected.isHidden() == true) {
+				ige.selected.show();
+			}
 		}
 	},
 
@@ -135,7 +157,7 @@ var GameMap = IgeTileMap2d.extend({
 		if(ige.movingItem == false) {
 			return;
 		}
-		
+
 		if(typeof ige.selected !== 'undefined') {
 			ige.selected.hide();
 		}

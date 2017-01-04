@@ -87,7 +87,7 @@ html, body {
     .progress-bar .progress:after {
       content: '';
       position: absolute;
-      width: 100%;
+      width: 0%;
       background-color: green;
       top: 0;
       left: 0;

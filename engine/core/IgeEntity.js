@@ -560,7 +560,7 @@ var IgeEntity = IgeObject.extend({
 				tileHeight = this._tileHeight || 1,
 				tile = this._parent.pointToTile(this._translate),
 				tileArr = [];
-	
+			
 			for (x = 0; x < tileWidth; x++) {
 				for (y = 0; y < tileHeight; y++) {
 					tileArr.push(new IgePoint3d(tile.x + x, tile.y + y, 0));

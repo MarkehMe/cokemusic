@@ -4,6 +4,9 @@ var CharacterPart = IgeEntity.extend({
 	init: function () {
 		var self = this;
 
+		//Starting direction
+		this._startingDirection = '3';
+
 		IgeEntity.prototype.init.call(this);
 
 		if(this._depthTemp === undefined)
@@ -139,7 +142,7 @@ var CharacterPart = IgeEntity.extend({
 
 	setTexture: function(dir, subDir, action) {
 		if(dir === undefined)
-			dir = '3';
+			dir = this._startingDirection;
 		if(subDir === undefined)
 			subDir = 0;
 		if(action === undefined)
@@ -165,7 +168,7 @@ var CharacterPart = IgeEntity.extend({
 
 	stand: function(dir, subDir) {
 		if(dir === undefined)
-			dir = '3';
+			dir = this._startingDirection;
 		if(subDir === undefined)
 			subDir = 0;
 		

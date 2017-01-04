@@ -154,6 +154,7 @@ var Character = IgeEntity.extend({
 		//Finally mount the player
 		self.addComponent(PlayerComponent)
 			.mount(ige.room.tileMap())
+			.layer(-1)//This is to set the player behind the door
 			.translateToTile(startCords.x, startCords.y, 0);
 
 		return this;

@@ -208,9 +208,16 @@ var GameItem = IgeEntity.extend({
 			this._translate.z = zPlacement;
 			//this.translate(cords['x'],cords['y'],zPlacement);
 			
-
 			if($HIGHLIGHT_SELECTED) {
 				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
+
+				if(this.data('tileXWidth') > 1) {
+					ige.room.tileMap().strokeTile(this.data('tileX') + 1, this.data('tileY'));
+				}
+
+				if(this.data('tileYHeight') > 1) {
+					ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY') + 1);
+				}
 			}
 
 			//Check if this is a seat
