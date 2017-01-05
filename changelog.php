@@ -82,6 +82,7 @@ function fetch_github_info($file, $plugin) {
 </head>
 <body>
 <h3>Most Recent Updates</h3>
+<h4>Not all updates seen here are on the live site</h4>
 <?php 
 
 if($github_json) {	

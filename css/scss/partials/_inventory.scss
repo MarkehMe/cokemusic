@@ -44,6 +44,10 @@
 		position: relative;
 		height: 89%;
 
+		> li:not(:first-child) {
+			display: none;
+		}
+
 		li {
 			.items {
 				li {

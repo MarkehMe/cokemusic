@@ -105,7 +105,14 @@ var PlayerStudio = Room.extend({
 		if(this.object === undefined)
 			return;
 
-		var self = this;
+		var self = this, 
+			globalScale = 1,
+			backgroundScale = 1;
+
+		//Check for global scale
+		if(typeof self.object['object_scale'] !== 'undefined') {
+			globalScale = self.object['object_scale'];
+		}
 
 		// Create the game scene
 		self._gameScene = new IgeScene2d()
@@ -114,6 +121,7 @@ var PlayerStudio = Room.extend({
 			.ignoreCamera(true)
 			.drawBounds(false)
 			.drawBoundsData(false)
+			.scaleTo(globalScale, globalScale, globalScale)
 			.mount(ige.$('baseScene'));
 
 		// Create the object scene
@@ -123,6 +131,7 @@ var PlayerStudio = Room.extend({
 			.drawBounds(false)
 			.drawBoundsData(false)
 			.ignoreCamera(true)
+			.scaleTo(globalScale, globalScale, globalScale)
 			.mount(self._gameScene);
 
 		// Create an isometric tile map
@@ -141,6 +150,7 @@ var PlayerStudio = Room.extend({
 			.hoverStrokeColor($HOVER_TILE_COLOR)
 			.hoverColor($HOVER_TILE_BG_COLOR)
 			.highlightOccupied($HIGHLIGHT_OCCUPIED)
+			.scaleTo(globalScale, globalScale, globalScale)
 			.mount(self._objScene);
 
 		// Create an isometric left wall
@@ -187,7 +197,13 @@ var PlayerStudio = Room.extend({
 			.autoSection(self.object['width'])
 			.drawSectionBounds(false)
 			.isometricMounts(true)
+			.scaleTo(globalScale, globalScale, globalScale)
 			.mount(self._objScene);
+
+		//Check for background scale
+		if(typeof self.object['scale'] !== 'undefined') {
+			backgroundScale = self.object['scale'];
+		}
 
 		//Create the background map
 		self._backgroundImage = new IgeTextureMap()
@@ -195,6 +211,7 @@ var PlayerStudio = Room.extend({
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
 			.drawMouse(false)
+			.scaleTo(backgroundScale, backgroundScale, backgroundScale)
 			.texture(ige.gameTexture[self._type])
 			.anchor(self.object['x_anchor'], self.object['y_anchor'])
 			.dimensionsFromTexture()
@@ -248,27 +265,49 @@ var PlayerStudio = Room.extend({
 			}
 		}
 
-		var startCords = self.playerStartCords();
+		//Door
+		if(typeof self.object['door'] !== 'undefined') {
+			var startCords = self.playerStartCords();
 
-		//Spawn doorway overlay
-		var doortop = new IgeEntity()
-			.isometric(true)
-			.texture(ige.gameTexture.entry_top)
-			.dimensionsFromTexture()
-			.mount(self._tilemap)
-			.anchor(-20, -102)
-			.layer(0)
-			.translateToTile(startCords.x, startCords.y, 0);
+			//Spawn doorway overlay
+			var doortop = new IgeEntity()
+				.isometric(true)
+				.texture(ige.gameTexture.entry_top)
+				.dimensionsFromTexture()
+				.mount(self._tilemap)
+				.anchor(-20, -102)
+				.layer(0)
+				.translateToTile(startCords.x, startCords.y, 0);
 
-		//Spawn doorside overlay
-		var doorside = new IgeEntity()
-			.isometric(true)
-			.texture(ige.gameTexture.entry_side)
-			.dimensionsFromTexture()
-			.mount(self._tilemap)
-			.anchor(15, -38)
-			.layer(0)
-			.translateToTile(startCords.x, startCords.y, 0);
+			//Spawn doorside overlay
+			var doorside = new IgeEntity()
+				.isometric(true)
+				.texture(ige.gameTexture.entry_side)
+				.dimensionsFromTexture()
+				.mount(self._tilemap)
+				.anchor(15, -38)
+				.layer(0)
+				.translateToTile(startCords.x, startCords.y, 0);
+		}
+
+		//Static objects
+		if(typeof self.object['static_objects'] !== 'undefined') {
+			for (var i = self.object['static_objects'].length - 1; i >= 0; i--) {
+				var object = self.object['static_objects'][i];
+
+				var spawn = new IgeEntity()
+					.isometric(true)
+					.texture(ige.gameTexture[object.name])
+					.dimensionsFromTexture()
+					.mount(self._tilemap)
+					.bounds3d(0, 0, object.height)
+					.anchor(object.x_anchor, object.y_anchor)
+					//.layer(10)
+					.scaleTo(object.scale, object.scale, object.scale)
+					.translateToTile(object.spawn.x, object.spawn.y, 0);
+
+			}
+		}
 
 		// var leftWallX = (self._tilemap.wallXOffset() * -1),
 		// 	rightWallX = self._tilemap.wallXOffset(),

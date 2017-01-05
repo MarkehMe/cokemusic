@@ -67,6 +67,7 @@ var GameMap = IgeTileMap2d.extend({
 				// ige.selected.data('tileY', transformY);
 				// ige.selected.place();
 				ige.selected.moveTo(transformX, transformY, 0);
+				organize_inventory();
 			} else {
 				if(ige.selected.isStackable() && item.isStackable()) {
 					var displacement = this.getTileZHeight(transformX, transformY);
@@ -74,6 +75,7 @@ var GameMap = IgeTileMap2d.extend({
 					// ige.selected.data('tileY', transformY);
 					// ige.selected.place();
 					ige.selected.moveTo(transformX, transformY, displacement);
+					organize_inventory();
 				} else {
 					// it's occupied - move back to original spot
 					ige.selected.moveTo();
@@ -190,19 +192,16 @@ var GameMap = IgeTileMap2d.extend({
 		//TODO: this needs a lot of improvements. Right now we are just adding to page 1
 		//		but we need to create a method to add to the last page / create new page
 		//		if the last is full etc.
-		if(typeof first === 'undefined') {
-			$('<li><a data-item="'+ige.selected.data('gameItem')+'"><img src="'+ige.selected.data('icon')+'"></a></li>').
-			appendTo('.inventory-data > li > .items');
-		} else {
-			$('<li><a data-item="'+ige.selected.data('gameItem')+'"><img src="'+ige.selected.data('icon')+'"></a></li>').
-			prependTo('.inventory-data > li > .items');
-		}
+		inventory_pickup(ige.selected.data('gameItem'), ige.selected.data('icon'));
 
 		//Destory the actual game item.
 		ige.selected.destroy();
 
 		//Set the selected item to null
 		ige.selected = undefined;
+
+		//Reorganize inventory
+		organize_inventory();
 	},
 
 	itemRotate: function() {

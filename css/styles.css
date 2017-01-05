@@ -276,6 +276,8 @@ html, body {
   #inventory .inventory-data {
     position: relative;
     height: 89%; }
+    #inventory .inventory-data > li:not(:first-child) {
+      display: none; }
     #inventory .inventory-data li .items li {
       position: absolute;
       left: 30px;

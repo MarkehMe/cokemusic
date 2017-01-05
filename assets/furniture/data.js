@@ -3,7 +3,6 @@ var FURNITURE = {
 	//125 Pinball
 	//114 = Pinball
 	//123 = Stereo thing
-	//126 = Plant
 	//112 = Stool
 	//109 = StandingSpeaker
 	//105 = Grundge Table
@@ -28,8 +27,8 @@ var FURNITURE = {
 	'fridge' : {
 		'info': {
 			'icon' : '5001_minibar_small.png',
-			'title' : 'Mini Fridge',
-			'description' : "I'm coolin' fam.",
+			'title' : '5001 Minibar',
+			'description' : "Thirsty?",
 			'height' : 28,
 			'stackable' : true,
 			'table': true,
@@ -103,8 +102,8 @@ var FURNITURE = {
 	'sofa_coke' : {
 		'info': {
 			'icon' : 'sofa_coke.png',
-			'title' : 'Class Coke Sofa',
-			'description' : 'Never forget homies.',
+			'title' : 'Coke Couch',
+			'description' : 'Coke Couch',
 			'height' : 20,
 			'stackable' : false,
 			'counter' : false,
@@ -613,6 +612,24 @@ var FURNITURE = {
 			'NE': [114, 0, 0, 1, 2],
 			'SE': [114, 0, -3, 2, 1],
 			'SW': [124, 0, -3, 1, 2]
+		}
+	},
+
+	//Plant
+	'plant': {
+		'info': {
+			'icon' : 'plant1_small.png',
+			'title' : 'Plant',
+			'description' : "I forgot the description for this?",
+			'height' : 62,
+			'stackable' : false,
+			'counter' : true
+		},
+		'offsets': {
+			'NW': [126, 2, -3, 1, 1],
+			'NE': [126, 2, -3, 1, 1],
+			'SE': [126, 2, -3, 1, 1],
+			'SW': [126, 2, -3, 1, 1]
 		}
 	},
 }

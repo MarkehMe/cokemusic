@@ -33,10 +33,13 @@ var Client = IgeClass.extend({
 		ige.gameTexture.studio_model_d = new IgeTexture(rootPath + 'assets/rooms/studio_model_d.png');
 		ige.gameTexture.studio_model_rooftop = new IgeTexture(rootPath + 'assets/rooms/Studio_Rooftop_with_Grid_256.png');
 		ige.gameTexture.studio_wayne = new IgeTexture(rootPath + 'assets/rooms/wayne_ent_4.png');
+		ige.gameTexture.pokemon = new IgeTexture(rootPath + 'assets/rooms/pokemon.jpg');
 		ige.gameTexture.entry_top = new IgeTexture(rootPath + 'assets/rooms/wall_doormask.png');
 		ige.gameTexture.entry_side = new IgeTexture(rootPath + 'assets/rooms/wall_doormask_side.png');
 		
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
+		ige.gameTexture.pokemon_house = new IgeTexture(rootPath + 'assets/rooms/pokemon_house.png');
+		ige.gameTexture.pokemon_house2 = new IgeTexture(rootPath + 'assets/rooms/pokemon_house.png');
 
 		//ige.gameTexture.people = new IgeSpriteSheet(rootPath + 'assets/character/people.png');
 		ige.gameTexture.people = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');

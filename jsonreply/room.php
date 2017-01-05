@@ -59,6 +59,15 @@
 			<?php
 		break;
 
+		case '7':
+			?>
+			"room_id": "7",
+			"room_name": "Pokemon",
+			"room_owner": "CokePhase",
+			"room_type": "pokemon"
+			<?php
+		break;
+
 		default:
 			# code...
 			break;

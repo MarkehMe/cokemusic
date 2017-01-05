@@ -1,4 +1,5 @@
 var UI_ACTIVE = false;
+var INVENTORY_ITEMS_PER_PAGE = 25;
 
 $(document).ready(function() {
 	init_bar_ui();
