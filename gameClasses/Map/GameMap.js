@@ -67,7 +67,10 @@ var GameMap = IgeTileMap2d.extend({
 				// ige.selected.data('tileY', transformY);
 				// ige.selected.place();
 				ige.selected.moveTo(transformX, transformY, 0);
-				organize_inventory();
+				if(ige.selected.newSpawn) {
+					ige.selected.newSpawn = false;
+					organize_inventory();
+				}
 			} else {
 				if(ige.selected.isStackable() && item.isStackable()) {
 					var displacement = this.getTileZHeight(transformX, transformY);
@@ -75,7 +78,11 @@ var GameMap = IgeTileMap2d.extend({
 					// ige.selected.data('tileY', transformY);
 					// ige.selected.place();
 					ige.selected.moveTo(transformX, transformY, displacement);
-					organize_inventory();
+					if(ige.selected.newSpawn) {
+						ige.selected.newSpawn = false;
+						organize_inventory();
+					}
+					
 				} else {
 					// it's occupied - move back to original spot
 					ige.selected.moveTo();

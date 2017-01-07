@@ -26,6 +26,7 @@ var GameItem = IgeEntity.extend({
 		self.data('seat', (object['info']['seat'] === undefined) ? false : object['info']['seat']);
 		self.data('stackable', (object['info']['stackable'] === undefined) ? false : object['info']['stackable']);
 		self.data('table', (object['info']['table'] === undefined) ? false : object['info']['table']);
+		self.newSpawn = true;
 
 		//Load in the texture and offsets.
 		self.cell(object['offsets'][direction][0])
