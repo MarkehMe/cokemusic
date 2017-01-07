@@ -14,7 +14,8 @@
     <script type="text/javascript" src="/js/inventory.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
 
-	<title>CokePhase (Coke Music / Coke Studios Game Development)</title>
+	<title>CokePhase - Coke Music / Coke Studios Game Development</title>
+    <meta name="description" CONTENT="CokePhase, playable online Coke Music / Coke Studios game client redevelopment project for retro MyCoke.">
 
 	<!-- Isogenic Loader -->
 	<script type="text/javascript">
@@ -36,9 +37,22 @@
 
 </head>
 <body>
+    <div class="logo-title-info">
+        <h1>CokePhase<br>
+        playable Coke Music / Coke Studios online game client redevelopment project. (MyCoke)</h1>
+        <a href="/changelog.php" target="_blank">Game Development Progress</a>
+    </div>
+
+    <form class="donateform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="MEZJDY2GKRXE2" />
+        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+
     <div class="igeLoading loadingFloat">
         <div class="loadbox" id="loadbox">
-            <p>Just a moment... </p>
+            <p>Loading Game Assets...</p>
         </div>
     </div>
 
@@ -66,9 +80,9 @@
                 </ul>
     		</div>
 
-    		<div class="my-coke" onclick="ige.editor.toggle()">
-            <!-- <div class="my-coke"> -->
-                <img src="./assets/ui/bar-coke-music.jpg">
+    		<!-- <div class="my-coke" onclick="ige.editor.toggle()"> -->
+            <div class="my-coke">
+                <img class="logo-coke-studios" src="./assets/ui/bar-coke-music.jpg" alt="Coke Music Coke Studios Game Logo">
     		</div>
     	</div>
     </div>
@@ -238,19 +252,6 @@
             </div>
         </div>
     </div>
-
-    <form class="donateform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="MEZJDY2GKRXE2" />
-        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate" />
-        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-
-        <div class="progress-bar">
-            <div class="progress" data-progress="0"></div>
-            <span>0 / 20 Server Donations ($)</span><br>
-            <a href="/changelog.php" target="_blank">Change Log</a>
-        </div>
-    </form>
 
 </body>
 </html>

@@ -58,7 +58,8 @@ html, body {
   text-align: center;
   position: absolute;
   width: 100%;
-  top: 7%; }
+  top: 11.5%;
+  padding-top: 5px; }
 
 .progress-bar {
   color: #FFFFFF; }
@@ -107,6 +108,22 @@ html, body {
   transform: translate(-50%, -50%);
   z-index: 100;
   text-align: center; }
+
+.logo-title-info {
+  position: absolute;
+  width: 100%;
+  top: 4%; }
+  .logo-title-info h1, .logo-title-info h2, .logo-title-info a {
+    color: #FFF;
+    text-align: center; }
+  .logo-title-info h1 {
+    font-size: 16px; }
+  .logo-title-info h2 {
+    font-size: 14px; }
+  .logo-title-info a {
+    font-size: 14px;
+    display: block;
+    padding-top: 5px; }
 
 .button {
   color: #fae9da;

@@ -84,7 +84,7 @@ var Chat = {
         var args = text.split(" ");
 
         switch(args[0]) {
-            case '.teditor': 
+            case '.ige': 
                 ige.editor.toggle();
             return true;
 

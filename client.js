@@ -22,13 +22,13 @@ var Client = IgeClass.extend({
 		ige.gameTexture = {};
 		//self.gameTexture.grassSheet = new IgeCellSheet('../assets/textures/tiles/tilea5b.png', 8, 16);
 		//ige.gameTexture.grassSheet = new IgeCellSheet(rootPath + 'assets/textures/tiles/grassSheet-2.png', 6, 3);
-		ige.gameTexture.carpetTest = new IgeCellSheet(rootPath + 'assets/textures/tiles/carpet-test-2.png', 1, 1);
+		ige.gameTexture.carpetTest = new IgeCellSheet(rootPath + 'assets/textures/tiles/carpet-test-4.png', 1, 1);
 		ige.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
 		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
 
 		//TODO: need to have it auto load all the studio images automaticly from the datafile
 		ige.gameTexture.studio_model_a = new IgeTexture(rootPath + 'assets/rooms/studio_model_a.png');
-		ige.gameTexture.studio_model_b = new IgeTexture(rootPath + 'assets/rooms/studio_model_b.png');
+		ige.gameTexture.studio_model_b = new IgeTexture(rootPath + 'assets/rooms/studio_model_b_2.png');
 		ige.gameTexture.studio_model_c = new IgeTexture(rootPath + 'assets/rooms/studio_model_c_1.png');
 		ige.gameTexture.studio_model_d = new IgeTexture(rootPath + 'assets/rooms/studio_model_d.png');
 		ige.gameTexture.studio_model_rooftop = new IgeTexture(rootPath + 'assets/rooms/Studio_Rooftop_with_Grid_256.png');

@@ -137,6 +137,7 @@ var igeCoreConfig = {
 		['cap', 'IgeFilters.invert', 'filters/invert.js'],
 		['cap', 'IgeFilters.glowMask', 'filters/glowMask.js'],
 		['cap', 'IgeFilters.flip', 'filters/flip.js'],
+		['cap', 'IgeFilters.stroke', 'filters/stroke.js'],
 		/* WebGL */
 		['cap', 'THREE', 'components/three/three.min.js'],
 		['cap', 'IgeThree', 'components/three/IgeThree.js'],
