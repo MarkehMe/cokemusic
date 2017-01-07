@@ -201,7 +201,7 @@ var GameMap = IgeTileMap2d.extend({
 		ige.selected = undefined;
 
 		//Reorganize inventory
-		organize_inventory();
+		//organize_inventory();
 	},
 
 	itemRotate: function() {
