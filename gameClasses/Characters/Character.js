@@ -42,7 +42,8 @@ var Character = IgeEntity.extend({
 
 					return false;
 				}
-				return true;
+
+				return ige.client.withinBounds(tileX, tileY);
 			})
 			.lookAheadSteps(10)
 			.autoStop(true)
