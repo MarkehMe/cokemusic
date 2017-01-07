@@ -191,9 +191,9 @@ var PlayerStudio = Room.extend({
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
 			.gridSize(self.object['width'], self.object['height'])
-			.gridColor('#470930')
-			.drawGrid($DRAW_GRIDLINES)
+			.gridColor($DRAW_GRIDLINES_COLOR)
 			.drawMouse(false)
+			.layer(-1)
 			.autoSection(self.object['width'])
 			.drawSectionBounds(false)
 			.isometricMounts(true)
@@ -211,11 +211,12 @@ var PlayerStudio = Room.extend({
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
 			.drawMouse(false)
+			//.layer(100)
 			.scaleTo(backgroundScale, backgroundScale, backgroundScale)
 			.texture(ige.gameTexture[self._type])
 			.anchor(self.object['x_anchor'], self.object['y_anchor'])
 			.dimensionsFromTexture()
-			.mount(self._gameScene);
+			.mount(self._objScene);
 
 		// Collision map
 		//self._colmap = new IgeMap2d();
@@ -239,9 +240,31 @@ var PlayerStudio = Room.extend({
 			}
 		}
 
+		// Create the tile texture map
+		self._tileTexMap = new IgeTextureMap()
+			.id('tileTextureMap')
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+			.tileWidth($TILESIZE)
+			.tileHeight($TILESIZE)
+			.gridSize(self.object['width'], self.object['height'])
+			.drawMouse(false)
+			.layer(-2)
+			.isometricMounts(true)
+			.autoSection(self.object['width'])
+			.drawSectionBounds(false)
+			.scaleTo(globalScale, globalScale, globalScale)
+			.mount(self._objScene);
+
 		// Generate Carpet Tiles
 		if(typeof self.object['draw_floor'] === 'undefined' || self.object['draw_floor'] == true) {
-			var texIndex = self._texMap.addTexture(ige.gameTexture.carpetTest);
+			// var height = ige.gameTexture.carpetTest.sizeY();
+			// var width = ige.gameTexture.carpetTest.sizeX();
+
+			// ige.gameTexture.carpetTest.sizeY(height - 5);
+			// ige.gameTexture.carpetTest.sizeX(width - 5);
+			//ige.gameTexture.carpetTest.resizeByPercent(99, 99);
+			var texIndex = self._tileTexMap.addTexture(ige.gameTexture.carpetTest);
+
 			for (var x = 0; x < self.object['width']; x++) {
 				for (var y = 0; y < self.object['height']; y++) {
 
@@ -255,15 +278,18 @@ var PlayerStudio = Room.extend({
 						}
 
 						if(isBlocked == false) {
-							self._texMap.paintTile(x, y, texIndex, 1);
+							self._tileTexMap.paintTile(x, y, texIndex, 1);
 						}
 					} else {
 						//console.log('painting x: ' + x + ', y: ' + y);
-						self._texMap.paintTile(x, y, texIndex, 1);
+						self._tileTexMap.paintTile(x, y, texIndex, 1);
 					}
 				}
 			}
 		}
+
+		//Draw the grid
+		self._texMap.drawGrid($DRAW_GRIDLINES);
 
 		//Door
 		if(typeof self.object['door'] !== 'undefined') {

@@ -443,7 +443,12 @@ var IgeTexture = IgeEventingClass.extend({
 	 * @param {Number} val
 	 */
 	sizeX: function (val) {
-		this._sizeX = val;
+		if (val !== undefined) {
+			this._sizeX = val;
+			return this;
+		}
+
+		return this._sizeX;
 	},
 
 	/**
@@ -451,7 +456,12 @@ var IgeTexture = IgeEventingClass.extend({
 	 * @param {Number} val
 	 */
 	sizeY: function (val) {
-		this._sizeY = val;
+		if (val !== undefined) {
+			this._sizeY = val;
+			return this;
+		}
+
+		return this._sizeY;
 	},
 
 	/**
