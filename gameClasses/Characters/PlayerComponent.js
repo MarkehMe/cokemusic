@@ -52,10 +52,12 @@ var PlayerComponent = IgeClass.extend({
 		var endTile = ige.room.tileMap().mouseToTile(),
 			overTiles;
 
-
 		// Check the bounds
 		 if(ige.client.withinBounds(endTile.x, endTile.y) == false) {
-		 	return false;
+		 	//Make sure we are not walking to the door
+			if(endTile.x != ige.room.playerStartCords().x && endTile.y != ige.room.playerStartCords().y) {
+				return false;
+			}
 		 }
 
 		overTiles = this._entity.overTiles()[0];
@@ -127,6 +129,12 @@ var PlayerComponent = IgeClass.extend({
 			}
 		} else {
 			this._entity.rest();
+		}
+
+		//Check if we are leaving
+		if(this.targetPos.x == ige.room.playerStartCords().x && this.targetPos.y == ige.room.playerStartCords().y) {
+			ige.navigation.showMainMenu();
+			return;
 		}
 
 		//Set current cordinates

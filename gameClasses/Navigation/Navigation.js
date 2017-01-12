@@ -14,7 +14,10 @@ var Navigation = {
 			.success(function(data) {
 				//Hide main menu screen if it's visible
 				$('#entry').hide();
-				
+
+				//Show the menu bar
+				$('.bottom-bar').show();
+
 				//Show loading screen
 
 				//Restart the scene
@@ -45,11 +48,18 @@ var Navigation = {
 					.startPlayer();
 
 				//Set a timeout to hide the loading screen
-				
-
 			})
     	});
-    }
-}
 
-Navigation.init();
+    	return this;
+    },
+
+    showMainMenu: function() {
+		ige.removeGraph();
+		$('.bottom-bar').hide();
+		$('#entry').show();
+		toggle_popup('#navigation-ui');
+
+		return this;
+    },
+}

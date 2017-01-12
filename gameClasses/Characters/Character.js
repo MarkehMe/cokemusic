@@ -43,6 +43,11 @@ var Character = IgeEntity.extend({
 					return false;
 				}
 
+				//Check if they are leaving the room
+				if(tileX == ige.room.playerStartCords().x && tileY == ige.room.playerStartCords().y) {
+					return true;
+				}
+
 				return ige.client.withinBounds(tileX, tileY);
 			})
 			.lookAheadSteps(10)

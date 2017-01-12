@@ -9,7 +9,7 @@ var ROOMS = {
 
 		'player_start' : {
 			'x' : 1,
-			'y' : 0,
+			'y' : -1,
 		},
 
 		'background' : 'studio_model_a.png',
@@ -66,7 +66,7 @@ var ROOMS = {
 
 		'player_start' : {
 			'x' : 1,
-			'y' : 0,
+			'y' : -1,
 		},
 
 		'background' : 'studio_model_c.png',
@@ -96,7 +96,7 @@ var ROOMS = {
 
 		'player_start' : {
 			'x' : 1,
-			'y' : 0,
+			'y' : -1,
 		},
 	},
 
@@ -132,7 +132,7 @@ var ROOMS = {
 
 		'player_start' : {
 			'x' : 5,
-			'y' : 0,
+			'y' : -1,
 		},
 	},
 
@@ -168,7 +168,7 @@ var ROOMS = {
 
 		'player_start' : {
 			'x' : 5,
-			'y' : 0,
+			'y' : -1,
 		},
 	},
 
@@ -249,7 +249,7 @@ var ROOMS = {
 
 		'player_start' : {
 			'x' : 5,
-			'y' : 0,
+			'y' : -1,
 		},
 
 		'static_objects' : [

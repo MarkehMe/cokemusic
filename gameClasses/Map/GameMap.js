@@ -25,8 +25,6 @@ var GameMap = IgeTileMap2d.extend({
 		$('#itemRotate').on('click', function() { self.itemRotate(); });
 		$('#itemMove').on('click', function() { self.itemMove(); });
 
-		$('.bottom-bar').show();
-
 		//Setup click handlers for item selections in bag
 		this._inventoryListener = $('body').on('click', '.inventory-data a', function() { self.itemInventoryClick( $(this)); });
 	},

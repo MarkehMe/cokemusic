@@ -61,6 +61,9 @@ var Client = IgeClass.extend({
 				// Check if the engine started successfully
 				if (success) {
 
+					//Load navigation
+					ige.navigation = Navigation.init();
+
 					$('#entry').show();
 					$('#navigation-ui').show();
 
