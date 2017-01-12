@@ -60,30 +60,34 @@ var Client = IgeClass.extend({
 			ige.start(function (success) {
 				// Check if the engine started successfully
 				if (success) {
-					ige.addGraph('IgeBaseScene');
 
-					var playerStudio = new PlayerStudio()
-						.type('studio_model_b')
-						.owner('dev')
-						.render();
+					$('#entry').show();
+					$('#navigation-ui').show();
 
-					ige.room = playerStudio;
+					// ige.addGraph('IgeBaseScene');
 
-					// Create the 3d container that the player
-					// entity will be mounted to
-					ige.player = new Character()
-						.id('player')
-						.setStyle('001')
-						.setHeadStyle('001')
-						.setHairStyle('013')
-						.setEyeStyle('001')
-						.setMouthStyle('001')
-						.setLeftSleveStyle('001')
-						.setRightSleveStyle('001')
-						.setShirtStyle('001')
-						.setPantStyle('001')
-						.setShoeStyle('001')
-						.startPlayer();
+					// var playerStudio = new PlayerStudio()
+					// 	.type('studio_model_b')
+					// 	.owner('dev')
+					// 	.render();
+
+					// ige.room = playerStudio;
+
+					// // Create the 3d container that the player
+					// // entity will be mounted to
+					// ige.player = new Character()
+					// 	.id('player')
+					// 	.setStyle('001')
+					// 	.setHeadStyle('001')
+					// 	.setHairStyle('013')
+					// 	.setEyeStyle('001')
+					// 	.setMouthStyle('001')
+					// 	.setLeftSleveStyle('001')
+					// 	.setRightSleveStyle('001')
+					// 	.setShirtStyle('001')
+					// 	.setPantStyle('001')
+					// 	.setShoeStyle('001')
+					// 	.startPlayer();
 					
 					//self.player.triggerPolygon('bounds3dPolygon');
 

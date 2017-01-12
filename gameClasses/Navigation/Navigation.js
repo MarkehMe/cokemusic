@@ -12,55 +12,42 @@ var Navigation = {
 				data: { id: studioId },
 			})
 			.success(function(data) {
-					//Restart the scene
-					ige.removeGraph();
-					ige.addGraph('IgeBaseScene');
+				//Hide main menu screen if it's visible
+				$('#entry').hide();
+				
+				//Show loading screen
 
-					//Create the new studio
-					var playerStudio = new PlayerStudio()
-						.type(data.room_type)
-						.owner(data.room_owner)
-						.render();
+				//Restart the scene
+				ige.removeGraph();
+				ige.addGraph('IgeBaseScene');
 
-					ige.room = playerStudio;
+				//Create the new studio
+				var playerStudio = new PlayerStudio()
+					.type(data.room_type)
+					.owner(data.room_owner)
+					.render();
 
-					//Recreate the player
-					ige.player = new Character()
-						.id('player')
-						.setStyle('001')
-						.setHeadStyle('001')
-						.setHairStyle('013')
-						.setEyeStyle('001')
-						.setMouthStyle('001')
-						.setLeftSleveStyle('001')
-						.setRightSleveStyle('001')
-						.setShirtStyle('001')
-						.setPantStyle('001')
-						.setShoeStyle('001')
-						.startPlayer();
+				ige.room = playerStudio;
 
-					// ige.player = new Character()
-					// 	.id('player')
-					// 	.setStyle('002')
-					// 	.setHeadStyle('004')
-					// 	.setHairStyle('006')
-					// 	.setEyeStyle('001')
-					// 	.setMouthStyle('001')
-					// 	.setLeftSleveStyle('005')
-					// 	.setRightSleveStyle('005')
-					// 	.setShirtStyle('008')
-					// 	.setPantStyle('001')
-					// 	.setShoeStyle('001')
-					// 	.startPlayer();
+				//Recreate the player
+				ige.player = new Character()
+					.id('player')
+					.setStyle('001')
+					.setHeadStyle('001')
+					.setHairStyle('013')
+					.setEyeStyle('001')
+					.setMouthStyle('001')
+					.setLeftSleveStyle('001')
+					.setRightSleveStyle('001')
+					.setShirtStyle('001')
+					.setPantStyle('001')
+					.setShoeStyle('001')
+					.startPlayer();
 
-					//Show any items in the room
-					
+				//Set a timeout to hide the loading screen
+				
 
 			})
-			.complete(function(data) {
-				// var json = jQuery.parseJSON( data.responseText );
-				// console.log(json)
-			});
     	});
     }
 }
