@@ -82,20 +82,6 @@ var PlayerComponent = IgeClass.extend({
 		if(typeof this._entity === 'undefined') {
 			return false;
 		}
-		// if (keyCode === ige.input.key.space) {
-		// 	// Change the character
-		// 	this._entity._characterType++;
-
-		// 	if (this._entity._characterType > 7) {
-		// 		this._entity._characterType = 0;
-		// 	}
-
-		// 	this._entity.setType(this._entity._characterType);
-
-		// 	//If the character is currently moving update the direction.
-		// 	if(this._entity.path._active == true)
-		// 		this._entity.changeDirection(this._entity.path.getDirection());
-		// }
 	},
 
 	_pointReached: function(sender, x, y) {

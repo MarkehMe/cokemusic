@@ -158,77 +158,66 @@ var GameItem = IgeEntity.extend({
 	 * @return {*}
 	 */
 	moveTo: function (tileX, tileY, zPlacement) {
-		//if (this.data('placed')) {
-			// Un-occupy the current tiles
-			// this.unOccupyTile(
-			// 	this.data('tileX'),
-			// 	this.data('tileY'),
-			// 	this.data('tileXWidth'),
-			// 	this.data('tileYHeight')
-			// );
-			
-			//If the item is hidden then it's not within the bounds of the map
-			if(this.isHidden()) {
+		//If the item is hidden then it's not within the bounds of the map
+		if(this.isHidden()) {
+			ige.room._tilemap.itemPickup(true);
+			return;
+		}
+
+		if(tileX == undefined || tileY == undefined) {
+			//Check if this item even has an existing position
+			if(typeof this.data('tileX') === 'undefined' || this.data('tileX') < 0) {
 				ige.room._tilemap.itemPickup(true);
 				return;
 			}
+		} else {
+			this.data('tileX', tileX)
+				.data('tileY', tileY);
+		}
 
-			if(tileX == undefined || tileY == undefined) {
-				//Check if this item even has an existing position
-				if(typeof this.data('tileX') === 'undefined' || this.data('tileX') < 0) {
-					ige.room._tilemap.itemPickup(true);
-					return;
-				}
-			} else {
-				this.data('tileX', tileX)
-					.data('tileY', tileY);
+		//Set zPlacement as it's optional param
+		if(typeof zPlacement === 'undefined') {
+			zPlacement = this.data('zPlacement');
+		} else {
+			this.data('zPlacement', zPlacement);
+		}
+
+		this.occupyTile(
+			this.data('tileX'),
+			this.data('tileY'),
+			this.data('tileXWidth'),
+			this.data('tileYHeight')
+		);
+
+		var cords = this.getItemTransform();
+		this.translateToTile(
+			cords['x'],
+			cords['y'],
+			0
+		);
+
+		//Update the zPlacement (stackable items)
+		this._translate.z = zPlacement;
+		
+		if($HIGHLIGHT_SELECTED) {
+			ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
+
+			if(this.data('tileXWidth') > 1) {
+				ige.room.tileMap().strokeTile(this.data('tileX') + 1, this.data('tileY'));
 			}
 
-			//Set zPlacement as it's optional param
-			if(typeof zPlacement === 'undefined') {
-				zPlacement = this.data('zPlacement');
-			} else {
-				this.data('zPlacement', zPlacement);
+			if(this.data('tileYHeight') > 1) {
+				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY') + 1);
 			}
+		}
 
-			this.occupyTile(
-				this.data('tileX'),
-				this.data('tileY'),
-				this.data('tileXWidth'),
-				this.data('tileYHeight')
-			);
-
-			var cords = this.getItemTransform();
-			this.translateToTile(
-				cords['x'],
-				cords['y'],
-				0
-			);
-
-			//Update the zPlacement (stackable items)
-			this._translate.z = zPlacement;
-			//this.translate(cords['x'],cords['y'],zPlacement);
-			
-			if($HIGHLIGHT_SELECTED) {
-				ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY'));
-
-				if(this.data('tileXWidth') > 1) {
-					ige.room.tileMap().strokeTile(this.data('tileX') + 1, this.data('tileY'));
-				}
-
-				if(this.data('tileYHeight') > 1) {
-					ige.room.tileMap().strokeTile(this.data('tileX'), this.data('tileY') + 1);
-				}
+		//Check if this is a seat
+		if(this.isSeat()) {
+			if(ige.player.isAtTile(this.data('tileX'), this.data('tileY'))) {
+				ige.player.sit(this);
+				this.beingUsed(true, ige.player);
 			}
-
-			//Check if this is a seat
-			if(this.isSeat()) {
-				if(ige.player.isAtTile(this.data('tileX'), this.data('tileY'))) {
-					ige.player.sit(this);
-					this.beingUsed(true, ige.player);
-				}
-			}
-		//}
+		}
 
 		return this;
 	},
@@ -289,12 +278,7 @@ var GameItem = IgeEntity.extend({
 	destroy: function () {
 		// Un-occupy the tiles this entity currently occupies
 		if (this.data('placed')) {
-			this.unOccupyTile(
-				this.data('tileX'),
-				this.data('tileY'),
-				this.data('tileXWidth'),
-				this.data('tileYHeight')
-			);
+			self.unplace();
 
 			this.data('placed', false);
 		}
@@ -328,12 +312,7 @@ var GameItem = IgeEntity.extend({
 			direction    = self.data('object')['offsets'][newDirection];
 
 		//Un-occupy the current tiles
-		self.unOccupyTile(
-			self.data('tileX'),
-			self.data('tileY'),
-			self.data('tileXWidth'),
-			self.data('tileYHeight')
-		);
+		self.unplace();
 
 		//Update the current direction
 		self.data('currentDirection', newDirection);

@@ -18,16 +18,6 @@ var CharacterShirt = IgeEntity.extend({
 
 
 		self.setTexture();
-		// //Initilize the animations
-		// fps = 5.5;
-		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [2], fps, -1)
-		// 	.animation.define('W',  [4], fps, -1)
-		// 	.animation.define('E',  [3], fps, -1)
-		// 	.animation.define('SW', [5], fps, -1)
-		// 	.animation.define('SE', [6], fps, -1)
-		// 	.animation.define('N',  [7], fps, -1)
-		// 	.animation.define('S',  [8], fps, -1);
 
 		//Listen for the changeDirection event so we can change
 		//the hair animation

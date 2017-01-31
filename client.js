@@ -20,11 +20,8 @@ var Client = IgeClass.extend({
 
 		// Load our textures
 		ige.gameTexture = {};
-		//self.gameTexture.grassSheet = new IgeCellSheet('../assets/textures/tiles/tilea5b.png', 8, 16);
-		//ige.gameTexture.grassSheet = new IgeCellSheet(rootPath + 'assets/textures/tiles/grassSheet-2.png', 6, 3);
 		ige.gameTexture.carpetTest = new IgeCellSheet(rootPath + 'assets/textures/tiles/carpet-test-4.png', 1, 1);
 		ige.gameTexture.purpleTile = new IgeCellSheet(rootPath + 'assets/textures/tiles/floor-tiles.png', 3, 1);
-		//self.gameTexture.shrubs 	= new IgeSpriteSheet(rootPath + 'assets/textures/tiles/shrubbery.png');
 
 		//TODO: need to have it auto load all the studio images automaticly from the datafile
 		ige.gameTexture.studio_model_a = new IgeTexture(rootPath + 'assets/rooms/studio_model_a.png');
@@ -42,7 +39,6 @@ var Client = IgeClass.extend({
 		ige.gameTexture.pokemon_house = new IgeTexture(rootPath + 'assets/rooms/pokemon_house.png');
 		ige.gameTexture.pokemon_house2 = new IgeTexture(rootPath + 'assets/rooms/pokemon_house.png');
 
-		//ige.gameTexture.people = new IgeSpriteSheet(rootPath + 'assets/character/people.png');
 		ige.gameTexture.people = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');
 		ige.gameTexture.people.hair = new TexturePackerAtlas('PEOPLE', rootPath + 'assets/character/data.png', rootPath + 'assets/character/data.js');
 
@@ -50,7 +46,6 @@ var Client = IgeClass.extend({
 		ige.gameTexture.furniture = new IgeSpriteSheet(rootPath + 'assets/furniture.png');
 
 		ige.addComponent(IgeEditorComponent);
-		//ige.addComponent(IgeEditorRotateComponent);
 		
 		// Create the HTML canvas
 		ige.createFrontBuffer(true);
@@ -92,32 +87,6 @@ var Client = IgeClass.extend({
 					// 	.setPantStyle('001')
 					// 	.setShoeStyle('001')
 					// 	.startPlayer();
-					
-					//self.player.triggerPolygon('bounds3dPolygon');
-
-					// Set the camera to track the character with some
-					// tracking smoothing turned on (100)
-					//ige.$('vp1').camera.trackTranslate(self.player, 100);
-					//ige.$('vp1').drawBounds(true);
-
-					//Occupy all the border tiles
-					// for (var x = 0; x < 12; x++) {
-					// 	for (var y = 0; y < 12; y++) {
-					// 		if(x == 0) {
-					// 			ige.$collisionMap1.tileData(x, y, true);
-					// 		}
-					// 	}
-					// }
-
-					// //** Generate Carpet Tiles
-					// var texIndex = self.textureMap1.addTexture(ige.gameTexture.carpetTest);
-					// // Generate some random tiles
-					// for (var x = 0; x < 11; x++) {
-					// 	for (var y = 0; y < 11; y++) {
-					// 		//var rand = Math.ceil(Math.random() * 18);
-					// 		self.textureMap1.paintTile(x, y, texIndex, 1);
-					// 	}
-					// }
 
 					// var TV = new GameItem('tv', 'NW', 1, 1);
 					// var Fridge = new GameItem('treasure_chest', 'SE', 1, 2);
@@ -153,24 +122,6 @@ var Client = IgeClass.extend({
 						// 	.dimensionsFromCell()
 						// 	.mount(ige.room.tileMap())
 						// 	.translateToTile(4, 4, 0);
-
-					//Shrubs
-					// var xAdj = 0,
-					// 	xAdj2 = 0;
-					// for (var i = 1; i < self.gameTexture.shrubs.cellCount(); i++) {
-					// 	if (i > 1) {
-					// 		xAdj += self.gameTexture.shrubs._cells[i][2] / 2;
-					// 	}
-
-						// new IgeEntity()
-						// 	.texture(self.gameTexture.shrubs)
-						// 	.cell(i)
-						// 	.dimensionsFromCell()
-						// 	.translateTo(-450 + xAdj + xAdj2, 130, 0)
-						// 	.mount(self.gameScene);
-
-					// 	xAdj += (self.gameTexture.shrubs._cells[i][2] / 2) + 5;
-					// }
 
 					// Start traversing the path!
 					// self.player.path

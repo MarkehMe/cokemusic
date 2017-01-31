@@ -20,17 +20,6 @@ var CharacterHair = IgeEntity.extend({
 		self.setTexture();
 		//self.setColor('red');
 
-		//Initilize the animations
-		// fps = 5.5;
-		// this.animation.define('NE', [1], fps, -1)
-		// 	.animation.define('NW', [2], fps, -1)
-		// 	.animation.define('W',  [3], fps, -1)
-		// 	.animation.define('E',  [4], fps, -1)
-		// 	.animation.define('SW', [5], fps, -1)
-		// 	.animation.define('SE', [6], fps, -1)
-		// 	.animation.define('N',  [7], fps, -1)
-		// 	.animation.define('S',  [8], fps, -1);
-
 		//Listen for the changeDirection event so we can change
 		//the hair animation
 		container._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });

@@ -61,9 +61,6 @@ var GameMap = IgeTileMap2d.extend({
 
 			if (this.isTileOccupied(transformX, transformY) == false) {
 				// If its not occupied, move to it
-				// ige.selected.data('tileX', transformX);
-				// ige.selected.data('tileY', transformY);
-				// ige.selected.place();
 				ige.selected.moveTo(transformX, transformY, 0);
 				if(ige.selected.newSpawn) {
 					ige.selected.newSpawn = false;
@@ -72,9 +69,6 @@ var GameMap = IgeTileMap2d.extend({
 			} else {
 				if(ige.selected.isStackable() && item.isStackable()) {
 					var displacement = this.getTileZHeight(transformX, transformY);
-					// ige.selected.data('tileX', transformX);
-					// ige.selected.data('tileY', transformY);
-					// ige.selected.place();
 					ige.selected.moveTo(transformX, transformY, displacement);
 					if(ige.selected.newSpawn) {
 						ige.selected.newSpawn = false;
@@ -262,7 +256,6 @@ var GameMap = IgeTileMap2d.extend({
 		//		we need to create a new function to get the closest
 		//		avalible position to temporaliy store this item incase
 		//		the client gets dc'ed, etc
-		//newItem = new GameItem(itemName, 'SE', mousePos.x, mousePos.y);
 		newItem = new GameItem(itemName, 'SE', -1, -1);
 
 		//Remove the li elements so all the other items get adjusted

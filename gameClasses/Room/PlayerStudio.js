@@ -236,19 +236,6 @@ var PlayerStudio = Room.extend({
 			.scaleTo(globalScale, globalScale, globalScale)
 			.mount(self._objScene);
 
-		// Collision map
-		//self._colmap = new IgeMap2d();
-
-		// Occupy all the border tiles
-		// for (var x = 0; x < self.object['width'] + 1; x++) {
-		// 	for (var y = 0; y < self.object['height'] + 1; y++) {
-		// 		if(x == 0) {
-		// 			var invisibleObj = new InvisibleBlock();
-		// 			self._tilemap.occupyTile(x, y, 1, 1, invisibleObj);
-		// 		}
-		// 	}
-		// }
-
 		// Occupy all blocked titles as needed
 		var blockedTiles = self.object['blocked_tiles'];
 		if(typeof blockedTiles != 'undefined') {
@@ -382,35 +369,6 @@ var PlayerStudio = Room.extend({
 
 			}
 		}
-
-		// var leftWallX = (self._tilemap.wallXOffset() * -1),
-		// 	rightWallX = self._tilemap.wallXOffset(),
-		// 	leftWallY = (self._tilemap.wallYOffset());
-
-		//Generate Left Walls
-		// for (var width = 0; width < self.object['width']; width++) {
-		// 	var x = leftWallX + width * $TILESIZE,
-		// 		y = leftWallY - width * ($TILESIZE / 2);
-
-		// 	new IgeEntity()
-		// 		.isometric(true)
-		// 		.texture(ige.gameTexture.leftWall)
-		// 		.dimensionsFromTexture()
-		// 		.anchor(x, y)
-		// 		.mount(self._objScene);
-		// }
-
-		//Generate Right Walls
-		// for (var height = 0; height < self.object['height']; height++) {
-		// 	x = rightWallX + height * $TILESIZE;
-
-		// 	new IgeEntity()
-		// 		.isometric(true)
-		// 		.texture(ige.gameTexture.leftWall)
-		// 		.dimensionsFromTexture()
-		// 		.anchor(x, 0)
-		// 		.mount(self._objScene);
-		// }
 
 		return this;
 	},

@@ -18,14 +18,6 @@ var CharacterMouth = IgeEntity.extend({
 
 		self.setTexture();
 
-		//Initilize the animations
-		// fps = 1;
-		// this.animation.define('W',  [2], fps, -1)
-		//     .animation.define('E',  [1], fps, -1)
-		//     .animation.define('SW', [5], fps, -1)
-		// 	.animation.define('SE', [4], fps, -1)
-		// 	.animation.define('S',  [3], fps, -1);
-
 		//Listen for the changeDirection event so we can change
 		//the eye direction
 		container._container.on('onChangedDirection', function (ctn, dir) { self.changedDirection(ctn, dir); });
