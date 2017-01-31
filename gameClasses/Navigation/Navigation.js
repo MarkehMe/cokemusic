@@ -17,6 +17,7 @@ var Navigation = {
 
 				//Show the menu bar
 				$('.bottom-bar').show();
+				$('#navigation_close').show();
 
 				//Show loading screen
 
@@ -55,6 +56,7 @@ var Navigation = {
     },
 
     showMainMenu: function() {
+    	$('#navigation_close').hide();
     	ige.room._gameScene.hide();
 		ige.removeGraph();
 		$('.bottom-bar').hide();

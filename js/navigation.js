@@ -1,6 +1,8 @@
 var NAVIGATION_OPEN = false;
 
 function init_navigation() {
+    $('#navigation_close').hide();
+    
     //Inventory close
     $('#navigation_close').on("mousedown", function(e) {
     	NAVIGATION_OPEN = false;
