@@ -38,6 +38,7 @@ var Client = IgeClass.extend({
 		ige.gameTexture.entry_side = new IgeTexture(rootPath + 'assets/rooms/wall_doormask_side.png');
 		
 		ige.gameTexture.leftWall = new IgeTexture(rootPath + 'assets/textures/left_wall_1_a_0_0_0.png');
+		ige.gameTexture.rightWall = new IgeTexture(rootPath + 'assets/textures/right_wall_1_a_0_2_0.png');
 		ige.gameTexture.pokemon_house = new IgeTexture(rootPath + 'assets/rooms/pokemon_house.png');
 		ige.gameTexture.pokemon_house2 = new IgeTexture(rootPath + 'assets/rooms/pokemon_house.png');
 

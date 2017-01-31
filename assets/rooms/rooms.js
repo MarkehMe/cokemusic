@@ -14,6 +14,11 @@ var ROOMS = {
 
 		'background' : 'studio_model_a.png',
 		'scale' : 1,
+
+		'door' : {
+			top : { },
+			side : { },
+		},
 	},
 
 	'studio_model_b' : {
@@ -71,6 +76,11 @@ var ROOMS = {
 
 		'background' : 'studio_model_c.png',
 		'scale' : 1,
+
+		'door' : {
+			top : { },
+			side : { },
+		},
 	},
 
 	'studio_model_d' : {
@@ -98,6 +108,12 @@ var ROOMS = {
 			'x' : 1,
 			'y' : -1,
 		},
+
+		'door' : {
+			top : { },
+			side : { },
+		},
+
 	},
 
 	'studio_model_rooftop' : {
@@ -110,6 +126,7 @@ var ROOMS = {
 		'background' : 'Studio_Rooftop_with_Grid_256.png',
 		'scale' : 1,
 		'draw_floor': false,
+		'draw_wall': false,
 
 		'blocked_tiles' : [
 			{ 'x' : 0, 'y': 0 },
@@ -146,6 +163,7 @@ var ROOMS = {
 		'background' : 'wayne_ent_4.png',
 		'scale' : 1,
 		'draw_floor': false,
+		'draw_wall': false,
 
 		'blocked_tiles' : [
 			{ 'x' : 0, 'y': 0 },
@@ -183,6 +201,7 @@ var ROOMS = {
 		'scale' : 0.9,
 		'object_scale' : 0.7,
 		'draw_floor': false,
+		'draw_wall': false,
 
 		'blocked_tiles' : [
 			{ 'x' : 1, 'y': 2 },

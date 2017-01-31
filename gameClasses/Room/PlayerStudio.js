@@ -137,6 +137,7 @@ var PlayerStudio = Room.extend({
 		// Create an isometric tile map
 		self._tilemap = new GameMap()
 			.id('tileMap1')
+			.layer(2)
 			.drawBounds(false)
 			.drawBoundsData(false)
 			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
@@ -187,13 +188,13 @@ var PlayerStudio = Room.extend({
 		// Create the texture map
 		self._texMap = new IgeTextureMap()
 			.id('textureMap')
+			.layer(-1)
 			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
 			.tileWidth($TILESIZE)
 			.tileHeight($TILESIZE)
 			.gridSize(self.object['width'], self.object['height'])
 			.gridColor($DRAW_GRIDLINES_COLOR)
 			.drawMouse(false)
-			.layer(-1)
 			.autoSection(self.object['width'])
 			.drawSectionBounds(false)
 			.isometricMounts(true)
@@ -216,6 +217,23 @@ var PlayerStudio = Room.extend({
 			.texture(ige.gameTexture[self._type])
 			.anchor(self.object['x_anchor'], self.object['y_anchor'])
 			.dimensionsFromTexture()
+			.mount(self._objScene);
+
+		//Create texture for left wall
+		self._leftWall = new IgeTileMap2d()
+			.id('leftWall')
+			.layer(1)
+			.drawBounds(false)
+			.drawBoundsData(false)
+			.translateTo(self.object['x_offset'], self.object['y_offset'], 0)
+			.isometricMounts(true)
+			.tileWidth($TILESIZE)
+			.tileHeight($TILESIZE)
+			.gridSize(self.object['width'], self.object['height'])
+			.drawGrid(false)
+			.drawMouse(false)
+			.gridColor('transparent')
+			.scaleTo(globalScale, globalScale, globalScale)
 			.mount(self._objScene);
 
 		// Collision map
@@ -268,21 +286,51 @@ var PlayerStudio = Room.extend({
 			for (var x = 0; x < self.object['width']; x++) {
 				for (var y = 0; y < self.object['height']; y++) {
 
+					var isBlocked = false;
+
 					//Make sure the tile isnt blocked
 					if(typeof blockedTiles != 'undefined') {
-						var isBlocked = false;
 						for (var i = 0; i < blockedTiles.length; i++) {
 							if(x === blockedTiles[i]['x'] && y == blockedTiles[i]['y']) {
 								isBlocked = true;
 							}
 						}
 
+						//If it's not blocked paint it
 						if(isBlocked == false) {
 							self._tileTexMap.paintTile(x, y, texIndex, 1);
 						}
 					} else {
 						//console.log('painting x: ' + x + ', y: ' + y);
 						self._tileTexMap.paintTile(x, y, texIndex, 1);
+					}
+
+					if(typeof self.object['draw_wall'] === 'undefined' || self.object['draw_wall'] == true) {
+						if(x == self.playerStartCords().x && y == self.playerStartCords().y + 1) {
+							continue;
+						}
+
+						//Paint all the left walls
+						if(x == 0 && isBlocked == false) {
+							var obj = new IgeEntity()
+								.isometric(true)
+								.texture(ige.gameTexture.leftWall)
+								.dimensionsFromCell()
+								.mount(self._leftWall)
+								.anchor(-18, -66)
+								.translateToTile(x, y, 0);
+						}
+
+						//Paint all the right walls
+						if(y == 0 && isBlocked == false) {
+							var obj = new IgeEntity()
+								.isometric(true)
+								.texture(ige.gameTexture.rightWall)
+								.dimensionsFromCell()
+								.mount(self._leftWall)
+								.anchor(18, -66)
+								.translateToTile(x, y, 0);
+						}
 					}
 				}
 			}

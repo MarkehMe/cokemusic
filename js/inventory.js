@@ -77,8 +77,6 @@ function show_inventory_page(page) {
 }
 
 function organize_inventory(page) {
-	console.log('organize inventory');
-
 	//Recursive
 	if(typeof page !== 'undefined') {
 		var page = $(page);
