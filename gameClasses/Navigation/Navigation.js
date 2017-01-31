@@ -55,6 +55,7 @@ var Navigation = {
     },
 
     showMainMenu: function() {
+    	ige.room._gameScene.hide();
 		ige.removeGraph();
 		$('.bottom-bar').hide();
 		$('#entry').show();
