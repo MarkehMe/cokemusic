@@ -29,11 +29,7 @@ function init_inventory() {
     $('#backpack_close').on("mousedown", function(e) {
     	dragging = false;
 
-		inventory.animate({
-			top: "999px",
-		});
-		$('#backpack').removeClass('active');
-		INVENTORY_OPEN = false;
+    	close_inventory_ui();
     });
 }
 
@@ -149,14 +145,20 @@ function on_inventory_click() {
 		backpack.addClass('active');
 		INVENTORY_OPEN = true;
 	} else {
-		inventory.animate({
-			top: "999px",
-		});
-		backpack.removeClass('active');
-		INVENTORY_OPEN = false;
+		close_inventory_ui();
 	}
 }
 
+function close_inventory_ui() {
+	var inventory = $('#inventory');
+	var backpack = $('#backpack');
+
+	inventory.animate({
+		top: "999px",
+	});
+	backpack.removeClass('active');
+	INVENTORY_OPEN = false;
+}
 function on_inventory_close_click() {
 
 }

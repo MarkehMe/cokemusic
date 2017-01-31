@@ -56,13 +56,20 @@ var Navigation = {
     },
 
     showMainMenu: function() {
-    	$('#navigation_close').hide();
+    	this.closeAllUI();
+
     	ige.room._gameScene.hide();
 		ige.removeGraph();
-		$('.bottom-bar').hide();
+		
 		$('#entry').show();
 		toggle_popup('#navigation-ui');
 
 		return this;
+    },
+
+    closeAllUI: function() {
+    	$('.bottom-bar').hide();
+    	$('#navigation_close').hide();
+    	close_inventory_ui();
     },
 }
