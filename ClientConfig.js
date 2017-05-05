@@ -46,6 +46,9 @@ var igeClientConfig = {
 		// Chat
 		'/gameClasses/Chat/Chat.js',
 
+		// Catalog
+		'/gameClasses/Catalog/Catalog.js',
+
 		//Navigation
 		'/gameClasses/Navigation/Navigation.js',
 

@@ -1,0 +1,5 @@
+var Catalog = {
+    init: function() {
+
+    },
+}
