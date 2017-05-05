@@ -20,11 +20,15 @@ Once Grunt is installed open terminal in root of the project and run `grunt` to 
 
 # Documentation
 
-No documentation is avalible at this time
+No documentation is avalible at this time.
 
 # Resources & Links
 [CokePhase.com](http://cokephase.com)
+
 [Isoenic Game Engine](https://github.com/Irrelon/ige)
+
 [CokeMusic Reddit](https://www.reddit.com/r/cokemusic/)
+
 [CokeMusic Facebook Group](https://www.facebook.com/groups/67813393246/)
+
 [YouTube Channel](https://www.youtube.com/channel/UCRTb7q8pr0DR4kkP-qKhoYA)
