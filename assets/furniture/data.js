@@ -47,7 +47,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : '5001_stereo_small.png',
 			'title' : 'Northern Stereo',
-			'description' : "Loud as fuck.",
+			'description' : "",
 			'height' : 45,
 			'stackable' : false,
 			'counter' : false
@@ -65,7 +65,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : '5001_stool_small.png',
 			'title' : 'Northern Stool',
-			'description' : "A stool for kids at a BBQ.",
+			'description' : "",
 			'height' : 20,
 			'stackable' : false,
 			'counter' : false,
@@ -84,7 +84,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : '5001_table_small.png',
 			'title' : 'Northern Table',
-			'description' : "A table.",
+			'description' : "",
 			'height' : 20,
 			'stackable' : false,
 			'counter' : false,
@@ -177,7 +177,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'rack1_small.png',
 			'title' : 'Rack',
-			'description' : 'No idea what this thing does.',
+			'description' : '',
 			'height' : 40,
 			'stackable' : true,
 			'counter' : false
@@ -195,7 +195,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'rug3_small.png',
 			'title' : 'Fur Rug',
-			'description' : "Wow, this rug feels amazing. It's made out of dead animals.",
+			'description' : "",
 			'height' : 10,
 			'rug'		: true,
 			'stackable' : false,
@@ -214,7 +214,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'speaker1_small.png',
 			'title' : 'Round Stereo',
-			'description' : "No description is needed for this penis.",
+			'description' : "",
 			'height' : 57,
 			'stackable' : false,
 			'counter' 	: false
@@ -232,7 +232,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'trashcan_small.png',
 			'title' : 'Trash Can',
-			'description' : "If you look closely you can someone threw out their ex.",
+			'description' : "",
 			'height' : 33,
 			'stackable' : false,
 			'counter' 	: false
@@ -250,7 +250,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'treasurechest_small.png',
 			'title' : 'Treasure Chest',
-			'description' : "I'm rich bitch!",
+			'description' : "",
 			'height' : 20,
 			'stackable' : false,
 			'counter' 	: false
@@ -268,7 +268,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'northern_stereo_small.png',
 			'title' : 'Northern Stereo',
-			'description' : "Handle with care, ty.",
+			'description' : "",
 			'height' : 55,
 			'stackable' : false,
 			'counter' 	: false
@@ -286,7 +286,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'vanillacokeshelf_small.png',
 			'title' : 'Vanilla Coke Shelf',
-			'description' : "Perfect for hiding drugs in.",
+			'description' : "",
 			'height' : 60,
 			'stackable' : false,
 			'counter' 	: false,
@@ -304,7 +304,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'vanillacoketable_small.png',
 			'title' : 'Vanilla Coke Table',
-			'description' : "Perfect for doing drugs on.",
+			'description' : "",
 			'height' : 20,
 			'stackable' : false,
 			'counter' 	: false,
@@ -323,7 +323,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'seaspongebarrier_small.png',
 			'title' : 'Sea Sponge Barrier',
-			'description' : "Used to keep out the underwater zombies.",
+			'description' : "",
 			'height' : 95,
 			'stackable' : false,
 			'counter' 	: false
@@ -379,7 +379,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'acoustopad_small.png',
 			'title' : 'Acousto Pad',
-			'description' : "Blocks 100% of noise but only blocks 50% of talent.",
+			'description' : "",
 			'height' : 55,
 			'scale': .9,
 			'stackable' : false,
@@ -398,7 +398,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'rectaquarium_small.png',
 			'title' : 'Acousto Pad',
-			'description' : "Blocks 100% of noise but only blocks 50% of talent.",
+			'description' : "",
 			'height' : 50,
 			'stackable' : false,
 			'counter' 	: false,
@@ -416,7 +416,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'beanbag_small.png',
 			'title' : 'Cow Bean Bag',
-			'description' : "Looks fucking sick but hurts the shit out of your back.",
+			'description' : "",
 			'height' : 30,
 			'stackable' : false,
 			'counter' 	: false,
@@ -566,7 +566,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'gumball_small.png',
 			'title' : 'Coke Gum Machine',
-			'description' : "Secretly coke inside the gumballs.",
+			'description' : "",
 			'height' : 60,
 			'stackable' : false,
 			'counter' 	: false,
@@ -584,7 +584,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'tv_small.png',
 			'title' : 'A badass TV',
-			'description' : "This TV does not turn on that's why it's so badass.",
+			'description' : "",
 			'height' : 20,
 			'stackable' : false,
 			'counter' : true
@@ -602,7 +602,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'pinball_small.png',
 			'title' : 'Pinball Machine',
-			'description' : "Super, Ultra, Mega, Rare. Scam me for it.",
+			'description' : "",
 			'height' : 53,
 			'stackable' : false,
 			'counter' : false
@@ -620,7 +620,7 @@ var FURNITURE = {
 		'info': {
 			'icon' : 'plant1_small.png',
 			'title' : 'Plant',
-			'description' : "I forgot the description for this?",
+			'description' : "",
 			'height' : 62,
 			'stackable' : false,
 			'counter' : true
