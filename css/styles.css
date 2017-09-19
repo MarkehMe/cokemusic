@@ -709,6 +709,8 @@ x-bubble {
   width: 369px;
   height: 426px;
   top: calc(42vh - 200px); }
+  #catalog-ui.active {
+    display: block; }
   #catalog-ui .catalog-ui-content {
     border-radius: 4px;
     padding-top: 10px;

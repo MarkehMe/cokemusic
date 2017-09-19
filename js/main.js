@@ -28,7 +28,7 @@ function init_bar_ui() {
 	});
 
 	$('#catalogue').click(function(){
-
+		on_catalog_click();
 	});
 
 	$('#music').click(function(){

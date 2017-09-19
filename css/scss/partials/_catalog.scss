@@ -3,6 +3,10 @@
 	height: 426px;
 	top: calc(42vh - 200px);
 
+	&.active {
+		display: block;
+	}
+	
 	.nav-ui-title {
 
 	}
