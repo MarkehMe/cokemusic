@@ -800,8 +800,8 @@ x-bubble {
                 #catalog-ui .catalog-data > li .text-and-preview .preview-box-container .preview-box .preview-box-wrapper .preview-box-cell img {
                   display: none;
                   margin: 0 auto;
-                  width: 55%;
-                  height: auto; }
+                  width: auto;
+                  height: 50px; }
                   #catalog-ui .catalog-data > li .text-and-preview .preview-box-container .preview-box .preview-box-wrapper .preview-box-cell img.active {
                     display: block; }
   #catalog-ui .catalog-pagination-wrapper .catalog-pagination {
