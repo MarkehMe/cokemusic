@@ -631,7 +631,7 @@ html, body {
   position: relative; }
   #nav-user-studios #nav-active-studios li .nav-name, #nav-user-studios #nav-active-studios li .nav-go, #nav-user-studios #nav-active-studios li .nav-count {
     font-family: "Arial", sans-serif;
-    color: #775d47;
+    color: #6c472d;
     font-size: 13.5px; }
   #nav-user-studios #nav-active-studios li .nav-name {
     display: inline-block;
@@ -744,13 +744,15 @@ x-bubble {
           margin-bottom: 5px; }
           #catalog-ui .catalog-data > li .items li .catalog-item-wrapper {
             font-size: 10.5px; }
-            #catalog-ui .catalog-data > li .items li .catalog-item-wrapper img, #catalog-ui .catalog-data > li .items li .catalog-item-wrapper a {
+            #catalog-ui .catalog-data > li .items li .catalog-item-wrapper a {
               float: left; }
-            #catalog-ui .catalog-data > li .items li .catalog-item-wrapper img {
+            #catalog-ui .catalog-data > li .items li .catalog-item-wrapper .catalog-img-wrapper {
               width: 14%;
-              margin-right: 10px; }
+              text-align: center;
+              margin-right: 10px;
+              float: left; }
             #catalog-ui .catalog-data > li .items li .catalog-item-wrapper .catalog-item-info {
-              color: #775d47;
+              color: #6c472d;
               display: block; }
             #catalog-ui .catalog-data > li .items li .catalog-item-wrapper .catalog-item-info {
               width: calc(60% - 10px);
@@ -767,7 +769,7 @@ x-bubble {
         width: calc(30% - 10px);
         padding: 5px;
         font-size: 10.5px;
-        color: #775d47; }
+        color: #6c472d; }
         #catalog-ui .catalog-data > li .text-and-preview .preview-box-container {
           position: absolute;
           bottom: 36px;
@@ -812,7 +814,7 @@ x-bubble {
         width: 50%;
         text-align: center;
         font-size: 10px;
-        color: #775d47;
+        color: #6c472d;
         display: block;
         padding-top: 4px;
         font-weight: bold; }

@@ -6,7 +6,7 @@
 	&.active {
 		display: block;
 	}
-	
+
 	.nav-ui-title {
 
 	}
@@ -57,13 +57,19 @@
 					.catalog-item-wrapper {
 						font-size: $item-text-font-size;
 
-						img, a {
+						a {
 							float: left;
 						}
 
-						img {
+						.catalog-img-wrapper {
 							width: 14%;
+							text-align: center;
 							margin-right: 10px;
+							float: left;
+
+							img {
+		
+							}
 						}
 
 						.catalog-item-info {

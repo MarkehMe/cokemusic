@@ -1,6 +1,8 @@
 var UI_ACTIVE = false;
 var INVENTORY_ITEMS_PER_PAGE = 25;
 
+var CATALOG_JSON_URL = "/jsonreply/catalog.php";
+
 $(document).ready(function() {
 	init_bar_ui();
 	init_navigation();
