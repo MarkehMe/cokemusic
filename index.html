@@ -40,7 +40,7 @@
     <div class="logo-title-info">
         <h1>CokePhase<br>
         playable Coke Music / Coke Studios online game client redevelopment project. (MyCoke)</h1>
-        <a href="/changelog.php" target="_blank">Game Development Progress</a>
+        <!-- <a href="/changelog.php" target="_blank">Game Development Progress</a> -->
     </div>
 
     <form class="donateform" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -195,7 +195,6 @@
                             <li data-room-id="4"><span class="nav-count">0</span><a class="nav-name" href="javascript:;">Studio #4</a><a class="nav-go" href="javascript:;">Go!</a></li>
                             <li data-room-id="5"><span class="nav-count">0</span><a class="nav-name" href="javascript:;">Studio Rooftop</a><a class="nav-go" href="javascript:;">Go!</a></li>
                             <li data-room-id="6"><span class="nav-count">0</span><a class="nav-name" href="javascript:;">Studio Wayne</a><a class="nav-go" href="javascript:;">Go!</a></li>
-                            <li data-room-id="7"><span class="nav-count">0</span><a class="nav-name" href="javascript:;">Pokemon (i got bored)</a><a class="nav-go" href="javascript:;">Go!</a></li>
                         </ul>
                     </div>
 
@@ -229,14 +228,14 @@
 
     <!-- CATALOG -->
     <div class="contain">
-        <div id="catalog-ui" class="popup">
+        <div id="catalog-ui" class="popup large" style="display: block">
             <div class="nav-ui-title">
                 <h3>Online Catalog</h3>
                 <a id="catalog_close" class="close"></a>
             </div>
 
-            <div class="catalog-ui-content">
-                <ul class="catalog-data">
+            <div class="catalog-ui-content popup-content-wrapper clearfix">
+                <ul class="catalog-data clearfix">
                     <li data-page="1">
                         <h1 class="catalog-header"></h1>
                         <ul class="items clearfix">
@@ -250,8 +249,11 @@
                         </ul>
                     </li>
 
-                    <li data-page="3">
-                        <h1 class="catalog-header">Premiere</h1>
+                    <li data-page="3" class="active">
+                        <div class="catalogue-page-header-wrapper">
+                            <h4 class="catalog-page-header">
+                            Premiere</h4>
+                        </div>
 
                         <ul class="items clearfix">
                             <li>
@@ -270,12 +272,24 @@
                                 <span>Preview</span>
 
                                 <div class="preview-box">
-                                    <p>Click an icon on the left.</p>
+                                    <div class="preview-box-wrapper">
+                                        <div class="preview-box-cell">
+                                            <p>Click an icon on the left.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
+
+                <div class="catalog-pagination-wrapper">
+                    <ul class="catalog-pagination">
+                        <li class="prev-btn"><a class="btn previous" href="javascript:;">Previous</a></li>
+                        <li class="pages-text"><span>Page: 3/10</span></li>
+                        <li class="next-btn"><a class="btn next" href="javascript:;">Next</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

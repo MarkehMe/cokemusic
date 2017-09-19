@@ -1,8 +1,17 @@
+/* COLORS */
+$white: #FFFFFF;
+$tan: #775d47;
+$tanLight: #eddbc5;
+
 .some {
 	text-align: center;
 }
 
 $menu-bar-height: 47px;
+
+/* POPUPS */
+$popup-border-radius: 4px;
+$catalog-page-header-font-size: 19px;
 
 /* GLOBALS */
 $font-color: #775d47;
@@ -12,6 +21,7 @@ $font-family: 'Arial', sans-serif;
 $button-font-size: 10px;
 $button-font-color: #fae9da;
 $button-blue-bg: #294b6f;
+$button-border-radius: 4px;
 
 /* INVENTORY */
 $inventory-icon-size: 30px;
@@ -24,6 +34,11 @@ $nav-tab-radius: 4px;
 $nav-tab-color: #775d47;
 $nav-tab-bg-color: #c5a68a;
 $nav-tab-active-bg-color: #eddbc5;
+
+/* CATALOG */
+$info-text-font-size: 10.5px;
+$preview-box-background-color: #bd9677;
+$preview-box-border-color: #824b33;
 
 /* INFOSTAND AND TEXT */ 
 $furni-title-color: #8b8b8b;

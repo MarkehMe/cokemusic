@@ -29,6 +29,52 @@ html, body {
 
 .popup {
 	display: none;
+
+	&.large {
+		position: absolute;
+		z-index: 9;
+		top: calc(42vh - 180px);
+		right: 15%;
+		border-radius: $nav-tab-radius;
+		width: 309px;
+		height: 404px;
+		border: 1px solid #3f3426;
+		background-color: #bd9060;
+		background-image: url('../assets/ui/tileable-bg.png');
+		background-repeat: repeat;
+		padding: 6px;
+
+		.nav-ui-title {
+			position: relative;
+		    padding-top: 5px;
+		    padding-bottom: 10px;
+
+			h3 {
+				color: $nav-tab-active-bg-color;
+				font-size: 12px;
+				text-align: center;
+				@include no-select();
+			}
+
+			.close {
+				background-image: url('../assets/ui/close-x.png');
+				background-repeat: no-repeat;
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				@include no-select();
+			}
+		}
+
+		.popup-content-wrapper {
+			background-color: #eddbc5;
+    		border-bottom-right-radius: 4px;
+    		border-bottom-left-radius: 4px;
+    		padding: 5px 9px;
+		}
+	}
 }
 
 .donateform {
@@ -37,6 +83,30 @@ html, body {
 	width: 100%;
 	top: 11.5%;
 	padding-top: 5px;
+}
+
+.btn {
+	color: $button-font-color;
+	font-size: $button-font-size;
+	background-color: $button-blue-bg;
+	text-decoration: none;
+	border-radius: $button-border-radius;
+	padding: 3px 6px;
+    min-width: 35px;
+    display: inline-block;
+    text-align: center;
+
+	&:active, &:hover, &:focus {
+		text-decoration: none;
+	}
+}
+
+.previous-button {
+
+}
+
+.next-button {
+
 }
 
 .progress-bar {
