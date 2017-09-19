@@ -4,6 +4,7 @@ var INVENTORY_ITEMS_PER_PAGE = 25;
 $(document).ready(function() {
 	init_bar_ui();
 	init_navigation();
+	init_catalog();
 	init_inventory();
 	init_toggles();
 	init_popups();

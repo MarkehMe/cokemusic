@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="/js/main.js"></script>
     <script type="text/javascript" src="/js/inventory.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
+    <script type="text/javascript" src="/js/catalog.js"></script>
 
 	<title>CokePhase - Coke Music / Coke Studios Game Development</title>
     <meta name="description" CONTENT="CokePhase, playable online Coke Music / Coke Studios game client redevelopment project for retro MyCoke.">
@@ -256,25 +257,35 @@
                         </div>
 
                         <ul class="items clearfix">
-                            <li>
+                            <li class="clearfix">
                                 <div class="catalog-item-wrapper">
-                                    <img src=""/>
-                                    <a class="catalog-item-info" href="javascript:;">Premier Chair<br>1000 dB</a>
-                                    <a class="catalog-item-buy" href="javascript">Buy</a>
+                                    <img src="./assets/furniture/icons/sofa_coke.png"/>
+                                    <a class="catalog-item-info" href="javascript:;"><span>Premier Chair</span><span>1000 dB</span></a>
+                                    <a class="btn catalog-item-buy" href="javascript:;">Buy</a>
                                 </div>
                             </li>
+
+                            <li class="clearfix">
+                                <div class="catalog-item-wrapper">
+                                    <img src="./assets/furniture/icons/sofa_coke.png"/>
+                                    <a class="catalog-item-info" href="javascript:;"><span>Premier Chair</span><span>1000 dB</span></a>
+                                    <a class="btn catalog-item-buy" href="javascript:;">Buy</a>
+                                </div>
+                            </li>
+
                         </ul>
 
                         <div class="text-and-preview">
                             <p>Our exclusive furniture provides you with moments of slick heavyweight comfort. Enjoy it while the prices are low!</p>
 
-                            <div class="preview-box-wrapper">
+                            <div class="preview-box-container">
                                 <span>Preview</span>
 
                                 <div class="preview-box">
                                     <div class="preview-box-wrapper">
                                         <div class="preview-box-cell">
-                                            <p>Click an icon on the left.</p>
+                                            <p class="active">Click an icon on the left.</p>
+                                            <img src="">
                                         </div>
                                     </div>
                                 </div>
@@ -283,7 +294,7 @@
                     </li>
                 </ul>
 
-                <div class="catalog-pagination-wrapper">
+                <div class="catalog-pagination-wrapper clearfix">
                     <ul class="catalog-pagination">
                         <li class="prev-btn"><a class="btn previous" href="javascript:;">Previous</a></li>
                         <li class="pages-text"><span>Page: 3/10</span></li>
