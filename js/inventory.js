@@ -2,21 +2,27 @@ var INVENTORY_OPEN = false;
 var CURRENT_INVENTORY_PAGE = 1;
 
 function init_inventory() {
-	var inventory = $('#inventory');
-	var inventory_panel = $('#inventory > .i-move');
-    var dragging = false;
+	var inventory = $('#inventory'),
+	 	inventory_panel = $('#inventory > .i-move'),
+    	dragging = false,
+    	cacheMouse = {};
 
     init_inventory_pages();
 
     $('body').on("mousemove", function(e) {
     	if(dragging == true) {
-    		inventory.css('top', (e.pageY - 44));
-    		inventory.css('left', (e.pageX - 238));
+    		inventory.css('top', (e.clientY - cacheMouse.y) + 'px');
+    		inventory.css('left', (e.clientX - cacheMouse.x) + 'px');
     	}
     });
 
     inventory_panel.on("mousedown", function (e) {
     	inventory_panel.css( 'cursor', 'move' );
+    	cacheMouse = { 
+    		x: e.clientX - inventory.css('left').replace('px',''), 
+    		y: e.clientY - inventory.css('top').replace('px','')
+    	};
+
         dragging = true;
     });
 
