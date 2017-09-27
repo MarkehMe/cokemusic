@@ -1,0 +1,62 @@
+{
+	"title": "Premier",
+	"description": "Our exclusive furniture provides you with moments of slick heavyweight comfort. Enjoy it while the prices are low!",
+	"items": [
+		{
+			"prodId": "3",
+			"type": "Chair",
+			"price": "500",
+			"name": "Premier Chair",
+			"image": "northern_chair_small.png"
+		},
+		{
+			"prodId": "4",
+			"type": "Stool",
+			"price": "500",
+			"name": "Premier Stool",
+			"image": "northern_stool_small.png"
+		},
+		{
+			"prodId": "5",
+			"type": "Sofa",
+			"price": "500",
+			"name": "Premier Sofa",
+			"image": "northern_sofa_small.png"
+		},
+		{
+			"prodId": "6",
+			"type": "Table",
+			"price": "500",
+			"name": "Premier Coffee Table",
+			"image": "northern_ctable_small.png"
+		},
+		{
+			"prodId": "7",
+			"type": "Table",
+			"price": "500",
+			"name": "Premier Table",
+			"image": "northern_table_small.png"
+		},
+		{
+			"prodId": "8",
+			"type": "Default",
+			"price": "500",
+			"name": "Premier Stereo",
+			"image": "northern_stereo_small.png"
+		},
+		{
+			"prodId": "9",
+			"type": "Default",
+			"price": "500",
+			"name": "Premier Minibar",
+			"image": "northern_minibar_small.png"
+		},
+		{
+			"prodId": "10",
+			"type": "Default",
+			"price": "500",
+			"name": "Premier Light",
+			"image": "northern_light_small.png"
+		}
+	]
+}

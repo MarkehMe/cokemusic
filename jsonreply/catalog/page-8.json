@@ -1,0 +1,62 @@
+{
+	"title": "For Walls",
+	"description": "Add a final touch to your studio decoration with these instruments and posters.",
+	"items": [
+		{
+			"prodId": "51",
+			"type": "Poster",
+			"price": "500",
+			"name": "Guitar",
+			"image": "poster guitar_small.png"
+		},
+		{
+			"prodId": "52",
+			"type": "Poster",
+			"price": "500",
+			"name": "Bass",
+			"image": "poster bass_small.png"
+		},
+		{
+			"prodId": "53",
+			"type": "Poster",
+			"price": "500",
+			"name": "Trumpet",
+			"image": "poster trumpet_small.png"
+		},
+		{
+			"prodId": "54",
+			"type": "Poster",
+			"price": "500",
+			"name": "Acoustic Foam",
+			"image": "poster acoustic_foam_small.png"
+		},
+		{
+			"prodId": "55",
+			"type": "Poster",
+			"price": "500",
+			"name": "Retro Keyboard",
+			"image": "poster mini_small.png"
+		},
+		{
+			"prodId": "56",
+			"type": "Poster",
+			"price": "500",
+			"name": "Disco Poster",
+			"image": "poster disco_small.png"
+		},
+		{
+			"prodId": "57",
+			"type": "Poster",
+			"price": "500",
+			"name": "Tropical Poster",
+			"image": "poster enviromental_small.png"
+		},
+		{
+			"prodId": "58",
+			"type": "Poster",
+			"price": "500",
+			"name": "Top 40 Chart",
+			"image": "poster chart_small.png"
+		}
+	]
+}

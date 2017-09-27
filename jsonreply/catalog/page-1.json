@@ -1,0 +1,20 @@
+{
+	"title": "Walls and Floors",
+	"description": "You can customize the way your Studio looks with these wall and floor variations. Be sure to pick matching colors!",
+	"items": [
+		{
+			"prodId": "1",
+			"type": "Wallpaper",
+			"price": "500",
+			"name": "Wallpaper",
+			"image": "wallpaper_small.png"
+		},
+		{
+			"prodId": "2",
+			"type": "Floor",
+			"price": "500",
+			"name": "Floor",
+			"image": "floor_small.png"
+		}
+	]
+}

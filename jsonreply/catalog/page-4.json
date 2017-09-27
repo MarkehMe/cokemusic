@@ -1,0 +1,62 @@
+{
+	"title": "Studio Essentials",
+	"description": "Authentic-looking fake vintage studio equipment helps you look more professional and gets your creative juices flowing.",
+	"items": [
+		{
+			"prodId": "19",
+			"type": "Default",
+			"price": "500",
+			"name": "Equipment Rack",
+			"image": "rack1_small.png"
+		},
+		{
+			"prodId": "20",
+			"type": "Default",
+			"price": "500",
+			"name": "Sampler Rack",
+			"image": "rack2_small.png"
+		},
+		{
+			"prodId": "21",
+			"type": "Default",
+			"price": "500",
+			"name": "Wooden Speaker",
+			"image": "monitor1_small.png"
+		},
+		{
+			"prodId": "22",
+			"type": "Default",
+			"price": "500",
+			"name": "Microphone",
+			"image": "microphone_small.png"
+		},
+		{
+			"prodId": "23",
+			"type": "Default",
+			"price": "500",
+			"name": "Cables",
+			"image": "wire_s01.png"
+		},
+		{
+			"prodId": "24",
+			"type": "TV",
+			"price": "500",
+			"name": "TV",
+			"image": "tv_small.png"
+		},
+		{
+			"prodId": "25",
+			"type": "Default",
+			"price": "500",
+			"name": "Retro Speaker",
+			"image": "speaker1_small.png"
+		},
+		{
+			"prodId": "26",
+			"type": "Default",
+			"price": "500",
+			"name": "Blank CD",
+			"image": "burnedcd"
+		}
+	]
+}

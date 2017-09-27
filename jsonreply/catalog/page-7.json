@@ -1,0 +1,62 @@
+{
+	"title": "Coke Collection",
+	"description": "Oodles of authentic Coke items. Come and get a polar bear statue of your own!",
+	"items": [
+		{
+			"prodId": "43",
+			"type": "Default",
+			"price": "500",
+			"name": "Minibar",
+			"image": "minibar_coke_small.png"
+		},
+		{
+			"prodId": "44",
+			"type": "Chair",
+			"price": "500",
+			"name": "Chair",
+			"image": "chair_coke_small.png"
+		},
+		{
+			"prodId": "45",
+			"type": "Default",
+			"price": "500",
+			"name": "Coke Cooler",
+			"image": "coolcase_small.png"
+		},
+		{
+			"prodId": "46",
+			"type": "Default",
+			"price": "500",
+			"name": "Polar Bear",
+			"image": "polarbear_small.png"
+		},
+		{
+			"prodId": "47",
+			"type": "Default",
+			"price": "500",
+			"name": "Coke CD Player",
+			"image": "coke_cd_player_small.png"
+		},
+		{
+			"prodId": "48",
+			"type": "Default",
+			"price": "500",
+			"name": "Lava Lamp",
+			"image": "lava_small.png"
+		},
+		{
+			"prodId": "49",
+			"type": "Poster",
+			"price": "500",
+			"name": "Coca-Cola Neon Sign",
+			"image": "poster neonsign_small.png"
+		},
+		{
+			"prodId": "50",
+			"type": "Sofa",
+			"price": "500",
+			"name": "Coke Couch",
+			"image": "sofa_coke_small.png"
+		}
+	]
+}

@@ -10,20 +10,92 @@
 
 	switch ($page) {
 		case '0':
-			# code...
+			$jsonString = file_get_contents("catalog/page-0.json");
+			echo $jsonString;
 			break;
 
 		case '1':
-			# code...
+			$jsonString = file_get_contents("catalog/page-1.json");
+			echo $jsonString;
 			break;
-
+			
+		case '2':
+			$jsonString = file_get_contents("catalog/page-2.json");
+			echo $jsonString;
+			break;
+			
 		case '3':
 			$jsonString = file_get_contents("catalog/page-3.json");
 			echo $jsonString;
 			break;
+			
+		case '4':
+			$jsonString = file_get_contents("catalog/page-4.json");
+			echo $jsonString;
+			break;
+				
+		case '5':
+			$jsonString = file_get_contents("catalog/page-5.json");
+			echo $jsonString;
+			break;
+				
+		case '6':
+			$jsonString = file_get_contents("catalog/page-6.json");
+			echo $jsonString;
+			break;
+				
+		case '7':
+			$jsonString = file_get_contents("catalog/page-7.json");
+			echo $jsonString;
+			break;
+				
+		case '8':
+			$jsonString = file_get_contents("catalog/page-8.json");
+			echo $jsonString;
+			break;
+				
+		case '9':
+			$jsonString = file_get_contents("catalog/page-9.json");
+			echo $jsonString;
+			break;
+			
+			
+		case '10':
+			$jsonString = file_get_contents("catalog/page-10.json");
+			echo $jsonString;
+			break;
 		
+		case '11':
+			$jsonString = file_get_contents("catalog/page-11.json");
+			echo $jsonString;
+			break;
+			
+		case '12':
+			// TODO: JSON FIle is too large. Need to separate into multiple
+			// Need to find images for this data as well
+			//$jsonString = file_get_contents("catalog/page-12.json");
+			//echo $jsonString;
+			break;
+			
+		case '13':
+			// TODO: JSON FIle is too large. Need to separate into multiple
+			// Need to find images for this data as well
+			//$jsonString = file_get_contents("catalog/page-13.json");
+			//echo $jsonString;
+			break;
+			
+		case '14':
+			$jsonString = file_get_contents("catalog/page-14.json");
+			echo $jsonString;
+			break;
+			
+		case '15':
+			$jsonString = file_get_contents("catalog/page-15.json");
+			echo $jsonString;
+			break;
+			
 		default:
-			# code...
+			console.log("catalog.php: default case line 69");
 			break;
 	}
 ?>

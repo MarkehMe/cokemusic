@@ -1,0 +1,62 @@
+{
+	"title": "Necessities",
+	"description": "Dorm room style beats. Makeshift furni for better lounging!",
+	"items": [
+		{
+			"prodId": "74",
+			"type": "Default",
+			"price": "500",
+			"name": "Old Fridge",
+			"image": "dorm_minibar_small.png"
+		},
+		{
+			"prodId": "75",
+			"type": "Default",
+			"price": "500",
+			"name": "Boom Box",
+			"image": "ghettoblaster_small.png"
+		},
+		{
+			"prodId": "76",
+			"type": "Table",
+			"price": "500",
+			"name": "Instant Bookshelf",
+			"image": "dorm_bookshelf_small.png"
+		},
+		{
+			"prodId": "77",
+			"type": "Default",
+			"price": "500",
+			"name": "Dorm Light",
+			"image": "dorm_light_small.png"
+		},
+		{
+			"prodId": "78",
+			"type": "Table",
+			"price": "500",
+			"name": "Instant Table",
+			"image": "dorm_table_small.png"
+		},
+		{
+			"prodId": "79",
+			"type": "Chair",
+			"price": "500",
+			"name": "Funky Chair",
+			"image": "dorm_chair_small.png"
+		},
+		{
+			"prodId": "80",
+			"type": "Sofa",
+			"price": "500",
+			"name": "Stylish Couch",
+			"image": "dorm_couch_small.png"
+		},
+		{
+			"prodId": "81",
+			"type": "Poster",
+			"price": "500",
+			"name": "Surf Board",
+			"image": "poster surf_small.png"
+		}
+	]
+}

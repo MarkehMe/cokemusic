@@ -1,0 +1,62 @@
+{
+	"title": "Necessities",
+	"description": "With this stuff you can really make your Studio breathe and create groovy spaces.",
+	"items": [
+		{
+			"prodId": "27",
+			"type": "Separator",
+			"price": "500",
+			"name": "Acoustic Pad",
+			"image": "acoustopad_small.png"
+		},
+		{
+			"prodId": "28",
+			"type": "Separator",
+			"price": "500",
+			"name": "Tinted Separator",
+			"image": "screen_wall_small.png"
+		},
+		{
+			"prodId": "29",
+			"type": "Default",
+			"price": "500",
+			"name": "Potted Plant",
+			"image": "plant1_small.png"
+		},
+		{
+			"prodId": "30",
+			"type": "Default",
+			"price": "500",
+			"name": "Tulip",
+			"image": "plant2_small.png"
+		},
+		{
+			"prodId": "31",
+			"type": "Rug",
+			"price": "500",
+			"name": "Psychedelic Carpet",
+			"image": "rug1_small.png"
+		},
+		{
+			"prodId": "32",
+			"type": "Rug",
+			"price": "500",
+			"name": "Straw Mat",
+			"image": "rug2_small.png"
+		},
+		{
+			"prodId": "33",
+			"type": "Rug",
+			"price": "500",
+			"name": "Furry Rug",
+			"image": "rug3_small.png"
+		},
+		{
+			"prodId": "34",
+			"type": "Default",
+			"price": "500",
+			"name": "Corner Piece",
+			"image": "screen_corner_small.png"
+		}
+	]
+}

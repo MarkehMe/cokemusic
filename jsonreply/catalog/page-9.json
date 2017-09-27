@@ -1,0 +1,62 @@
+{
+	"title": "Necessities",
+	"description": "More cool stuff for your studio!",
+	"items": [
+		{
+			"prodId": "59",
+			"type": "Default",
+			"price": "500",
+			"name": "Aquarium",
+			"image": "aquarium_small.png"
+		},
+		{
+			"prodId": "60",
+			"type": "Rug",
+			"price": "500",
+			"name": "Dance Floor",
+			"image": "hardwood_small.png"
+		},
+		{
+			"prodId": "62",
+			"type": "Stool",
+			"price": "500",
+			"name": "Futuristic Chair",
+			"image": "futchair_small.png"
+		},
+		{
+			"prodId": "63",
+			"type": "Sofa",
+			"price": "500",
+			"name": "Leopard Couch",
+			"image": "leopard_sofa_small.png"
+		},
+		{
+			"prodId": "64",
+			"type": "Sofa",
+			"price": "500",
+			"name": "Zebra Couch",
+			"image": "zebra_sofa_small.png"
+		},
+		{
+			"prodId": "65",
+			"type": "Sofa",
+			"price": "500",
+			"name": "Grunge Couch",
+			"image": "grungecouch_small.png"
+		},
+		{
+			"prodId": "66",
+			"type": "Desk",
+			"price": "500",
+			"name": "Messy Table",
+			"image": "messytable_small.png"
+		},
+		{
+			"prodId": "139",
+			"type": "Poster",
+			"price": "500",
+			"name": "EA Batman Poster",
+			"image": "ea_poster_small.png"
+		}
+	]
+}

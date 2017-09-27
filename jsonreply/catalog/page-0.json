@@ -1,0 +1,13 @@
+{
+	"title": "Coke Studios\nOnline Catalogue",
+	"description": "Turn your decibels into items.",
+	"items": [
+		{
+			"prodId": "0",
+			"type": "UNDEFINED",
+			"price": "500",
+			"name": "Decibles",
+			"image": "decibles"
+		}
+	]
+}
