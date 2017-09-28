@@ -21,53 +21,31 @@ function init_catalog() {
 	}
 
 	function init_catalog_pagination() {
-		
-		// Grab the total number of pages by ajax lookup of the directory
+		// Grab the total number of pages by querying server
 		$.ajax({
-			url: "/jsonreply/catalog/",
-			success: function(data) {
-				var parser = new DOMParser(),
-				doc = parser.parseFromString(data, 'text/html');
-
-				//output the file table
-				//$("#files").append(doc.querySelector('table').outerHTML);
-
-				//or return the number of files
-				//tr = icon, filename, date, size, desc
-				//consider all rows with a size value holding a number as a vlid file
-				var fileCount = 0,
-					rows = doc.querySelector('table').querySelectorAll('tr');
-
-				for (var i=0;i<rows.length;i++) {
-					if (rows[i].children[3]) {
-						if (parseInt(rows[i].children[3].innerText)>0) fileCount++;         
-					}
-				}
-				
-				CATALOG_TOTAL_PAGES = fileCount;
+			url: CATALOG_JSON_URL,
+			method: "POST",
+			dataType: "json",
+			data: { "page-number": true },
+			success: function(data) {		
+			console.log(data.pages)	;
+				CATALOG_TOTAL_PAGES = data.pages;
 				
 				// LOAD All the Catalog Data to the webpage here.
 				// Assumes all data is stored in /jsonreply/catalog/
 				// Assumes index.html and catalog.php is in sync with # of files.
-				for(var i = 0; i <= CATALOG_TOTAL_PAGES; i++) {
-						
+				for(var i = 0; i <= CATALOG_TOTAL_PAGES; i++) {		
 					load_catalog_page(i);
 				}
 				
 				// Default the Pages Text
 				$('.catalog-pagination .pages-text').html('<span>Page: '+CATALOG_CURRENT_PAGE+'/'+CATALOG_TOTAL_PAGES+'</span>');
-				//$("#fileCount").text(fileCount+' files');
 			},
 			error: function(error) {
-				console.log(error);
+				console.log('init_catalog_pagination: ' + error);
 			}
 			
 		});
-		
-		
-		
-		
-		
 	}
 	
 	$('.next-btn').click(function(){
@@ -104,8 +82,7 @@ function load_catalog_page(pageNum) {
 			}
 		},
 		error: function(error) {
-			consol.log("error loading catalog page")
-			console.log(error);
+			
 		}
 	});
 }

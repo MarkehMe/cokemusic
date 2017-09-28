@@ -6,6 +6,10 @@
 		$page = $_POST['page'];
 	} elseif(isset($_GET['page'])) {
 		$page = $_GET['page'];
+	} elseif(isset($_POST['page-number'])) {
+		$data['pages'] = 15;
+		echo json_encode($data);
+		return;
 	}
 
 	switch ($page) {
