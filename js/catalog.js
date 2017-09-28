@@ -1,4 +1,4 @@
-var CATALOG_CURRENT_PAGE = 1;
+ var CATALOG_CURRENT_PAGE = 1;
 var CATALOG_TOTAL_PAGES = 0;
 
 function init_catalog() {
@@ -71,11 +71,11 @@ function init_catalog() {
 	}
 	
 	$('.next-btn').click(function(){
-		on_next_button_click();
+		on_catalog_next_button_click();
 	});
 	
 	$('.prev-btn').click(function(){
-		on_previous_button_click();
+		on_catalog_previous_button_click();
 	});
 	
 }
@@ -110,7 +110,7 @@ function load_catalog_page(pageNum) {
 	});
 }
 
-function on_next_button_click() {
+function on_catalog_next_button_click() {
 	
 	// CATALOG_CURRENT_PAGE is 1 based json files are 0 based.
 	var current_page = CATALOG_CURRENT_PAGE - 1;
@@ -129,7 +129,7 @@ function on_next_button_click() {
 	}
 }
 
-function on_previous_button_click() {
+function on_catalog_previous_button_click() {
 	
 	// CATALOG_CURRENT_PAGE is 1 based json files are 0 based.
 	var current_page = CATALOG_CURRENT_PAGE - 1;
