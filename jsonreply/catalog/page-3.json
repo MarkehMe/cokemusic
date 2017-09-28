@@ -1,71 +1,62 @@
 {
-  "title": "Premiere",
-  "description": "Our exclusive furniture provides you with moments of slick heavyweight comfort. Enjoy it while the prices are low!",
-  
-  "items": [
-    {
-      "prodId": 0,
-      "type": "chair",
-      "price": "",
-      "name": "Premier Chair",
-      "image": "northern_chair_small.png"
-    },
-
-    {
-      "prodId": 0,
-      "type": "stool",
-      "price": "",
-      "name": "Premier Stool",
-      "image": "northern_stool_small.png"
-    },
-
-    {
-      "prodId": 0,
-      "type": "sofa",
-      "price": "",
-      "name": "Premier Sofa",
-      "image": "northern_sofa_small.png"
-    },
-
-    {
-      "prodId": 0,
-      "type": "table",
-      "price": "",
-      "name": "Premier Coffee Table",
-      "image": "northern_ctable_small.png"
-    },
-
-    {
-      "prodId": 0,
-      "type": "table",
-      "price": "",
-      "name": "Premier Table",
-      "image": "northern_table_small.png"
-    },
-
-    {
-      "prodId": 0,
-      "type": "stereo",
-      "price": "",
-      "name": "Premier Stereo",
-      "image": "northern_stereo_small.png"
-    },
-
-    {
-      "prodId": 0,
-      "type": "minibar",
-      "price": "",
-      "name": "Premier Minibar",
-      "image": "northern_minibar_small.png"
-    },
-
-    {
-      "prodId": 0,
-      "type": "light",
-      "price": "",
-      "name": "Premier Light",
-      "image": "northern_light_small.png"
-    }
-    
-  ]
+	"title": "5001 Collection",
+	"description": "The 5001 product range is the closest you'll get to comfort!",
+	"items": [
+		{
+			"prodId": "11",
+			"type": "Chair",
+			"price": "500",
+			"name": "5001 Chair",
+			"image": "5001_chair_small.png"
+		},
+		{
+			"prodId": "12",
+			"type": "Stool",
+			"price": "500",
+			"name": "5001 Stool",
+			"image": "5001_stool_small.png"
+		},
+		{
+			"prodId": "13",
+			"type": "Sofa",
+			"price": "500",
+			"name": "5001 Sofa",
+			"image": "5001_sofa_small.png"
+		},
+		{
+			"prodId": "14",
+			"type": "Table",
+			"price": "500",
+			"name": "5001 Coffee Table",
+			"image": "5001_ctable_small.png"
+		},
+		{
+			"prodId": "15",
+			"type": "Table",
+			"price": "500",
+			"name": "5001 Table",
+			"image": "5001_table_small.png"
+		},
+		{
+			"prodId": "16",
+			"type": "Default",
+			"price": "500",
+			"name": "5001 Sound System",
+			"image": "5001_stereo_small.png"
+		},
+		{
+			"prodId": "17",
+			"type": "Default",
+			"price": "500",
+			"name": "5001 Minibar",
+			"image": "5001_minibar_small.png"
+		},
+		{
+			"prodId": "18",
+			"type": "Default",
+			"price": "500",
+			"name": "5001 Cube Light",
+			"image": "5001_light_small.png"
+		}
+	]
 }

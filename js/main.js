@@ -32,7 +32,7 @@ function init_bar_ui() {
 	$('#catalogue').click(function(){
 		on_catalog_click();
 	});
-
+	
 	$('#music').click(function(){
 
 	});
@@ -74,7 +74,7 @@ function init_popups() {
 
 		$(this).find('.close').each(function() {
 			$(this).click(function() {
-				close_popup(popup);
+				toggle_popup(popup);
 			});
 		})
 	});

@@ -1,0 +1,62 @@
+{
+	"title": "Necessities",
+	"description": "With these ultra-cool separators that double as bar desks you can arrange your Studio the way you want to!",
+	"items": [
+		{
+			"prodId": "35",
+			"type": "Separator",
+			"price": "500",
+			"name": "White Separator",
+			"image": "blocks_small.png"
+		},
+		{
+			"prodId": "36",
+			"type": "Separator",
+			"price": "500",
+			"name": "Beige Separator",
+			"image": "blocks_small.png"
+		},
+		{
+			"prodId": "37",
+			"type": "Separator",
+			"price": "500",
+			"name": "Grey Separator",
+			"image": "blocks_small.png"
+		},
+		{
+			"prodId": "38",
+			"type": "Separator",
+			"price": "500",
+			"name": "Yellow Separator",
+			"image": "blocks_small.png"
+		},
+		{
+			"prodId": "39",
+			"type": "Separator",
+			"price": "500",
+			"name": "Steel Separator",
+			"image": "blocks_small.png"
+		},
+		{
+			"prodId": "40",
+			"type": "Separator",
+			"price": "500",
+			"name": "Orange Separator",
+			"image": "blocks_small.png"
+		},
+		{
+			"prodId": "41",
+			"type": "Separator",
+			"price": "500",
+			"name": "Green Separator",
+			"image": "blocks_small.png"
+		},
+		{
+			"prodId": "42",
+			"type": "Separator",
+			"price": "500",
+			"name": "Blue Separator",
+			"image": "blocks_small.png"
+		}
+	]
+}

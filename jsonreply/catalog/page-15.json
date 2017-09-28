@@ -1,0 +1,48 @@
+{
+	"title": "Necessities",
+	"description": "Create your own game.",
+	"items": [
+		{
+			"prodId": "150",
+			"type": "Poster",
+			"price": "500",
+			"name": "Heart Poster",
+			"imageBase": "poster heart"
+		},
+		{
+			"prodId": "157",
+			"type": "INFINITE_JUKEBOX",
+			"price": "500",
+			"name": "Infinite Jukebox",
+			"imageBase": "INFINITE_JUKEBOX_small.png"
+		},
+		{
+			"prodId": "158",
+			"type": "STAND_ON",
+			"price": "500",
+			"name": "Randomatic Number Podium",
+			"imageBase": "rndpodiumrect_small.png"
+		},
+		{
+			"prodId": "159",
+			"type": "Default",
+			"price": "500",
+			"name": "Randomatic Number Display",
+			"imageBase": "rnddisplayrect_small.png"
+		},
+		{
+			"prodId": "160",
+			"type": "STAND_ON",
+			"price": "500",
+			"name": "Randomatic Letter Podium",
+			"imageBase": "rndpodiumoval_small.png"
+		},
+		{
+			"prodId": "161",
+			"type": "Default",
+			"price": "500",
+			"name": "Randomatic Letter Display",
+			"imageBase": "rnddisplayoval_small.png"
+		}
+	]
+}

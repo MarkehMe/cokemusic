@@ -1,0 +1,62 @@
+{
+	"title": "Necessities",
+	"description": "Household needs.",
+	"items": [
+		{
+			"prodId": "142",
+			"type": "Default",
+			"price": "500",
+			"name": "Refrigerator",
+			"image": "refrigerator_small.png"
+		},
+		{
+			"prodId": "143",
+			"type": "DIVIDER",
+			"price": "500",
+			"name": "Oven",
+			"image": "oven_small.png"
+		},
+		{
+			"prodId": "144",
+			"type": "DIVIDER",
+			"price": "500",
+			"name": "Kitchen Sink",
+			"image": "kitchen_sink_small.png"
+		},
+		{
+			"prodId": "145",
+			"type": "DIVIDER",
+			"price": "500",
+			"name": "Kitchen Cabinet",
+			"image": "kitchen_cabinet_small.png"
+		},
+		{
+			"prodId": "146",
+			"type": "DIVIDER",
+			"price": "500",
+			"name": "Bookshelf",
+			"image": "bookshelf_small.png"
+		},
+		{
+			"prodId": "147",
+			"type": "fireplace",
+			"price": "500",
+			"name": "Fireplace",
+			"image": "fireplace_small.png"
+		},
+		{
+			"prodId": "148",
+			"type": "tvdesk",
+			"price": "500",
+			"name": "Entertainment Center",
+			"image": "entertainment_center_small.png"
+		},
+		{
+			"prodId": "152",
+			"type": "Poster",
+			"price": "500",
+			"name": "Winter View",
+			"image": "poster snow_view_small.png"
+		}
+	]
+}
